@@ -13,11 +13,11 @@ var height,
     textCtx,
     textPixels = [],
     input;
-var colors = ['#0ee1e7', '#0ee1e7', '#0ee1e7', '#0ee1e7', '#0ee1e7'];
+var colors = ['#0ee1e7', '#24fdc3', '#0ee1e7', '#24fdc3', '#0ee1e7'];
 
 function initStage() {
-    width = 800;
-    height = 200;
+    width = 2000;
+    height = 850;
     container = document.getElementById('stage');
     // window.addEventListener('resize', resize);
     container.addEventListener('mousemove', mousemove);
@@ -49,7 +49,7 @@ function randomPos(vector) {
 }
 
 function initCamera() {
-    fieldOfView = 75;
+    fieldOfView = 85 ;
     aspectRatio = width / height;
     nearPlane = 1;
     farPlane = 3000;

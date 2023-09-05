@@ -49,9 +49,9 @@
 </div>
 </header>
 <div class="hero-content">
-<div class="container">
+<div class="container" style="margin:0">
 <div class="row">
-<div class="col-12 offset-lg-2 col-lg-10">
+<div class="col-12 col-lg-10">
 <div class="entry-header">
 <!-- <h2>Waves'23</h2> -->
 <div id="stage"></div>
