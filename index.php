@@ -86,8 +86,8 @@
 </div>
 <div class="col-md-12">
 <div class="entry-footer">
-<a href="#" class="btn">Buy Tickets</a>
-<a href="#" class="btn current">See Lineup</a>
+<a href="#" class="btn">Rules and Regulation</a>
+<a href="#" class="btn current">See Events</a>
 </div>
 </div>
 
@@ -446,7 +446,7 @@ Copyright &copy;<script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd72
 
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script>
+<script>var
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -489,6 +489,17 @@ const interval = setInterval(function() {
     })
   );
 }, 250);
+</script>
+<script>
+function clickEffect(e){
+var d=document.createElement("div");
+d.className="clickEffect";
+d.style.top=e.clientY+"px";d.style.left=e.clientX+"px";
+document.body.appendChild(d);
+d.addEventListener('animationend',function(){d.parentElement.removeChild(d);}.bind(this));
+}
+document.addEventListener('click',clickEffect);
+
 </script>
 </body>
 </html>
