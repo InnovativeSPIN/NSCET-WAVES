@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="public/css/style.css">
 <script nonce="2af76b41-facd-47ce-9e71-e256854a4086">(function(w,d){!function(db,dc,dd,de){db[dd]=db[dd]||{};db[dd].executed=[];db.zaraz={deferred:[],listeners:[]};db.zaraz.q=[];db.zaraz._f=function(df){return async function(){var dg=Array.prototype.slice.call(arguments);db.zaraz.q.push({m:df,a:dg})}};for(const dh of["track","set","debug"])db.zaraz[dh]=db.zaraz._f(dh);db.zaraz.init=()=>{var di=dc.getElementsByTagName(de)[0],dj=dc.createElement(de),dk=dc.getElementsByTagName("title")[0];dk&&(db[dd].t=dc.getElementsByTagName("title")[0].text);db[dd].x=Math.random();db[dd].w=db.screen.width;db[dd].h=db.screen.height;db[dd].j=db.innerHeight;db[dd].e=db.innerWidth;db[dd].l=db.location.href;db[dd].r=dc.referrer;db[dd].k=db.screen.colorDepth;db[dd].n=dc.characterSet;db[dd].o=(new Date).getTimezoneOffset();if(db.dataLayer)for(const dp of Object.entries(Object.entries(dataLayer).reduce(((dq,dr)=>({...dq[1],...dr[1]})),{})))zaraz.set(dp[0],dp[1],{scope:"page"});db[dd].q=[];for(;db.zaraz.q.length;){const ds=db.zaraz.q.shift();db[dd].q.push(ds)}dj.defer=!0;for(const dt of[localStorage,sessionStorage])Object.keys(dt||{}).filter((dv=>dv.startsWith("_zaraz_"))).forEach((du=>{try{db[dd]["z_"+du.slice(7)]=JSON.parse(dt.getItem(du))}catch{db[dd]["z_"+du.slice(7)]=dt.getItem(du)}}));dj.referrerPolicy="origin";dj.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(db[dd])));di.parentNode.insertBefore(dj,di)};["complete","interactive"].includes(dc.readyState)?zaraz.init():db.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script></head>
-<body>
+<body id="body">
 <header class="site-header">
 <div class="header-bar">
 <div class="container-fluid">
@@ -51,18 +51,22 @@
 <div class="hero-content">
 <div class="container" style="margin:0">
 <div class="row">
-<div class="col-12 col-lg-10">
+<div class="col-md-12" style="display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;">
+    
 <div class="entry-header">
 <!-- <h2>Waves'23</h2> -->
 <div id="stage"></div>
 <canvas id="text" width="800" height="200"></canvas>
-<input id="input" type="text" value="Waves'23" style="display: none;"/>
+<input id="input" type="text" value="Waves'23 W" style="display: none;"/>
 
 <!-- <div class="entry-meta-date">
 06.28.018
 </div> -->
 </div>
-<div class="countdown flex flex-wrap justify-content-between" data-date="2018/06/06">
+<div class="col-md-8 countdown flex flex-wrap justify-content-between" data-date="2023/09/29">
 <div class="countdown-holder">
 <div class="dday"></div>
 <label>Days</label>
@@ -80,14 +84,16 @@
 <label>Seconds</label>
 </div>
 </div>
-</div>
-</div>
-<div class="row">
-<div class="col-12 ">
+<div class="col-md-12">
 <div class="entry-footer">
 <a href="#" class="btn">Buy Tickets</a>
 <a href="#" class="btn current">See Lineup</a>
 </div>
+</div>
+
+</div>
+<div class="row">
+
 </div>
 </div>
 </div>
@@ -448,5 +454,41 @@ Copyright &copy;<script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd72
   gtag('config', 'UA-23581568-13');
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"801ca2883dc3859f","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.8.0","si":100}' crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+
+<script>
+const duration = 10 * 1000,
+  animationEnd = Date.now() + duration,
+  defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+const interval = setInterval(function() {
+  const timeLeft = animationEnd - Date.now();
+
+  if (timeLeft <= 0) {
+    return clearInterval(interval);
+  }
+
+  const particleCount = 20 * (timeLeft / duration);
+
+  // since particles fall down, start a bit higher than random
+  confetti(
+    Object.assign({}, defaults, {
+      particleCount,
+      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+    })
+  );
+  confetti(
+    Object.assign({}, defaults, {
+      particleCount,
+      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+    })
+  );
+}, 250);
+</script>
 </body>
 </html>
