@@ -28,7 +28,7 @@ include('../routes/connect.php');
                     <div class="tab-content">
                         <!-- credit card info-->
                         <div id="add-event" class="tab-pane fade show active pt-3">
-                            <form role="form" action="../routes/event/eventPost.php" method="post">
+                            <form role="form" action="../routes/event/eventPost.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group"> <label for="event_name">
                                         <h6>Event Name</h6>
                                     </label> <input type="text" name="event_name" placeholder="Enter Event Name"
