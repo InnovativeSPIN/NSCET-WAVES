@@ -2015,3 +2015,8 @@ div.clickEffect {
 h5 {
   color: black;
 }
+
+.entry-title h2,
+.entry-title p{
+  font-family:'mountains'!important;
+}
