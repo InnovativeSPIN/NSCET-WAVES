@@ -148,7 +148,7 @@
 
           </div>
           <div class="col-md-12 countdown flex flex-wrap justify-content-between" data-date="2023/09/29">
-            <div class="col-md-12" style="display:flex;justify-content:center">
+            <div class="col-md-12 flex-wrap" style="display:flex;justify-content:center">
               <div class="countdown-holder">
                 <div class="dday"></div>
                 <label>Days</label>
@@ -188,7 +188,7 @@
 
   <div class="content-section">
     <div class="container">
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-12">
           <div class="lineup-artists-headline">
             <div class="entry-title">
@@ -255,8 +255,8 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> 
+    </div>-->
 
       <div class="row">
         <div class="col-12">
@@ -340,7 +340,7 @@
           <div class="col-12">
             <div class="entry-title">
               <p>JUST THE BEST</p>
-              <h2>Our Next Events</h2>
+              <h2>Our Events</h2>
             </div>
           </div>
         </div>
@@ -426,7 +426,7 @@
         <div class="header">
           <div class="entry-title">
             <p>JUST THE BEST</p>
-            <h2>Our Last News</h2>
+            <h2>Our Last Events</h2>
           </div>
         </div>
         <div class="home-page-last-news-wrap">
