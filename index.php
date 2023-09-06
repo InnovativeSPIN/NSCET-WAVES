@@ -1,4 +1,6 @@
-<?php ?>
+<?php
+include('routes/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
