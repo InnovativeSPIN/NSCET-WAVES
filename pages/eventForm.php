@@ -1,14 +1,17 @@
 <?php
 include('../routes/connect.php');
 ?>
+
+ <link rel="stylesheet" href="../public/css/style.css">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<div class="container py-5">
+<div class="container py-5" style="font-family:mountains">
     <!-- For demo purpose -->
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-6">Event Manager</h1>
+            <h1 class="display-6" style="font-family:mountains">Event Manager</h1>
         </div>
     </div> <!-- End -->
     <div class="row">
@@ -18,7 +21,7 @@ include('../routes/connect.php');
                     <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
                         <!-- Credit card form tabs -->
                         <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
-                            <li class="nav-item"> <a data-toggle="pill" href="#add-event" class="nav-link active "> <i
+                            <li class="nav-item" > <a data-toggle="pill" href="#add-event" class="nav-link active "> <i
                                         class="fas fa-credit-card mr-2"></i> Add Event </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#edit-event" class="nav-link "> <i
                                         class="fab fa-paypal mr-2"></i> Edit Event </a> </li>
@@ -211,3 +214,61 @@ include('../routes/connect.php');
 
     <script type="text/javascript" src="../public/js/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+    <script>
+    const duration = 30 * 1000,
+        animationEnd = Date.now() + duration,
+        defaults = {
+            startVelocity: 30,
+            spread: 360,
+            ticks: 60,
+            zIndex: 0
+        };
+
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+
+        const particleCount = 10 * (timeLeft / duration);
+
+        // since particles fall down, start a bit higher than random
+        confetti(
+            Object.assign({}, defaults, {
+                particleCount,
+                origin: {
+                    x: randomInRange(0.1, 0.3),
+                    y: Math.random() - 0.2
+                },
+            })
+        );
+        confetti(
+            Object.assign({}, defaults, {
+                particleCount,
+                origin: {
+                    x: randomInRange(0.7, 0.9),
+                    y: Math.random() - 0.2
+                },
+            })
+        );
+    }, 250);
+    </script>
+    <script>
+    function clickEffect(e) {
+        var d = document.createElement("div");
+        d.className = "clickEffect";
+        d.style.top = e.clientY + "px";
+        d.style.left = e.clientX + "px";
+        document.body.appendChild(d);
+        d.addEventListener('animationend', function() {
+            d.parentElement.removeChild(d);
+        }.bind(this));
+    }
+    document.addEventListener('click', clickEffect);
+    </script>
