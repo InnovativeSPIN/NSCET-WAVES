@@ -1,5 +1,5 @@
 <?php
-include('routes/connect.php');
+// include('routes/connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -14,12 +14,13 @@ include('routes/connect.php');
   <link rel="stylesheet" href="public/css/fontawesome-all.min.css">
 
   <link rel="stylesheet" href="public/css/swiper.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <link rel="stylesheet" href="public/css/style.css">
   <script nonce="2af76b41-facd-47ce-9e71-e256854a4086">
-    (function(w, d) {
-      ! function(db, dc, dd, de) {
+    (function (w, d) {
+      ! function (db, dc, dd, de) {
         db[dd] = db[dd] || {};
         db[dd].executed = [];
         db.zaraz = {
@@ -27,8 +28,8 @@ include('routes/connect.php');
           listeners: []
         };
         db.zaraz.q = [];
-        db.zaraz._f = function(df) {
-          return async function() {
+        db.zaraz._f = function (df) {
+          return async function () {
             var dg = Array.prototype.slice.call(arguments);
             db.zaraz.q.push({
               m: df,
@@ -54,9 +55,9 @@ include('routes/connect.php');
           db[dd].o = (new Date).getTimezoneOffset();
           if (db.dataLayer)
             for (const dp of Object.entries(Object.entries(dataLayer).reduce(((dq, dr) => ({
-                ...dq[1],
-                ...dr[1]
-              })), {}))) zaraz.set(dp[0], dp[1], {
+              ...dq[1],
+              ...dr[1]
+            })), {}))) zaraz.set(dp[0], dp[1], {
               scope: "page"
             });
           db[dd].q = [];
@@ -85,7 +86,8 @@ include('routes/connect.php');
 <body id="body">
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -268,69 +270,72 @@ include('routes/connect.php');
               <h2>The Complete Lineup</h2>
             </div>
             <div class="row the-complete-lineup-artists">
+            <?php
+            $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='common'");
+            while ($event = mysqli_fetch_array($events)) {
+              ?>
               <div class="col-6 col-md-4 col-lg-3 artist-single">
                 <figure class="featured-image">
-                  <a href="#"> <img src="public/images/image-1.jpg" alt> </a>
+                  <a href="#"> <img src="<?php echo $event['image'] ?>" alt> </a>
                   <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
                 </figure>
-                <h2>Miska Smith</h2>
+                <h2><?php echo $event['event_name'] ?></h2>
               </div>
-              <div class="col-6 col-md-4 col-lg-3 artist-single">
-                <figure class="featured-image">
-                  <a href="#"> <img src="public/images/image-2.jpg" alt> </a>
-                  <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                </figure>
-                <h2>Hayley Down</h2>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3 artist-single">
-                <figure class="featured-image">
-                  <a href="#"> <img src="public/images/image-3.jpg" alt> </a>
-                  <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                </figure>
-                <h2>The Band Song</h2>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3 artist-single">
-                <figure class="featured-image">
-                  <a href="#"> <img src="public/images/image-4.jpg" alt> </a>
-                  <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                </figure>
-                <h2>Pink Machine</h2>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3 artist-single">
-                <figure class="featured-image">
-                  <a href="#"> <img src="public/images/image-5.jpg" alt> </a>
-                  <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                </figure>
-                <h2>Brasil Band</h2>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3 artist-single">
-                <figure class="featured-image">
-                  <a href="#"> <img src="public/images/image-6.jpg" alt> </a>
-                  <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                </figure>
-                <h2>Mickey</h2>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3 artist-single">
-                <figure class="featured-image">
-                  <a href="#"> <img src="public/images/image-7.jpg" alt> </a>
-                  <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                </figure>
-                <h2>DJ Girl</h2>
-              </div>
-              <div class="col-6 col-md-4 col-lg-3 artist-single">
-                <figure class="featured-image">
-                  <a href="#"> <img src="public/images/image-8.jpg" alt> </a>
-                  <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                </figure>
-                <h2>Stan Smith</h2>
-              </div>
+              <?php
+            }
+            ?>
             </div>
-            <div class="row justify-content-center">
-              <div class="see-complete-lineup">
-                <div class="entry-footer">
-                  <a href="#" class="btn">See all lineup</a>
-                </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="the-complete-lineup">
+            <div class="entry-title">
+              <p>JUST THE BEST</p>
+              <h2>The Complete Lineup</h2>
+            </div>
+            <div class="row the-complete-lineup-artists">
+            <?php
+            $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='boys'");
+            while ($event = mysqli_fetch_array($events)) {
+              ?>
+              <div class="col-6 col-md-4 col-lg-3 artist-single">
+                <figure class="featured-image">
+                  <a href="#"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                  <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
+                </figure>
+                <h2><?php echo $event['event_name'] ?></h2>
               </div>
+              <?php
+            }
+            ?>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="the-complete-lineup">
+            <div class="entry-title">
+              <p>JUST THE BEST</p>
+              <h2>The Complete Lineup</h2>
+            </div>
+            <div class="row the-complete-lineup-artists">
+            <?php
+            $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='girls'");
+            while ($event = mysqli_fetch_array($events)) {
+              ?>
+              <div class="col-6 col-md-4 col-lg-3 artist-single">
+                <figure class="featured-image">
+                  <a href="#"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                  <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
+                </figure>
+                <h2><?php echo $event['event_name'] ?></h2>
+              </div>
+              <?php
+            }
+            ?>
             </div>
           </div>
         </div>
@@ -350,72 +355,30 @@ include('routes/connect.php');
       <div class="next-event-slider-wrap">
         <div class="swiper-container next-event-slider">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="next-event-content">
-                <figure class="featured-image">
-                  <img src="public/images/next-event-1.jpg" alt>
-                  <a href="#" class="entry-content flex flex-column justify-content-center align-items-center">
-                    <h3>Welcoming Party 2018</h3>
-                    <p>Green Palace, 22 Street, 23-28, Los Angeles California</p>
-                  </a>
-                </figure>
+            <?php
+            $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
+            while ($event = mysqli_fetch_array($events)) {
+              ?>
+              <div class="swiper-slide">
+                <div class="next-event-content">
+                  <figure class="featured-image">
+                    <img src="<?php echo $event['image'] ?>" alt>
+                    <a href="#" class="entry-content flex flex-column justify-content-center align-items-center">
+                      <h3>
+                        <?php echo $event['event_name'] ?>
+                      </h3>
+                      <p>
+                        <?php echo $event['event_date'] . " " . $event['event_time']. "<br>" . $event['place'] ?>
+                      </p>
+                    </a>
+                  </figure>
+                </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="next-event-content">
-                <figure class="featured-image">
-                  <img src="public/images/next-event-2.jpg" alt>
-                  <a href="#" class="entry-content flex flex-column justify-content-center align-items-center">
-                    <h3>Welcoming Party 2018</h3>
-                    <p>Green Palace, 22 Street, 23-28, Los Angeles California</p>
-                  </a>
-                </figure>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="next-event-content">
-                <figure class="featured-image">
-                  <img src="public/images/next-event-3.jpg" alt>
-                  <a href="#" class="entry-content flex flex-column justify-content-center align-items-center">
-                    <h3>Welcoming Party 2018</h3>
-                    <p>Green Palace, 22 Street, 23-28, Los Angeles California</p>
-                  </a>
-                </figure>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="next-event-content">
-                <figure class="featured-image">
-                  <img src="public/images/next-event-1.jpg" alt>
-                  <a href="#" class="entry-content flex flex-column justify-content-center align-items-center">
-                    <h3>Welcoming Party 2018</h3>
-                    <p>Green Palace, 22 Street, 23-28, Los Angeles California</p>
-                  </a>
-                </figure>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="next-event-content">
-                <figure class="featured-image">
-                  <img src="public/images/next-event-2.jpg" alt>
-                  <a href="#" class="entry-content flex flex-column justify-content-center align-items-center">
-                    <h3>Welcoming Party 2018</h3>
-                    <p>Green Palace, 22 Street, 23-28, Los Angeles California</p>
-                  </a>
-                </figure>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="next-event-content">
-                <figure class="featured-image">
-                  <img src="public/images/next-event-3.jpg" alt>
-                  <a href="#" class="entry-content flex flex-column justify-content-center align-items-center">
-                    <h3>Welcoming Party 2018</h3>
-                    <p>Green Palace, 22 Street, 23-28, Los Angeles California</p>
-                  </a>
-                </figure>
-              </div>
-            </div>
+              <?php
+            }
+            ?>
+
+
           </div>
         </div>
         <div class="swiper-button-next">
@@ -502,14 +465,18 @@ include('routes/connect.php');
               <a href="#">Waves'23</a>
             </div>
             <div class="entry-mail">
-              <a href="#"><span class="__cf_email__" data-cfemail="8bd8cad2c3cec7c7c4cbd8dec5cdced8dfa5c8c4c6">[email&#160;protected]</span></a>
+              <a href="#"><span class="__cf_email__"
+                  data-cfemail="8bd8cad2c3cec7c7c4cbd8dec5cdced8dfa5c8c4c6">[email&#160;protected]</span></a>
             </div>
             <div class="copyright-info">
 
-              Copyright &copy;<script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+              Copyright &copy;
+              <script data-cfasync="false"
+                src="public/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
               <script>
                 document.write(new Date().getFullYear());
-              </script> Design & Developed by <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://nscet.org/ispin/" target="_blank">iSPIN</a>
+              </script> Design & Developed by <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                href="https://nscet.org/ispin/" target="_blank">iSPIN</a>
 
             </div>
             <div class="footer-social">
@@ -549,14 +516,23 @@ include('routes/connect.php');
 
     gtag('config', 'UA-23581568-13');
   </script>
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"801ca2883dc3859f","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.8.0","si":100}' crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854"
+    integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg=="
+    data-cf-beacon='{"rayId":"801ca2883dc3859f","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.8.0","si":100}'
+    crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
 
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 
 
   <script>
@@ -573,7 +549,7 @@ include('routes/connect.php');
       return Math.random() * (max - min) + min;
     }
 
-    const interval = setInterval(function() {
+    const interval = setInterval(function () {
       const timeLeft = animationEnd - Date.now();
 
       if (timeLeft <= 0) {
@@ -610,7 +586,7 @@ include('routes/connect.php');
       d.style.top = e.clientY + "px";
       d.style.left = e.clientX + "px";
       document.body.appendChild(d);
-      d.addEventListener('animationend', function() {
+      d.addEventListener('animationend', function () {
         d.parentElement.removeChild(d);
       }.bind(this));
     }
