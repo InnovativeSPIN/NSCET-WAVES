@@ -4,3 +4,5 @@ $conn = mysqli_connect('localhost', 'root', '', 'waves_23');        // make sql 
 if (!$conn) {
     echo 'Connection Error  ' . mysqli_connect_error();
 }
+
+?>
