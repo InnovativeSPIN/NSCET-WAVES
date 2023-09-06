@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2023 at 09:23 AM
+-- Generation Time: Sep 06, 2023 at 04:02 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -45,7 +45,7 @@ CREATE TABLE `admindb` (
 CREATE TABLE `eventdb` (
   `event_name` varchar(255) NOT NULL,
   `event_id` int(11) NOT NULL,
-  `event_date` date NOT NULL,
+  `event_date` varchar(255) NOT NULL,
   `event_time` varchar(255) NOT NULL,
   `event_venue` varchar(255) NOT NULL,
   `max_participants` int(11) NOT NULL,
@@ -53,8 +53,18 @@ CREATE TABLE `eventdb` (
   `group_counts` int(11) NOT NULL,
   `group_participants` int(11) NOT NULL,
   `allowance` int(11) NOT NULL,
-  `gender` int(11) NOT NULL
+  `gender` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `event_type` varchar(255) DEFAULT NULL,
+  `event_rules` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `eventdb`
+--
+
+INSERT INTO `eventdb` (`event_name`, `event_id`, `event_date`, `event_time`, `event_venue`, `max_participants`, `is_group`, `group_counts`, `group_participants`, `allowance`, `gender`, `image`, `event_type`, `event_rules`) VALUES
+('ANYBODY CAN DANCE', 1, '2029-09-23', '12:45 PM to 02:45 PM', 'Kamarajar Open\r\nAuditorium', 10, 0, 0, 0, 10, 'COMMON', 'public/images/event/dance.jpg', 'On Stage', NULL);
 
 -- --------------------------------------------------------
 
@@ -117,16 +127,31 @@ CREATE TABLE `studentdb` (
 --
 
 --
+-- Indexes for table `admindb`
+--
+ALTER TABLE `admindb`
+  ADD UNIQUE KEY `reg_no` (`reg_no`);
+
+--
+-- Indexes for table `eventdb`
+--
+ALTER TABLE `eventdb`
+  ADD PRIMARY KEY (`event_id`),
+  ADD UNIQUE KEY `event_id` (`event_id`);
+
+--
 -- Indexes for table `housedb`
 --
 ALTER TABLE `housedb`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `studentdb`
 --
 ALTER TABLE `studentdb`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `reg_no` (`reg_no`);
 
 --
 -- AUTO_INCREMENT for dumped tables
