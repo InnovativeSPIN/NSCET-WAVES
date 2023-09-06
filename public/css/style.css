@@ -7,7 +7,8 @@
 
 body {
   overflow-x: hidden;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: 'mountains';
   font-size: 15px;
   font-weight: normal;
   color: hsl(0, 0%, 90%);
@@ -315,6 +316,7 @@ canvas {
 }
 
 .countdown-holder {
+  font-family: 'mountains';
   min-width: 150px;
   margin-bottom: 30px;
 }
@@ -2014,9 +2016,4 @@ div.clickEffect {
 
 h5 {
   color: black;
-}
-
-.entry-title h2,
-.entry-title p{
-  font-family:'mountains'!important;
 }

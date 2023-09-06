@@ -453,10 +453,7 @@ include('routes/connect.php');
                         <div class="entry-title">
                             <a href="#">Waves'23</a>
                         </div>
-                        <div class="entry-mail">
-                            <a href="#"><span class="__cf_email__"
-                                    data-cfemail="8bd8cad2c3cec7c7c4cbd8dec5cdced8dfa5c8c4c6">[email&#160;protected]</span></a>
-                        </div>
+
                         <div class="copyright-info">
 
                             Copyright &copy;
@@ -469,14 +466,14 @@ include('routes/connect.php');
 
                         </div>
                         <div class="footer-social">
-                            <ul class="flex justify-content-center align-items-center">
+                            <!-- <ul class="flex justify-content-center align-items-center">
                                 <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
                                 <li><a href="#"><i class="fab fa-behance"></i></a></li>
                                 <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </div>
