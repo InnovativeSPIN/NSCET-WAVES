@@ -8,15 +8,36 @@
 <title>Waves'23</title>
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
-<link rel="stylesheet" href="public/css/bootstrap.min.css">
-
 <link rel="stylesheet" href="public/css/fontawesome-all.min.css">
 
 <link rel="stylesheet" href="public/css/swiper.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <link rel="stylesheet" href="public/css/style.css">
 <script nonce="2af76b41-facd-47ce-9e71-e256854a4086">(function(w,d){!function(db,dc,dd,de){db[dd]=db[dd]||{};db[dd].executed=[];db.zaraz={deferred:[],listeners:[]};db.zaraz.q=[];db.zaraz._f=function(df){return async function(){var dg=Array.prototype.slice.call(arguments);db.zaraz.q.push({m:df,a:dg})}};for(const dh of["track","set","debug"])db.zaraz[dh]=db.zaraz._f(dh);db.zaraz.init=()=>{var di=dc.getElementsByTagName(de)[0],dj=dc.createElement(de),dk=dc.getElementsByTagName("title")[0];dk&&(db[dd].t=dc.getElementsByTagName("title")[0].text);db[dd].x=Math.random();db[dd].w=db.screen.width;db[dd].h=db.screen.height;db[dd].j=db.innerHeight;db[dd].e=db.innerWidth;db[dd].l=db.location.href;db[dd].r=dc.referrer;db[dd].k=db.screen.colorDepth;db[dd].n=dc.characterSet;db[dd].o=(new Date).getTimezoneOffset();if(db.dataLayer)for(const dp of Object.entries(Object.entries(dataLayer).reduce(((dq,dr)=>({...dq[1],...dr[1]})),{})))zaraz.set(dp[0],dp[1],{scope:"page"});db[dd].q=[];for(;db.zaraz.q.length;){const ds=db.zaraz.q.shift();db[dd].q.push(ds)}dj.defer=!0;for(const dt of[localStorage,sessionStorage])Object.keys(dt||{}).filter((dv=>dv.startsWith("_zaraz_"))).forEach((du=>{try{db[dd]["z_"+du.slice(7)]=JSON.parse(dt.getItem(du))}catch{db[dd]["z_"+du.slice(7)]=dt.getItem(du)}}));dj.referrerPolicy="origin";dj.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(db[dd])));di.parentNode.insertBefore(dj,di)};["complete","interactive"].includes(dc.readyState)?zaraz.init():db.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script></head>
 <body id="body">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <header class="site-header">
 <div class="header-bar">
 <div class="container-fluid">
@@ -49,11 +70,9 @@
 </div>
 </header>
 <div class="hero-content">
-<div class="container" style="margin:0">
+<div class="container" style="margin:0;display:flex">
 <div class="row">
-<div class="col-md-12" style="display: flex;
-    justify-content: center;
-    flex-direction: column;
+<div class="col-md-12" style="
     align-items: center;">
     
 <div class="entry-header">
@@ -66,7 +85,8 @@
 06.28.018
 </div> -->
 </div>
-<div class="col-md-8 countdown flex flex-wrap justify-content-between" data-date="2023/09/29">
+<div class="col-md-12 countdown flex flex-wrap justify-content-between" data-date="2023/09/29">
+<div class="col-md-12" style="display:flex;justify-content:center">
 <div class="countdown-holder">
 <div class="dday"></div>
 <label>Days</label>
@@ -84,9 +104,14 @@
 <label>Seconds</label>
 </div>
 </div>
+</div>
+
 <div class="col-md-12">
 <div class="entry-footer">
-<a href="#" class="btn">Rules and Regulation</a>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+Rules and Regulation
+</button>
 <a href="#" class="btn current">See Events</a>
 </div>
 </div>
@@ -432,6 +457,7 @@ Copyright &copy;<script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd72
 </div>
 </div>
 </div>
+
 </footer>
 <script type="text/javascript" src="public/js/jquery.js"></script>
 <script type="text/javascript" src="public/js/masonry.pkgd.min.js"></script>
@@ -443,8 +469,6 @@ Copyright &copy;<script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd72
 <script type="text/javascript" src="public/js/custom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
 <script type="text/javascript" src="public/js/3d-text.js"></script>
-
-
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>var
   window.dataLayer = window.dataLayer || [];
@@ -456,6 +480,12 @@ Copyright &copy;<script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd72
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"801ca2883dc3859f","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.8.0","si":100}' crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 
 <script>
 const duration = 10 * 1000,
