@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
                     $query = "INSERT INTO eventdb VALUES('$event_name','$event_id','$event_date','$event_time','$event_venue','$max_participants','$is_group','$group_counts','$group_participants','$allowance','$gender','public/images/event/$image','$event_type','$event_rules')";
 
                     if (mysqli_query($conn, $query)) {
-                        header('Location: ../../index.php');
+                        header('Location: ../../');
                     } else {
                         echo 'query error: ' . mysqli_error($conn);
                     }
@@ -69,5 +69,7 @@ if (isset($_POST["submit"])) {
     }
 
 }
+
+mysqli_close($conn);
 
 ?>

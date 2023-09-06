@@ -150,8 +150,7 @@ include('../routes/connect.php');
                     </div> <!-- End -->
 
                     <div id="edit-event" class="tab-pane fade pt-3">
-                        <form role="form" action="../routes/event/eventEdit.php" method="post"
-                            onsubmit="event.preventDefault()">
+                        <form role="form" action="../routes/event/eventEdit.php" method="post">
                             <div class="form-group"> <label for="event_name">
                                     <h6>Event Name</h6>
                                 </label> <input type="text" list="listName" name="event_name"
