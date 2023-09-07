@@ -93,28 +93,28 @@ include('routes/connect.php');
     <?php
     $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
     while ($event = mysqli_fetch_array($events)) {
-    ?>
-    <!-- Modal -->
-    <div class="modal fade <?php echo $event['event_id'] ?>" tabindex="-1" role="dialog"
-        aria-labelledby="<?php echo $event['event_id'] ?>" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><?php echo $event['event_name'] ?></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        ?>
+                <!-- Modal -->
+                <div class="modal fade <?php echo $event['event_id'] ?>" tabindex="-1" role="dialog"
+                    aria-labelledby="<?php echo $event['event_id'] ?>" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"><?php echo $event['event_name'] ?></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php
+                <?php
     }
     ?>
 
@@ -143,6 +143,7 @@ include('routes/connect.php');
                                 <li><a href="#">BLOG</a></li>
                                 <li><a href="#">CONTACT</a></li>
                                 <li><a href="#"><i class="fas fa-search"></i></a></li>
+                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#exampleModal">Login</button></li>
                             </ul>
                         </nav>
                     </div>
@@ -150,6 +151,60 @@ include('routes/connect.php');
             </div>
         </div>
     </header>
+
+    <!-- Login Modal -->
+<div class="modal fade loginModal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="column" id="main">
+          <h1>Login</h1>
+          <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+          <form>
+            <div class="form-group">
+              <label for="exampleInputName">Reg Number</label>
+              <input type="reg_number" class="form-control" id="exampleInputName" placeholder="Name">
+            </div>
+            <div class="form-group"> <label for="role">
+                                            <h6>Role</h6>
+                                        </label>
+                                        <div class="input-group"> <select name="role" id=""
+                                                placeholder="Select Gender" class="form-control" required>
+                                                <option value="" hidden></option>
+                                                <option value="student">Student</option>
+                                                <option value="event incharge">Event Incharge</option>
+                                                <option value="team captain">Team Captain</option>
+                                            </select>
+                                        </div>
+                                    </div>
+            <div class="form-group">
+              <label for="inputPassword">Password</label>
+              <input type="password" name="pasword"class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+            <button type="submit" name="submit" class="btn btn-login btn-primary">Login</button>
+          </form>
+        </div>
+        <div>
+          <svg width="67px" height="578px" viewBox="0 0 67 578" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>Path</title>
+              <desc>Created with Sketch.</desc>
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z" id="Path" fill="#0ee1e7"></path>
+              </g>
+          </svg>
+        </div>
+        <div class="column" id="secondary">
+          <div class="sec-content">
+            <h2>Welcome Back!</h2>
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <div class="hero-content">
         <div class="container" style="margin:0;display:flex">
             <div class="row">
@@ -286,17 +341,17 @@ include('routes/connect.php');
                             <?php
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='COMMON'");
                             while ($event = mysqli_fetch_array($events)) {
-                            ?>
-                            <div class="col-6 col-md-4 col-lg-3 artist-single">
-                                <figure class="featured-image">
-                                    <a> <img src="<?php echo $event['image'] ?>" alt> </a>
-                                    <a href="#" class="box-link" type="button" class="btn btn-primary"
-                                        data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img
-                                            src="public/images/box.jpg" alt> </a>
-                                </figure>
-                                <h2><?php echo $event['event_name'] ?></h2>
-                            </div>
-                            <?php
+                                ?>
+                                        <div class="col-6 col-md-4 col-lg-3 artist-single">
+                                            <figure class="featured-image">
+                                                <a> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                                <a href="#" class="box-link" type="button" class="btn btn-primary"
+                                                    data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img
+                                                        src="public/images/box.jpg" alt> </a>
+                                            </figure>
+                                            <h2><?php echo $event['event_name'] ?></h2>
+                                        </div>
+                                        <?php
                             }
                             ?>
                         </div>
@@ -314,15 +369,15 @@ include('routes/connect.php');
                             <?php
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='BOYS'");
                             while ($event = mysqli_fetch_array($events)) {
-                            ?>
-                            <div class="col-6 col-md-4 col-lg-3 artist-single">
-                                <figure class="featured-image">
-                                    <a href="#"> <img src="<?php echo $event['image'] ?>" alt> </a>
-                                    <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                                </figure>
-                                <h2><?php echo $event['event_name'] ?></h2>
-                            </div>
-                            <?php
+                                ?>
+                                        <div class="col-6 col-md-4 col-lg-3 artist-single">
+                                            <figure class="featured-image">
+                                                <a href="#"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                                <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
+                                            </figure>
+                                            <h2><?php echo $event['event_name'] ?></h2>
+                                        </div>
+                                        <?php
                             }
                             ?>
                         </div>
@@ -340,15 +395,15 @@ include('routes/connect.php');
                             <?php
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='GIRLS'");
                             while ($event = mysqli_fetch_array($events)) {
-                            ?>
-                            <div class="col-6 col-md-4 col-lg-3 artist-single">
-                                <figure class="featured-image">
-                                    <a href="#"> <img src="<?php echo $event['image'] ?>" alt> </a>
-                                    <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                                </figure>
-                                <h2><?php echo $event['event_name'] ?></h2>
-                            </div>
-                            <?php
+                                ?>
+                                        <div class="col-6 col-md-4 col-lg-3 artist-single">
+                                            <figure class="featured-image">
+                                                <a href="#"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                                <a href="#" class="box-link"> <img src="public/images/box.jpg" alt> </a>
+                                            </figure>
+                                            <h2><?php echo $event['event_name'] ?></h2>
+                                        </div>
+                                        <?php
                             }
                             ?>
                         </div>
@@ -373,24 +428,24 @@ include('routes/connect.php');
                         <?php
                         $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
                         while ($event = mysqli_fetch_array($events)) {
-                        ?>
-                        <div class="swiper-slide">
-                            <div class="next-event-content">
-                                <figure class="featured-image">
-                                    <img src="<?php echo $event['image'] ?>" alt>
-                                    <a href="#"
-                                        class="entry-content flex flex-column justify-content-center align-items-center">
-                                        <h3>
-                                            <?php echo $event['event_name'] ?>
-                                        </h3>
-                                        <p>
-                                            <?php echo $event['event_date'] . "<br>" . $event['event_time'] . "<br>" . $event['event_venue'] ?>
-                                        </p>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                        <?php
+                            ?>
+                                    <div class="swiper-slide">
+                                        <div class="next-event-content">
+                                            <figure class="featured-image">
+                                                <img src="<?php echo $event['image'] ?>" alt>
+                                                <a href="#"
+                                                    class="entry-content flex flex-column justify-content-center align-items-center">
+                                                    <h3>
+                                                        <?php echo $event['event_name'] ?>
+                                                    </h3>
+                                                    <p>
+                                                        <?php echo $event['event_date'] . "<br>" . $event['event_time'] . "<br>" . $event['event_venue'] ?>
+                                                    </p>
+                                                </a>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                    <?php
                         }
                         ?>
 

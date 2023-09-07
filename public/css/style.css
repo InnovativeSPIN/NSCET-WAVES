@@ -71,6 +71,107 @@ body {
   max-width: 100%;
 }
 
+/* login form */
+
+
+.modal-body {
+  display: flex;
+  padding: 0;
+  border-radius: 4rem;
+  height: 578px;
+  /* font-family: 'PT Sans', sans-serif; */
+}
+
+.modal-content {
+  border-radius: 4rem;
+  width: 140%;
+  -webkit-box-shadow: -1px -2px 42px -19px rgba(0,0,0,0.74);
+-moz-box-shadow: -1px -2px 42px -19px rgba(0,0,0,0.74);
+box-shadow: -1px -2px 42px -19px rgba(0,0,0,0.74);
+}
+.modal-content h1, .modal-content h2, .modal-content h3 {
+    text-align: center;
+}
+.modal-content h1 {
+  color: #0ee1e7 ;
+  text-transform: uppercase;
+}
+.modal-dialog{
+  margin:auto;
+}
+.modal-content h2 {
+    font-size: 1.5rem;
+    color:#000;
+}
+.modal-content h3 {
+  font-size: 1.3rem;
+  color:#000;
+  letter-spacing: 2px;
+}
+
+.modal-body form label{
+  color: #000;
+} 
+
+.column {
+  flex: 50%;
+  padding: 10px;
+}
+
+.column#main {
+  flex: 75%;
+  padding: 50px;
+  margin-top: 30px;
+  margin-left: 15px;
+}
+
+#secondary {
+  background-color: #0ee1e7;
+  border-radius: 0 4rem 4rem 0;
+  text-align: center;
+}
+
+#main .form-control {
+  border-radius: 0;
+  font-size: .9rem;
+}
+
+.btn-login {
+  text-transform: uppercase;
+  border-radius: .15rem;
+  width: 200px;
+  padding: .150rem .75rem;
+  margin: 30px auto;
+  /* font-family: 'PT Sans', sans-serif; */
+  letter-spacing: 2px;
+}
+
+.btn-primary {
+  border-color: rgba( 255, 255, 255, 0);
+  background: #1aecda;
+background: -moz-linear-gradient(left, #0de1eb 0%, #1aecda 99%);
+background: -webkit-linear-gradient(left, #0de1eb 0%,#1aecda 99%); 
+background: linear-gradient(to right, #0de1eb 0%,#1aecda 99%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1aecda', endColorstr='#1aecda',GradientType=1 ); 
+}
+
+.btn-primary:hover {
+  border-color: rgba( 255, 255, 255, 0);
+}
+
+#main .btn-primary {
+  width: 100%;
+}
+
+.modal-body label {
+  margin-bottom: 0;
+}
+
+.sec-content {
+  margin-top: 85%;
+}
+
+
 /*------------------------------------------------------------
 ## header-bar
 ------------------------------------------------------------*/
