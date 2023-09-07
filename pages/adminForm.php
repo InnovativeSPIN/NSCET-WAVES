@@ -242,10 +242,10 @@ include('../routes/connect.php');
                         <form role="form" action="../routes/admin/cordinatorEdit.php" method="post">
                             
                             <div class="row">
-                                <div class="col-md-12 form-group"> <label for="cordinator_number">
+                                <div class="col-md-12 form-group"> <label for="cordinator_reg_no">
                                         <h6>Cordinator Number</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="cordinator_number"
+                                    <div class="input-group"> <input type="text" name="cordinator_reg_no"
                                             placeholder="Enter Cordinator Number" class="form-control " required>
                                     </div>
                                 </div>
