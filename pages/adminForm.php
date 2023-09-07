@@ -11,7 +11,7 @@ include('../routes/connect.php');
     <!-- For demo purpose -->
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-6" style="font-family:mountains">Event Manager</h1>
+            <h1 class="display-6" style="font-family:mountains">Admin Panel</h1>
         </div>
     </div> <!-- End -->
     <div class="row">
