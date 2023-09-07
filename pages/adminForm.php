@@ -21,17 +21,25 @@ include('../routes/connect.php');
                     <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
                         <!-- Credit card form tabs -->
                         <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
-                            <li class="nav-item" > <a data-toggle="pill" href="#add-event" class="nav-link active "> <i
+                            <li class="nav-item" > <a data-toggle="pill" href="#add-event" class="nav-link active"> <i
                                         class="fas fa-credit-card mr-2"></i> Add Event </a> </li>
-                            <li class="nav-item"> <a data-toggle="pill" href="#edit-event" class="nav-link "> <i
+                            <li class="nav-item"> <a data-toggle="pill" href="#edit-event" class="nav-link"> <i
                                         class="fab fa-paypal mr-2"></i> Edit Event </a> </li>
+                            <li class="nav-item"> <a data-toggle="pill" href="#assign-cordinator" class="nav-link"> <i
+                                        class="fab fa-paypal mr-2"></i> Assign Cordinator </a> </li>
+                            <li class="nav-item"> <a data-toggle="pill" href="#edit-cordinator" class="nav-link"> <i
+                                        class="fab fa-paypal mr-2"></i> Edit Cordinator </a> </li>
+                            <li class="nav-item"> <a data-toggle="pill" href="#assign-house" class="nav-link"> <i
+                                        class="fab fa-paypal mr-2"></i> Assign House Lead </a> </li>
+                            <li class="nav-item"> <a data-toggle="pill" href="#edit-house" class="nav-link"> <i
+                                        class="fab fa-paypal mr-2"></i> Edit House Lead </a> </li>
                         </ul>
                     </div> <!-- End -->
                     <!-- Credit card form content -->
                     <div class="tab-content">
                         <!-- credit card info-->
                         <div id="add-event" class="tab-pane fade show active pt-3">
-                            <form role="form" action="../routes/event/eventPost.php" method="post" enctype="multipart/form-data">
+                            <form role="form" action="../routes/admin/eventPost.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group"> <label for="event_name">
                                         <h6>Event Name</h6>
                                     </label> <input type="text" name="event_name" placeholder="Enter Event Name"
@@ -150,7 +158,7 @@ include('../routes/connect.php');
                     </div> <!-- End -->
 
                     <div id="edit-event" class="tab-pane fade pt-3">
-                        <form role="form" action="../routes/event/eventEdit.php" method="post">
+                        <form role="form" action="../routes/admin/eventEdit.php" method="post">
                             <div class="form-group"> <label for="event_name">
                                     <h6>Event Name</h6>
                                 </label> <input type="text" list="listName" name="event_name"
