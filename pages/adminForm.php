@@ -7,7 +7,7 @@ include('../routes/connect.php');
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<div class="container py-5" style="font-family:mountains">
+<div class="container py-5">
     <!-- For demo purpose -->
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center">
@@ -20,7 +20,7 @@ include('../routes/connect.php');
                 <div class="card-header">
                     <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
                         <!-- Credit card form tabs -->
-                        <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                        <ul role="tablist" style="font-family:mountains" class="nav bg-light nav-pills rounded nav-fill mb-3">
                             <li class="nav-item" > <a data-toggle="pill" href="#add-event" class="nav-link active"> <i
                                         class="fas fa-credit-card mr-2"></i> Add Event </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#edit-event" class="nav-link"> <i
@@ -157,7 +157,169 @@ include('../routes/connect.php');
                         </div>
                     </div> <!-- End -->
 
-                    <div id="edit-event" class="tab-pane fade pt-3">
+                    <div id="assign-cordinator" class="tab-pane fade pt-3">
+                        <form role="form" action="../routes/admin/eventEdit.php" method="post">
+                            <div class="form-group"> <label for="event_name">
+                                    <h6>Event Name</h6>
+                                </label> <input type="text" list="listName" name="event_name"
+                                    placeholder="Enter Event Name" required class="form-control ">
+                                <datalist id="listName">
+                                    <?php
+                                    $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
+                                    while ($event = mysqli_fetch_array($events)) {
+                                        ?>
+                                        <option value="<?php echo $event['event_name'] ?>">
+                                            <?php echo $event['event_name'] ?>
+                                        </option>
+
+                                        <?php
+                                    }
+                                    ?>
+                                </datalist>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group"> <label for="name">
+                                        <h6>Cordinator Name</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="name"
+                                            placeholder="Cordinator Name" class="form-control " required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group"> <label for="regno">
+                                        <h6>Cordinator Number</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="event_time"
+                                            placeholder="Enter Cordinator Number" class="form-control " required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group"> <label for="role">
+                                        <h6>Role</h6>
+                                    </label>
+                                    <div class="input-group"> <select name="role" id=""
+                                                placeholder="Select Role" class="form-control" required>
+                                                <option value="Event Cordinator" selected>Event Cordinator</option>
+                                            </select>
+                                        </div>
+                                </div>
+                                <div class="col-md-6 form-group"> <label for="dept">
+                                        <h6>Department</h6>
+                                    </label>
+                                    <div class="input-group"> <select name="dept" id=""
+                                                placeholder="Select Role" class="form-control" required>
+                                                <option value="" hidden>Select Department</option>
+                                                <option value="CSE">CSE</option>
+                                                <option value="ECE">ECE</option>
+                                                <option value="MECH">MECH</option>
+                                                <option value="CIVIL">CIVIL</option>
+                                                <option value="EEE">EEE</option>
+                                                <option value="IT">IT</option>
+                                                <option value="AIDS">AI & DS</option>
+
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group"> <label for="password">
+                                        <h6>Password</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="password"
+                                            placeholder="New Password" class="form-control " required>
+                                    </div>
+                                </div>
+                            <div class="card-footer"> <button type="submit" name='submit'
+                                    class="subscribe btn btn-primary btn-block shadow-sm"> Assign Cordinator </button>
+                        </form>
+                    </div> <!-- End -->
+
+                    <!-- End -->
+                </div>
+
+                <div id="edit-cordinator" class="tab-pane fade pt-3">
+                        <form role="form" action="../routes/admin/cordinatorEdit.php" method="post">
+                            <div class="form-group"> <label for="event_name">
+                                    <h6>Event Name</h6>
+                                </label> <input type="text" list="listName" name="event_name"
+                                    placeholder="Enter Event Name" required class="form-control ">
+                                <datalist id="listName">
+                                    <?php
+                                    $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
+                                    while ($event = mysqli_fetch_array($events)) {
+                                        ?>
+                                        <option value="<?php echo $event['event_name'] ?>">
+                                            <?php echo $event['event_name'] ?>
+                                        </option>
+
+                                        <?php
+                                    }
+                                    ?>
+                                </datalist>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group"> <label for="name">
+                                        <h6>Cordinator Name</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="name"
+                                            placeholder="Cordinator Name" class="form-control " required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group"> <label for="regno">
+                                        <h6>Cordinator Number</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="event_time"
+                                            placeholder="Enter Cordinator Number" class="form-control " required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group"> <label for="role">
+                                        <h6>Role</h6>
+                                    </label>
+                                    <div class="input-group"> <select name="role" id=""
+                                                placeholder="Select Role" class="form-control" required>
+                                                <option value="Event Cordinator" selected>Event Cordinator</option>
+                                            </select>
+                                        </div>
+                                </div>
+                                <div class="col-md-6 form-group"> <label for="dept">
+                                        <h6>Department</h6>
+                                    </label>
+                                    <div class="input-group"> <select name="dept" id=""
+                                                placeholder="Select Role" class="form-control" required>
+                                                <option value="" hidden>Select Department</option>
+                                                <option value="CSE">CSE</option>
+                                                <option value="ECE">ECE</option>
+                                                <option value="MECH">MECH</option>
+                                                <option value="CIVIL">CIVIL</option>
+                                                <option value="EEE">EEE</option>
+                                                <option value="IT">IT</option>
+                                                <option value="AIDS">AI & DS</option>
+
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group"> <label for="password">
+                                        <h6>Update Password</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="password"
+                                            placeholder="New Password" class="form-control " required>
+                                    </div>
+                                </div>
+                            <div class="card-footer"> <button type="submit" name='submit'
+                                    class="subscribe btn btn-primary btn-block shadow-sm"> Edit Cordinator </button>
+                        </form>
+                    </div> <!-- End -->
+
+                    <!-- End -->
+                </div>
+
+                <div id="edit-event" class="tab-pane fade pt-3">
                         <form role="form" action="../routes/admin/eventEdit.php" method="post">
                             <div class="form-group"> <label for="event_name">
                                     <h6>Event Name</h6>
