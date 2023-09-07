@@ -15,7 +15,7 @@ if (isset($_POST["submit"])) {
     $query = "UPDATE eventdb SET event_date = '$event_date', event_time = '$event_time', event_venue = '$event_venue', event_rules = '$event_rules' WHERE event_name = '$event_name'";
 
     if (mysqli_query($conn, $query)) {
-        header('Location: ../../');
+        header('Location: adminForm.php');
     } else {
         echo "Error updating record: " . mysqli_error($conn);
     }

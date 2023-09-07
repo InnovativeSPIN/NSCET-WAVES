@@ -158,7 +158,7 @@ include('../routes/connect.php');
                     </div> <!-- End -->
 
                     <div id="assign-cordinator" class="tab-pane fade pt-3">
-                        <form role="form" action="../routes/admin/eventEdit.php" method="post">
+                        <form role="form" action="../routes/admin/assignCordinator.php" method="post">
                             <div class="form-group"> <label for="event_name">
                                     <h6>Event Name</h6>
                                 </label> <input type="text" list="listName" name="event_name"
@@ -179,17 +179,17 @@ include('../routes/connect.php');
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group"> <label for="name">
+                                <div class="col-md-6 form-group"> <label for="cordinator_name">
                                         <h6>Cordinator Name</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="name"
+                                    <div class="input-group"> <input type="text" name="cordinator_name"
                                             placeholder="Cordinator Name" class="form-control " required>
                                     </div>
                                 </div>
-                                <div class="col-md-6 form-group"> <label for="regno">
+                                <div class="col-md-6 form-group"> <label for="cordinator_reg_no">
                                         <h6>Cordinator Number</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="event_time"
+                                    <div class="input-group"> <input type="text" name="cordinator_reg_no"
                                             placeholder="Enter Cordinator Number" class="form-control " required>
                                     </div>
                                 </div>
@@ -260,17 +260,17 @@ include('../routes/connect.php');
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group"> <label for="name">
+                                <div class="col-md-6 form-group"> <label for="cordinator_name">
                                         <h6>Cordinator Name</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="name"
+                                    <div class="input-group"> <input type="text" name="cordinator_name"
                                             placeholder="Cordinator Name" class="form-control " required>
                                     </div>
                                 </div>
-                                <div class="col-md-6 form-group"> <label for="regno">
+                                <div class="col-md-6 form-group"> <label for="cordinator_number">
                                         <h6>Cordinator Number</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="event_time"
+                                    <div class="input-group"> <input type="text" name="cordinator_number"
                                             placeholder="Enter Cordinator Number" class="form-control " required>
                                     </div>
                                 </div>
