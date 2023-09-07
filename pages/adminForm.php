@@ -240,17 +240,73 @@ include('../routes/connect.php');
 
                 <div id="edit-cordinator" class="tab-pane fade pt-3">
                         <form role="form" action="../routes/admin/cordinatorEdit.php" method="post">
-                            <div class="form-group"> <label for="event_name">
-                                    <h6>Event Name</h6>
-                                </label> <input type="text" list="listName" name="event_name"
+                            
+                            <div class="row">
+                                <div class="col-md-12 form-group"> <label for="cordinator_number">
+                                        <h6>Cordinator Number</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="cordinator_number"
+                                            placeholder="Enter Cordinator Number" class="form-control " required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-group"> <label for="password">
+                                        <h6>Update Password</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="password"
+                                            placeholder="New Password" class="form-control " required>
+                                    </div>
+                                </div>
+                            <div class="card-footer"> <button type="submit" name='submit'
+                                    class="subscribe btn btn-primary btn-block shadow-sm"> Edit Cordinator </button>
+                        </form>
+                    </div> <!-- End -->
+
+                    <!-- End -->
+                </div>
+
+                <div id="edit-house" class="tab-pane fade pt-3">
+                        <form role="form" action="../routes/admin/cordinatorEdit.php" method="post">
+                            
+                            <div class="row">
+                                <div class="col-md-12 form-group"> <label for="captain_number">
+                                        <h6>Captain Number</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="cordinator_number"
+                                            placeholder="Enter Cordinator Number" class="form-control " required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-group"> <label for="password">
+                                        <h6>Update Password</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="password"
+                                            placeholder="New Password" class="form-control " required>
+                                    </div>
+                                </div>
+                            <div class="card-footer"> <button type="submit" name='submit'
+                                    class="subscribe btn btn-primary btn-block shadow-sm"> Edit Cordinator </button>
+                        </form>
+                    </div> <!-- End -->
+
+                    <!-- End -->
+                </div>
+
+                <div id="assign-house" class="tab-pane fade pt-3">
+                        <form role="form" action="../routes/admin/cordinatorEdit.php" method="post">
+                            <div class="form-group"> <label for="name">
+                                    <h6>House Name</h6>
+                                </label> <input type="text" list="houseName" name="name"
                                     placeholder="Enter Event Name" required class="form-control ">
-                                <datalist id="listName">
+                                <datalist id="houseName">
                                     <?php
-                                    $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
+                                    $events = mysqli_query($conn, "SELECT * FROM `housedb`");
                                     while ($event = mysqli_fetch_array($events)) {
                                         ?>
-                                        <option value="<?php echo $event['event_name'] ?>">
-                                            <?php echo $event['event_name'] ?>
+                                        <option value="<?php echo $event['name'] ?>">
+                                            <?php echo $event['name'] ?>
                                         </option>
 
                                         <?php
@@ -260,17 +316,17 @@ include('../routes/connect.php');
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group"> <label for="cordinator_name">
-                                        <h6>Cordinator Name</h6>
+                                <div class="col-md-6 form-group"> <label for="captain_name">
+                                        <h6>Captain Name</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="cordinator_name"
+                                    <div class="input-group"> <input type="text" name="captain_name"
                                             placeholder="Cordinator Name" class="form-control " required>
                                     </div>
                                 </div>
-                                <div class="col-md-6 form-group"> <label for="cordinator_number">
-                                        <h6>Cordinator Number</h6>
+                                <div class="col-md-6 form-group"> <label for="captain_number">
+                                        <h6>Captain Number</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="cordinator_number"
+                                    <div class="input-group"> <input type="text" name="captain_number"
                                             placeholder="Enter Cordinator Number" class="form-control " required>
                                     </div>
                                 </div>
@@ -282,7 +338,9 @@ include('../routes/connect.php');
                                     </label>
                                     <div class="input-group"> <select name="role" id=""
                                                 placeholder="Select Role" class="form-control" required>
-                                                <option value="Event Cordinator" selected>Event Cordinator</option>
+                                                <option value="" hidden></option>
+                                                <option value="Captain">Captain</option>
+                                                <option value="Vice-Captain">Vice-Captain</option>
                                             </select>
                                         </div>
                                 </div>
@@ -305,7 +363,7 @@ include('../routes/connect.php');
                                 </div>
                             </div>
                             <div class="col-md-12 form-group"> <label for="password">
-                                        <h6>Update Password</h6>
+                                        <h6>New Password</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="password"
                                             placeholder="New Password" class="form-control " required>
@@ -377,6 +435,8 @@ include('../routes/connect.php');
 
                     <!-- End -->
                 </div>
+
+                
             </div>
         </div>
     </div>
