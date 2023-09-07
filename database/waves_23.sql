@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 06, 2023 at 04:02 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- Host: 127.0.0.1:3307
+-- Generation Time: Sep 07, 2023 at 12:08 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,9 +31,10 @@ CREATE TABLE `admindb` (
   `name` varchar(255) NOT NULL,
   `dept` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
-  `reg_no` int(11) NOT NULL,
+  `reg_no` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `event_id` int(11) NOT NULL
+  `event_name` varchar(255) NOT NULL,
+  `house_name` varchar(255) NOT NULL DEFAULT '-'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -64,7 +65,8 @@ CREATE TABLE `eventdb` (
 --
 
 INSERT INTO `eventdb` (`event_name`, `event_id`, `event_date`, `event_time`, `event_venue`, `max_participants`, `is_group`, `group_counts`, `group_participants`, `allowance`, `gender`, `image`, `event_type`, `event_rules`) VALUES
-('ANYBODY CAN DANCE', 1, '2029-09-23', '12:45 PM to 02:45 PM', 'Kamarajar Open\r\nAuditorium', 10, 0, 0, 0, 10, 'COMMON', 'public/images/event/dance.jpg', 'On Stage', NULL);
+('ANYBODY CAN DANCE', 1, '5', '89', 'gh', 10, 0, 0, 0, 10, 'COMMON', 'public/images/event/dance.jpg', 'On Stage', 'qwertyuio'),
+('rty', 7, '5', '89', 'Sir CV Raman ', 10, 0, 0, 0, 10, 'COMMON', 'public/images/event/beyond_the_mountains.png', 'Off Stage', 'summa');
 
 -- --------------------------------------------------------
 
@@ -103,7 +105,11 @@ CREATE TABLE `registerationdb` (
   `reg_no` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   `house_id` int(11) NOT NULL,
-  `grouped` int(11) NOT NULL DEFAULT 0
+  `grouped` int(11) NOT NULL DEFAULT 0,
+  `student_house` varchar(255) DEFAULT NULL,
+  `student_dept` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -147,6 +153,12 @@ ALTER TABLE `housedb`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `registerationdb`
+--
+ALTER TABLE `registerationdb`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `studentdb`
 --
 ALTER TABLE `studentdb`
@@ -156,6 +168,12 @@ ALTER TABLE `studentdb`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `registerationdb`
+--
+ALTER TABLE `registerationdb`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `studentdb`

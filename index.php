@@ -153,13 +153,12 @@ include('routes/connect.php');
     </header>
 
     <!-- Login Modal -->
-<div class="modal fade loginModal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div style='margin-top: 32px' class="modal fade loginModal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
         <div class="column" id="main">
-          <h1>Login</h1>
-          <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+          <h1 style='margin-bottom: 34px'>Login</h1>
           <form>
             <div class="form-group">
               <label for="exampleInputName">Reg Number</label>
