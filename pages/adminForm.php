@@ -267,7 +267,7 @@ include('../routes/connect.php');
                 </div>
 
                 <div id="edit-house" class="tab-pane fade pt-3">
-                        <form role="form" action="../routes/admin/cordinatorEdit.php" method="post">
+                        <form role="form" action="../routes/admin/captainEdit.php" method="post">
                             
                             <div class="row">
                                 <div class="col-md-12 form-group"> <label for="captain_number">
@@ -295,10 +295,10 @@ include('../routes/connect.php');
                 </div>
 
                 <div id="assign-house" class="tab-pane fade pt-3">
-                        <form role="form" action="../routes/admin/cordinatorEdit.php" method="post">
-                            <div class="form-group"> <label for="name">
+                        <form role="form" action="../routes/admin/assignCaptain.php" method="post">
+                            <div class="form-group"> <label for="house_name">
                                     <h6>House Name</h6>
-                                </label> <input type="text" list="houseName" name="name"
+                                </label> <input type="text" list="houseName" name="house_name"
                                     placeholder="Enter Event Name" required class="form-control ">
                                 <datalist id="houseName">
                                     <?php
