@@ -154,7 +154,7 @@ include('routes/connect.php');
 
     <!-- Login Modal -->
 <div style='margin-top: 32px' class="modal fade loginModal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" role="document" style="padding: 28px;">
     <div class="modal-content">
       <div class="modal-body">
         <div class="column" id="main">
@@ -184,7 +184,7 @@ include('routes/connect.php');
           </form>
         </div>
         <div>
-          <svg width="67px" height="578px" viewBox="0 0 67 578" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <svg width="67px" height="480px" viewBox="0 0 67 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>Path</title>
               <desc>Created with Sketch.</desc>
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -194,8 +194,8 @@ include('routes/connect.php');
         </div>
         <div class="column" id="secondary">
           <div class="sec-content">
-            <h2>Welcome Back!</h2>
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+            <!-- <h2>Welcome Back!</h2>
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3> -->
           </div>
         </div>
       </div>
