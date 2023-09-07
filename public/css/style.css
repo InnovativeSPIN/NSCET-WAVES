@@ -2115,6 +2115,10 @@ div.clickEffect {
   }
 }
 
-h5 {
+h4,p {
   color: black;
+}
+
+.featured-image a:nth-child(1) img{
+  height: 230px!important;
 }

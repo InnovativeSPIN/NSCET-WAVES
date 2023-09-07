@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Sep 07, 2023 at 12:08 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Sep 07, 2023 at 04:52 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,8 +65,10 @@ CREATE TABLE `eventdb` (
 --
 
 INSERT INTO `eventdb` (`event_name`, `event_id`, `event_date`, `event_time`, `event_venue`, `max_participants`, `is_group`, `group_counts`, `group_participants`, `allowance`, `gender`, `image`, `event_type`, `event_rules`) VALUES
-('ANYBODY CAN DANCE', 1, '5', '89', 'gh', 10, 0, 0, 0, 10, 'COMMON', 'public/images/event/dance.jpg', 'On Stage', 'qwertyuio'),
-('rty', 7, '5', '89', 'Sir CV Raman ', 10, 0, 0, 0, 10, 'COMMON', 'public/images/event/beyond_the_mountains.png', 'Off Stage', 'summa');
+('CARBON ART', 1, '26/09/23', '09:45 AM – 10-45 AM', 'Chemistry Lab', 2, 0, 0, 0, 2, 'COMMON', 'public/images/event/carbonart.jpg', 'Off Stage', 'It is solo event. This event is for both boys and girls teams. Participants count : 2 per team. Time limit : 1 hour. The topic will be given on the spot.'),
+('CARVO', 2, '27/09/23', '02:00 PM to 03:00 PM', 'Ohm’s Lab', 6, 1, 2, 3, 6, 'COMMON', 'public/images/event/carvo.jpg', 'Off Stage', 'It is team event. This event is for both boys and girls teams. Participants count : 2 groups/ team with 3 members in each group. Time limit : 1 hour. The participants should bring all necessary materials.'),
+('ARTY CRAFTY', 3, '26/09/23', '12:00 PM to 01:00 PM', 'Ohm’s Lab', 4, 1, 2, 2, 4, 'COMMON', 'public/images/event/ARTYCRAFTY.png', 'Off Stage', 'It is team event This event is for both boys and girls teams. Participants count : 2 groups/ team with 2 members in each group. Time limit : 1 hour. The participants should bring necessary materials. Only waste materials should be used'),
+('PICASSO ON GLASS', 4, '26/09/23', '11:00 AM to 11:45 AM', 'Chemistry Lab', 4, 1, 2, 2, 4, 'COMMON', 'public/images/event/glasspicaso.jpg', 'Off Stage', 'It is team event. This event is for both boys and girls teams. Participants count : 2 groups/ team with 2 members in each group. Time limit : 1 hour. The participants should bring all necessary materials.');
 
 -- --------------------------------------------------------
 

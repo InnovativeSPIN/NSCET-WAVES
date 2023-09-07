@@ -98,15 +98,25 @@ include('routes/connect.php');
                 <div class="modal fade <?php echo $event['event_id'] ?>" tabindex="-1" role="dialog"
                     aria-labelledby="<?php echo $event['event_id'] ?>" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" style="padding: 23px;">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"><?php echo $event['event_name'] ?></h5>
+                                <h4 class="modal-title" id="exampleModalLabel" style="color: aqua;"><?php echo $event['event_name'] ?></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                ...
+                                <div>
+                                    <div style="margin: 12px; text-align: center;">
+                                        <img src="<?php echo $event['image'] ?>" alt="" srcset="" width="270px" height="170px" style="margin: 22px;">
+                                        <h4><?php echo $event['event_date'] ?></h4>
+                                        <h4><?php echo $event['event_time'] ?></h4>
+                                        <h4><?php echo $event['event_venue'] ?></h4>
+                                    </div>
+                                    <h4 style="color: aqua;">Rules</h4>
+                                    <p style="font-family: 'Courier New', Courier, monospace;"><?php echo $event['event_rules'] ?></p>
+                                </div>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -343,7 +353,7 @@ include('routes/connect.php');
                                 ?>
                                         <div class="col-6 col-md-4 col-lg-3 artist-single">
                                             <figure class="featured-image">
-                                                <a> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                                <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
                                                 <a href="#" class="box-link" type="button" class="btn btn-primary"
                                                     data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img
                                                         src="public/images/box.jpg" alt> </a>
