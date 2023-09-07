@@ -13,8 +13,9 @@ if (isset($_POST["submit"])) {
     $dept = mysqli_real_escape_string($conn, $_POST["dept"]);
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO admindb VALUES('$cordinator_name','$dept','$role','$cordinator_reg_no','$password','$event_name','-')";
+    $query = "INSERT INTO admindb VALUES('$cordinator_name','$dept','$role','$cordinator_reg_no','$hashed_password','$event_name','-')";
 
     if (mysqli_query($conn, $query)) {
         header('Location: ../../pages/adminForm.php');
