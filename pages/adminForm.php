@@ -273,21 +273,21 @@ include('../routes/connect.php');
                                 <div class="col-md-12 form-group"> <label for="captain_number">
                                         <h6>Captain Number</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="cordinator_number"
+                                    <div class="input-group"> <input type="text" name="captain_number"
                                             placeholder="Enter Cordinator Number" class="form-control " required>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 form-group"> <label for="password">
+                            <div class="col-md-12 form-group"> <label for="update_password">
                                         <h6>Update Password</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="password"
+                                    <div class="input-group"> <input type="text" name="update_password"
                                             placeholder="New Password" class="form-control " required>
                                     </div>
                                 </div>
                             <div class="card-footer"> <button type="submit" name='submit'
-                                    class="subscribe btn btn-primary btn-block shadow-sm"> Edit Cordinator </button>
+                                    class="subscribe btn btn-primary btn-block shadow-sm"> Edit House Lead </button>
                         </form>
                     </div> <!-- End -->
 
@@ -363,7 +363,7 @@ include('../routes/connect.php');
                                 </div>
                             </div>
                             <div class="col-md-12 form-group"> <label for="password">
-                                        <h6>New Password</h6>
+                                        <h6>Password</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="password"
                                             placeholder="New Password" class="form-control " required>
