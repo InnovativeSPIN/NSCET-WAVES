@@ -442,7 +442,7 @@ include('routes/connect.php');
                                         <div class="next-event-content">
                                             <figure class="featured-image">
                                                 <img src="<?php echo $event['image'] ?>" alt>
-                                                <a href="#"
+                                                <a href="#" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"
                                                     class="entry-content flex flex-column justify-content-center align-items-center">
                                                     <h3>
                                                         <?php echo $event['event_name'] ?>
