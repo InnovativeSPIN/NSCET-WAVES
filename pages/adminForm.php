@@ -251,10 +251,10 @@ include('../routes/connect.php');
                                 </div>
                             </div>
 
-                            <div class="col-md-12 form-group"> <label for="password">
+                            <div class="col-md-12 form-group"> <label for="update_password">
                                         <h6>Update Password</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="password"
+                                    <div class="input-group"> <input type="text" name="update_password"
                                             placeholder="New Password" class="form-control " required>
                                     </div>
                                 </div>
