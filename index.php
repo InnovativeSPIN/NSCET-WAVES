@@ -148,7 +148,7 @@ include('routes/connect.php');
                             </div>
                             <ul>
                                 <li><a href="#">HOME</a></li>
-                                <li><a href="#">Waves'23 2018</a></li>
+                                <li><a href="#">Waves'23</a></li>
                                 <li><a href="#">ARTISTS</a></li>
                                 <li><a href="#">BLOG</a></li>
                                 <li><a href="#">CONTACT</a></li>
@@ -169,10 +169,10 @@ include('routes/connect.php');
       <div class="modal-body">
         <div class="column" id="main">
           <h1 style='margin-bottom: 34px'>Login</h1>
-          <form>
+          <form action="/routes/auth/login.php" method="post">
             <div class="form-group">
               <label for="exampleInputName">Reg Number</label>
-              <input type="reg_number" class="form-control" id="exampleInputName" placeholder="Name">
+              <input type="reg_number" name='reg_number' class="form-control" id="exampleInputName" placeholder="Register Number">
             </div>
             <div class="form-group"> <label for="role">
                                             <h6>Role</h6>
@@ -181,14 +181,15 @@ include('routes/connect.php');
                                                 placeholder="Select Gender" class="form-control" required>
                                                 <option value="" hidden></option>
                                                 <option value="student">Student</option>
-                                                <option value="event incharge">Event Incharge</option>
+                                                <option value="event cordinator">Event Cordinator</option>
                                                 <option value="team captain">Team Captain</option>
+                                                <option value="vice captain">Vice Captain</option>
                                             </select>
                                         </div>
                                     </div>
             <div class="form-group">
               <label for="inputPassword">Password</label>
-              <input type="password" name="pasword"class="form-control" id="inputPassword" placeholder="Password">
+              <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
             </div>
             <button type="submit" name="submit" class="btn btn-login btn-primary">Login</button>
           </form>

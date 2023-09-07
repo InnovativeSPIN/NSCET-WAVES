@@ -201,7 +201,7 @@ include('../routes/connect.php');
                                     </label>
                                     <div class="input-group"> <select name="role" id=""
                                                 placeholder="Select Role" class="form-control" required>
-                                                <option value="Event Cordinator" selected>Event Cordinator</option>
+                                                <option value="event cordinator" selected>Event Cordinator</option>
                                             </select>
                                         </div>
                                 </div>
@@ -339,8 +339,8 @@ include('../routes/connect.php');
                                     <div class="input-group"> <select name="role" id=""
                                                 placeholder="Select Role" class="form-control" required>
                                                 <option value="" hidden></option>
-                                                <option value="Captain">Captain</option>
-                                                <option value="Vice-Captain">Vice-Captain</option>
+                                                <option value="team captain">Captain</option>
+                                                <option value="vice captain">Vice-Captain</option>
                                             </select>
                                         </div>
                                 </div>
