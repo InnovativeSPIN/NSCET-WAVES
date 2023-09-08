@@ -471,7 +471,7 @@ canvas {
   width: 100%;
   padding-bottom: 120px;
   background: url("../images/middle-cover.jpg") no-repeat;
-  background-size: 100% auto;
+  /* background-size: 100% auto; */
 }
 
 .content-section .middle-cover {
