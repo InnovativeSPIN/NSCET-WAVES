@@ -283,8 +283,9 @@ include('routes/connect.php');
 
                     <div class="entry-header">
                         <!-- <h2>Waves'23</h2> -->
+                        <img src="/public/images/clg-logo.png" width="180px" style="box-shadow: 0px 0px 100px 2px white;" alt="" srcset="">
+
                         <div id="stage"></div>
-                        <!-- <h2>Waves'23</h2> -->
 
                         <canvas id="text" width="800" height="200"></canvas>
                         <input id="input" type="text" value="Waves'23 W" style="display: none;" />

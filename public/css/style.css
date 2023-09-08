@@ -351,7 +351,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1aecda', end
 # hero
 -----------------------------------------------------------*/
 .hero-content {
-  padding: 220px 0;
+  padding: 60px 0;
   background: url("../images/cover.jpg") no-repeat;
 }
 
