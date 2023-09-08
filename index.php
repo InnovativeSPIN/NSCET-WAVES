@@ -237,7 +237,7 @@ include('routes/connect.php');
                                         class="form-control" required>
                                         <option value="" hidden></option>
                                         <option value="student">Student</option>
-                                        <option value="event cordinator">Event Cordinator</option>
+                                        <option value="event coordinator">Event Coordinator</option>
                                         <option value="team captain">Team Captain</option>
                                         <option value="vice captain">Vice Captain</option>
                                     </select>

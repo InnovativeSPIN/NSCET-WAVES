@@ -1,10 +1,10 @@
 <?php
-// session_start();
+session_start();
 
-// if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
-//     header('Location: /'); 
-//     exit();
-// }
+if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
+    header('Location: /');
+    exit();
+}
 
 include('../routes/connect.php');
 
@@ -28,11 +28,39 @@ include('../routes/connect.php');
         <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="...">
         <div class="card-body">
             <div class="text-section">
-                <h1 class='card-title'>Team Name !</h1>
-                <h5 class="card-text">Team Captain</h5>
-                <h5 class="card-text">vice captain</h5>
-                <h5 class="card-text">total members</h5>
-                <h5 class="card-text">participents count</h5>
+                <h1 class='card-title'>
+                    <?php echo $_SESSION['house_name'] ?>
+                </h1>
+                <?php if ($_SESSION['role'] === 'team captain') { ?>
+                    <h5 class="card-text">
+                        Team Captain:
+                        <?php echo $_SESSION['name'] ?>
+                    </h5>
+                    <h5 class="card-text">
+                        Vice Captain:
+                        <?php echo $_SESSION['sub_role_name'] ?>
+                    </h5>
+                <?php } else { ?>
+                    <h5 class="card-text">
+                        Team Captain:
+                        <?php echo $_SESSION['sub_role_name'] ?>
+                    </h5>
+                    <h5 class="card-text">
+                        Vice Captain:
+                        <?php echo $_SESSION['name'] ?>
+                    </h5>
+                <?php } ?>
+                <h5 class="card-text">Total Members: 0</h5>
+                <?php
+                $houseName = $_SESSION['house_name'];
+                $registeredStudentsQuery = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE house_name = '$houseName'");
+                $registeredStudentsDetails = mysqli_fetch_assoc($registeredStudentsQuery);
+                ?>
+                <h5 class="card-text">Participants Count:
+                    <?php echo $registeredStudentsDetails['row_count'];
+                    mysqli_free_result($registeredStudentsQuery);
+                    ?>
+                </h5>
             </div>
             <div class="cta-section">
                 <div>Score: 0</div>
@@ -79,22 +107,73 @@ include('../routes/connect.php');
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Vincent Williamson</td>
-                                    <td>31</td>
-                                    <td>iOS Developer</td>
-                                    <td>Sinaai-Waas</td>
-                                    <td>Sinaai-Waas</td>
-                                    <td>Sinaai-Waas</td>
+                                <?php
+                                $genderResult = mysqli_query($conn, "SELECT gender FROM registerationdb WHERE house_name = '$houseName'");
+                                $gender = mysqli_fetch_assoc($genderResult);
+                                $gender = $gender['gender'];
+                                mysqli_free_result($genderResult);
 
-                                    <td>
-                                        <ul class="action-list">
-                                            <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
-                                            <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
+
+                                $eventsResult = mysqli_query($conn, "SELECT * FROM eventdb WHERE gender = '$gender' UNION SELECT * FROM eventdb WHERE gender = 'COMMON'");
+                                $i = 1;
+                                while ($event = mysqli_fetch_assoc($eventsResult)) {
+
+                                    $eventName = $event['event_name'];
+                                    $houseName = mysqli_real_escape_string($conn, $houseName);
+                                    $eventName = mysqli_real_escape_string($conn, $eventName);
+                                    $eventCoordinatorResult = mysqli_query($conn, "SELECT name from admindb WHERE role = 'event coordinator' AND event_name = '$eventName'");
+                                    $eventCoordinator = mysqli_fetch_assoc($eventCoordinatorResult);
+
+                                    $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE house_name = '$houseName' AND event_name = '$eventName'");
+                                    $registeredParticipants = mysqli_fetch_assoc($SpecificEventRegStuCountResult);
+
+                                    if ($event['is_group'] == 1) {
+                                        $isGroup = 'Yes';
+                                    } else {
+                                        $isGroup = 'No';
+                                    }
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $i++ ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $eventName ?>
+                                        </td>
+                                        <td>
+                                            <?php if (isset($eventCoordinator['name'])) {
+                                                echo $eventCoordinator['name'];
+                                            } else {
+                                                echo 'Not Assigned !';
+                                            } ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $event['max_participants'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $registeredParticipants['row_count'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $isGroup ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $event['group_counts'] ?>
+                                        </td>
+
+                                        <td>
+                                            <ul class="action-list">
+                                                <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                                                <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                    mysqli_free_result($eventCoordinatorResult);
+                                    mysqli_free_result($SpecificEventRegStuCountResult);
+                                }
+                                mysqli_free_result($eventsResult);
+                                ?>
                             </tbody>
                         </table>
                     </div>

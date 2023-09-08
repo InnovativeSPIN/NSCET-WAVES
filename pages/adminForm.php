@@ -25,10 +25,10 @@ include('../routes/connect.php');
                                         class="fas fa-credit-card mr-2"></i> Add Event </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#edit-event" class="nav-link"> <i
                                         class="fab fa-paypal mr-2"></i> Edit Event </a> </li>
-                            <li class="nav-item"> <a data-toggle="pill" href="#assign-cordinator" class="nav-link"> <i
-                                        class="fab fa-paypal mr-2"></i> Assign Cordinator </a> </li>
-                            <li class="nav-item"> <a data-toggle="pill" href="#edit-cordinator" class="nav-link"> <i
-                                        class="fab fa-paypal mr-2"></i> Edit Cordinator </a> </li>
+                            <li class="nav-item"> <a data-toggle="pill" href="#assign-coordinator" class="nav-link"> <i
+                                        class="fab fa-paypal mr-2"></i> Assign Coordinator </a> </li>
+                            <li class="nav-item"> <a data-toggle="pill" href="#edit-coordinator" class="nav-link"> <i
+                                        class="fab fa-paypal mr-2"></i> Edit Coordinator </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#assign-house" class="nav-link"> <i
                                         class="fab fa-paypal mr-2"></i> Assign House Lead </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#edit-house" class="nav-link"> <i
@@ -157,8 +157,8 @@ include('../routes/connect.php');
                         </div>
                     </div> <!-- End -->
 
-                    <div id="assign-cordinator" class="tab-pane fade pt-3">
-                        <form role="form" action="../routes/admin/assignCordinator.php" method="post">
+                    <div id="assign-coordinator" class="tab-pane fade pt-3">
+                        <form role="form" action="../routes/admin/assignCoordinator.php" method="post">
                             <div class="form-group"> <label for="event_name">
                                     <h6>Event Name</h6>
                                 </label> <input type="text" list="listName" name="event_name"
@@ -179,18 +179,18 @@ include('../routes/connect.php');
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group"> <label for="cordinator_name">
-                                        <h6>Cordinator Name</h6>
+                                <div class="col-md-6 form-group"> <label for="coordinator_name">
+                                        <h6>Coordinator Name</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="cordinator_name"
-                                            placeholder="Cordinator Name" class="form-control " required>
+                                    <div class="input-group"> <input type="text" name="coordinator_name"
+                                            placeholder="Coordinator Name" class="form-control " required>
                                     </div>
                                 </div>
-                                <div class="col-md-6 form-group"> <label for="cordinator_reg_no">
-                                        <h6>Cordinator Number</h6>
+                                <div class="col-md-6 form-group"> <label for="coordinator_reg_no">
+                                        <h6>Coordinator Number</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="cordinator_reg_no"
-                                            placeholder="Enter Cordinator Number" class="form-control " required>
+                                    <div class="input-group"> <input type="text" name="coordinator_reg_no"
+                                            placeholder="Enter Coordinator Number" class="form-control " required>
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +201,7 @@ include('../routes/connect.php');
                                     </label>
                                     <div class="input-group"> <select name="role" id=""
                                                 placeholder="Select Role" class="form-control" required>
-                                                <option value="event cordinator" selected>Event Cordinator</option>
+                                                <option value="event coordinator" selected>Event Coordinator</option>
                                             </select>
                                         </div>
                                 </div>
@@ -231,22 +231,22 @@ include('../routes/connect.php');
                                     </div>
                                 </div>
                             <div class="card-footer"> <button type="submit" name='submit'
-                                    class="subscribe btn btn-primary btn-block shadow-sm"> Assign Cordinator </button>
+                                    class="subscribe btn btn-primary btn-block shadow-sm"> Assign Coordinator </button>
                         </form>
                     </div> <!-- End -->
 
                     <!-- End -->
                 </div>
 
-                <div id="edit-cordinator" class="tab-pane fade pt-3">
-                        <form role="form" action="../routes/admin/cordinatorEdit.php" method="post">
+                <div id="edit-coordinator" class="tab-pane fade pt-3">
+                        <form role="form" action="../routes/admin/coordinatorEdit.php" method="post">
                             
                             <div class="row">
-                                <div class="col-md-12 form-group"> <label for="cordinator_reg_no">
-                                        <h6>Cordinator Number</h6>
+                                <div class="col-md-12 form-group"> <label for="coordinator_reg_no">
+                                        <h6>Coordinator Number</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="cordinator_reg_no"
-                                            placeholder="Enter Cordinator Number" class="form-control " required>
+                                    <div class="input-group"> <input type="text" name="coordinator_reg_no"
+                                            placeholder="Enter Coordinator Number" class="form-control " required>
                                     </div>
                                 </div>
                             </div>
@@ -259,7 +259,7 @@ include('../routes/connect.php');
                                     </div>
                                 </div>
                             <div class="card-footer"> <button type="submit" name='submit'
-                                    class="subscribe btn btn-primary btn-block shadow-sm"> Edit Cordinator </button>
+                                    class="subscribe btn btn-primary btn-block shadow-sm"> Edit Coordinator </button>
                         </form>
                     </div> <!-- End -->
 
@@ -274,7 +274,7 @@ include('../routes/connect.php');
                                         <h6>Captain Number</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="captain_number"
-                                            placeholder="Enter Cordinator Number" class="form-control " required>
+                                            placeholder="Enter Coordinator Number" class="form-control " required>
                                     </div>
                                 </div>
                             </div>
@@ -320,14 +320,14 @@ include('../routes/connect.php');
                                         <h6>Captain Name</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="captain_name"
-                                            placeholder="Cordinator Name" class="form-control " required>
+                                            placeholder="Coordinator Name" class="form-control " required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 form-group"> <label for="captain_number">
                                         <h6>Captain Number</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="captain_number"
-                                            placeholder="Enter Cordinator Number" class="form-control " required>
+                                            placeholder="Enter Coordinator Number" class="form-control " required>
                                     </div>
                                 </div>
                             </div>
@@ -370,7 +370,7 @@ include('../routes/connect.php');
                                     </div>
                                 </div>
                             <div class="card-footer"> <button type="submit" name='submit'
-                                    class="subscribe btn btn-primary btn-block shadow-sm"> Edit Cordinator </button>
+                                    class="subscribe btn btn-primary btn-block shadow-sm"> Edit Coordinator </button>
                         </form>
                     </div> <!-- End -->
 
