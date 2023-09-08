@@ -98,9 +98,22 @@ include('routes/connect.php');
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div>
-
+                <div class="modal-body" style="height: 625px !important;">
+                    <div style="color: black; font-family: 'Courier New', Courier, monospace;">
+                        1. On stage events will be conducted separately for Boys and Girls,purely team wise.<br>
+                        2. Registration for events should be done within the deadline specified by the organizers.<br>
+                        3. No alteration in registration is accepted after the deadline.<br>
+                        4. The order of performance for each team will be decided by lot system.<br>
+                        5. Team captain will take lot and communicate the order of events to the participants.<br>
+                        6. During the event, the participants must submit their ID card before participating and collect the same after performance.<br>
+                        7. Proper discipline should be maintained throughout the conduct of function.<br>
+                        8. Any deviation in rules and regulations of the event or change in registered participant will lead to disqualification.<br>
+                        9. The I & II prizes will be given  I place – 10 points  II place – 5 points.<br>
+                        10. All the participants will receive a participation certificate.<br>
+                        11. The decision of judge is final.<br>
+                        12. Rolling shields will be given to overall winners and runners.<br>
+                        13. Time clashes to be managed by the team itself.<br>
+                        14. One students can participate in maximum of two events.<br>
                     </div>
 
                 </div>

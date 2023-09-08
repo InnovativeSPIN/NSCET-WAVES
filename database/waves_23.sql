@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2023 at 07:53 PM
+-- Generation Time: Sep 08, 2023 at 09:17 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -118,10 +118,10 @@ INSERT INTO `housedb` (`name`, `id`, `score`, `gender`) VALUES
 
 CREATE TABLE `registerationdb` (
   `reg_no` int(11) NOT NULL,
-  `event_id` int(11) NOT NULL,
-  `house_id` int(11) NOT NULL,
+  `event_name` varchar(255) NOT NULL,
+  `house_name` varchar(255) NOT NULL,
   `grouped` int(11) NOT NULL DEFAULT 0,
-  `student_house` varchar(255) DEFAULT NULL,
+  `student_name` varchar(255) NOT NULL,
   `student_dept` varchar(255) DEFAULT NULL,
   `gender` varchar(255) DEFAULT NULL,
   `id` int(11) NOT NULL
@@ -194,7 +194,7 @@ ALTER TABLE `registerationdb`
 -- AUTO_INCREMENT for table `studentdb`
 --
 ALTER TABLE `studentdb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
