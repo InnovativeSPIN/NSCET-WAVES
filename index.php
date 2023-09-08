@@ -158,7 +158,15 @@ include('routes/connect.php');
                             </div>
                             <h4 style="color: aqua;">Rules</h4>
                             <p style="font-family: 'Courier New', Courier, monospace;">
-                                <?php echo $event['event_rules'] ?>
+                                
+                                <?php $rules = explode(".", $event['event_rules']);
+                                array_pop($rules);
+                                foreach ($rules as $letter=>$index) {
+                                    echo ($letter+1). '. '.$rules[$letter] . '<br />';
+                                  }
+                                 
+                                
+                                ?>
                             </p>
                         </div>
 
