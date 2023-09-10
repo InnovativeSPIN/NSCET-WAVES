@@ -118,7 +118,7 @@ include('routes/connect.php');
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@ include('routes/connect.php');
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
                     </div>
                 </div>
             </div>
@@ -206,7 +206,7 @@ include('routes/connect.php');
                                 <li><a href="#">BLOG</a></li>
                                 <li><a href="#">CONTACT</a></li>
                                 <li><a href="#"><i class="fas fa-search"></i></a></li> -->
-                                <li style="display: none;"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
+                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
                             </ul>
                         </nav>
                     </div>
@@ -219,7 +219,7 @@ include('routes/connect.php');
     <div style='margin-top: 32px' class="modal fade loginModal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="padding: 28px;">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-body login-modal-body">
                     <div class="column" id="main">
                         <h1 style='margin-bottom: 34px'>Login</h1>
                         <form action="/routes/auth/login.php" method="post">
@@ -330,75 +330,109 @@ include('routes/connect.php');
     <div class="content-section">
         <div class="container">
             <!-- <div class="row">
-        <div class="col-12">
-          <div class="lineup-artists-headline">
-            <div class="entry-title">
-              <p>JUST THE BEST</p>
-              <h2>The Lineup Artists-Headliners</h2>
-            </div>
-            <div class="lineup-artists">
-              <div class="lineup-artists-wrap flex flex-wrap">
-                <figure class="featured-image">
-                  <a href="#"> <img src="public/images/black-chick.jpg" alt> </a>
-                </figure>
-                <div class="lineup-artists-description">
-                  <div class="lineup-artists-description-container">
-                    <div class="entry-title">
-                      Jamila Williams
+                <div class="col-12">
+                    <div class="lineup-artists-headline">
+                        <div class="entry-title">
+                            <p>JUST THE BEST</p>
+                            <h2>The Lineup Artists-Headliners</h2>
+                        </div>
+                        <div class="lineup-artists">
+                            <div class="lineup-artists-wrap flex flex-wrap">
+                                <figure class="featured-image">
+                                    <a href="#"> <img src="public/images/black-chick.jpg" alt> </a>
+                                </figure>
+                                <div class="lineup-artists-description">
+                                    <div class="lineup-artists-description-container">
+                                        <div class="entry-title">
+                                            Jamila Williams
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>Quisque at erat eu libero consequat tempus. Quisque mole stie convallis tempus. Ut semper purus metus, a euismod sapien sodales ac. Duis viverra eleifend fermentum. </p>
+                                        </div>
+                                        <div class="box-link">
+                                            <a href><img src="public/images/box.jpg" alt></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lineup-artists-wrap flex flex-wrap">
+                                <div class="lineup-artists-description">
+                                    <figure class="featured-image d-md-none">
+                                        <a href="#"> <img src="public/images/mathew-kane.jpg" alt> </a>
+                                    </figure>
+                                    <div class="lineup-artists-description-container">
+                                        <div class="entry-title">
+                                            Sandra Superstar
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>Quisque at erat eu libero consequat tempus. Quisque mole stie convallis tempus. Ut semper purus metus, a euismod sapien sodales ac. Duis viverra eleifend fermentum. </p>
+                                        </div>
+                                        <div class="box-link">
+                                            <a href="#"><img src="public/images/box.jpg" alt></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <figure class="featured-image d-none d-md-block">
+                                    <a href="#"> <img src="public/images/mathew-kane.jpg" alt> </a>
+                                </figure>
+                            </div>
+                            <div class="lineup-artists-wrap flex flex-wrap">
+                                <figure class="featured-image">
+                                    <a href="#"> <img src="public/images/eric-ward.jpg" alt> </a>
+                                </figure>
+                                <div class="lineup-artists-description">
+                                    <div class="lineup-artists-description-container">
+                                        <div class="entry-title">
+                                            DJ Crazyhead
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>Quisque at erat eu libero consequat tempus. Quisque mole stie convallis tempus. Ut semper purus metus, a euismod sapien sodales ac. Duis viverra eleifend fermentum. </p>
+                                        </div>
+                                        <div class="box-link">
+                                            <a href="#"> <img src="public/images/box.jpg" alt></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="entry-content">
-                      <p>Quisque at erat eu libero consequat tempus. Quisque mole stie convallis tempus. Ut semper purus metus, a euismod sapien sodales ac. Duis viverra eleifend fermentum. </p>
-                    </div>
-                    <div class="box-link">
-                      <a href><img src="public/images/box.jpg" alt></a>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div class="lineup-artists-wrap flex flex-wrap">
-                <div class="lineup-artists-description">
-                  <figure class="featured-image d-md-none">
-                    <a href="#"> <img src="public/images/mathew-kane.jpg" alt> </a>
-                  </figure>
-                  <div class="lineup-artists-description-container">
-                    <div class="entry-title">
-                      Sandra Superstar
-                    </div>
-                    <div class="entry-content">
-                      <p>Quisque at erat eu libero consequat tempus. Quisque mole stie convallis tempus. Ut semper purus metus, a euismod sapien sodales ac. Duis viverra eleifend fermentum. </p>
-                    </div>
-                    <div class="box-link">
-                      <a href="#"><img src="public/images/box.jpg" alt></a>
-                    </div>
-                  </div>
-                </div>
-                <figure class="featured-image d-none d-md-block">
-                  <a href="#"> <img src="public/images/mathew-kane.jpg" alt> </a>
-                </figure>
-              </div>
-              <div class="lineup-artists-wrap flex flex-wrap">
-                <figure class="featured-image">
-                  <a href="#"> <img src="public/images/eric-ward.jpg" alt> </a>
-                </figure>
-                <div class="lineup-artists-description">
-                  <div class="lineup-artists-description-container">
-                    <div class="entry-title">
-                      DJ Crazyhead
-                    </div>
-                    <div class="entry-content">
-                      <p>Quisque at erat eu libero consequat tempus. Quisque mole stie convallis tempus. Ut semper purus metus, a euismod sapien sodales ac. Duis viverra eleifend fermentum. </p>
-                    </div>
-                    <div class="box-link">
-                      <a href="#"> <img src="public/images/box.jpg" alt></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> 
-    </div>-->
+            </div> -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="lineup-artists-headline">
+                        <div class="entry-title">
+                            <p>JUST THE BEST</p>
+                            <h2>Waves & Team</h2>
+                        </div>
+                        <div class="team-display">
+                            <div class="col-md-4">
+                                <h2 style="color: black;">
+                                    "Waves is the cultural extravaganza hosted by NSCET, a celebration dedicated to our vibrant student community. Join us to immerse yourself in a world of talent, creativity, and unforgettable experiences!" 🌊🎉</h2>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5" style="margin-top: 24px;">
+                                <div class="container-3dgalary">
+                                    <div id="carousel-3dgalary">
+                                        <figure><img src="public\images\house\BLUE_BLASTERS.jpg" alt=""></figure>
+                                        <figure><img src="public\images\house\DINO_THUNDERS.png" alt=""></figure>
+                                        <figure><img src="public\images\house\DRAGON_WARRIORS.png" alt=""></figure>
+                                        <figure><img src="public\images\house\GALATIC_STARS.jpg" alt=""></figure>
+                                        <figure><img src="public\images\house\PHOENIX_BLASTERS.png" alt=""></figure>
+                                        <figure><img src="public\images\house\ROSY_RIDERS.png" alt=""></figure>
+                                        <figure><img src="public\images\house\TIGER_THRASHERS.jpg" alt=""></figure>
+                                        <figure><img src="public\images\house\VIOLET_VIPERS.png" alt=""></figure>
+                                        <figure><img src="public\images\waves-logo.png" alt=""></figure>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
             <div class="row" id="events">
                 <div class="col-12">
                     <div class="the-complete-lineup">
@@ -411,7 +445,7 @@ include('routes/connect.php');
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='COMMON'");
                             while ($event = mysqli_fetch_array($events)) {
                             ?>
-                                <div class="col-6 col-md-4 col-lg-3 artist-single" data-aos="zoom-in-up">
+                                <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
                                     <figure class="featured-image">
                                         <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
                                         <a href="#" class="box-link" type="button" class="btn btn-primary" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="public/images/box.jpg" alt> </a>
@@ -446,7 +480,7 @@ include('routes/connect.php');
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='BOYS'");
                             while ($event = mysqli_fetch_array($events)) {
                             ?>
-                                <div class="col-6 col-md-4 col-lg-3 artist-single" data-aos="zoom-in-up">
+                                <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
                                     <figure class="featured-image">
                                         <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
                                         <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="box-link"> <img src="public/images/box.jpg" alt> </a>
@@ -480,7 +514,7 @@ include('routes/connect.php');
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='GIRLS'");
                             while ($event = mysqli_fetch_array($events)) {
                             ?>
-                                <div class="col-6 col-md-4 col-lg-3 artist-single" data-aos="zoom-in-up">
+                                <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
                                     <figure class="featured-image">
                                         <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
                                         <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="box-link"> <img src="public/images/box.jpg" alt> </a>
@@ -543,21 +577,244 @@ include('routes/connect.php');
 
                     </div>
                 </div>
+
                 <div class="swiper-button-next">
                     <img src="public/images/button.png" alt>
                 </div>
             </div>
         </div>
+        <section class="our-schedule-area section-padding-100">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="section-heading-2 text-center wow fadeInUp" data-wow-delay="300ms">
+                            <h2>Schedule Plan</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="schedule-tab">
+
+                            <ul class="nav nav-tabs wow fadeInUp" data-wow-delay="300ms" id="conferScheduleTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="tuesday-tab" data-toggle="tab" href="#step-one" role="tab" aria-controls="step-one" aria-expanded="true">Tuesday <br> <span>September 26, 2023</span></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" id="wednesday-tab" data-toggle="tab" href="#step-two" role="tab" aria-controls="step-two" aria-expanded="true">Wednesday <br> <span>September 27, 2023</span></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" id="friday-tab" data-toggle="tab" href="#step-three" role="tab" aria-controls="step-three" aria-expanded="true">Friday <br> <span>September 29, 2023</span></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" id="saturday-tab" data-toggle="tab" href="#step-four" role="tab" aria-controls="step-three" aria-expanded="true">Saturday <br> <span>September 30, 2023</span></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-content" id="conferScheduleTabContent">
+                            <div class="tab-pane fade show active" id="step-one" role="tabpanel" aria-labelledby="monday-tab">
+
+                                <div class="single-tab-content">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <?php
+                                            $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='26/09/23'");
+                                            while ($event = mysqli_fetch_array($events)) {
+                                            ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
+
+                                                    <div class="single-schedule-tumb-info d-flex align-items-center">
+
+                                                        <div class="single-schedule-tumb">
+                                                            <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                        </div>
+
+                                                        <div class="single-schedule-info">
+                                                            <h6><?php echo $event['event_name'] ?></h6>
+                                                            <p>Cordinators,
+                                                                <br />
+                                                                <?php $coordinators = explode("|", $event['event_cordinators']);
+                                                                foreach ($coordinators as $letter => $index) {
+                                                                    echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                                                }
+                                                                ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="schedule-time-place">
+                                                        <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
+                                                        <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
+                                                    </div>
+
+                                                    <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
+                                                </div>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade show" id="step-two" role="tabpanel" aria-labelledby="monday-tab">
+
+                                <div class="single-tab-content">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <?php
+                                            $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='27/09/23'");
+                                            while ($event = mysqli_fetch_array($events)) {
+                                            ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
+
+                                                    <div class="single-schedule-tumb-info d-flex align-items-center">
+
+                                                        <div class="single-schedule-tumb">
+                                                            <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                        </div>
+
+                                                        <div class="single-schedule-info">
+                                                            <h6><?php echo $event['event_name'] ?></h6>
+                                                            <p>Cordinators,
+                                                                <br />
+                                                                <?php $coordinators = explode("|", $event['event_cordinators']);
+                                                                foreach ($coordinators as $letter => $index) {
+                                                                    echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                                                }
+                                                                ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="schedule-time-place">
+                                                        <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
+                                                        <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
+                                                    </div>
+
+                                                    <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
+                                                </div>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade show" id="step-three" role="tabpanel" aria-labelledby="monday-tab">
+
+                                <div class="single-tab-content">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <?php
+                                            $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='29/09/23'");
+                                            while ($event = mysqli_fetch_array($events)) {
+                                            ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
+
+                                                    <div class="single-schedule-tumb-info d-flex align-items-center">
+
+                                                        <div class="single-schedule-tumb">
+                                                            <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                        </div>
+
+                                                        <div class="single-schedule-info">
+                                                            <h6><?php echo $event['event_name'] ?></h6>
+                                                            <p>Cordinators,
+                                                                <br />
+                                                                <?php $coordinators = explode("|", $event['event_cordinators']);
+                                                                foreach ($coordinators as $letter => $index) {
+                                                                    echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                                                }
+                                                                ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="schedule-time-place">
+                                                        <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
+                                                        <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
+                                                    </div>
+
+                                                    <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
+                                                </div>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="tab-pane fade show" id="step-four" role="tabpanel" aria-labelledby="monday-tab">
+
+                                <div class="single-tab-content">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <?php
+                                            $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='30/09/23'");
+                                            while ($event = mysqli_fetch_array($events)) {
+                                            ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
+
+                                                    <div class="single-schedule-tumb-info d-flex align-items-center">
+
+                                                        <div class="single-schedule-tumb">
+                                                            <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                        </div>
+
+                                                        <div class="single-schedule-info">
+                                                            <h6><?php echo $event['event_name'] ?></h6>
+                                                            <p>Cordinators,
+                                                                <br />
+                                                                <?php $coordinators = explode("|", $event['event_cordinators']);
+                                                                foreach ($coordinators as $letter => $index) {
+                                                                    echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                                                }
+                                                                ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="schedule-time-place">
+                                                        <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
+                                                        <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
+                                                    </div>
+
+                                                    <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
+                                                </div>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="home-page-last-news">
             <div class="container">
                 <div class="header">
                     <div class="entry-title">
                         <p>JUST THE BEST</p>
-                        <h2>Our Last Events</h2>
+                        <h2>Our Waves'22</h2>
                     </div>
                 </div>
                 <div class="home-page-last-news-wrap">
-                    <!-- <div class="col-12 col-md-6">
+                    <div class="container">
+                        <!-- <div class="col-12 col-md-6">
                             <figure class="featured-image">
                                 <a href="#"> <img src="public/images/news-image-1.jpg" alt="fesival+celebration"> </a>
                             </figure>
@@ -583,10 +840,10 @@ include('routes/connect.php');
                                 </div>
                             </div>
                         </div> -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <footer class="site-footer">
         <div class="footer-cover-title flex justify-content-center align-items-center">
@@ -613,7 +870,7 @@ include('routes/connect.php');
                             <script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                             <script>
                                 document.write(new Date().getFullYear());
-                            </script> Design & Developed by <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;">iSPIN</a>
+                            </script> Design & Developed by <i class="fa fa-heart" aria-hidden="true"></i> by <br /> <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;color: white;">Department of Computer Science Engineering | iSPIN</a>
                         </div>
 
 
