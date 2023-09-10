@@ -14,16 +14,16 @@ include('routes/connect.php');
     <title>Waves'23</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="public/css/fontawesome-all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="public/css/swiper.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="public/css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script nonce="2af76b41-facd-47ce-9e71-e256854a4086">
-        (function (w, d) {
-            ! function (db, dc, dd, de) {
+        (function(w, d) {
+            ! function(db, dc, dd, de) {
                 db[dd] = db[dd] || {};
                 db[dd].executed = [];
                 db.zaraz = {
@@ -31,8 +31,8 @@ include('routes/connect.php');
                     listeners: []
                 };
                 db.zaraz.q = [];
-                db.zaraz._f = function (df) {
-                    return async function () {
+                db.zaraz._f = function(df) {
+                    return async function() {
                         var dg = Array.prototype.slice.call(arguments);
                         db.zaraz.q.push({
                             m: df,
@@ -58,9 +58,9 @@ include('routes/connect.php');
                     db[dd].o = (new Date).getTimezoneOffset();
                     if (db.dataLayer)
                         for (const dp of Object.entries(Object.entries(dataLayer).reduce(((dq, dr) => ({
-                            ...dq[1],
-                            ...dr[1]
-                        })), {}))) zaraz.set(dp[0], dp[1], {
+                                ...dq[1],
+                                ...dr[1]
+                            })), {}))) zaraz.set(dp[0], dp[1], {
                             scope: "page"
                         });
                     db[dd].q = [];
@@ -71,12 +71,12 @@ include('routes/connect.php');
                     dj.defer = !0;
                     for (const dt of [localStorage, sessionStorage]) Object.keys(dt || {}).filter((dv => dv
                         .startsWith("_zaraz_"))).forEach((du => {
-                            try {
-                                db[dd]["z_" + du.slice(7)] = JSON.parse(dt.getItem(du))
-                            } catch {
-                                db[dd]["z_" + du.slice(7)] = dt.getItem(du)
-                            }
-                        }));
+                        try {
+                            db[dd]["z_" + du.slice(7)] = JSON.parse(dt.getItem(du))
+                        } catch {
+                            db[dd]["z_" + du.slice(7)] = dt.getItem(du)
+                        }
+                    }));
                     dj.referrerPolicy = "origin";
                     dj.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(db[dd])));
                     di.parentNode.insertBefore(dj, di)
@@ -93,13 +93,13 @@ include('routes/connect.php');
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="padding: 23px;">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel" style="color: aqua;">Rules and Regulation</h4>
+                    <h4 class="modal-title" id="exampleModalLabel" style="color: #e22361;">Rules and Regulation</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" style="height: 625px !important;">
-                    <div style="color: black; font-family: 'Courier New', Courier, monospace;">
+                    <div style="color: black;">
                         1. On stage events will be conducted separately for Boys and Girls,purely team wise.<br>
                         2. Registration for events should be done within the deadline specified by the organizers.<br>
                         3. No alteration in registration is accepted after the deadline.<br>
@@ -127,14 +127,13 @@ include('routes/connect.php');
     <?php
     $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
     while ($event = mysqli_fetch_array($events)) {
-        ?>
+    ?>
         <!-- Modal -->
-        <div class="modal fade <?php echo $event['event_id'] ?>" tabindex="-1" role="dialog"
-            aria-labelledby="<?php echo $event['event_id'] ?>" aria-hidden="true">
+        <div class="modal fade <?php echo $event['event_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $event['event_id'] ?>" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="padding: 23px;">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel" style="color: aqua;">
+                        <h4 class="modal-title" id="exampleModalLabel" style="color: #e22361;">
                             <?php echo $event['event_name'] ?>
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -144,8 +143,7 @@ include('routes/connect.php');
                     <div class="modal-body">
                         <div>
                             <div style="margin: 12px; text-align: center;">
-                                <img src="<?php echo $event['image'] ?>" alt="" srcset="" width="270px" height="170px"
-                                    style="margin: 22px;">
+                                <img src="<?php echo $event['image'] ?>" alt="" srcset="" width="270px" height="170px" style="margin: 22px;">
                                 <h4>
                                     <?php echo $event['event_date'] ?>
                                 </h4>
@@ -156,16 +154,16 @@ include('routes/connect.php');
                                     <?php echo $event['event_venue'] ?>
                                 </h4>
                             </div>
-                            <h4 style="color: aqua;">Rules</h4>
-                            <p style="font-family: 'Courier New', Courier, monospace;">
-                                
+                            <h4 style="color: #e22361;">Rules</h4>
+                            <p>
+
                                 <?php $rules = explode(".", $event['event_rules']);
                                 array_pop($rules);
-                                foreach ($rules as $letter=>$index) {
-                                    echo ($letter+1). '. '.$rules[$letter] . '<br />';
-                                  }
-                                 
-                                
+                                foreach ($rules as $letter => $index) {
+                                    echo ($letter + 1) . '. ' . $rules[$letter] . '<br />';
+                                }
+
+
                                 ?>
                             </p>
                         </div>
@@ -177,7 +175,7 @@ include('routes/connect.php');
                 </div>
             </div>
         </div>
-        <?php
+    <?php
     }
     ?>
 
@@ -188,7 +186,9 @@ include('routes/connect.php');
                 <div class="row align-items-center">
                     <div class="col-10 col-lg-4">
                         <h1 class="site-branding flex">
-                            <a href="#">Waves'23</a>
+                            <!-- <img src="/public/images/waves-logo.png" alt="" class="" width="120"> -->
+
+                            <!-- <a href="#">Waves'23</a> -->
                         </h1>
                     </div>
                     <div class="col-2 col-lg-8">
@@ -206,8 +206,7 @@ include('routes/connect.php');
                                 <li><a href="#">BLOG</a></li>
                                 <li><a href="#">CONTACT</a></li>
                                 <li><a href="#"><i class="fas fa-search"></i></a></li> -->
-                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal"
-                                        data-target="#loginModal">Login</button></li>
+                                <li style="display: none;"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
                             </ul>
                         </nav>
                     </div>
@@ -217,8 +216,7 @@ include('routes/connect.php');
     </header>
 
     <!-- Login Modal -->
-    <div style='margin-top: 32px' class="modal fade loginModal" id="loginModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div style='margin-top: 32px' class="modal fade loginModal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="padding: 28px;">
             <div class="modal-content">
                 <div class="modal-body">
@@ -227,14 +225,12 @@ include('routes/connect.php');
                         <form action="/routes/auth/login.php" method="post">
                             <div class="form-group">
                                 <label for="exampleInputName">Reg Number</label>
-                                <input type="reg_number" name='reg_number' class="form-control" id="exampleInputName"
-                                    placeholder="Register Number">
+                                <input type="reg_number" name='reg_number' class="form-control" id="exampleInputName" placeholder="Register Number">
                             </div>
                             <div class="form-group"> <label for="role">
                                     <h6>Role</h6>
                                 </label>
-                                <div class="input-group"> <select name="role" id="" placeholder="Select Gender"
-                                        class="form-control" required>
+                                <div class="input-group"> <select name="role" id="" placeholder="Select Gender" class="form-control" required>
                                         <option value="" hidden></option>
                                         <option value="student">Student</option>
                                         <option value="event coordinator">Event Coordinator</option>
@@ -245,21 +241,17 @@ include('routes/connect.php');
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword">Password</label>
-                                <input type="password" name="password" class="form-control" id="inputPassword"
-                                    placeholder="Password">
+                                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
                             </div>
                             <button type="submit" name="submit" class="btn btn-login btn-primary">Login</button>
                         </form>
                     </div>
                     <div>
-                        <svg width="67px" height="480px" viewBox="0 0 67 480" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <svg width="67px" height="480px" viewBox="0 0 67 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>Path</title>
                             <desc>Created with Sketch.</desc>
                             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <path
-                                    d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z"
-                                    id="Path" fill="#0ee1e7"></path>
+                                <path d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z" id="Path" fill="#0ee1e7"></path>
                             </g>
                         </svg>
                     </div>
@@ -282,10 +274,15 @@ include('routes/connect.php');
     align-items: center;">
 
                     <div class="entry-header">
-                        <!-- <h2>Waves'23</h2> -->
-                        <img src="/public/images/clg-logo.png" width="180px" style="box-shadow: 0px 0px 100px 2px white;" alt="" srcset="">
+                        <div class="shadow">
+                            <img src="/public/images/waves-logo.png" alt="" class="" width="160">
 
-                        <div id="stage"></div>
+                            <img src="/public/images/clg-logo.png" alt="" class="" width="180">
+                        </div>
+                        <h2 id="waves-text" style="filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 1));;font-family: 'mountains';padding: 0;margin-bottom: 32px;">Waves 23</h2>
+
+
+                        <div id="stage" style="margin-top: 64px;"></div>
 
                         <canvas id="text" width="800" height="200"></canvas>
                         <input id="input" type="text" value="Waves'23 W" style="display: none;" />
@@ -315,11 +312,10 @@ include('routes/connect.php');
                     <div class="col-md-12">
                         <div class="entry-footer">
 
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#commonRules">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commonRules">
                                 Rules and Regulation
                             </button>
-                            <a href="#" class="btn current">See Events</a>
+                            <a href="#events" class="btn current">See Events</a>
                         </div>
                     </div>
 
@@ -403,7 +399,7 @@ include('routes/connect.php');
         </div> 
     </div>-->
 
-            <div class="row">
+            <div class="row" id="events">
                 <div class="col-12">
                     <div class="the-complete-lineup">
                         <div class="entry-title">
@@ -414,14 +410,11 @@ include('routes/connect.php');
                             <?php
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='COMMON'");
                             while ($event = mysqli_fetch_array($events)) {
-                                ?>
-                                <div class="col-6 col-md-4 col-lg-3 artist-single">
+                            ?>
+                                <div class="col-6 col-md-4 col-lg-3 artist-single" data-aos="zoom-in-up">
                                     <figure class="featured-image">
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img
-                                                src="<?php echo $event['image'] ?>" alt> </a>
-                                        <a href="#" class="box-link" type="button" class="btn btn-primary"
-                                            data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img
-                                                src="public/images/box.jpg" alt> </a>
+                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                        <a href="#" class="box-link" type="button" class="btn btn-primary" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="public/images/box.jpg" alt> </a>
                                     </figure>
                                     <h2>
                                         <?php echo $event['event_name'] ?>
@@ -434,7 +427,7 @@ include('routes/connect.php');
                                     </h6>
 
                                 </div>
-                                <?php
+                            <?php
                             }
                             ?>
                         </div>
@@ -452,13 +445,11 @@ include('routes/connect.php');
                             <?php
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='BOYS'");
                             while ($event = mysqli_fetch_array($events)) {
-                                ?>
-                                <div class="col-6 col-md-4 col-lg-3 artist-single">
+                            ?>
+                                <div class="col-6 col-md-4 col-lg-3 artist-single" data-aos="zoom-in-up">
                                     <figure class="featured-image">
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img
-                                                src="<?php echo $event['image'] ?>" alt> </a>
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"
-                                            class="box-link"> <img src="public/images/box.jpg" alt> </a>
+                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="box-link"> <img src="public/images/box.jpg" alt> </a>
                                     </figure>
                                     <h2>
                                         <?php echo $event['event_name'] ?>
@@ -470,7 +461,7 @@ include('routes/connect.php');
                                         <?php echo $event['event_time'] ?>
                                     </h6>
                                 </div>
-                                <?php
+                            <?php
                             }
                             ?>
                         </div>
@@ -488,13 +479,11 @@ include('routes/connect.php');
                             <?php
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='GIRLS'");
                             while ($event = mysqli_fetch_array($events)) {
-                                ?>
-                                <div class="col-6 col-md-4 col-lg-3 artist-single">
+                            ?>
+                                <div class="col-6 col-md-4 col-lg-3 artist-single" data-aos="zoom-in-up">
                                     <figure class="featured-image">
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img
-                                                src="<?php echo $event['image'] ?>" alt> </a>
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"
-                                            class="box-link"> <img src="public/images/box.jpg" alt> </a>
+                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="box-link"> <img src="public/images/box.jpg" alt> </a>
                                     </figure>
                                     <h2>
                                         <?php echo $event['event_name'] ?>
@@ -506,7 +495,7 @@ include('routes/connect.php');
                                         <?php echo $event['event_time'] ?>
                                     </h6>
                                 </div>
-                                <?php
+                            <?php
                             }
                             ?>
                         </div>
@@ -531,13 +520,12 @@ include('routes/connect.php');
                         <?php
                         $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
                         while ($event = mysqli_fetch_array($events)) {
-                            ?>
+                        ?>
                             <div class="swiper-slide">
                                 <div class="next-event-content">
                                     <figure class="featured-image">
                                         <img src="<?php echo $event['image'] ?>" alt>
-                                        <a href="#" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"
-                                            class="entry-content flex flex-column justify-content-center align-items-center">
+                                        <a href="#" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="entry-content flex flex-column justify-content-center align-items-center">
                                             <h3>
                                                 <?php echo $event['event_name'] ?>
                                             </h3>
@@ -548,7 +536,7 @@ include('routes/connect.php');
                                     </figure>
                                 </div>
                             </div>
-                            <?php
+                        <?php
                         }
                         ?>
 
@@ -607,7 +595,14 @@ include('routes/connect.php');
         <div class="footer-content-wrapper">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-md-4">
+                        <div class="footer-logo shadow">
+                            <img src="/public/images/ispin-logo.png" width="130" alt="">
+                            <h4 style="color: white;">Innovative Software Product Industry of NSCET</h4>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
                         <div class="entry-title">
                             <a href="#">Waves'23</a>
                         </div>
@@ -615,23 +610,20 @@ include('routes/connect.php');
                         <div class="copyright-info">
 
                             Copyright &copy;
-                            <script data-cfasync="false"
-                                src="public/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                            <script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                             <script>
                                 document.write(new Date().getFullYear());
-                            </script> Design & Developed by <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                href="https://nscet.org/ispin/" target="_blank">iSPIN</a>
-
+                            </script> Design & Developed by <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;">iSPIN</a>
                         </div>
+
+
+
                         <div class="footer-social">
-                            <!-- <ul class="flex justify-content-center align-items-center">
-                                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                            <ul class="flex justify-content-center align-items-center">
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul> -->
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -660,25 +652,22 @@ include('routes/connect.php');
 
         gtag('config', 'UA-23581568-13');
     </script>
-    <script defer
-        src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854"
-        integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg=="
-        data-cf-beacon='{"rayId":"801ca2883dc3859f","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.8.0","si":100}'
-        crossorigin="anonymous"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"801ca2883dc3859f","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.8.0","si":100}' crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-        </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-        </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-        </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
     <script>
         const duration = 10 * 1000,
@@ -694,7 +683,7 @@ include('routes/connect.php');
             return Math.random() * (max - min) + min;
         }
 
-        const interval = setInterval(function () {
+        const interval = setInterval(function() {
             const timeLeft = animationEnd - Date.now();
 
             if (timeLeft <= 0) {
@@ -731,7 +720,7 @@ include('routes/connect.php');
             d.style.top = e.clientY + "px";
             d.style.left = e.clientX + "px";
             document.body.appendChild(d);
-            d.addEventListener('animationend', function () {
+            d.addEventListener('animationend', function() {
                 d.parentElement.removeChild(d);
             }.bind(this));
         }

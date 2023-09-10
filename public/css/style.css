@@ -1,6 +1,10 @@
 /*------------------------------------------------------------
 # Global classes
 ------------------------------------------------------------*/
+html{
+  scroll-behavior: smooth;
+}
+
 .flex {
   display: flex;
 }
@@ -8,7 +12,6 @@
 body {
   overflow-x: hidden;
   /* font-family: "Poppins", sans-serif; */
-  font-family: 'mountains';
   font-size: 15px;
   font-weight: normal;
   color: hsl(0, 0%, 90%);
@@ -38,6 +41,25 @@ body {
   font-weight: 400;
 }
 
+@font-face {
+  font-family: "ShantellSans";
+  src: url(../fonts/ShantellSans_i.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Skyscapers';
+	src: url('//2ttf.com/webfont/6IF8GLA3aiM/webfont.ttf') format('truetype');
+}
+
+/* sample using the font */
+body{
+	font-family: 'ShantellSans';
+}
+.card-footer button{
+  background-color: #007bff;
+  color: white;
+}
 .d-col-n {
   position: relative;
   width: 100%;
@@ -352,7 +374,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1aecda', end
 -----------------------------------------------------------*/
 .hero-content {
   padding: 60px 0;
+  height: 110%;
+  background-size: cover!important;
   background: url("../images/cover.jpg") no-repeat;
+}
+
+.entry-footer button,.entry-footer a{
+  margin-bottom: 68px;
 }
 
 /* 3d-text */
@@ -378,11 +406,12 @@ canvas {
 }
 
 .hero-content .entry-header h2 {
+  
   padding: 50px;
   margin: 0;
-  font-family: mountains;
+  font-family: 'Skyscapers';
   font-size: 120px;
-  background: -webkit-linear-gradient(#00d0ff, #25ffbf);
+  background: -webkit-linear-gradient(#e22361, #e22361);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -417,7 +446,7 @@ canvas {
 }
 
 .countdown-holder {
-  font-family: 'mountains';
+  font-family: 'Skyscapers';
   min-width: 150px;
   margin-bottom: 30px;
 }
@@ -2131,4 +2160,20 @@ h5,h6{
 
 img{
   border-radius: 12px;
+}
+
+.shadow {
+  -webkit-filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 0.7));
+  filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 0.7));
+  /* Similar syntax to box-shadow */
+}
+
+.countdown-holder{
+  font-family: 'ShantellSans';
+}
+.footer-logo{
+  margin-top: 32px;
+}
+.footer-logo img{
+  margin: 14px;
 }

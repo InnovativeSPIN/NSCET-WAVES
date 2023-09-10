@@ -17,7 +17,7 @@ var colors = ["#db4e98", "#24fdc3", "#0ee1e7", "#ef235c", "#0ee1e7"];
 
 function initStage() {
   width = screen.width - 24;
-  height = 350;
+  height = 420;
   container = document.getElementById("stage");
   // window.addEventListener('resize', resize);
   container.addEventListener("mousemove", mousemove);
@@ -49,7 +49,7 @@ function randomPos(vector) {
 }
 
 function initCamera() {
-  fieldOfView = 75;
+  fieldOfView = 70;
   aspectRatio = width / height;
   nearPlane = 1;
   farPlane = 3000;
@@ -155,13 +155,26 @@ function setParticles() {
 
 function initCanvas() {
   textCanvas = document.getElementById("text");
-  textCanvas.style.width = width + "px";
-  textCanvas.style.height = height + "px";
-  textCanvas.width = width;
-  textCanvas.height = height;
-  textCtx = textCanvas.getContext("2d");
-  textCtx.font = "700 100px Cambria";
-  textCtx.fillStyle = "#555";
+  stageCanvas = document.getElementById("stage");
+  wavesTextCanvas = document.getElementById("waves-text");
+
+
+
+  if(screen.width < 768){
+    textCanvas.style.display = 'none'
+    stageCanvas.style.display = 'none'
+
+  }else{
+    wavesTextCanvas.style.display = 'none'
+    textCanvas.style.width = width + "px";
+    textCanvas.style.height = height + "px";
+    textCanvas.width = width;
+    textCanvas.height = height;
+    textCtx = textCanvas.getContext("2d");
+    textCtx.font = "700 100px ShantellSans";
+    textCtx.fillStyle = "#555";
+  }
+  
 }
 
 function initInput() {
@@ -173,7 +186,7 @@ function initInput() {
 function updateText() {
   var fontSize = width / (input.value.length * 1.3);
   if (fontSize > 120) fontSize = 120;
-  textCtx.font = "700 " + fontSize + "px Cambria";
+  textCtx.font = "700 " + fontSize + "px ShantellSans";
   textCtx.clearRect(0, 0, width, 200);
   textCtx.textAlign = "center";
   textCtx.textBaseline = "middle";
