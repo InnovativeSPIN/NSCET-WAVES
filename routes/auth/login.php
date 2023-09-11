@@ -68,7 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
 
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-}else{
+}
+elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['role'] == 'student'){
+    $_SESSION['student_reg_no'] = $_POST['reg_number'];
+    header('Location: ../../pages/studentDashboard.php');
+}
+else{
     echo 'neet to connect studb';
     header('Location: ../../pages/studentDashboard.php');
     exit();

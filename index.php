@@ -236,7 +236,7 @@ include('routes/connect.php');
                             </div>
                             <div class="form-group" id='login-event-name'> <label for="event_name">
                                     <h6>Event Name</h6>
-                                </label> <input type="text" list="listName" name="event_name" placeholder="Enter Event Name" required class="form-control ">
+                                </label> <input type="text" list="listName" name="event_name" placeholder="Enter Event Name" class="form-control ">
                                 <datalist id="listName">
                                     <?php
                                     $events = mysqli_query($conn, "SELECT * FROM `eventdb`");

@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
-    header('Location: /');
-    exit();
-}
+// if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
+//     header('Location: /');
+//     exit();
+// }
 
 include('../routes/connect.php');
 
@@ -29,31 +29,31 @@ include('../routes/connect.php');
         <div class="card-body">
             <div class="text-section">
                 <h1 class='card-title'>
-                    <?php echo $_SESSION['house_name'] ?>
+                    <?php echo "TIGER THRASHERS" ?>
                 </h1>
-                <?php if ($_SESSION['role'] === 'team captain') { ?>
+                <?php if ('team captain' === 'team captain') { ?>
                     <h5 class="card-text">
                         Team Captain:
-                        <?php echo $_SESSION['name'] ?>
+                        <?php //echo $_SESSION['name'] ?>
                     </h5>
                     <h5 class="card-text">
                         Vice Captain:
-                        <?php echo $_SESSION['sub_role_name'] ?>
+                        <?php //echo $_SESSION['sub_role_name'] ?>
                     </h5>
                 <?php } else { ?>
                     <h5 class="card-text">
                         Team Captain:
-                        <?php echo $_SESSION['sub_role_name'] ?>
+                        <?php //echo $_SESSION['sub_role_name'] ?>
                     </h5>
                     <h5 class="card-text">
                         Vice Captain:
-                        <?php echo $_SESSION['name'] ?>
+                        <?php //echo $_SESSION['name'] ?>
                     </h5>
                 <?php } ?>
                 <h5 class="card-text">Total Members: 0</h5>
                 <?php
-                $houseName = $_SESSION['house_name'];
-                $registeredStudentsQuery = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE house_name = '$houseName'");
+                $houseName ="TIGER THRASHERS";
+                $registeredStudentsQuery = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE house_name = 'TIGER THRASHERS'");
                 $registeredStudentsDetails = mysqli_fetch_assoc($registeredStudentsQuery);
                 ?>
                 <h5 class="card-text">Participants Count:
