@@ -85,6 +85,26 @@ include('../routes/connect.php');
 
         </div>
     </div>
+    <h2>Add Participant</h2>
+
+    <div class="container" style="display: flex;justify-content: center;">
+        <form style="max-width: 320px;" action="../routes/studentReg/addStudent.php" class="form-control" method="post">
+            <input style="width: 90%;margin: 12px;" type="text" name="event_name" value="<?php echo $eventName ?>">
+
+            <input style="width: 90%;margin: 12px;" placeholder="Student Reg No" type="text" name="reg_number" id="reg_number">
+
+            <?php
+            if ($event['is_group'] == 1) {
+                echo '<input style="width: 90%;margin: 12px;" placeholder="Group Number" type="text" name="group" id="group">';
+            }else{
+                echo '<input type="text" name="group" value="0" id="group" hidden>';
+            }
+            ?>
+            
+
+            <button style="width: 90%;margin: 12px;" class="btn btn-primary">Add</button>
+        </form>
+    </div>
 </body>
 
 </html>
