@@ -100,20 +100,38 @@ include('routes/connect.php');
                 </div>
                 <div class="modal-body" style="height: 625px !important;">
                     <div style="color: black;">
-                        1. On stage events will be conducted separately for Boys and Girls,purely team wise.<br>
-                        2. Registration for events should be done within the deadline specified by the organizers.<br>
-                        3. No alteration in registration is accepted after the deadline.<br>
-                        4. The order of performance for each team will be decided by lot system.<br>
-                        5. Team captain will take lot and communicate the order of events to the participants.<br>
-                        6. During the event, the participants must submit their ID card before participating and collect the same after performance.<br>
-                        7. Proper discipline should be maintained throughout the conduct of function.<br>
-                        8. Any deviation in rules and regulations of the event or change in registered participant will lead to disqualification.<br>
-                        9. The I & II prizes will be given  I place – 10 points  II place – 5 points.<br>
-                        10. All the participants will receive a participation certificate.<br>
-                        11. The decision of judge is final.<br>
-                        12. Rolling shields will be given to overall winners and runners.<br>
-                        13. Time clashes to be managed by the team itself.<br>
-                        14. One students can participate in maximum of two events.<br>
+                        1. Separate Events for Boys and Girls: Events will be conducted separately for
+                        boys and girls, with a focus on team participation.<br />
+                        2. Registration Deadline: Participants must register for events within the
+                        specified deadline set by the organizers.<br />
+                        3. No Alterations after Deadline: Once the registration deadline has passed, no
+                        changes or alterations to registrations will be accepted.<br />
+                        4. Lot System for Order: The order in which teams perform will be determined by
+                        a random lot system.<br />
+                        5. Team Captain's Role: The team in charges and captain will draw lots and
+                        communicate the order of events to the team members.<br />
+                        6. ID card Submission: Participants must submit their ID cards before
+                        participating in the event and collect them after their performance.<br />
+                        7. Maintaining Discipline: Proper discipline should be maintained throughout the
+                        event.<br />
+                        8. Rules and Registration Deviation: Any deviation from the rules and
+                        regulations of the event or changes in registered participants will result in
+                        disqualification.<br />
+                        9. Prizes: Prizes will be awarded for first and second places in each event, with
+                        points assigned as follows:<br />
+                        10. 1st Place: 10 points<br />
+                        11. 2nd Place: 5 points<br />
+                        12. Participation Certificates: All participants will receive a participation
+                        certificate.<br />
+                        13. Judge's Decision: The decision of the judge(s) is final.<br />
+                        14. Rolling Shields: Overall winners and runners-up will receive rolling shields as
+                        awards.<br />
+                        15. Managing Time Clashes: Teams are responsible for managing any time clashes
+                        between events themselves.<br />
+                        16. Maximum Participation: Each student can participate in a maximum of two
+                        events.<br />
+                        17. IMPORTANT NOTE : The team with the highest number of individual
+                        participants will receive an additional 10 points added to their total score.
                     </div>
 
                 </div>
@@ -186,7 +204,7 @@ include('routes/connect.php');
                 <div class="row align-items-center">
                     <div class="col-10 col-lg-4">
                         <h1 class="site-branding flex">
-                            <!-- <img src="/public/images/waves-logo.png" alt="" class="" width="120"> -->
+                            <!-- <img src="/public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
 
                             <!-- <a href="#">Waves'23</a> -->
                         </h1>
@@ -223,7 +241,7 @@ include('routes/connect.php');
                     <div class="column" id="main">
                         <h1 style='margin-bottom: 34px'>Login</h1>
                         <form action="/routes/auth/login.php" method="post">
-                        <div class="form-group"> <label for="role">
+                            <div class="form-group"> <label for="role">
                                     <h6>Role</h6>
                                 </label>
                                 <div class="input-group"> <select name="role" id="login-role" onchange="checkLogin()" placeholder="Select Gender" class="form-control" required>
@@ -291,9 +309,9 @@ include('routes/connect.php');
 
                     <div class="entry-header">
                         <div class="shadow">
-                            <img src="/public/images/waves-logo.png" alt="" class="" width="160">
+                            <img src="/public/images/logos/waves-logo.png" alt="" class="" width="160">
 
-                            <img src="/public/images/clg-logo.png" alt="" class="" width="180">
+                            <img src="/public/images/logos/clg-logo.png" alt="" class="" width="180">
                         </div>
                         <h2 id="waves-text" style="filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 1));;font-family: 'mountains';padding: 0;margin-bottom: 32px;">Waves 23</h2>
 
@@ -414,7 +432,7 @@ include('routes/connect.php');
                     </div>
                 </div>
             </div> -->
-            <div class="row">
+            <div class="row" style="overflow: hidden;">
                 <div class="col-12">
                     <div class="lineup-artists-headline">
                         <div class="entry-title">
@@ -422,12 +440,12 @@ include('routes/connect.php');
                             <h2>Waves & Team</h2>
                         </div>
                         <div class="team-display">
-                            <div class="col-md-4">
-                                <h2 style="color: black;">
-                                    "Waves is the cultural extravaganza hosted by NSCET, a celebration dedicated to our vibrant student community. Join us to immerse yourself in a world of talent, creativity, and unforgettable experiences!" 🌊🎉</h2>
+                            <div class="col-md-5">
+                                <h3 style="color: black;">
+                                    "Waves is the cultural extravaganza hosted by NSCET, a celebration dedicated to our vibrant student community. Join us to immerse yourself in a world of talent, creativity, and unforgettable experiences!" 🌊🎉</h3>
                             </div>
                             <div class="col-md-2"></div>
-                            <div class="col-md-5" style="margin-top: 24px;">
+                            <div class="col-md-4" style="margin-top: 24px;padding: 52px;">
                                 <div class="container-3dgalary">
                                     <div id="carousel-3dgalary">
                                         <figure><img src="public\images\house\BLUE_BLASTERS.jpg" alt=""></figure>
@@ -438,7 +456,7 @@ include('routes/connect.php');
                                         <figure><img src="public\images\house\ROSY_RIDERS.png" alt=""></figure>
                                         <figure><img src="public\images\house\TIGER_THRASHERS.jpg" alt=""></figure>
                                         <figure><img src="public\images\house\VIOLET_VIPERS.png" alt=""></figure>
-                                        <figure><img src="public\images\waves-logo.png" alt=""></figure>
+                                        <figure><img src="public\images\logos\waves-logo.png" alt=""></figure>
                                     </div>
                                 </div>
                             </div>
@@ -677,7 +695,7 @@ include('routes/connect.php');
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="tab-pane fade show" id="step-two" role="tabpanel" aria-labelledby="monday-tab">
 
                                 <div class="single-tab-content">
@@ -870,7 +888,7 @@ include('routes/connect.php');
                 <div class="row">
                     <div class="col-md-4">
                         <div class="footer-logo shadow">
-                            <img src="/public/images/ispin-logo.png" width="130" alt="">
+                            <img src="/public/images/logos/ispin-logo.png" width="130" alt="">
                             <h4 style="color: white;">Innovative Software Product Industry of NSCET</h4>
                         </div>
                     </div>
@@ -886,7 +904,7 @@ include('routes/connect.php');
                             <script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                             <script>
                                 document.write(new Date().getFullYear());
-                            </script> Design & Developed by <i class="fa fa-heart" aria-hidden="true"></i> by <br /> <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;color: white;">Department of Computer Science Engineering | iSPIN</a>
+                            </script> Design & Developed with <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> by <br /> <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;color: white;">Department of Computer Science Engineering | iSPIN</a>
                         </div>
 
 
@@ -942,20 +960,20 @@ include('routes/connect.php');
         AOS.init();
     </script>
     <script>
-        function checkLogin(){
-            if(document.getElementById('login-role').value == 'student'){
+        function checkLogin() {
+            if (document.getElementById('login-role').value == 'student') {
                 document.getElementById('login-event-name').style.display = 'none'
                 document.getElementById('login-event-password').style.display = 'none'
                 document.getElementById('login-event-regno').style.display = 'block'
 
             }
-            if(document.getElementById('login-role').value == 'event coordinator'){
+            if (document.getElementById('login-role').value == 'event coordinator') {
                 document.getElementById('login-event-regno').style.display = 'none'
 
                 document.getElementById('login-event-name').style.display = 'block'
                 document.getElementById('login-event-password').style.display = 'block'
             }
-            if(document.getElementById('login-role').value == 'team captain'){
+            if (document.getElementById('login-role').value == 'team captain') {
                 document.getElementById('login-event-name').style.display = 'none'
                 document.getElementById('login-event-regno').style.display = 'block'
                 document.getElementById('login-event-password').style.display = 'block'
