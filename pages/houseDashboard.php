@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-// if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
-//     header('Location: /');
-//     exit();
-// }
+if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
+    header('Location: /');
+    exit();
+}
 
 include('../routes/connect.php');
 
@@ -29,31 +29,27 @@ include('../routes/connect.php');
         <div class="card-body">
             <div class="text-section">
                 <h1 class='card-title'>
-                    <?php echo "TIGER THRASHERS" ?>
+                    <?php echo $_SESSION['house_name'] ?>
                 </h1>
-                <?php if ('team captain' === 'team captain') { ?>
-                    <h5 class="card-text">
-                        Team Captain:
-                        <?php //echo $_SESSION['name'] ?>
-                    </h5>
-                    <h5 class="card-text">
+                <h5 class="card-text">
+                    Team Captain:
+                    <?php echo $_SESSION['name'] ?>
+                </h5>
+                    <!-- <h5 class="card-text">
                         Vice Captain:
-                        <?php //echo $_SESSION['sub_role_name'] ?>
-                    </h5>
-                <?php } else { ?>
-                    <h5 class="card-text">
-                        Team Captain:
-                        <?php //echo $_SESSION['sub_role_name'] ?>
-                    </h5>
-                    <h5 class="card-text">
-                        Vice Captain:
-                        <?php //echo $_SESSION['name'] ?>
-                    </h5>
-                <?php } ?>
-                <h5 class="card-text">Total Members: 0</h5>
+                    </h5> -->
                 <?php
-                $houseName ="TIGER THRASHERS";
-                $registeredStudentsQuery = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE house_name = 'TIGER THRASHERS'");
+                $houseName = $_SESSION['house_name'];
+                $totalMembersResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM studentdb WHERE house = '$houseName'");
+                $totalMembers = mysqli_fetch_assoc($totalMembersResult);
+                ?>
+                <h5 class="card-text">Total Members: 
+                    <?php echo $totalMembers['row_count'];
+                        mysqli_free_result($totalMembersResult);
+                    ?>
+                </h5>
+                <?php
+                $registeredStudentsQuery = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName'");
                 $registeredStudentsDetails = mysqli_fetch_assoc($registeredStudentsQuery);
                 ?>
                 <h5 class="card-text">Participants Count:
@@ -63,7 +59,15 @@ include('../routes/connect.php');
                 </h5>
             </div>
             <div class="cta-section">
-                <div>Score: 0</div>
+            <?php
+                $scoreResult = mysqli_query($conn, "SELECT score FROM housedb WHERE name = '$houseName'");
+                $score = mysqli_fetch_assoc($scoreResult);
+                ?>
+                <div>Score: 
+                    <?php echo $score['score'];
+                        mysqli_free_result($scoreResult);
+                    ?>
+                </div>
                 <!-- <a href="#" class="btn btn-light">Buy Now</a> -->
             </div>
         </div>
@@ -108,7 +112,7 @@ include('../routes/connect.php');
                             </thead>
                             <tbody>
                                 <?php
-                                $genderResult = mysqli_query($conn, "SELECT gender FROM registerationdb WHERE house_name = '$houseName'");
+                                $genderResult = mysqli_query($conn, "SELECT gender FROM housedb WHERE name = '$houseName'");
                                 $gender = mysqli_fetch_assoc($genderResult);
                                 $gender = $gender['gender'];
                                 mysqli_free_result($genderResult);
@@ -124,7 +128,7 @@ include('../routes/connect.php');
                                     $eventCoordinatorResult = mysqli_query($conn, "SELECT name from admindb WHERE role = 'event coordinator' AND event_name = '$eventName'");
                                     $eventCoordinator = mysqli_fetch_assoc($eventCoordinatorResult);
 
-                                    $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE house_name = '$houseName' AND event_name = '$eventName'");
+                                    $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName'");
                                     $registeredParticipants = mysqli_fetch_assoc($SpecificEventRegStuCountResult);
 
                                     if ($event['is_group'] == 1) {
@@ -163,7 +167,6 @@ include('../routes/connect.php');
                                         <td>
                                             <ul class="action-list">
                                                 <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
-                                                <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
                                             </ul>
                                         </td>
                                     </tr>

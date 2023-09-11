@@ -293,10 +293,10 @@ include('../routes/connect.php');
 
                     <div class="row">
                         <div class="col-md-12 form-group"> <label for="captain_number">
-                                <h6>Captain Number</h6>
+                                <h6>Captain Register Number</h6>
                             </label>
                             <div class="input-group"> <input type="text" name="captain_number"
-                                    placeholder="Enter Coordinator Number" class="form-control " required>
+                                    placeholder="Enter Captain Register Number" class="form-control " required>
                             </div>
                         </div>
                     </div>
@@ -346,10 +346,10 @@ include('../routes/connect.php');
                         </div>
                     </div>
                     <div class="col-md-6 form-group"> <label for="captain_number">
-                            <h6>Captain Number</h6>
+                            <h6>Captain Register Number</h6>
                         </label>
                         <div class="input-group"> <input type="text" name="captain_number"
-                                placeholder="Enter Coordinator Number" class="form-control " required>
+                                placeholder="Enter Captain Register Number" class="form-control " required>
                         </div>
                     </div>
                 </div>
@@ -362,7 +362,6 @@ include('../routes/connect.php');
                                 class="form-control" required>
                                 <option value="" hidden></option>
                                 <option value="team captain">Captain</option>
-                                <option value="vice captain">Vice-Captain</option>
                             </select>
                         </div>
                     </div>

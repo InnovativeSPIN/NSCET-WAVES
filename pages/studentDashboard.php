@@ -1,16 +1,16 @@
 <?php
-// session_start();
+session_start();
 
-// if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
-//     header('Location: /'); 
-//     exit();
-// }
+if (!isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
+    header('Location: /'); 
+    exit();
+}
+
+print_r($_SESSION);
 
 include('../routes/connect.php');
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +28,7 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
 	<div class="row">
 
     <?php
+	$student_reg_no = $_SESSION['reg_no'];
     $registeredEvents = mysqli_query($conn, "SELECT * FROM `registerationdb` WHERE reg_no = $student_reg_no");
     while ($registeredEvent = mysqli_fetch_array($registeredEvents)) {
         ?>

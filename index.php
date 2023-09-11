@@ -247,7 +247,7 @@ include('routes/connect.php');
                                 <div class="input-group"> <select name="role" id="login-role" onchange="checkLogin()" placeholder="Select Gender" class="form-control" required>
                                         <option value="" hidden></option>
                                         <option value="student">Student</option>
-                                        <option value="event coordinator">Event Coordinator</option>
+                                        <option value="event coordinator">Event Co-ordinator</option>
                                         <option value="team captain">Team Captain</option>
                                     </select>
                                 </div>
@@ -271,7 +271,7 @@ include('routes/connect.php');
                             </div>
                             <div class="form-group" id='login-event-regno' style='display: none;'>
                                 <label for="inputRegNo">Register No</label>
-                                <input type="text" name="reg_no" class="form-control" id="inputRegNo" placeholder="Reg No">
+                                <input type="text" name="reg_number" class="form-control" id="inputRegNo" placeholder="Reg No">
                             </div>
                             <div class="form-group" id='login-event-password' style='display: none;'>
                                 <label for="inputPassword">Password</label>
