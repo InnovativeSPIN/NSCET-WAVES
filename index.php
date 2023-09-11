@@ -162,6 +162,7 @@ include('routes/connect.php');
                         <div>
                             <div style="margin: 12px; text-align: center;">
                                 <img src="<?php echo $event['image'] ?>" alt="" srcset="" width="270px" height="170px" style="margin: 22px;">
+                                
                                 <h4>
                                     <?php echo $event['event_date'] ?>
                                 </h4>
@@ -171,6 +172,15 @@ include('routes/connect.php');
                                 <h4>
                                     <?php echo $event['event_venue'] ?>
                                 </h4>
+
+                                <p>Event Cordinators
+                                    <br />
+                                    <?php $coordinators = explode("|", $event['event_cordinators']);
+                                    foreach ($coordinators as $letter => $index) {
+                                        echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                    }
+                                    ?>
+                                </p>
                             </div>
                             <h4 style="color: #e22361;">Rules</h4>
                             <p>
@@ -454,7 +464,7 @@ include('routes/connect.php');
                                         <figure><img src="public\images\house\GALATIC_STARS.jpg" alt=""></figure>
                                         <figure><img src="public\images\house\PHOENIX_BLASTERS.png" alt=""></figure>
                                         <figure><img src="public\images\house\ROSY_RIDERS.png" alt=""></figure>
-                                        <figure><img src="public\images\house\TIGER_THRASHERS.jpg" alt=""></figure>
+                                        <figure><img src="public\images\house\TIGER_THRASHERS.png" alt=""></figure>
                                         <figure><img src="public\images\house\VIOLET_VIPERS.png" alt=""></figure>
                                         <figure><img src="public\images\logos\waves-logo.png" alt=""></figure>
                                     </div>

@@ -116,6 +116,7 @@ body {
 .login-modal-body {
   display: flex;
   height: 480px;
+  overflow: hidden;
 }
 .modal-content {
   border-radius: 4rem;
