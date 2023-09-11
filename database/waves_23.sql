@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 11, 2023 at 02:54 PM
+-- Generation Time: Sep 11, 2023 at 06:03 PM
 -- Server version: 5.7.43
 -- PHP Version: 8.1.16
 
@@ -148,13 +148,6 @@ CREATE TABLE `studentdb` (
   `year` varchar(255) DEFAULT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `studentdb`
---
-
-INSERT INTO `studentdb` (`name`, `reg_no`, `house`, `dept`, `gender`, `year`, `id`) VALUES
-('TENSH KUMAR K', '921021104051', 'DRAGON WARRIORS', 'CSE', 'BOY', 'III', 1);
 
 --
 -- Indexes for dumped tables
