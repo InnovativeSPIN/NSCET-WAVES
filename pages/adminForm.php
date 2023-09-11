@@ -17,6 +17,18 @@ include('../routes/connect.php');
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <div class="container py-5">
+    <!-- excel sheet input -->
+    <div class="" id="">
+        <form class="row g-3" action="../routes/admin/insertStudentDetails.php" method="post" enctype="multipart/form-data">
+            <div class="col-auto">
+                <label for="fileInput" class="visually-hidden">File</label>
+                <input type="file" class="form-control" name="file" id="fileInput" />
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-primary mb-3" name="importExcelFile" value="Import">
+            </div>
+        </form>
+    </div>
     <!-- For demo purpose -->
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center shadow logos">
@@ -399,6 +411,8 @@ include('../routes/connect.php');
             <div class="card-footer"> <button type="submit" name='submit' class="subscribe btn btn-block shadow-sm"> Edit Event </button>
         </form>
     </div> <!-- End -->
+
+    
 
     <!-- End -->
 </div>

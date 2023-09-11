@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
                 header('Location: ../../pages/houseDashboard.php');
             exit();
             }
-            elseif($role === 'team captain'){
+            elseif($role === 'vice captain'){
 
                 $cap_query = mysqli_query($conn, "SELECT name FROM admindb WHERE role = 'team captain' AND house_name = '$house_name'");            
                 $cap_name_array = mysqli_fetch_array($cap_query);
