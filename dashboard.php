@@ -6,6 +6,7 @@ if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['
     exit();
 }
 
+print_r($_SESSION);
 echo 'success !';
 
 ?>
