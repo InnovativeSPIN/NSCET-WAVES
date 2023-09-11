@@ -223,23 +223,39 @@ include('routes/connect.php');
                     <div class="column" id="main">
                         <h1 style='margin-bottom: 34px'>Login</h1>
                         <form action="/routes/auth/login.php" method="post">
-                            <div class="form-group">
-                                <label for="exampleInputName">Reg Number</label>
-                                <input type="reg_number" name='reg_number' class="form-control" id="exampleInputName" placeholder="Register Number">
-                            </div>
-                            <div class="form-group"> <label for="role">
+                        <div class="form-group"> <label for="role">
                                     <h6>Role</h6>
                                 </label>
-                                <div class="input-group"> <select name="role" id="" placeholder="Select Gender" class="form-control" required>
+                                <div class="input-group"> <select name="role" id="login-role" onchange="checkLogin()" placeholder="Select Gender" class="form-control" required>
                                         <option value="" hidden></option>
                                         <option value="student">Student</option>
                                         <option value="event coordinator">Event Coordinator</option>
                                         <option value="team captain">Team Captain</option>
-                                        <option value="vice captain">Vice Captain</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id='login-event-name'> <label for="event_name">
+                                    <h6>Event Name</h6>
+                                </label> <input type="text" list="listName" name="event_name" placeholder="Enter Event Name" required class="form-control ">
+                                <datalist id="listName">
+                                    <?php
+                                    $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
+                                    while ($event = mysqli_fetch_array($events)) {
+                                    ?>
+                                        <option value="<?php echo $event['event_name'] ?>">
+                                            <?php echo $event['event_name'] ?>
+                                        </option>
+
+                                    <?php
+                                    }
+                                    ?>
+                                </datalist>
+                            </div>
+                            <div class="form-group" id='login-event-regno' style='display: none;'>
+                                <label for="inputRegNo">Register No</label>
+                                <input type="text" name="reg_no" class="form-control" id="inputRegNo" placeholder="Reg No">
+                            </div>
+                            <div class="form-group" id='login-event-password' style='display: none;'>
                                 <label for="inputPassword">Password</label>
                                 <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
                             </div>
@@ -924,6 +940,27 @@ include('routes/connect.php');
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+    <script>
+        function checkLogin(){
+            if(document.getElementById('login-role').value == 'student'){
+                document.getElementById('login-event-name').style.display = 'none'
+                document.getElementById('login-event-password').style.display = 'none'
+                document.getElementById('login-event-regno').style.display = 'block'
+
+            }
+            if(document.getElementById('login-role').value == 'event coordinator'){
+                document.getElementById('login-event-regno').style.display = 'none'
+
+                document.getElementById('login-event-name').style.display = 'block'
+                document.getElementById('login-event-password').style.display = 'block'
+            }
+            if(document.getElementById('login-role').value == 'team captain'){
+                document.getElementById('login-event-name').style.display = 'none'
+                document.getElementById('login-event-regno').style.display = 'block'
+                document.getElementById('login-event-password').style.display = 'block'
+            }
+        }
     </script>
 
     <script>
