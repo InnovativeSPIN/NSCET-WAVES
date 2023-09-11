@@ -41,9 +41,11 @@ include('../routes/connect.php');
                             <li class="nav-item"> <a data-toggle="pill" href="#edit-coordinator" class="nav-link"> <i class="fab fa-paypal mr-2"></i> Edit Coordinator </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#assign-house" class="nav-link"> <i class="fab fa-paypal mr-2"></i> Assign House Lead </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#edit-house" class="nav-link"> <i class="fab fa-paypal mr-2"></i> Edit House Lead </a> </li>
+                            <li class="nav-item"> <a data-toggle="pill" href="#add-student" class="nav-link"> <i class="fab fa-paypal mr-2"></i> Add Student Data </a> </li>
+                        
                         </ul>
                     </div> <!-- End -->
-                    <!-- Credit card form content -->
+
                     <div class="tab-content">
                         <!-- credit card info-->
                         <div id="add-event" class="tab-pane fade show active pt-3">
@@ -398,6 +400,53 @@ include('../routes/connect.php');
             </div>
             <div class="card-footer"> <button type="submit" name='submit' class="subscribe btn btn-block shadow-sm"> Edit Event </button>
         </form>
+    </div> <!-- End -->
+                </div>
+    <div id="add-student" class="tab-pane fade pt-3">
+    <form role="form" action="../routes/admin/eventPost.php" method="post" enctype="multipart/form-data">
+                            <div class="form-group"> <label for="house_name">
+                                    <h6>House Name</h6>
+                                </label> <input type="text" list="listName" name="house_name" placeholder="Enter House Name" required class="form-control ">
+                                <datalist id="listName">
+                                    <?php
+                                    $events = mysqli_query($conn, "SELECT * FROM `housedb`");
+                                    while ($event = mysqli_fetch_array($events)) {
+                                    ?>
+                                        <option value="<?php echo $event['name'] ?>">
+                                            <?php echo $event['name'] ?>
+                                        </option>
+
+                                    <?php
+                                    }
+                                    ?>
+                                </datalist>
+                            </div>
+
+                                
+                                    <div class="col-md-12 form-group"> <label for="gender">
+                                            <h6>Gender</h6>
+                                        </label>
+                                        <div class="input-group"> <select name="gender" id="" placeholder="Select Gender" class="form-control" required>
+                                                <option value="" hidden></option>
+                                                <option value="BOYS">BOYS</option>
+                                                <option value="GIRLS">GIRLS</option>
+                                                <option value="COMMON">COMMON</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-12 form-group"> <label for="file">
+                                            <h6>Upload CSV FIle</h6>
+                                        </label>
+                                        <div class="input-group"> <input type="file" name="image" placeholder="Select File" class="form-control " required>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="card-footer"> <button type="submit" name='submit' class="subscribe btn btn-block shadow-sm"> Add Event </button>
+                            </form>
     </div> <!-- End -->
 
     <!-- End -->
