@@ -44,8 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
             $error = "Incorrect username or password or role";
         }
     } else {
-        echo "User not found";
-        $error = "User not found";
+        // echo "User not found";
+        // $error = "User not found";
+        header('Location: ../../index.php');
     }
 
     mysqli_stmt_close($stmt);
@@ -82,8 +83,9 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && 
             echo "Incorrect register number";
         }
     }else {
-        echo "User not found";
-        $error = "User not found";
+        // echo "User not found";
+        // $error = "User not found";
+        header('Location: ../../index.php');
     }
 
     mysqli_stmt_close($stmt);
@@ -122,8 +124,9 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && 
             $error = "Incorrect username or password or role";
         }
     } else {
-        echo "User not found";
-        $error = "User not found";
+        // echo "User not found";
+        // $error = "User not found";
+        header('Location: ../../index.php');
     }
 
     mysqli_stmt_close($stmt);

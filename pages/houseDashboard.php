@@ -24,8 +24,14 @@ include('../routes/connect.php');
 </head>
 
 <body>
-    <div class="card dark">
-        <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="...">
+    <div class="card dark gradient-border">
+    
+    <?php
+        $path = '../public/images/house/';
+        $img = str_replace(" ", "_", $_SESSION['house_name']);
+    ?>
+        <img src="<?php echo $path.$img.".png" ?>" class="card-img-top" alt="...">
+
         <div class="card-body">
             <div class="text-section">
                 <h1 class='card-title'>
@@ -105,6 +111,7 @@ include('../routes/connect.php');
                                     <th>Event Coordinator</th>
                                     <th>Max Participants</th>
                                     <th>Registered Participants</th>
+                                    <th>Allowance</th>
                                     <th>Group</th>
                                     <th>Group Count</th>
                                     <th>Update</th>
@@ -129,7 +136,12 @@ include('../routes/connect.php');
                                     $eventCoordinator = mysqli_fetch_assoc($eventCoordinatorResult);
 
                                     $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName'");
-                                    $registeredParticipants = mysqli_fetch_assoc($SpecificEventRegStuCountResult);
+                                    if($SpecificEventRegStuCountResult){
+                                        $registeredParticipants = mysqli_fetch_assoc($SpecificEventRegStuCountResult);
+                                        $registeredParticipants = $registeredParticipants['row_count'];
+                                    }else{
+                                        $registeredParticipants = 0;
+                                    }
 
                                     if ($event['is_group'] == 1) {
                                         $isGroup = 'Yes';
@@ -152,10 +164,13 @@ include('../routes/connect.php');
                                             } ?>
                                         </td>
                                         <td>
-                                            <?php echo $event['max_participants'] ?>
+                                            <?php echo  $event['max_participants']?>
                                         </td>
                                         <td>
-                                            <?php echo $registeredParticipants['row_count'] ?>
+                                            <?php echo $registeredParticipants ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $event['max_participants'] - $registeredParticipants?>
                                         </td>
                                         <td>
                                             <?php echo $isGroup ?>
@@ -173,7 +188,10 @@ include('../routes/connect.php');
 
                                     <?php
                                     mysqli_free_result($eventCoordinatorResult);
-                                    mysqli_free_result($SpecificEventRegStuCountResult);
+                                    if($SpecificEventRegStuCountResult){
+                                        mysqli_free_result($SpecificEventRegStuCountResult);
+
+                                    }
                                 }
                                 mysqli_free_result($eventsResult);
                                 ?>
@@ -184,7 +202,51 @@ include('../routes/connect.php');
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+    <script>
+        const duration = 10 * 1000,
+            animationEnd = Date.now() + duration,
+            defaults = {
+                startVelocity: 30,
+                spread: 720,
+                ticks: 60,
+                zIndex: 0
+            };
 
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            const particleCount = 20 * (timeLeft / duration);
+
+            // since particles fall down, start a bit higher than random
+            confetti(
+                Object.assign({}, defaults, {
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.1, 0.3),
+                        y: Math.random() - 0.2
+                    },
+                })
+            );
+            confetti(
+                Object.assign({}, defaults, {
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.7, 0.9),
+                        y: Math.random() - 0.2
+                    },
+                })
+            );
+        }, 250);
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../public/js/jquery.js"></script>
     <script src="https://kit.fontawesome.com/6a9b11d703.js" crossorigin="anonymous"></script>

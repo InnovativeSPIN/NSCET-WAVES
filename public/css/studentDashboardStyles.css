@@ -149,3 +149,11 @@ body {
 .registered-details-card .bottom .wrapper .forecast li.active {
   color: rgba(0, 0, 0, 0.8);
 }
+
+h5{
+  color: white!important;
+}
+
+h6,p,span{
+  color: black!important;
+}
