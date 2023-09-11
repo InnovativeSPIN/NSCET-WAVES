@@ -50,7 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
 
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-}else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isset($_POST['role']) && $_POST['role'] != 'event coordinator'){
+}
+// student login
+else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isset($_POST['role']) && $_POST['role'] != 'event coordinator'){
     
     $reg_number = $_POST['reg_number'];
     $query = "SELECT name,reg_no,house,dept,gender,year FROM studentdb WHERE reg_no = ?";
@@ -87,5 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
 }
+// // event coordinator
+// else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && isset($_POST['role'])){
+    
+// }
 
 ?>
