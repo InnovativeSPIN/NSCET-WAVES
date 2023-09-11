@@ -23,10 +23,10 @@ include('../routes/connect.php');
     <!-- For demo purpose -->
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center shadow logos">
-            <img src="/public/images/ispin-logo.png" width="100" alt="">
-            <img src="/public/images/clg-logo.png" width="130" alt="">
+            <img src="/public/images/logos/ispin-logo.png" width="100" alt="">
+            <img src="/public/images/logos/clg-logo.png" width="130" alt="">
 
-            <img src="/public/images/waves-logo.png" width="130" alt="">
+            <img src="/public/images/logos/waves-logo.png" width="130" alt="">
 
             <h1 class="display-6" style="font-family:ShantellSans;color: white;">Waves Admin Panel</h1>
         </div>
