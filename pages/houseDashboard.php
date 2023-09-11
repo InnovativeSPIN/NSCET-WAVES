@@ -181,7 +181,7 @@ include('../routes/connect.php');
 
                                         <td>
                                             <ul class="action-list">
-                                                <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                                                <li><a href=<?php echo './studentRegisteration.php'. "?eventName=". urlencode($eventName) ?> data-tip="edit"><i class="fa fa-edit"></i></a></li>
                                             </ul>
                                         </td>
                                     </tr>
