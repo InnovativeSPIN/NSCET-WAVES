@@ -143,7 +143,7 @@ include('../routes/connect.php');
                                         $registeredParticipants = 0;
                                     }
 
-                                    if ($event['is_group'] == 1) {
+                                    if ($event['is_group'] >= 1) {
                                         $isGroup = 'Yes';
                                     } else {
                                         $isGroup = 'No';

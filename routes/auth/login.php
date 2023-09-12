@@ -112,7 +112,7 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && 
             $_SESSION['dept'] = $dept;
             $_SESSION['event_name'] = $event_name;
             
-            header('Location: ../../dashboard.php');
+            header('Location: ../../pages/eventCoordinatorDashboard.php');
             exit();
         } else {
             echo "Incorrect username or password or role";
