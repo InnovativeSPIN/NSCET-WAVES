@@ -6,7 +6,7 @@ include('../routes/connect.php');
         padding: 60px 0;
         height: 160%;
         background-size: cover !important;
-        background: url("/public/images/cover.jpg") no-repeat;
+        background: url("../public/images/cover.jpg") no-repeat;
     }
 
     .logos img {
@@ -23,10 +23,10 @@ include('../routes/connect.php');
     <!-- For demo purpose -->
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center shadow logos">
-            <img src="/public/images/logos/ispin-logo.png" width="100" alt="">
-            <img src="/public/images/logos/clg-logo.png" width="130" alt="">
+            <img src="../public/images/logos/ispin-logo.png" width="100" alt="">
+            <img src="../public/images/logos/clg-logo.png" width="130" alt="">
 
-            <img src="/public/images/logos/waves-logo.png" width="130" alt="">
+            <img src="../public/images/logos/waves-logo.png" width="130" alt="">
 
             <h1 class="display-6" style="font-family:ShantellSans;color: white;">Waves Admin Panel</h1>
         </div>

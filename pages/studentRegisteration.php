@@ -121,33 +121,32 @@ include('../routes/connect.php');
                                 <!-- <div class="col col-sm-3 col-xs-12">
                                 <h4 class="title">Event <span>Details</span></h4>
                             </div> -->
-                                <?php
-                                $house_name = $_SESSION['house_name'];
-                                $event_list = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_name`= '$eventName'");
-                                $data = mysqli_fetch_array($event_list);
-                                $event = $data['is_group'];
+                                <div class="col col-sm-3 col-xs-12">
+                                    <h4 class="title">Event <span>Details</span></h4>
+                                </div>
+                                <div class="panel-body table-responsive">
 
-                                if ($event == '0') {
-                                    $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name'");
-                                    $i = 1;
-                                    while ($list = mysqli_fetch_array($participantsList)) {
-                                ?>
-                                        <div class="col col-sm-3 col-xs-12">
-                                            <h4 class="title">Event <span>Details</span></h4>
-                                        </div>
-                                        <div class="panel-body table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th> </th>
-                                                        <th>Register Number</th>
-                                                        <th>Student Name</th>
-                                                        <th>Student Department</th>
+                                    <?php
+                                    $house_name = $_SESSION['house_name'];
+                                    $event_list = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_name`= '$eventName'");
+                                    $data = mysqli_fetch_array($event_list);
+                                    $event = $data['is_group'];
 
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                                    if ($event == '0') {
+                                    ?>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th> </th>
+                                                    <th>Register Number</th>
+                                                    <th>Student Name</th>
+                                                    <th>Student Department</th>
 
+                                                </tr><?
+                                                        $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name'");
+                                                        $i = 1;
+                                                        while ($list = mysqli_fetch_array($participantsList)) {
+                                                        ?>
                                                     <tr>
                                                         <td>
                                                             <?php echo $i++ ?>
@@ -164,63 +163,66 @@ include('../routes/connect.php');
                                                     </tr>
 
                                                 <?php
-                                            }
+                                                        }
                                                 ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <?php
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <?php
                                     } else {
                                         $i = 1;
                                         $k = 1;
                                         while ($i <= $data['group_counts']) {
                                             $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name' && `grouped` = $i");
-                                        ?><div class="col col-sm-3 col-xs-12">
-                                                <h4 class="title">Group <span><?php echo $i ?></span></h4>
-                                            </div>
-                                            <table class="table">
-                                                <thead>
+                                ?><div class="col col-sm-3 col-xs-12">
+                                        <h4 class="title">Group <span><?php echo $i ?></span></h4>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Register Number</th>
+                                                <th>Student Name</th>
+                                                <th>Student Department</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($list = mysqli_fetch_array($participantsList)) {
+
+                                            ?>
+                                                <div class="panel-body table-responsive">
+
                                                     <tr>
-                                                        <th>No</th>
-                                                        <th>Register Number</th>
-                                                        <th>Student Name</th>
-                                                        <th>Student Department</th>
-                                                        <th>Delete</th>
+                                                        <td>
+                                                            <?php echo $k++ ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $list['reg_no'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $list['student_name'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $list['student_dept'] ?>
+                                                        </td>
+                                                        <td><a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="edit"><i style="color: red;" class="fa fa-trash"></i></a></td>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    while ($list = mysqli_fetch_array($participantsList)) {
-
-                                                    ?>
-                                                        <div class="panel-body table-responsive">
-
-                                                            <tr>
-                                                                <td>
-                                                                    <?php echo $k++ ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $list['reg_no'] ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $list['student_name'] ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $list['student_dept'] ?>
-                                                                </td>
-                                                                <td><a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php'. "?ID=". urlencode($list['id']). "&eventName=". urlencode($eventName) ?> data-tip="edit"><i style="color: red;" class="fa fa-trash"></i></a></td>
-                                                            </tr>
 
 
-                                                        <?php
+                                                <?php
 
-                                                    }
+                                            }
 
-                                                    $i++;
+                                            $i++;
 
-                                                        ?>
-                                                </tbody>
-                                            </table>
+                                                ?>
+                                        </tbody>
+                                    </table>
                             </div>
 
                     <?php
@@ -238,8 +240,8 @@ include('../routes/connect.php');
         </div>
         </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../public/js/jquery.js"></script>
-    <script src="https://kit.fontawesome.com/6a9b11d703.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../public/js/jquery.js"></script>
+        <script src="https://kit.fontawesome.com/6a9b11d703.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

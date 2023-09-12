@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isset($_POST['group']) && isset($_POST['event_name'])) {
@@ -27,4 +28,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
         }
     }
 }
+ob_end_flush();
 ?>

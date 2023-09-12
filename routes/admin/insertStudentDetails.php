@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include_once '../connect.php';
 
 if (isset($_POST['importExcelFile'])) {
@@ -76,5 +77,5 @@ if (isset($_POST['importExcelFile'])) {
     header('Location: ../../pages/adminForm.php');
 
 }
-
+ob_end_flush();
 ?>

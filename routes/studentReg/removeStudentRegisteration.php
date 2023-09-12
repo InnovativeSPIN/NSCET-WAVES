@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['ID'])) {
@@ -10,4 +11,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['ID'])) {
         echo "Error updating record: " . mysqli_error($conn);
     }
 }
+ob_end_flush();
 ?>

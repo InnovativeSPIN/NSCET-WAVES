@@ -218,7 +218,7 @@ if (!isset($_SESSION))
                 <div class="row align-items-center">
                     <div class="col-10 col-lg-4">
                         <h1 class="site-branding flex">
-                            <!-- <img src="/public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
+                            <!-- <img src="public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
 
                             <!-- <a href="#">Waves'23</a> -->
                         </h1>
@@ -254,7 +254,7 @@ if (!isset($_SESSION))
                 <div class="modal-body login-modal-body">
                     <div class="column" id="main">
                         <h1 style='margin-bottom: 34px'>Login</h1>
-                        <form action="/routes/auth/login.php" method="post">
+                        <form action="routes/auth/login.php" method="post">
                             <div class="form-group"> <label for="role">
                                     <h6>Role</h6>
                                 </label>
@@ -323,9 +323,9 @@ if (!isset($_SESSION))
 
                     <div class="entry-header">
                         <div class="shadow">
-                            <img src="/public/images/logos/waves-logo.png" alt="" class="" width="160">
+                            <img src="public/images/logos/waves-logo.png" alt="" class="" width="160">
 
-                            <img src="/public/images/logos/clg-logo.png" alt="" class="" width="180">
+                            <img src="public/images/logos/clg-logo.png" alt="" class="" width="180">
                         </div>
                         <h2 id="waves-text" style="filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 1));;font-family: 'mountains';padding: 0;margin-bottom: 32px;">Waves 23</h2>
 
@@ -906,7 +906,7 @@ if (!isset($_SESSION))
                 <div class="row">
                     <div class="col-md-4">
                         <div class="footer-logo shadow">
-                            <img src="/public/images/logos/ispin-logo.png" width="130" alt="">
+                            <img src="public/images/logos/ispin-logo.png" width="130" alt="">
                             <h4 style="color: white;">Innovative Software Product Industry of NSCET</h4>
                         </div>
                     </div>

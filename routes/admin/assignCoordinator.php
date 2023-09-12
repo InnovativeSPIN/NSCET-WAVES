@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../connect.php');
 ?>
 
@@ -25,4 +26,5 @@ if (isset($_POST["submit"])) {
 }
 
 mysqli_close($conn);
+ob_end_flush();
 ?>

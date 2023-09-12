@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../connect.php');
 ?>
 
@@ -127,5 +128,6 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && 
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
 }
+ob_end_flush();
 
 ?>
