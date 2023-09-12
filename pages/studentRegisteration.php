@@ -185,7 +185,7 @@ include('../routes/connect.php');
                                                         <th>Register Number</th>
                                                         <th>Student Name</th>
                                                         <th>Student Department</th>
-
+                                                        <th>Delete</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -208,6 +208,7 @@ include('../routes/connect.php');
                                                                 <td>
                                                                     <?php echo $list['student_dept'] ?>
                                                                 </td>
+                                                                <td><a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php'. "?ID=". urlencode($list['id']). "&eventName=". urlencode($eventName) ?> data-tip="edit"><i style="color: red;" class="fa fa-trash"></i></a></td>
                                                             </tr>
 
 
@@ -236,6 +237,9 @@ include('../routes/connect.php');
             </div>
         </div>
         </div>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.js"></script>
+    <script src="https://kit.fontawesome.com/6a9b11d703.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
