@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
         $password = $_POST['password'];
         
         if (password_verify($password, $hashed_password) && $_POST['role'] === $role) {
-            session_unset();
+            // session_unset();
             $_SESSION['role'] = $role;
             $_SESSION['reg_no'] = $reg_no;
             $_SESSION['name'] = $username;
@@ -34,11 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
 
             header('Location: ../../pages/houseDashboard.php');
             exit();
-        
-            //     $_SESSION['dept'] = 'dept';
-            //     $_SESSION['event_name'] = $event_name;
-            //     header('Location: ../../dashboard.php');
-            // exit();
         } else {
             echo "Incorrect username or password or role";
             $error = "Incorrect username or password or role";

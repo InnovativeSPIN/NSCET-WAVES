@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
 
     $reg_student = mysqli_query($conn, "SELECT * FROM `registerationdb` WHERE `reg_no` = '$reg_number'");
     if (mysqli_num_rows($reg_student) >= 2) {
-        echo "<script>alert('Student Limit Reached')</script>";
-        header("Location: ../../pages/studentRegisteration.php?eventName=" . urlencode($event_name));
+        echo "Student Limit Reached";
+        // header("Location: ../../pages/studentRegisteration.php?eventName=" . urlencode($event_name));
     } else {
         $std_details = mysqli_query($conn, "SELECT `name`, `house`, `gender`, `dept` FROM `studentdb` WHERE `reg_no`='$reg_number'");
         $data = mysqli_fetch_array($std_details);
@@ -27,5 +27,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isse
         }
     }
 }
-
 ?>
