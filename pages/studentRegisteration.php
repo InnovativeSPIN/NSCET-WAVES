@@ -19,8 +19,7 @@ include('../routes/connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Student</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/houseDashboardStyles.css">
 
 </head>
@@ -86,151 +85,157 @@ include('../routes/connect.php');
 
         </div>
     </div>
-    <h2>Add Participant</h2>
+    <?php if ($event['max_participants'] - $registeredParticipants > 0) { ?>
+        <h2>Add Participant</h2>
 
-    <div class="container" style="display: flex;justify-content: center;">
-        <form style="max-width: 320px;" action="../routes/studentReg/addStudent.php" class="form-control" method="post">
-            <input style="width: 90%;margin: 12px;" type="text" name="event_name" value="<?php echo $eventName ?>">
+        <div class="container" style="display: flex;justify-content: center;">
+            <form style="max-width: 320px;" action="../routes/studentReg/addStudent.php" class="form-control" method="post">
+                <input style="width: 90%;margin: 12px;" type="text" name="event_name" value="<?php echo $eventName ?>">
 
-            <input style="width: 90%;margin: 12px;" placeholder="Student Reg No" type="text" name="reg_number"
-                id="reg_number">
+                <input style="width: 90%;margin: 12px;" placeholder="Student Reg No" type="text" name="reg_number" id="reg_number">
 
-            <?php
-            if ($event['is_group'] == 1) {
-                echo '<input style="width: 90%;margin: 12px;" placeholder="Group Number" type="text" name="group" id="group">';
-            } else {
-                echo '<input type="text" name="group" value="0" id="group" hidden>';
-            }
-            ?>
+                <?php
+                if ($event['is_group'] == 1) {
+                    echo '<input style="width: 90%;margin: 12px;" placeholder="Group Number" type="text" name="group" id="group">';
+                } else {
+                    echo '<input type="text" name="group" value="0" id="group" hidden>';
+                }
+                ?>
 
 
-            <button style="width: 90%;margin: 12px;" class="btn btn-primary">Add</button>
-        </form>
-    </div> <br><br>
-    <!-- table -->
+                <button style="width: 90%;margin: 12px;" class="btn btn-primary">Add</button>
+            </form>
+        </div> <br><br>
+    <?php } else { ?>
+        <display an error>
+        <?php } ?>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-1 col-md-12">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <!-- <div class="col col-sm-3 col-xs-12">
+        <!-- table -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <!-- <div class="col col-sm-3 col-xs-12">
                                 <h4 class="title">Event <span>Details</span></h4>
                             </div> -->
-                            <?php
-                    $house_name = $_SESSION['house_name'];
-                    $event_list = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_name`= '$eventName'");
-                    $data = mysqli_fetch_array($event_list);
-                    $event = $data['is_group'];
+                                <?php
+                                $house_name = $_SESSION['house_name'];
+                                $event_list = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_name`= '$eventName'");
+                                $data = mysqli_fetch_array($event_list);
+                                $event = $data['is_group'];
 
-                    if ($event == '0') {
-                        $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name'");
-                        $i = 1;
-                        while ($list = mysqli_fetch_array($participantsList)) {
-                            ?>
-                            <div class="col col-sm-3 col-xs-12">
-                                <h4 class="title">Event <span>Details</span></h4>
-                            </div>
-                            <div class="panel-body table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th> </th>
-                                            <th>Register Number</th>
-                                            <th>Student Name</th>
-                                            <th>Student Department</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                <?php echo $i++ ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $list['reg_no'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $list['student_name'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $list['student_dept'] ?>
-                                            </td>
-                                        </tr>
-
-                                        <?php
-                        }
-                        ?></tbody>
-                        </table>
-                    </div>
-                    <?php
-                    }
-                    else {
-                        $i = 1;
-                        $k = 1;
-                        while ($i <= $data['group_counts']) {
-                            $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name' && `grouped` = $i");
-                            ?><div class="col col-sm-3 col-xs-12">
-                            <h4 class="title">Group <span><?php echo $i?></span></h4>
-                        </div><table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Register Number</th>
-                                            <th>Student Name</th>
-                                            <th>Student Department</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                            while ($list = mysqli_fetch_array($participantsList)) {
-                                
+                                if ($event == '0') {
+                                    $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name'");
+                                    $i = 1;
+                                    while ($list = mysqli_fetch_array($participantsList)) {
                                 ?>
-                                <div class="panel-body table-responsive">
-                                
-                                            <tr>
-                                                <td>
-                                                    <?php echo $k++ ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $list['reg_no'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $list['student_name'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $list['student_dept'] ?>
-                                                </td>
-                                            </tr>
-                                            
+                                        <div class="col col-sm-3 col-xs-12">
+                                            <h4 class="title">Event <span>Details</span></h4>
+                                        </div>
+                                        <div class="panel-body table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th> </th>
+                                                        <th>Register Number</th>
+                                                        <th>Student Name</th>
+                                                        <th>Student Department</th>
 
-                                            <?php
-                                            
-                            }
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                            $i++;
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $i++ ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $list['reg_no'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $list['student_name'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $list['student_dept'] ?>
+                                                        </td>
+                                                    </tr>
 
-                            ?></tbody>
-                            </table>
-                        </div>
-
+                                                <?php
+                                            }
+                                                ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                         <?php
-                        }
-                    }
+                                    } else {
+                                        $i = 1;
+                                        $k = 1;
+                                        while ($i <= $data['group_counts']) {
+                                            $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name' && `grouped` = $i");
+                                        ?><div class="col col-sm-3 col-xs-12">
+                                                <h4 class="title">Group <span><?php echo $i ?></span></h4>
+                                            </div>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Register Number</th>
+                                                        <th>Student Name</th>
+                                                        <th>Student Department</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    while ($list = mysqli_fetch_array($participantsList)) {
+
+                                                    ?>
+                                                        <div class="panel-body table-responsive">
+
+                                                            <tr>
+                                                                <td>
+                                                                    <?php echo $k++ ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $list['reg_no'] ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $list['student_name'] ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $list['student_dept'] ?>
+                                                                </td>
+                                                            </tr>
+
+
+                                                        <?php
+
+                                                    }
+
+                                                    $i++;
+
+                                                        ?>
+                                                </tbody>
+                                            </table>
+                            </div>
+
+                    <?php
+                                        }
+                                    }
 
                     ?>
                         </div>
                     </div>
-                    
-                          
-                           
+
+
+
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 </body>
 
 </html>

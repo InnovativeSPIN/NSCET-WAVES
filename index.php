@@ -462,14 +462,18 @@ if (!isset($_SESSION))
                             <div class="col-md-4" style="margin-top: 24px;padding: 52px;">
                                 <div class="container-3dgalary">
                                     <div id="carousel-3dgalary">
-                                        <figure><img src="public\images\house\BLUE_BLASTERS.jpg" alt=""></figure>
                                         <figure><img src="public\images\house\DINO_THUNDERS.png" alt=""></figure>
+                                        <figure><img src="public\images\house\BLUE_BLASTERS.png" alt=""></figure>
+
                                         <figure><img src="public\images\house\DRAGON_WARRIORS.png" alt=""></figure>
-                                        <figure><img src="public\images\house\GALATIC_STARS.jpg" alt=""></figure>
+                                        <figure><img src="public\images\house\VIOLET_VIPERS.png" alt=""></figure>
+
                                         <figure><img src="public\images\house\PHOENIX_BLASTERS.png" alt=""></figure>
                                         <figure><img src="public\images\house\ROSY_RIDERS.png" alt=""></figure>
+
                                         <figure><img src="public\images\house\TIGER_THRASHERS.png" alt=""></figure>
-                                        <figure><img src="public\images\house\VIOLET_VIPERS.png" alt=""></figure>
+                                        <figure><img src="public\images\house\GALACTIC_STARS.png" alt=""></figure>
+
                                         <figure><img src="public\images\logos\waves-logo.png" alt=""></figure>
                                     </div>
                                 </div>

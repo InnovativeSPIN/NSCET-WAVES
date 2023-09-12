@@ -277,3 +277,7 @@ body {
 		background-position: 0% 50%;
 	}
 }
+
+.panel-heading{
+  color: white!important;
+}
