@@ -31,12 +31,12 @@ include('../routes/connect.php');
 
 <body>
     <div class="card dark gradient-border">
-    
-    <?php
+
+        <?php
         $path = '../public/images/house/';
         $img = str_replace(" ", "_", $_SESSION['house_name']);
-    ?>
-        <img src="<?php echo $path.$img.".png" ?>" class="card-img-top" alt="...">
+        ?>
+        <img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="...">
 
         <div class="card-body">
             <div class="text-section">
@@ -47,7 +47,7 @@ include('../routes/connect.php');
                     Team Captain:
                     <?php echo $_SESSION['name'] ?>
                 </h5>
-                    <!-- <h5 class="card-text">
+                <!-- <h5 class="card-text">
                         Vice Captain:
                     </h5> -->
                 <?php
@@ -55,9 +55,9 @@ include('../routes/connect.php');
                 $totalMembersResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM studentdb WHERE house = '$houseName'");
                 $totalMembers = mysqli_fetch_assoc($totalMembersResult);
                 ?>
-                <h5 class="card-text">Total Members: 
+                <h5 class="card-text">Total Members:
                     <?php echo $totalMembers['row_count'];
-                        mysqli_free_result($totalMembersResult);
+                    mysqli_free_result($totalMembersResult);
                     ?>
                 </h5>
                 <?php
@@ -71,13 +71,13 @@ include('../routes/connect.php');
                 </h5>
             </div>
             <div class="cta-section">
-            <?php
+                <?php
                 $scoreResult = mysqli_query($conn, "SELECT score FROM housedb WHERE name = '$houseName'");
                 $score = mysqli_fetch_assoc($scoreResult);
                 ?>
-                <div>Score: 
+                <div>Score:
                     <?php echo $score['score'];
-                        mysqli_free_result($scoreResult);
+                    mysqli_free_result($scoreResult);
                     ?>
                 </div>
                 <!-- <a href="#" class="btn btn-light">Buy Now</a> -->
@@ -142,10 +142,10 @@ include('../routes/connect.php');
                                     $eventCoordinator = mysqli_fetch_assoc($eventCoordinatorResult);
 
                                     $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName'");
-                                    if($SpecificEventRegStuCountResult){
+                                    if ($SpecificEventRegStuCountResult) {
                                         $registeredParticipants = mysqli_fetch_assoc($SpecificEventRegStuCountResult);
                                         $registeredParticipants = $registeredParticipants['row_count'];
-                                    }else{
+                                    } else {
                                         $registeredParticipants = 0;
                                     }
 
@@ -170,13 +170,13 @@ include('../routes/connect.php');
                                             } ?>
                                         </td>
                                         <td>
-                                            <?php echo  $event['max_participants']?>
+                                            <?php echo $event['max_participants'] ?>
                                         </td>
                                         <td>
                                             <?php echo $registeredParticipants ?>
                                         </td>
                                         <td>
-                                            <?php echo $event['max_participants'] - $registeredParticipants?>
+                                            <?php echo $event['max_participants'] - $registeredParticipants ?>
                                         </td>
                                         <td>
                                             <?php echo $isGroup ?>
@@ -187,14 +187,15 @@ include('../routes/connect.php');
 
                                         <td>
                                             <ul class="action-list">
-                                                <li><a href=<?php echo './studentRegisteration.php'. "?eventName=". urlencode($eventName) ?> data-tip="edit"><i class="fa fa-edit"></i></a></li>
+                                                <li><a href=<?php echo './studentRegisteration.php' . "?eventName=" . urlencode($eventName) ?> data-tip="edit"><i
+                                                            class="fa fa-edit"></i></a></li>
                                             </ul>
                                         </td>
                                     </tr>
 
                                     <?php
                                     mysqli_free_result($eventCoordinatorResult);
-                                    if($SpecificEventRegStuCountResult){
+                                    if ($SpecificEventRegStuCountResult) {
                                         mysqli_free_result($SpecificEventRegStuCountResult);
 
                                     }
@@ -208,6 +209,82 @@ include('../routes/connect.php');
             </div>
         </div>
     </div>
+
+    <!-- student details table -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col col-sm-3 col-xs-12">
+                                <h4 class="title">Student <span>Details</span></h4>
+                            </div>
+                            <!-- <div class="col-sm-9 col-xs-12 text-right">
+                                <div class="btn_group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <button class="btn btn-default" title="Reload"><i
+                                            class="fa fa-sync-alt"></i></button>
+                                    <button class="btn btn-default" title="Pdf"><i class="fa fa-file-pdf"></i></button>
+                                    <button class="btn btn-default" title="Excel"><i
+                                            class="fas fa-file-excel"></i></button>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> </th>
+                                    <th>Register Number</th>
+                                    <th>Student Name</th>
+                                    <th>Department</th>
+                                    <th>Year</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $stuDBResult = mysqli_query($conn, "SELECT * FROM studentdb WHERE house = '$houseName'");
+                                $i = 1;
+                                while ($studentDetail = mysqli_fetch_assoc($stuDBResult)) {
+                                    $reg_no = $studentDetail['reg_no'];
+                                    $stu_name = $studentDetail['name'];
+                                    $dept = $studentDetail['dept'];
+                                    $year = $studentDetail['year'];
+
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $i++ ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $reg_no ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $stu_name ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $dept ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $year ?>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                }
+                                mysqli_free_result($stuDBResult);
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
     <script>
         const duration = 10 * 1000,
@@ -223,7 +300,7 @@ include('../routes/connect.php');
             return Math.random() * (max - min) + min;
         }
 
-        const interval = setInterval(function() {
+        const interval = setInterval(function () {
             const timeLeft = animationEnd - Date.now();
 
             if (timeLeft <= 0) {
