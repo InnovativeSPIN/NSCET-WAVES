@@ -44,15 +44,15 @@ include('../routes/connect.php');
                             <li class="nav-item"> <a data-toggle="pill" href="#edit-event" class="nav-link"> <i
                                         class="fab fa-paypal mr-2"></i> Edit Event </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#assign-coordinator" class="nav-link"> <i
-                                        class="fab fa-paypal mr-2"></i> Assign Coordinator </a> </li>
+                                        class="fab fa-paypal mr-2"></i> Assign Coordinators </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#edit-coordinator" class="nav-link"> <i
-                                        class="fab fa-paypal mr-2"></i> Edit Coordinator </a> </li>
+                                        class="fab fa-paypal mr-2"></i> Edit Coordinators </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#assign-house" class="nav-link"> <i
-                                        class="fab fa-paypal mr-2"></i> Assign House Lead </a> </li>
+                                        class="fab fa-paypal mr-2"></i> Assign House Leads </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#edit-house" class="nav-link"> <i
-                                        class="fab fa-paypal mr-2"></i> Edit House Lead </a> </li>
+                                        class="fab fa-paypal mr-2"></i> Edit House Leads </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#add-student" class="nav-link"> <i
-                                        class="fab fa-paypal mr-2"></i> Add Student Data </a> </li>
+                                        class="fab fa-paypal mr-2"></i> Add Students Data </a> </li>
 
                         </ul>
                     </div> <!-- End -->
@@ -93,12 +93,12 @@ include('../routes/connect.php');
                                         <h6>Event Venue</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="event_venue"
-                                            placeholder="Enter Venue" class="form-control " required>
+                                            placeholder="Enter Venue Name" class="form-control " required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 form-group"> <label for="max_participants">
-                                            <h6>Participant</h6>
+                                            <h6>Max Participants Count</h6>
                                         </label>
                                         <div class="input-group"> <input type="number" name="max_participants"
                                                 placeholder="Max No of Participant" class="form-control " required>
@@ -119,10 +119,10 @@ include('../routes/connect.php');
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group"> <label for="group_participants">
-                                            <h6>Group Participant</h6>
+                                            <h6>Group Participants Count</h6>
                                         </label>
                                         <div class="input-group"> <input type="number" name="group_participants"
-                                                placeholder="Group Participant Count" class="form-control " required>
+                                                placeholder="No of Group Participants" class="form-control " required>
                                         </div>
                                     </div>
 
@@ -142,7 +142,7 @@ include('../routes/connect.php');
                                             <h6>Event Type</h6>
                                         </label>
                                         <div class="input-group"> <select name="event_type" id=""
-                                                placeholder="Select Gender" class="form-control" required>
+                                                placeholder="Select Event Type" class="form-control" required>
                                                 <option value="" hidden></option>
                                                 <option value="On Stage">On Stage</option>
                                                 <option value="Off Stage">Off Stage</option>
@@ -153,21 +153,22 @@ include('../routes/connect.php');
                                             <h6>Allowance</h6>
                                         </label>
                                         <div class="input-group"> <input type="text" name="allowance"
-                                                placeholder="Allowance" class="form-control " required>
+                                                placeholder="Enter Allowance" class="form-control " required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 form-group"> <label for="file">
                                             <h6>Upload Image</h6>
                                         </label>
                                         <div class="input-group"> <input type="file" name="image"
-                                                placeholder="Select Image" class="form-control " required>
+                                                placeholder="Upload Image" class="form-control " required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 form-group"> <label for="event_rules">
                                             <h6>Event Rules</h6>
                                         </label>
                                         <div class="input-group"> <textarea type="text" name="event_rules"
-                                                placeholder="Event Rules" class="form-control " required></textarea>
+                                                placeholder="Enter Event Rules" class="form-control "
+                                                required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -216,22 +217,13 @@ include('../routes/connect.php');
                                     </div>
                                 </div>
                             </div>
-                            <!-- 
+
                             <div class="row">
-                                <div class="col-md-6 form-group"> <label for="role">
-                                        <h6>Role</h6>
-                                    </label>
-                                    <div class="input-group"> <select name="role" id="" placeholder="Select Role"
-                                            class="form-control" required>
-                                            <option value="event coordinator" selected>Event Coordinator</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="col-md-6 form-group"> <label for="dept">
                                         <h6>Department</h6>
                                     </label>
-                                    <div class="input-group"> <select name="dept" id="" placeholder="Select Role"
-                                            class="form-control" required>
+                                    <div class="input-group"> <select name="staff_dept_1" id=""
+                                            placeholder="Select Role" class="form-control" required>
                                             <option value="" hidden>Select Department</option>
                                             <option value="CSE">CSE</option>
                                             <option value="ECE">ECE</option>
@@ -244,12 +236,29 @@ include('../routes/connect.php');
                                         </select>
                                     </div>
                                 </div>
-                            </div> -->
+                                <div class="col-md-6 form-group"> <label for="dept">
+                                        <h6>Department</h6>
+                                    </label>
+                                    <div class="input-group"> <select name="staff_dept_2" id=""
+                                            placeholder="Select Role" class="form-control" required>
+                                            <option value="" hidden>Select Department</option>
+                                            <option value="CSE">CSE</option>
+                                            <option value="ECE">ECE</option>
+                                            <option value="MECH">MECH</option>
+                                            <option value="CIVIL">CIVIL</option>
+                                            <option value="EEE">EEE</option>
+                                            <option value="IT">IT</option>
+                                            <option value="AIDS">AI & DS</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group"> <label for="password">
-                                    <h6>Password</h6>
+                                    <h6>Common Password</h6>
                                 </label>
-                                <div class="input-group"> <input type="text" name="password" placeholder="New Password"
-                                        class="form-control " required>
+                                <div class="input-group"> <input type="password" name="password"
+                                        placeholder="Enter Common Password" class="form-control " required>
                                 </div>
                             </div>
                             <div class="card-footer"> <button type="submit" name='submit'
@@ -263,21 +272,29 @@ include('../routes/connect.php');
                 <div id="edit-coordinator" class="tab-pane fade pt-3">
                     <form role="form" action="../routes/admin/coordinatorEdit.php" method="post">
 
-                        <div class="row">
-                            <div class="col-md-12 form-group"> <label for="coordinator_reg_no">
-                                    <h6>Coordinator Number</h6>
-                                </label>
-                                <div class="input-group"> <input type="text" name="coordinator_reg_no"
-                                        placeholder="Enter Coordinator Number" class="form-control " required>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="form-group"> <label for="event_name">
+                                <h6>Event Name</h6>
+                            </label> <input type="text" list="listName" name="event_name" placeholder="Enter Event Name"
+                                required class="form-control ">
+                            <datalist id="listName">
+                                <?php
+                                $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
+                                while ($event = mysqli_fetch_array($events)) {
+                                    ?>
+                                    <option value="<?php echo $event['event_name'] ?>">
+                                        <?php echo $event['event_name'] ?>
+                                    </option>
 
+                                    <?php
+                                }
+                                ?>
+                            </datalist>
+                        </div>
                         <div class="col-md-12 form-group"> <label for="update_password">
-                                <h6>Update Password</h6>
+                                <h6>Update Common Password</h6>
                             </label>
-                            <div class="input-group"> <input type="text" name="update_password"
-                                    placeholder="New Password" class="form-control " required>
+                            <div class="input-group"> <input type="password" name="update_password"
+                                    placeholder="New Common Password" class="form-control " required>
                             </div>
                         </div>
                         <div class="card-footer"> <button type="submit" name='submit'
@@ -291,25 +308,34 @@ include('../routes/connect.php');
             <div id="edit-house" class="tab-pane fade pt-3">
                 <form role="form" action="../routes/admin/captainEdit.php" method="post">
 
-                    <div class="row">
-                        <div class="col-md-12 form-group"> <label for="captain_number">
-                                <h6>Captain Register Number</h6>
-                            </label>
-                            <div class="input-group"> <input type="text" name="captain_number"
-                                    placeholder="Enter Captain Register Number" class="form-control " required>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group"> <label for="house_name">
+                        <h6>House Name</h6>
+                    </label> <input type="text" list="houseName" name="house_name" placeholder="Enter Event Name"
+                        required class="form-control ">
+                    <datalist id="houseName">
+                        <?php
+                        $events = mysqli_query($conn, "SELECT * FROM `housedb`");
+                        while ($event = mysqli_fetch_array($events)) {
+                            ?>
+                            <option value="<?php echo $event['name'] ?>">
+                                <?php echo $event['name'] ?>
+                            </option>
+
+                            <?php
+                        }
+                        ?>
+                    </datalist>
+                </div>
 
                     <div class="col-md-12 form-group"> <label for="update_password">
-                            <h6>Update Password</h6>
+                            <h6>Update Common Password</h6>
                         </label>
-                        <div class="input-group"> <input type="text" name="update_password" placeholder="New Password"
+                        <div class="input-group"> <input type="password" name="update_password" placeholder="New Common Password"
                                 class="form-control " required>
                         </div>
                     </div>
                     <div class="card-footer"> <button type="submit" name='submit'
-                            class="subscribe btn btn-block shadow-sm"> Edit House Lead </button>
+                            class="subscribe btn btn-block shadow-sm"> Edit House Leads </button>
                 </form>
             </div> <!-- End -->
 
@@ -339,17 +365,53 @@ include('../routes/connect.php');
 
                 <div class="row">
                     <div class="col-md-6 form-group"> <label for="captain_name">
-                            <h6>Coordinator Name 1</h6>
+                            <h6>House Incharge Name 1</h6>
                         </label>
-                        <div class="input-group"> <input type="text" name="coordinator_name_1"
-                                placeholder="Coordinator Name 1" class="form-control " required>
+                        <div class="input-group"> <input type="text" name="incharge_name_1"
+                                placeholder="House Incharge Name 1" class="form-control " required>
                         </div>
                     </div>
                     <div class="col-md-6 form-group"> <label for="captain_number">
-                            <h6>Coordinator Name 2</h6>
+                            <h6>House Incharge Name 2</h6>
                         </label>
-                        <div class="input-group"> <input type="text" name="coordinator_name_2"
-                                placeholder="Coordinator Name 2" class="form-control " required>
+                        <div class="input-group"> <input type="text" name="incharge_name_2"
+                                placeholder="House Incharge Name 2" class="form-control " required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group"> <label for="dept">
+                            <h6>Incharge Department</h6>
+                        </label>
+                        <div class="input-group"> <select name="staff_dept_1" id="" placeholder="Select Role"
+                                class="form-control" required>
+                                <option value="" hidden>Select Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="MECH">MECH</option>
+                                <option value="CIVIL">CIVIL</option>
+                                <option value="EEE">EEE</option>
+                                <option value="IT">IT</option>
+                                <option value="AIDS">AI & DS</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group"> <label for="dept">
+                            <h6>Incharge Department</h6>
+                        </label>
+                        <div class="input-group"> <select name="staff_dept_2" id="" placeholder="Select Role"
+                                class="form-control" required>
+                                <option value="" hidden>Select Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="MECH">MECH</option>
+                                <option value="CIVIL">CIVIL</option>
+                                <option value="EEE">EEE</option>
+                                <option value="IT">IT</option>
+                                <option value="AIDS">AI & DS</option>
+
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -362,39 +424,76 @@ include('../routes/connect.php');
                                 placeholder="Enter Captain Name" class="form-control " required>
                         </div>
                     </div>
-                    <div class="col-md-6 form-group"> <label for="captain_number">
-                            <h6>Captain Register No</h6>
-                        </label>
-                        <div class="input-group"> <input type="text" name="captain_reg_no"
-                                placeholder="Enter Captain Register Number" class="form-control " required>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 form-group"> <label for="captain_number">
+                    <div class="col-md-6 form-group"> <label for="vice_captain_name">
                             <h6>Vice Captain Name</h6>
                         </label>
                         <div class="input-group"> <input type="text" name="vice_captain_name"
                                 placeholder="Enter Vice Captain Name" class="form-control " required>
                         </div>
                     </div>
-                    <div class="col-md-6 form-group"> <label for="captain_number">
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group"> <label for="dept">
+                            <h6>Captain Department</h6>
+                        </label>
+                        <div class="input-group"> <select name="cap_dept" id="" placeholder="Select Role"
+                                class="form-control" required>
+                                <option value="" hidden>Select Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="MECH">MECH</option>
+                                <option value="CIVIL">CIVIL</option>
+                                <option value="EEE">EEE</option>
+                                <option value="IT">IT</option>
+                                <option value="AIDS">AI & DS</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group"> <label for="dept">
+                            <h6>Vice Captain Department</h6>
+                        </label>
+                        <div class="input-group"> <select name="vice_cap_dept" id="" placeholder="Select Role"
+                                class="form-control" required>
+                                <option value="" hidden>Select Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="MECH">MECH</option>
+                                <option value="CIVIL">CIVIL</option>
+                                <option value="EEE">EEE</option>
+                                <option value="IT">IT</option>
+                                <option value="AIDS">AI & DS</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group"> <label for="captain_reg_no">
+                            <h6>Captain Register No</h6>
+                        </label>
+                        <div class="input-group"> <input type="text" name="captain_reg_no"
+                                placeholder="Enter Captain Reg No" class="form-control " required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group"> <label for="vice_captain_reg_no">
                             <h6>Vice Captain Register No</h6>
                         </label>
                         <div class="input-group"> <input type="text" name="vice_captain_reg_no"
-                                placeholder="Enter Vice Captain Register Number" class="form-control " required>
+                                placeholder="Enter Vice Captain Reg No" class="form-control " required>
                         </div>
                     </div>
                 </div>
                 <div class="form-group"> <label for="password">
-                        <h6>Password</h6>
+                        <h6>Common Password</h6>
                     </label>
-                    <div class="input-group"> <input type="text" name="password" placeholder="New Password"
+                    <div class="input-group"> <input type="password" name="password" placeholder="Enter Common Password"
                             class="form-control " required>
                     </div>
                 </div>
                 <div class="card-footer"> <button type="submit" name='submit' class="subscribe btn btn-block shadow-sm">
-                        Add Coordinators </button>
+                        Assign House Leads </button>
             </form>
         </div> <!-- End -->
 
@@ -441,19 +540,19 @@ include('../routes/connect.php');
             <div class="form-group"> <label for="event_venue">
                     <h6>Event Venue</h6>
                 </label>
-                <div class="input-group"> <input type="text" name="event_venue" placeholder="Enter Venue"
+                <div class="input-group"> <input type="text" name="event_venue" placeholder="Enter Venue Name"
                         class="form-control " required>
                 </div>
             </div>
             <div class="form-group"> <label for="event_rules">
                     <h6>Event Rules</h6>
                 </label>
-                <div class="input-group"> <textarea type="text" name="event_rules" placeholder="Event Rules"
+                <div class="input-group"> <textarea type="text" name="event_rules" placeholder="Enter Event Rules"
                         class="form-control " required></textarea>
                 </div>
             </div>
             <div class="card-footer"> <button type="submit" name='submit' class="subscribe btn btn-block shadow-sm">
-                    Edit Event </button>
+                    Edit Event Details </button>
         </form>
     </div> <!-- End -->
 </div>
