@@ -24,8 +24,8 @@ if (isset($_POST["submit"])) {
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query1 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$incharge_name_1','$staff_dept_1','-','team captain','$hashed_password','-','$house_name')";
-    $query2 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$incharge_name_2','$staff_dept_2','-','team captain','$hashed_password','-','$house_name')";
+    $query1 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$incharge_name_1','$staff_dept_1','-','team incharge','$hashed_password','-','$house_name')";
+    $query2 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$incharge_name_2','$staff_dept_2','-','team incharge','$hashed_password','-','$house_name')";
     $query3 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$captain_name','$cap_dept','$captain_reg_no','team captain','$hashed_password','-','$house_name')";
     $query4 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$vice_captain_name','$vice_cap_dept','$vice_captain_reg_no','team captain','$hashed_password','-','$house_name')";
 

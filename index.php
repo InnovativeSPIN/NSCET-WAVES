@@ -3,10 +3,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include('routes/connect.php');
-if (!isset($_SESSION))
-  {
+if (!isset($_SESSION)) {
     session_start();
-  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -149,65 +148,65 @@ if (!isset($_SESSION))
     <?php
     $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
     while ($event = mysqli_fetch_array($events)) {
-    ?>
-        <!-- Modal -->
-        <div class="modal fade <?php echo $event['event_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $event['event_id'] ?>" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="padding: 23px;">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel" style="color: #e22361;">
-                            <?php echo $event['event_name'] ?>
-                        </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <div style="margin: 12px; text-align: center;">
-                                <img src="<?php echo $event['image'] ?>" alt="" srcset="" width="270px" height="170px" style="margin: 22px;">
+        ?>
+            <!-- Modal -->
+            <div class="modal fade <?php echo $event['event_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $event['event_id'] ?>" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="padding: 23px;">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel" style="color: #e22361;">
+                                <?php echo $event['event_name'] ?>
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <div style="margin: 12px; text-align: center;">
+                                    <img src="<?php echo $event['image'] ?>" alt="" srcset="" width="270px" height="170px" style="margin: 22px;">
                                 
-                                <h4>
-                                    <?php echo $event['event_date'] ?>
-                                </h4>
-                                <h4>
-                                    <?php echo $event['event_time'] ?>
-                                </h4>
-                                <h4>
-                                    <?php echo $event['event_venue'] ?>
-                                </h4>
+                                    <h4>
+                                        <?php echo $event['event_date'] ?>
+                                    </h4>
+                                    <h4>
+                                        <?php echo $event['event_time'] ?>
+                                    </h4>
+                                    <h4>
+                                        <?php echo $event['event_venue'] ?>
+                                    </h4>
 
-                                <p>Event Cordinators
-                                    <br />
-                                    <?php $coordinators = explode("|", $event['event_cordinators']);
-                                    foreach ($coordinators as $letter => $index) {
-                                        echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                    <p>Event Cordinators
+                                        <br />
+                                        <?php $coordinators = explode("|", $event['event_cordinators']);
+                                        foreach ($coordinators as $letter => $index) {
+                                            echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                        }
+                                        ?>
+                                    </p>
+                                </div>
+                                <h4 style="color: #e22361;">Rules</h4>
+                                <p>
+
+                                    <?php $rules = explode(".", $event['event_rules']);
+                                    array_pop($rules);
+                                    foreach ($rules as $letter => $index) {
+                                        echo ($letter + 1) . '. ' . $rules[$letter] . '<br />';
                                     }
+
+
                                     ?>
                                 </p>
                             </div>
-                            <h4 style="color: #e22361;">Rules</h4>
-                            <p>
 
-                                <?php $rules = explode(".", $event['event_rules']);
-                                array_pop($rules);
-                                foreach ($rules as $letter => $index) {
-                                    echo ($letter + 1) . '. ' . $rules[$letter] . '<br />';
-                                }
-
-
-                                ?>
-                            </p>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php
+        <?php
     }
     ?>
 
@@ -258,29 +257,48 @@ if (!isset($_SESSION))
                             <div class="form-group"> <label for="role">
                                     <h6>Role</h6>
                                 </label>
-                                <div class="input-group"> <select name="role" id="login-role" onchange="checkLogin()" placeholder="Select Gender" class="form-control" required>
+                                <div class="input-group"> <select name="role" id="login-role" onchange="checkLogin()" placeholder="Select role" class="form-control" required>
                                         <option value="" hidden></option>
                                         <option value="student">Student</option>
                                         <option value="event coordinator">Event Co-ordinator</option>
                                         <option value="team captain">Team Captain</option>
+                                        <option value="team incharge">Team Incharge</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group" id='login-event-name'> <label for="event_name">
                                     <h6>Event Name</h6>
-                                </label> <input type="text" list="listName" name="event_name" placeholder="Enter Event Name" class="form-control ">
+                                </label> <input type="text" list="listName" name="event_name" placeholder="Enter Event Name" class="form-control">
                                 <datalist id="listName">
                                     <?php
                                     $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
                                     while ($event = mysqli_fetch_array($events)) {
-                                    ?>
-                                        <option value="<?php echo $event['event_name'] ?>">
-                                            <?php echo $event['event_name'] ?>
-                                        </option>
+                                        ?>
+                                            <option value="<?php echo $event['event_name'] ?>">
+                                                <?php echo $event['event_name'] ?>
+                                            </option>
 
-                                    <?php
+                                        <?php
                                     }
                                     ?>
+                                </datalist>
+                            </div>
+                            <div class="form-group" id='login-house-name'> <label for="house_name">
+                                <h6>House Name</h6>
+                                </label> <input type="text" list="house_name" name="house_name" placeholder="Enter House Name"
+                                    class="form-control">
+                                <datalist id="house_name">
+                                <?php
+                                $events = mysqli_query($conn, "SELECT * FROM `housedb`");
+                                while ($event = mysqli_fetch_array($events)) {
+                                    ?>
+                                    <option value="<?php echo $event['name'] ?>">
+                                        <?php echo $event['name'] ?>
+                                    </option>
+
+                                        <?php
+                                }
+                                ?>
                                 </datalist>
                             </div>
                             <div class="form-group" id='login-event-regno' style='display: none;'>
@@ -496,24 +514,24 @@ if (!isset($_SESSION))
                             <?php
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='COMMON'");
                             while ($event = mysqli_fetch_array($events)) {
-                            ?>
-                                <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
-                                    <figure class="featured-image">
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
-                                        <a href="#" class="box-link" type="button" class="btn btn-primary" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="public/images/box.jpg" alt> </a>
-                                    </figure>
-                                    <h2>
-                                        <?php echo $event['event_name'] ?>
-                                    </h2>
-                                    <h5>
-                                        <?php echo $event['event_date'] ?>
-                                    </h5>
-                                    <h6>
-                                        <?php echo $event['event_time'] ?>
-                                    </h6>
+                                ?>
+                                    <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
+                                        <figure class="featured-image">
+                                            <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                            <a href="#" class="box-link" type="button" class="btn btn-primary" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="public/images/box.jpg" alt> </a>
+                                        </figure>
+                                        <h2>
+                                            <?php echo $event['event_name'] ?>
+                                        </h2>
+                                        <h5>
+                                            <?php echo $event['event_date'] ?>
+                                        </h5>
+                                        <h6>
+                                            <?php echo $event['event_time'] ?>
+                                        </h6>
 
-                                </div>
-                            <?php
+                                    </div>
+                                <?php
                             }
                             ?>
                         </div>
@@ -531,23 +549,23 @@ if (!isset($_SESSION))
                             <?php
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='BOYS'");
                             while ($event = mysqli_fetch_array($events)) {
-                            ?>
-                                <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
-                                    <figure class="featured-image">
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                                    </figure>
-                                    <h2>
-                                        <?php echo $event['event_name'] ?>
-                                    </h2>
-                                    <h5>
-                                        <?php echo $event['event_date'] ?>
-                                    </h5>
-                                    <h6>
-                                        <?php echo $event['event_time'] ?>
-                                    </h6>
-                                </div>
-                            <?php
+                                ?>
+                                    <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
+                                        <figure class="featured-image">
+                                            <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                            <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="box-link"> <img src="public/images/box.jpg" alt> </a>
+                                        </figure>
+                                        <h2>
+                                            <?php echo $event['event_name'] ?>
+                                        </h2>
+                                        <h5>
+                                            <?php echo $event['event_date'] ?>
+                                        </h5>
+                                        <h6>
+                                            <?php echo $event['event_time'] ?>
+                                        </h6>
+                                    </div>
+                                <?php
                             }
                             ?>
                         </div>
@@ -565,23 +583,23 @@ if (!isset($_SESSION))
                             <?php
                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `gender`='GIRLS'");
                             while ($event = mysqli_fetch_array($events)) {
-                            ?>
-                                <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
-                                    <figure class="featured-image">
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="box-link"> <img src="public/images/box.jpg" alt> </a>
-                                    </figure>
-                                    <h2>
-                                        <?php echo $event['event_name'] ?>
-                                    </h2>
-                                    <h5>
-                                        <?php echo $event['event_date'] ?>
-                                    </h5>
-                                    <h6>
-                                        <?php echo $event['event_time'] ?>
-                                    </h6>
-                                </div>
-                            <?php
+                                ?>
+                                    <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
+                                        <figure class="featured-image">
+                                            <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                            <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="box-link"> <img src="public/images/box.jpg" alt> </a>
+                                        </figure>
+                                        <h2>
+                                            <?php echo $event['event_name'] ?>
+                                        </h2>
+                                        <h5>
+                                            <?php echo $event['event_date'] ?>
+                                        </h5>
+                                        <h6>
+                                            <?php echo $event['event_time'] ?>
+                                        </h6>
+                                    </div>
+                                <?php
                             }
                             ?>
                         </div>
@@ -606,23 +624,23 @@ if (!isset($_SESSION))
                         <?php
                         $events = mysqli_query($conn, "SELECT * FROM `eventdb`");
                         while ($event = mysqli_fetch_array($events)) {
-                        ?>
-                            <div class="swiper-slide">
-                                <div class="next-event-content">
-                                    <figure class="featured-image">
-                                        <img src="<?php echo $event['image'] ?>" alt>
-                                        <a href="#" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="entry-content flex flex-column justify-content-center align-items-center">
-                                            <h3>
-                                                <?php echo $event['event_name'] ?>
-                                            </h3>
-                                            <p>
-                                                <?php echo $event['event_date'] . "<br>" . $event['event_time'] . "<br>" . $event['event_venue'] ?>
-                                            </p>
-                                        </a>
-                                    </figure>
+                            ?>
+                                <div class="swiper-slide">
+                                    <div class="next-event-content">
+                                        <figure class="featured-image">
+                                            <img src="<?php echo $event['image'] ?>" alt>
+                                            <a href="#" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="entry-content flex flex-column justify-content-center align-items-center">
+                                                <h3>
+                                                    <?php echo $event['event_name'] ?>
+                                                </h3>
+                                                <p>
+                                                    <?php echo $event['event_date'] . "<br>" . $event['event_time'] . "<br>" . $event['event_venue'] ?>
+                                                </p>
+                                            </a>
+                                        </figure>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php
+                            <?php
                         }
                         ?>
 
@@ -677,36 +695,36 @@ if (!isset($_SESSION))
                                             <?php
                                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='26/09/23'");
                                             while ($event = mysqli_fetch_array($events)) {
-                                            ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
+                                                ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
 
-                                                    <div class="single-schedule-tumb-info d-flex align-items-center">
+                                                        <div class="single-schedule-tumb-info d-flex align-items-center">
 
-                                                        <div class="single-schedule-tumb">
-                                                            <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                            <div class="single-schedule-tumb">
+                                                                <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                            </div>
+
+                                                            <div class="single-schedule-info">
+                                                                <h6><?php echo $event['event_name'] ?></h6>
+                                                                <p>Cordinators,
+                                                                    <br />
+                                                                    <?php $coordinators = explode("|", $event['event_cordinators']);
+                                                                    foreach ($coordinators as $letter => $index) {
+                                                                        echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                                                    }
+                                                                    ?>
+                                                                </p>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="single-schedule-info">
-                                                            <h6><?php echo $event['event_name'] ?></h6>
-                                                            <p>Cordinators,
-                                                                <br />
-                                                                <?php $coordinators = explode("|", $event['event_cordinators']);
-                                                                foreach ($coordinators as $letter => $index) {
-                                                                    echo '<span>' . $coordinators[$letter] . '<br /></span>';
-                                                                }
-                                                                ?>
-                                                            </p>
+                                                        <div class="schedule-time-place">
+                                                            <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
+                                                            <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
                                                         </div>
+
+                                                        <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
                                                     </div>
 
-                                                    <div class="schedule-time-place">
-                                                        <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
-                                                        <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
-                                                    </div>
-
-                                                    <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
-                                                </div>
-
-                                            <?php
+                                                <?php
                                             }
                                             ?>
                                         </div>
@@ -722,36 +740,36 @@ if (!isset($_SESSION))
                                             <?php
                                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='27/09/23'");
                                             while ($event = mysqli_fetch_array($events)) {
-                                            ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
+                                                ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
 
-                                                    <div class="single-schedule-tumb-info d-flex align-items-center">
+                                                        <div class="single-schedule-tumb-info d-flex align-items-center">
 
-                                                        <div class="single-schedule-tumb">
-                                                            <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                            <div class="single-schedule-tumb">
+                                                                <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                            </div>
+
+                                                            <div class="single-schedule-info">
+                                                                <h6><?php echo $event['event_name'] ?></h6>
+                                                                <p>Cordinators,
+                                                                    <br />
+                                                                    <?php $coordinators = explode("|", $event['event_cordinators']);
+                                                                    foreach ($coordinators as $letter => $index) {
+                                                                        echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                                                    }
+                                                                    ?>
+                                                                </p>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="single-schedule-info">
-                                                            <h6><?php echo $event['event_name'] ?></h6>
-                                                            <p>Cordinators,
-                                                                <br />
-                                                                <?php $coordinators = explode("|", $event['event_cordinators']);
-                                                                foreach ($coordinators as $letter => $index) {
-                                                                    echo '<span>' . $coordinators[$letter] . '<br /></span>';
-                                                                }
-                                                                ?>
-                                                            </p>
+                                                        <div class="schedule-time-place">
+                                                            <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
+                                                            <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
                                                         </div>
+
+                                                        <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
                                                     </div>
 
-                                                    <div class="schedule-time-place">
-                                                        <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
-                                                        <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
-                                                    </div>
-
-                                                    <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
-                                                </div>
-
-                                            <?php
+                                                <?php
                                             }
                                             ?>
                                         </div>
@@ -767,36 +785,36 @@ if (!isset($_SESSION))
                                             <?php
                                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='29/09/23'");
                                             while ($event = mysqli_fetch_array($events)) {
-                                            ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
+                                                ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
 
-                                                    <div class="single-schedule-tumb-info d-flex align-items-center">
+                                                        <div class="single-schedule-tumb-info d-flex align-items-center">
 
-                                                        <div class="single-schedule-tumb">
-                                                            <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                            <div class="single-schedule-tumb">
+                                                                <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                            </div>
+
+                                                            <div class="single-schedule-info">
+                                                                <h6><?php echo $event['event_name'] ?></h6>
+                                                                <p>Cordinators,
+                                                                    <br />
+                                                                    <?php $coordinators = explode("|", $event['event_cordinators']);
+                                                                    foreach ($coordinators as $letter => $index) {
+                                                                        echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                                                    }
+                                                                    ?>
+                                                                </p>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="single-schedule-info">
-                                                            <h6><?php echo $event['event_name'] ?></h6>
-                                                            <p>Cordinators,
-                                                                <br />
-                                                                <?php $coordinators = explode("|", $event['event_cordinators']);
-                                                                foreach ($coordinators as $letter => $index) {
-                                                                    echo '<span>' . $coordinators[$letter] . '<br /></span>';
-                                                                }
-                                                                ?>
-                                                            </p>
+                                                        <div class="schedule-time-place">
+                                                            <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
+                                                            <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
                                                         </div>
+
+                                                        <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
                                                     </div>
 
-                                                    <div class="schedule-time-place">
-                                                        <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
-                                                        <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
-                                                    </div>
-
-                                                    <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
-                                                </div>
-
-                                            <?php
+                                                <?php
                                             }
                                             ?>
                                         </div>
@@ -813,36 +831,36 @@ if (!isset($_SESSION))
                                             <?php
                                             $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='30/09/23'");
                                             while ($event = mysqli_fetch_array($events)) {
-                                            ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
+                                                ?><div data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="single-schedule-area d-flex flex-wrap justify-content-between align-items-center wow fadeInUp" data-wow-delay="300ms">
 
-                                                    <div class="single-schedule-tumb-info d-flex align-items-center">
+                                                        <div class="single-schedule-tumb-info d-flex align-items-center">
 
-                                                        <div class="single-schedule-tumb">
-                                                            <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                            <div class="single-schedule-tumb">
+                                                                <img height="100px" width="100px" src="<?php echo $event['image'] ?>">
+                                                            </div>
+
+                                                            <div class="single-schedule-info">
+                                                                <h6><?php echo $event['event_name'] ?></h6>
+                                                                <p>Cordinators,
+                                                                    <br />
+                                                                    <?php $coordinators = explode("|", $event['event_cordinators']);
+                                                                    foreach ($coordinators as $letter => $index) {
+                                                                        echo '<span>' . $coordinators[$letter] . '<br /></span>';
+                                                                    }
+                                                                    ?>
+                                                                </p>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="single-schedule-info">
-                                                            <h6><?php echo $event['event_name'] ?></h6>
-                                                            <p>Cordinators,
-                                                                <br />
-                                                                <?php $coordinators = explode("|", $event['event_cordinators']);
-                                                                foreach ($coordinators as $letter => $index) {
-                                                                    echo '<span>' . $coordinators[$letter] . '<br /></span>';
-                                                                }
-                                                                ?>
-                                                            </p>
+                                                        <div class="schedule-time-place">
+                                                            <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
+                                                            <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
                                                         </div>
+
+                                                        <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
                                                     </div>
 
-                                                    <div class="schedule-time-place">
-                                                        <p><i class="zmdi zmdi-time"></i><?php echo $event['event_date'] ?> | <?php echo $event['event_time'] ?></p>
-                                                        <p><i class="zmdi zmdi-map"></i> <?php echo $event['event_venue'] ?></p>
-                                                    </div>
-
-                                                    <a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
-                                                </div>
-
-                                            <?php
+                                                <?php
                                             }
                                             ?>
                                         </div>
@@ -982,18 +1000,25 @@ if (!isset($_SESSION))
             if (document.getElementById('login-role').value == 'student') {
                 document.getElementById('login-event-name').style.display = 'none'
                 document.getElementById('login-event-password').style.display = 'none'
+                document.getElementById('login-house-name').style.display = 'none'
                 document.getElementById('login-event-regno').style.display = 'block'
-
             }
             if (document.getElementById('login-role').value == 'event coordinator') {
                 document.getElementById('login-event-regno').style.display = 'none'
-
+                document.getElementById('login-house-name').style.display = 'none'
                 document.getElementById('login-event-name').style.display = 'block'
                 document.getElementById('login-event-password').style.display = 'block'
             }
             if (document.getElementById('login-role').value == 'team captain') {
+                document.getElementById('login-event-regno').style.display = 'none'
                 document.getElementById('login-event-name').style.display = 'none'
-                document.getElementById('login-event-regno').style.display = 'block'
+                document.getElementById('login-house-name').style.display = 'block'
+                document.getElementById('login-event-password').style.display = 'block'
+            }
+            if(document.getElementById('login-role').value == 'team incharge'){
+                document.getElementById('login-event-regno').style.display = 'none'
+                document.getElementById('login-event-name').style.display = 'none'
+                document.getElementById('login-house-name').style.display = 'block'
                 document.getElementById('login-event-password').style.display = 'block'
             }
         }

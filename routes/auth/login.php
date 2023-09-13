@@ -6,26 +6,25 @@ include('../connect.php');
 <?php
 session_start();
 
+// Team Captain and Team Incharge login
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['house_name']) && isset($_POST['password']) && isset($_POST['role']) && $_POST['role'] != 'student' &&  $_POST['role'] != 'event coordinator') {
 
-// Team Captain login
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isset($_POST['password']) && isset($_POST['role']) && $_POST['role'] != 'student' &&  $_POST['role'] != 'event coordinator') {
-
-    $reg_number = $_POST['reg_number'];
-    $query = "SELECT dept,house_name, reg_no,role, name, password FROM admindb WHERE reg_no = ?";
+    $house_name = $_POST['house_name'];
+    $query = "SELECT dept,house_name, reg_no,role, name, password FROM admindb WHERE house_name = ?";
 
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "s", $reg_number);
+    mysqli_stmt_bind_param($stmt, "s", $house_name);
     mysqli_stmt_execute($stmt);
     
     mysqli_stmt_store_result($stmt);
     
-    if (mysqli_stmt_num_rows($stmt) == 1) {
+    if (mysqli_stmt_num_rows($stmt) == 4) {
         mysqli_stmt_bind_result($stmt, $dept, $house_name, $reg_no, $role, $username, $hashed_password);
         mysqli_stmt_fetch($stmt);
         
         $password = $_POST['password'];
         
-        if (password_verify($password, $hashed_password) && $_POST['role'] === $role) {
+        if (password_verify($password, $hashed_password) && $_POST['house_name'] === $house_name) {
             // session_unset();
             $_SESSION['role'] = $role;
             $_SESSION['reg_no'] = $reg_no;
@@ -99,7 +98,7 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && 
     
     mysqli_stmt_store_result($stmt);
     
-    if (mysqli_stmt_num_rows($stmt) >= 1) {
+    if (mysqli_stmt_num_rows($stmt) == 2) {
         mysqli_stmt_bind_result($stmt, $dept, $event_name, $reg_no, $role, $username, $hashed_password);
         mysqli_stmt_fetch($stmt);
         
