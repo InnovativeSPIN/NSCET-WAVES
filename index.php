@@ -525,7 +525,7 @@ if (!isset($_SESSION))
                     <div class="the-complete-lineup">
                         <div class="entry-title">
                             <p>JUST THE BEST</p>
-                            <h2>Exculsuive for Boys</h2>
+                            <h2>Exclusive for Boys</h2>
                         </div>
                         <div class="row the-complete-lineup-artists">
                             <?php
@@ -559,7 +559,7 @@ if (!isset($_SESSION))
                     <div class="the-complete-lineup">
                         <div class="entry-title">
                             <p>JUST THE BEST</p>
-                            <h2>Exculsuive for Girls</h2>
+                            <h2>Exclusive for Girls</h2>
                         </div>
                         <div class="row the-complete-lineup-artists">
                             <?php
