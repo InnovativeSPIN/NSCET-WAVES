@@ -8,17 +8,16 @@ include('../connect.php');
 if (isset($_POST["submit"])) {
 
     $event_name = mysqli_real_escape_string($conn, $_POST["event_name"]);
-    $coordinator_name = mysqli_real_escape_string($conn, $_POST["coordinator_name"]);
-    $coordinator_reg_no = mysqli_real_escape_string($conn, $_POST["coordinator_reg_no"]);
-    $role = mysqli_real_escape_string($conn, $_POST["role"]);
-    $dept = mysqli_real_escape_string($conn, $_POST["dept"]);
+    $coordinator_name_1 = mysqli_real_escape_string($conn, $_POST["coordinator_name_1"]);
+    $coordinator_name_2 = mysqli_real_escape_string($conn, $_POST["coordinator_name_2"]);
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO admindb VALUES('$coordinator_name','$dept','$role','$coordinator_reg_no','$hashed_password','$event_name','-')";
+    $query1 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$coordinator_name_1','-','-','event coordinator','$hashed_password','$event_name','-')";
+    $query2 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$coordinator_name_2','-','-','event coordinator','$hashed_password','$event_name','-')";
 
-    if (mysqli_query($conn, $query)) {
+    if (mysqli_query($conn, $query1) && mysqli_query($conn, $query2)) {
         header('Location: ../../pages/adminForm.php');
     } else {
         echo "Error updating record: " . mysqli_error($conn);

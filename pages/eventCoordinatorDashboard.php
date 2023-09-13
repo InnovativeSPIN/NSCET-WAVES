@@ -2,6 +2,11 @@
 include('../routes/connect.php');
 session_start();
 $eventName = $_SESSION['event_name'];
+$role = $_SESSION['role'];
+
+if ($role != 'event coordinator') {
+    header('../index.php');
+}
 
 $event_list = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_name`= '$eventName'");
 $data = mysqli_fetch_array($event_list);

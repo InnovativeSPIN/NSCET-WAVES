@@ -202,21 +202,21 @@ include('../routes/connect.php');
 
                             <div class="row">
                                 <div class="col-md-6 form-group"> <label for="coordinator_name">
-                                        <h6>Coordinator Name</h6>
+                                        <h6>Coordinator Name 1</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="coordinator_name"
-                                            placeholder="Coordinator Name" class="form-control " required>
+                                    <div class="input-group"> <input type="text" name="coordinator_name_1"
+                                            placeholder="Coordinator Name 1" class="form-control " required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 form-group"> <label for="coordinator_reg_no">
-                                        <h6>Coordinator Number</h6>
+                                        <h6>Coordinator Name 2</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="coordinator_reg_no"
-                                            placeholder="Enter Coordinator Number" class="form-control " required>
+                                    <div class="input-group"> <input type="text" name="coordinator_name_2"
+                                            placeholder="Coordinator Name 2" class="form-control " required>
                                     </div>
                                 </div>
                             </div>
-
+                            <!-- 
                             <div class="row">
                                 <div class="col-md-6 form-group"> <label for="role">
                                         <h6>Role</h6>
@@ -244,8 +244,8 @@ include('../routes/connect.php');
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12 form-group"> <label for="password">
+                            </div> -->
+                            <div class="form-group"> <label for="password">
                                     <h6>Password</h6>
                                 </label>
                                 <div class="input-group"> <input type="text" name="password" placeholder="New Password"
@@ -339,51 +339,54 @@ include('../routes/connect.php');
 
                 <div class="row">
                     <div class="col-md-6 form-group"> <label for="captain_name">
-                            <h6>Captain Name</h6>
+                            <h6>Coordinator Name 1</h6>
                         </label>
-                        <div class="input-group"> <input type="text" name="captain_name" placeholder="Coordinator Name"
-                                class="form-control " required>
+                        <div class="input-group"> <input type="text" name="coordinator_name_1"
+                                placeholder="Coordinator Name 1" class="form-control " required>
                         </div>
                     </div>
                     <div class="col-md-6 form-group"> <label for="captain_number">
-                            <h6>Captain Register Number</h6>
+                            <h6>Coordinator Name 2</h6>
                         </label>
-                        <div class="input-group"> <input type="text" name="captain_number"
-                                placeholder="Enter Captain Register Number" class="form-control " required>
+                        <div class="input-group"> <input type="text" name="coordinator_name_2"
+                                placeholder="Coordinator Name 2" class="form-control " required>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 form-group"> <label for="role">
-                            <h6>Role</h6>
+                    <div class="col-md-6 form-group"> <label for="captain_number">
+                            <h6>Captain Name</h6>
                         </label>
-                        <div class="input-group"> <select name="role" id="" placeholder="Select Role"
-                                class="form-control" required>
-                                <option value="" hidden></option>
-                                <option value="team captain">Captain</option>
-                            </select>
+                        <div class="input-group"> <input type="text" name="captain_name"
+                                placeholder="Enter Captain Name" class="form-control " required>
                         </div>
                     </div>
-                    <div class="col-md-6 form-group"> <label for="dept">
-                            <h6>Department</h6>
+                    <div class="col-md-6 form-group"> <label for="captain_number">
+                            <h6>Captain Register No</h6>
                         </label>
-                        <div class="input-group"> <select name="dept" id="" placeholder="Select Role"
-                                class="form-control" required>
-                                <option value="" hidden>Select Department</option>
-                                <option value="CSE">CSE</option>
-                                <option value="ECE">ECE</option>
-                                <option value="MECH">MECH</option>
-                                <option value="CIVIL">CIVIL</option>
-                                <option value="EEE">EEE</option>
-                                <option value="IT">IT</option>
-                                <option value="AIDS">AI & DS</option>
-
-                            </select>
+                        <div class="input-group"> <input type="text" name="captain_reg_no"
+                                placeholder="Enter Captain Register Number" class="form-control " required>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 form-group"> <label for="password">
+                <div class="row">
+                    <div class="col-md-6 form-group"> <label for="captain_number">
+                            <h6>Vice Captain Name</h6>
+                        </label>
+                        <div class="input-group"> <input type="text" name="vice_captain_name"
+                                placeholder="Enter Vice Captain Name" class="form-control " required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group"> <label for="captain_number">
+                            <h6>Vice Captain Register No</h6>
+                        </label>
+                        <div class="input-group"> <input type="text" name="vice_captain_reg_no"
+                                placeholder="Enter Vice Captain Register Number" class="form-control " required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"> <label for="password">
                         <h6>Password</h6>
                     </label>
                     <div class="input-group"> <input type="text" name="password" placeholder="New Password"
@@ -391,7 +394,7 @@ include('../routes/connect.php');
                     </div>
                 </div>
                 <div class="card-footer"> <button type="submit" name='submit' class="subscribe btn btn-block shadow-sm">
-                        Edit Coordinator </button>
+                        Add Coordinators </button>
             </form>
         </div> <!-- End -->
 
@@ -495,8 +498,9 @@ include('../routes/connect.php');
                     class="form-control " required>
             </div>
         </div>
-        <div class="card-footer"> <button type="submit" name='importExcelFile' class="subscribe btn btn-block shadow-sm"> Add
-        Student Data</button>
+        <div class="card-footer"> <button type="submit" name='importExcelFile'
+                class="subscribe btn btn-block shadow-sm"> Add
+                Student Data</button>
     </form>
 
 </div>

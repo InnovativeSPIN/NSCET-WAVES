@@ -6,6 +6,12 @@ if (!isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
 	exit();
 }
 
+$role = $_SESSION['role'];
+if ($role != 'student') {
+    header('Location: /');
+    exit();
+}
+
 include('../routes/connect.php');
 
 ?>

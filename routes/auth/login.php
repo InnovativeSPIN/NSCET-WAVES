@@ -99,7 +99,7 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && 
     
     mysqli_stmt_store_result($stmt);
     
-    if (mysqli_stmt_num_rows($stmt) == 1) {
+    if (mysqli_stmt_num_rows($stmt) >= 1) {
         mysqli_stmt_bind_result($stmt, $dept, $event_name, $reg_no, $role, $username, $hashed_password);
         mysqli_stmt_fetch($stmt);
         
@@ -120,8 +120,8 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && 
             $error = "Incorrect username or password or role";
         }
     } else {
-        // echo "User not found";
-        // $error = "User not found";
+        echo "User not found";
+        $error = "User not found";
         header('Location: ../../index.php');
     }
 

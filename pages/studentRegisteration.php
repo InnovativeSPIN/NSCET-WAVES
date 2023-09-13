@@ -5,6 +5,11 @@ if (!isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
     header('Location: /');
     exit();
 }
+$role = $_SESSION['role'];
+if ($role != 'team captain') {
+    header('Location: /');
+    exit();
+}
 $eventName = $_GET['eventName'];
 
 include('../routes/connect.php');

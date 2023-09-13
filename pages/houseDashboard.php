@@ -6,6 +6,12 @@ if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['
     exit();
 }
 
+$role = $_SESSION['role'];
+if ($role != 'team captain') {
+    header('Location: /');
+    exit();
+}
+
 include('../routes/connect.php');
 
 ?>
