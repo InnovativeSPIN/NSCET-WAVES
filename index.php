@@ -266,7 +266,7 @@ if (!isset($_SESSION)) {
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group" id='login-event-name'> <label for="event_name">
+                            <div class="form-group" id='login-event-name' style='display: none;'> <label for="event_name">
                                     <h6>Event Name</h6>
                                 </label> <input type="text" list="listName" name="event_name" placeholder="Enter Event Name" class="form-control">
                                 <datalist id="listName">
@@ -283,7 +283,7 @@ if (!isset($_SESSION)) {
                                     ?>
                                 </datalist>
                             </div>
-                            <div class="form-group" id='login-house-name'> <label for="house_name">
+                            <div class="form-group" id='login-house-name' style='display: none;'> <label for="house_name">
                                 <h6>House Name</h6>
                                 </label> <input type="text" list="house_name" name="house_name" placeholder="Enter House Name"
                                     class="form-control">
@@ -341,7 +341,6 @@ if (!isset($_SESSION)) {
 
                     <div class="entry-header">
                         <div class="shadow">
-                            <img src="public/images/logos/waves-logo.png" alt="" class="" width="160">
 
                             <img src="public/images/logos/clg-logo.png" alt="" class="" width="180">
                         </div>
@@ -351,6 +350,8 @@ if (!isset($_SESSION)) {
                         <div id="stage" style="margin-top: 64px;"></div>
 
                         <canvas id="text" width="800" height="200"></canvas>
+                        <img style="margin-bottom: 24px;" src="public/images/logos/waves-logo.png" alt="" class="" width="280">
+
                         <input id="input" type="text" value="Waves'23 W" style="display: none;" />
 
                     </div>
