@@ -7,6 +7,7 @@ if (!isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
 }
 
 $role = $_SESSION['role'];
+
 if ($role != 'student') {
     header('Location: /');
     exit();

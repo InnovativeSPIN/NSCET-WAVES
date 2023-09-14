@@ -59,12 +59,14 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && 
     
     mysqli_stmt_store_result($stmt);
 
-    if (mysqli_stmt_num_rows($stmt) == 1) {
+    if (mysqli_stmt_num_rows($stmt) === 1) {
+            
         mysqli_stmt_bind_result($stmt, $name, $reg_no, $house, $dept, $gender, $year);
         mysqli_stmt_fetch($stmt);
 
         if($_POST['reg_number'] === $reg_no){
             session_unset();
+            $_SESSION['role'] = $_POST['role'];
             $_SESSION['name'] = $name;
             $_SESSION['reg_no'] = $reg_no;
             $_SESSION['house'] = $house;
