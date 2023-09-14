@@ -30,6 +30,40 @@ include('../routes/connect.php');
 </head>
 
 <body>
+<header class="site-header">
+        <div class="header-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-10 col-lg-4">
+                        <h1 class="site-branding flex">
+                            <!-- <img src="public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
+
+                            <!-- <a href="#">Waves'23</a> -->
+                        </h1>
+                    </div>
+                    <div class="col-2 col-lg-8">
+                        <nav class="site-navigation">
+                            <div class="hamburger-menu d-lg-none">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <ul>
+                                <!-- <li><a href="#">HOME</a></li>
+                                <li><a href="#">Waves'23</a></li>
+                                <li><a href="#">ARTISTS</a></li>
+                                <li><a href="#">BLOG</a></li>
+                                <li><a href="#">CONTACT</a></li>
+                                <li><a href="#"><i class="fas fa-search"></i></a></li> -->
+                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <div class="card dark gradient-border">
 
         <?php
