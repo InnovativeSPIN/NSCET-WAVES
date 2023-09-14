@@ -62,39 +62,35 @@ if ($data['is_group'] == '0') {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rubik:wght@300;700&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="../public/css/swiper.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/eventCoordinatorDashboard.css">
+
+    
+
     
 </head>
 
 <body>
-
 <header class="site-header">
         <div class="header-bar">
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-10 col-lg-4">
                         <h1 class="site-branding flex">
-                            <!-- <img src="public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
-
-                            <!-- <a href="#">Waves'23</a> -->
+                            <img src="../public/images/logos/waves-logo.png" alt="" class="" width="120">
                         </h1>
                     </div>
                     <div class="col-2 col-lg-8">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                            <div class="hamburger-menu d-lg-none" >
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
                             </div>
                             <ul>
-                                <!-- <li><a href="#">HOME</a></li>
-                                <li><a href="#">Waves'23</a></li>
-                                <li><a href="#">ARTISTS</a></li>
-                                <li><a href="#">BLOG</a></li>
-                                <li><a href="#">CONTACT</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i></a></li> -->
-                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
+                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -103,7 +99,7 @@ if ($data['is_group'] == '0') {
         </div>
     </header>
     <div class="container">
-        <div class="header">
+        <div class="header" style="margin-top:85px">
             <div class="title">Events Details</div>
         </div>
         <div class="indicators">
@@ -190,6 +186,27 @@ if ($data['is_group'] == '0') {
         </div>
     </div>
     <script src="../public/js/coordinatordashboard.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.js"></script>
+    <script type="text/javascript" src="../public/js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.collapsible.min.js"></script>
+    <script type="text/javascript" src="../public/js/swiper.min.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="../public/js/circle-progress.min.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.countTo.min.js"></script>
+    <script type="text/javascript" src="../public/js/custom.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"801ca2883dc3859f","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.8.0","si":100}' crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         var eventData = <?php echo json_encode($eventData); ?>;
         populateItems(eventData, 'BLUE BLASTERS');

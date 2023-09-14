@@ -25,7 +25,10 @@ include('../routes/connect.php');
     <title>Register Student</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="../public/css/style.css">
+    
     <link rel="stylesheet" href="../public/css/houseDashboardStyles.css">
+
 
 </head>
 
@@ -36,27 +39,21 @@ include('../routes/connect.php');
                 <div class="row align-items-center">
                     <div class="col-10 col-lg-4">
                         <h1 class="site-branding flex">
-                            <!-- <img src="public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
-
-                            <!-- <a href="#">Waves'23</a> -->
+                            <img src="../public/images/logos/waves-logo.png" alt="" class="" width="120">
                         </h1>
                     </div>
                     <div class="col-2 col-lg-8">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                            <div class="hamburger-menu d-lg-none" >
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
                             </div>
                             <ul>
-                                <!-- <li><a href="#">HOME</a></li>
-                                <li><a href="#">Waves'23</a></li>
-                                <li><a href="#">ARTISTS</a></li>
-                                <li><a href="#">BLOG</a></li>
-                                <li><a href="#">CONTACT</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i></a></li> -->
-                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
+                                <li><a href="houseDashboard.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Dashboard</button></a></li>
+
+                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -64,7 +61,7 @@ include('../routes/connect.php');
             </div>
         </div>
     </header>
-    <div class="card dark gradient-border">
+    <div class="card dark gradient-border" style="margin-top:140px">
 
         <?php
         $houseName = $_SESSION['house_name'];
@@ -125,7 +122,7 @@ include('../routes/connect.php');
         </div>
     </div>
     <?php if ($event['max_participants'] - $registeredParticipants > 0) { ?>
-        <h2>Add Participant</h2>
+        <h2 style="color:black;">Add Participant</h2>
 
         <div class="container" style="display: flex;justify-content: center;">
             <form style="max-width: 320px;" action="../routes/studentReg/addStudent.php" class="form-control" method="post">

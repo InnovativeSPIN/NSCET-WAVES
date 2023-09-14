@@ -26,7 +26,10 @@ include('../routes/connect.php');
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/houseDashboardStyles.css">
+
+
 </head>
 
 <body>
@@ -36,27 +39,19 @@ include('../routes/connect.php');
                 <div class="row align-items-center">
                     <div class="col-10 col-lg-4">
                         <h1 class="site-branding flex">
-                            <!-- <img src="public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
-
-                            <!-- <a href="#">Waves'23</a> -->
+                            <img src="../public/images/logos/waves-logo.png" alt="" class="" width="120">
                         </h1>
                     </div>
                     <div class="col-2 col-lg-8">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                            <div class="hamburger-menu d-lg-none" >
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
                             </div>
                             <ul>
-                                <!-- <li><a href="#">HOME</a></li>
-                                <li><a href="#">Waves'23</a></li>
-                                <li><a href="#">ARTISTS</a></li>
-                                <li><a href="#">BLOG</a></li>
-                                <li><a href="#">CONTACT</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i></a></li> -->
-                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
+                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -64,7 +59,7 @@ include('../routes/connect.php');
             </div>
         </div>
     </header>
-    <div class="card dark gradient-border">
+    <div class="card dark gradient-border" style="margin-top:140px">
 
         <?php
         $path = '../public/images/house/';
@@ -318,7 +313,15 @@ include('../routes/connect.php');
             </div>
         </div>
     </div>
-
+    <script src="../public/js/coordinatordashboard.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.js"></script>
+    <script type="text/javascript" src="../public/js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.collapsible.min.js"></script>
+    <script type="text/javascript" src="../public/js/swiper.min.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="../public/js/circle-progress.min.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.countTo.min.js"></script>
+    <script type="text/javascript" src="../public/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
     <script>
         const duration = 10 * 1000,

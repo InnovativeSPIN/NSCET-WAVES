@@ -39,27 +39,19 @@ include('../routes/connect.php');
                 <div class="row align-items-center">
                     <div class="col-10 col-lg-4">
                         <h1 class="site-branding flex">
-                            <!-- <img src="public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
-
-                            <!-- <a href="#">Waves'23</a> -->
+                            <img src="../public/images/logos/waves-logo.png" alt="" class="" width="120">
                         </h1>
                     </div>
                     <div class="col-2 col-lg-8">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                            <div class="hamburger-menu d-lg-none" >
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
+                                <span style="background-color:black"></span>
                             </div>
                             <ul>
-                                <!-- <li><a href="#">HOME</a></li>
-                                <li><a href="#">Waves'23</a></li>
-                                <li><a href="#">ARTISTS</a></li>
-                                <li><a href="#">BLOG</a></li>
-                                <li><a href="#">CONTACT</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i></a></li> -->
-                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
+                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -68,7 +60,7 @@ include('../routes/connect.php');
         </div>
     </header>
 	<div class="container">
-		<div>
+		<div style="margin-top: 138px;">
 			<div class="card dark gradient-border">
 
 				<?php
@@ -76,10 +68,19 @@ include('../routes/connect.php');
 				$img = str_replace(" ", "_", $_SESSION['house']);
 				?>
 				<img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="...">
+				<?php
+					$house_name = $_SESSION['house'];
+					$queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
+					$getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
 
+					$houseLeads = array();
+					while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
+						array_push($houseLeads, $houseLead['name']);
+					}
+					?>
 				<div class="card-body">
 					<div class="text-section">
-						<h1 class='card-title'>
+						<h1  style="color:#e22361" class='card-title'>
 							<?php echo $_SESSION['house'] ?>
 						</h1>
 						<h5 class="card-text">
@@ -98,22 +99,9 @@ include('../routes/connect.php');
 							Your Year:
 							<?php echo $_SESSION['year'] ?>
 						</h5>
-					</div>
-					<?php
-					$house_name = $_SESSION['house'];
-					$queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
-					$getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
-
-					$houseLeads = array();
-					while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
-						array_push($houseLeads, $houseLead['name']);
-					}
-					?>
-					<div class="card-body">
-						<div class="text-section">
-							<h1 class='card-title'> House Leads Details
-							</h1>
-							<h5 class="card-text">
+						<h3 style="color:#e22361" class='card-title'> House Leads Details
+							</h3>
+						<h5 class="card-text">
 								Team Incharges:
 								<?php echo $houseLeads[0].', '.$houseLeads[1] ?>
 							</h5>
@@ -125,8 +113,9 @@ include('../routes/connect.php');
 								Team Vice Captain:
 								<?php echo $houseLeads[3] ?>
 							</h5>
-						</div>
 					</div>
+					
+					
 				</div>
 			</div>
 			<div class="row">
