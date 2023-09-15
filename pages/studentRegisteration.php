@@ -21,15 +21,15 @@ include('../routes/connect.php');
     <title>Register Student</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="../public/css/style.css">
-    
+    <link rel="stylesheet" href="../public/css/style.css">
+
     <link rel="stylesheet" href="../public/css/houseDashboardStyles.css">
 
 
 </head>
 
 <body>
-<header class="site-header">
+    <header class="site-header">
         <div class="header-bar">
             <div class="container-fluid">
                 <div class="row align-items-center">
@@ -40,7 +40,7 @@ include('../routes/connect.php');
                     </div>
                     <div class="col-2 col-lg-8">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none" >
+                            <div class="hamburger-menu d-lg-none">
                                 <span style="background-color:black"></span>
                                 <span style="background-color:black"></span>
                                 <span style="background-color:black"></span>
@@ -122,24 +122,25 @@ include('../routes/connect.php');
 
         <div class="container" style="display: flex;justify-content: center;">
             <form style="max-width: 320px;" action="../routes/studentReg/addStudent.php" class="form-control" method="post">
-                <input style="width: 90%;margin: 12px;" type="text" name="event_name" value="<?php echo $eventName ?>">
+                <input style="width: 90%;margin: 12px;" type="text" name="house_name" value="<?php echo $houseName ?>" readonly>
+                <input style="width: 90%;margin: 12px;" type="text" name="event_name" value="<?php echo $eventName ?>" readonly>
 
                 <input style="width: 90%;margin: 12px;" placeholder="Student Reg No" type="text" name="reg_number" id="reg_number">
                 <?php
                 if ($event['is_group'] == 1) {
                     $groupCountResult = mysqli_query($conn, "SELECT group_counts FROM `eventdb` WHERE event_name = '$eventName'");
                     $groupCount = mysqli_fetch_array($groupCountResult);
-                
+
                     if ($groupCount) {
                         $count = (int)$groupCount['group_counts'];
-                        
+
                         echo "<div class='form-group'>
                             <input style='width: 90%; margin: 12px;' type='text' list='listName' name='group' id='group' placeholder='Group Number' required class='form-control'>
                             <datalist id='listName'>";
                         for ($i = 1; $i <= $count; $i++) {
                             echo "<option value='$i'>$i</option>";
                         }
-                
+
                         echo "</datalist></div>";
                     }
                 } else {
@@ -178,7 +179,7 @@ include('../routes/connect.php');
                                     $event = $data['is_group'];
 
                                     if ($event == '0') {
-                                        ?>
+                                    ?>
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -186,6 +187,7 @@ include('../routes/connect.php');
                                                     <th>Register Number</th>
                                                     <th>Student Name</th>
                                                     <th>Student Department</th>
+                                                    <th>Year</th>
                                                     <th>Delete</th>
                                                 </tr>
                                             </thead>
@@ -193,7 +195,7 @@ include('../routes/connect.php');
                                             $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name'");
                                             $i = 1;
                                             while ($list = mysqli_fetch_array($participantsList)) {
-                                                ?>
+                                            ?>
                                                 <tr>
                                                     <td>
                                                         <?php echo $i++ ?>
@@ -208,71 +210,101 @@ include('../routes/connect.php');
                                                         <?php echo $list['student_dept']; ?>
                                                     </td>
                                                     <td>
-                                                    <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a>
+                                                            <?php 
+                                                            $sql = "SELECT * FROM studentdb WHERE reg_no = '$list[reg_no]'";
+
+                                                            $result = $conn->query($sql);
+                                                            if ($result->num_rows > 0) {
+                                                                // Fetch the row as an associative array
+                                                                $row = $result->fetch_assoc();
+                                                            
+                                                                // Display the data from the selected row
+                                                                echo $row["year"];
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                    <td>
+                                                        <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a>
                                                     </td>
                                                 </tr>
-                                                <?php
+                                            <?php
                                             }
                                             ?>
                                         </table>
-                                        </div>
-                                        <?php
+                                </div>
+                            <?php
                                     } else {
-                                        ?>
-                                        <?php
+                            ?>
+                                <?php
                                         $i = 1;
                                         $k = 1;
                                         while ($i <= $data['group_counts']) {
                                             $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name' && `grouped` = $i");
-                                            ?>
-                                            <div class="col col-sm-3 col-xs-12">
-                                                <h4 class="title">Group <span><?php echo $i ?></span></h4>
-                                            </div>
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Register Number</th>
-                                                        <th>Student Name</th>
-                                                        <th>Student Department</th>
-                                                        <th>Delete</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    while ($list = mysqli_fetch_array($participantsList)) {
-                                                        ?>
-                                                        <div class="panel-body table-responsive">
-                                                            <tr>
-                                                                <td>
-                                                                    <?php echo $k++ ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $list['reg_no'] ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $list['student_name'] ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $list['student_dept'] ?>
-                                                                </td>
-                                                                <td>
-                                                                <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a>
-                                                            </td>
-                                                            </tr>
-                                                        </div>
-                                                        <?php
-                                                    }
-                                                    $i++;
-                                                    ?>
-                                                </tbody>
-                                            </table>
-                                            </div>
+                                ?>
+                                    <div class="col col-sm-3 col-xs-12">
+                                        <h4 class="title">Group <span><?php echo $i ?></span></h4>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Register Number</th>
+                                                <th>Student Name</th>
+                                                <th>Department</th>
+                                                <th>Year</th>
+
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <?php
+                                            while ($list = mysqli_fetch_array($participantsList)) {
+                                            ?>
+                                                <div class="panel-body table-responsive">
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $k++ ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $list['reg_no'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $list['student_name'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $list['student_dept'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php 
+                                                            $sql = "SELECT * FROM studentdb WHERE reg_no = '$list[reg_no]'";
+
+                                                            $result = $conn->query($sql);
+                                                            if ($result->num_rows > 0) {
+                                                                // Fetch the row as an associative array
+                                                                $row = $result->fetch_assoc();
+                                                            
+                                                                // Display the data from the selected row
+                                                                echo $row["year"];
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </div>
+                                            <?php
+                                            }
+                                            $i++;
+                                            ?>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    <?php
                                         }
                                     }
-                                    ?>
-                                    
+                    ?>
+
                         </div>
                     </div>
 

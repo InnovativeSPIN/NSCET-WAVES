@@ -80,7 +80,7 @@ include('../routes/connect.php');
                     ?>
                 </h5>
                 <?php
-                $registeredStudentsQuery = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName'");
+                $registeredStudentsQuery = mysqli_query($conn, "SELECT COUNT(DISTINCT reg_no) as row_count FROM registerationdb WHERE student_house = '$houseName'");
                 $registeredStudentsDetails = mysqli_fetch_assoc($registeredStudentsQuery);
                 ?>
                 <h5 class="card-text">Participants Count:
@@ -90,7 +90,7 @@ include('../routes/connect.php');
                 </h5>
 
                 <?php
-					$house_name = $_SESSION['house'];
+					$house_name = $_SESSION['house_name'];
 					$queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
 					$getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
 

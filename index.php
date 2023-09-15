@@ -927,7 +927,7 @@ if (!isset($_SESSION)) {
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                 <img src="public\images\galary\SBD_0769.jpg" class="img-fluid">
-                                <img src="public\images\galary\SBD_0110.jpg" class="img-fluid">
+                                <!-- <img src="public\images\galary\SBD_0110.jpg" class="img-fluid"> -->
                                 <img src="public\images\galary\IMG_20230221_153426.jpg" class="img-fluid">
                                 <img src="public\images\galary\SBD_0571.jpg" class="img-fluid">
                                 <img src="public\images\galary\SBD_0684.jpg" class="img-fluid">

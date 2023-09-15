@@ -35,8 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['house_name']) && isse
             header('Location: ../../pages/houseDashboard.php');
             exit();
         } else {
-            echo "Incorrect username or password or role";
-            $error = "Incorrect username or password or role";
+            // echo "Incorrect username or password or role";
+            // $error = "Incorrect username or password or role";
+            header('Location: ../../pages/404.php');
+
         }
     } else {
         // echo "User not found";
@@ -77,7 +79,8 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && 
             header('Location: ../../pages/studentDashboard.php');
             exit();
         }else {
-            echo "Incorrect register number";
+            header('Location: ../../pages/404.php');
+            // echo "Incorrect register number";
         }
     }else {
         // echo "User not found";
@@ -117,8 +120,9 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && 
             header('Location: ../../pages/eventCoordinatorDashboard.php');
             exit();
         } else {
-            echo "Incorrect username or password or role";
-            $error = "Incorrect username or password or role";
+            // echo "Incorrect username or password or role";
+            // $error = "Incorrect username or password or role";
+            header('Location: ../../pages/404.php');
         }
     } else {
         echo "User not found";
