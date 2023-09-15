@@ -1,0 +1,52 @@
+Sir Database Report,
+
+Total 1st Year = 215
+Total 2nd Year = 247
+Total 3rd Year = 199
+Total 4th Year = 166
+Total Student Count = 827
+
+BLUE BLASTERS: 117
+DINO THUNDERS: 93
+DRAGON WARRIORS: 92
+GALACTIC STARS: 114
+PHOENIX BLASTERS: 91
+ROSY RIDERS: 115
+TIGER THRASHERS: 91
+VIOLET VIPERS: 114
+
+
+| Team Name        | Category | Score |
+|------------------|----------|-------|
+| BLUE BLASTERS    | I        | 35    |
+| BLUE BLASTERS    | II       | 35    |
+| BLUE BLASTERS    | III      | 26    |
+| BLUE BLASTERS    | IV       | 21    |
+| DINO THUNDERS    | I        | 20    |
+| DINO THUNDERS    | II       | 28    |
+| DINO THUNDERS    | III      | 25    |
+| DINO THUNDERS    | IV       | 20    |
+| DRAGON WARRIORS  | I        | 20    |
+| DRAGON WARRIORS  | II       | 26    |
+| DRAGON WARRIORS  | III      | 25    |
+| DRAGON WARRIORS  | IV       | 21    |
+| GALACTIC STARS   | I        | 34    |
+| GALACTIC STARS   | II       | 33    |
+| GALACTIC STARS   | III      | 26    |
+| GALACTIC STARS   | IV       | 21    |
+| PHOENIX BLASTERS | I        | 19    |
+| PHOENIX BLASTERS | II       | 28    |
+| PHOENIX BLASTERS | III      | 23    |
+| PHOENIX BLASTERS | IV       | 21    |
+| ROSY RIDERS      | I        | 34    |
+| ROSY RIDERS      | II       | 35    |
+| ROSY RIDERS      | III      | 25    |
+| ROSY RIDERS      | IV       | 21    |
+| TIGER THRASHERS  | I        | 19    |
+| TIGER THRASHERS  | II       | 27    |
+| TIGER THRASHERS  | III      | 25    |
+| TIGER THRASHERS  | IV       | 20    |
+| VIOLET VIPERS    | I        | 34    |
+| VIOLET VIPERS    | II       | 35    |
+| VIOLET VIPERS    | III      | 24    |
+| VIOLET VIPERS    | IV       | 21    |
