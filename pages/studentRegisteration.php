@@ -6,10 +6,6 @@ if (!isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
     exit();
 }
 $role = $_SESSION['role'];
-if ($role != 'team captain') {
-    header('Location: /');
-    exit();
-}
 $eventName = $_GET['eventName'];
 
 include('../routes/connect.php');
@@ -190,6 +186,7 @@ include('../routes/connect.php');
                                                     <th>Register Number</th>
                                                     <th>Student Name</th>
                                                     <th>Student Department</th>
+                                                    <th>Delete</th>
                                                 </tr>
                                             </thead>
                                             <?php
@@ -209,6 +206,9 @@ include('../routes/connect.php');
                                                     </td>
                                                     <td>
                                                         <?php echo $list['student_dept']; ?>
+                                                    </td>
+                                                    <td>
+                                                    <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -257,7 +257,8 @@ include('../routes/connect.php');
                                                                     <?php echo $list['student_dept'] ?>
                                                                 </td>
                                                                 <td>
-                                                                <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a></td>
+                                                                <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a>
+                                                            </td>
                                                             </tr>
                                                         </div>
                                                         <?php

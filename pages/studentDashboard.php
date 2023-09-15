@@ -102,15 +102,15 @@ include('../routes/connect.php');
 						<h3 style="color:#e22361" class='card-title'> House Leads Details
 							</h3>
 						<h5 class="card-text">
-								Team Incharges:
+								House Incharges:
 								<?php echo $houseLeads[0].', '.$houseLeads[1] ?>
 							</h5>
 							<h5 class="card-text">
-								Team Captain:
+								House Captain:
 								<?php echo $houseLeads[2] ?>
 							</h5>
 							<h5 class="card-text">
-								Team Vice Captain:
+								House Vice Captain:
 								<?php echo $houseLeads[3] ?>
 							</h5>
 					</div>

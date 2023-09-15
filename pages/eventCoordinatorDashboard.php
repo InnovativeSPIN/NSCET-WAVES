@@ -4,10 +4,6 @@ session_start();
 $eventName = $_SESSION['event_name'];
 $role = $_SESSION['role'];
 
-if ($role != 'event coordinator') {
-    header('../index.php');
-}
-
 $event_list = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_name`= '$eventName'");
 $data = mysqli_fetch_array($event_list);
 $eventData['event'] = array(
@@ -64,7 +60,9 @@ if ($data['is_group'] == '0') {
         rel="stylesheet">
         <link rel="stylesheet" href="../public/css/swiper.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/eventCoordinatorDashboard.css">
+    <script src="https://kit.fontawesome.com/5fe2f4c2ef.js" crossorigin="anonymous"></script>
 
     
 
@@ -134,49 +132,49 @@ if ($data['is_group'] == '0') {
         <div class="navi">
             <div class="navi-item1">
                 <button class="nav-button" onclick="populateItems(eventData, 'BLUE BLASTERS')" id="startersbutton">
-                    <div class="navi-icon"><i class="fas fa-seedling"></i></div>
+                    <div class="navi-icon"><i class="fa-sharp fa-solid fa-explosion fa-shake"></i></div>
                     <div class="navi-text">BLUE BLASTERS</div>
                 </button>
             </div>
             <div class="navi-item2">
                 <button class="nav-button" onclick="populateItems(eventData, 'DINO THUNDERS')" id="mainsbutton">
-                    <div class="navi-icon"><i class="fas fa-pizza-slice"></i></div>
+                    <div class="navi-icon"><i class="fa-solid fa-skull-crossbones fa-fade"></i></div>
                     <div class="navi-text">DINO THUNDERS</div>
                 </button>
             </div>
             <div class="navi-item3">
                 <button class="nav-button" onclick="populateItems(eventData, 'DRAGON WARRIORS')" id="dessertsbutton">
-                    <div class="navi-icon"><i class="fas fa-ice-cream"></i></div>
+                    <div class="navi-icon"><i class="fa-solid fa-dragon fa-bounce"></i></div>
                     <div class="navi-text">DRAGON WARRIORS</div>
                 </button>
             </div>
             <div class="navi-item4">
                 <button class="nav-button" onclick="populateItems(eventData, 'GALACTIC STARS')" id="drinksbutton">
-                    <div class="navi-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                    <div class="navi-icon"><i class="fa-solid fa-star fa-beat-fade"></i></div>
                     <div class="navi-text">GALACTIC STARS</div>
                 </button>
             </div>
             <div class="navi-item5">
                 <button class="nav-button" onclick="populateItems(eventData, 'PHOENIX BLASTERS')" id="phoenix">
-                    <div class="navi-icon"><i class="fas fa-seedling"></i></div>
+                    <div class="navi-icon"><i class="fa-brands fa-phoenix-framework fa-flip"></i></div>
                     <div class="navi-text">PHOENIX BLASTERS</div>
                 </button>
             </div>
             <div class="navi-item6">
                 <button class="nav-button" onclick="populateItems(eventData, 'ROSY RIDERS')" id="rosy">
-                    <div class="navi-icon"><i class="fas fa-seedling"></i></div>
+                    <div class="navi-icon"><i class="fa-solid fa-motorcycle fa-spin-pulse"></i></div>
                     <div class="navi-text">ROSY RIDERS</div>
                 </button>
             </div>
             <div class="navi-item7">
                 <button class="nav-button" onclick="populateItems(eventData, 'TIGER THRASHERS')" id="tiger">
-                    <div class="navi-icon"><i class="fas fa-seedling"></i></div>
+                    <div class="navi-icon"><i class="fa-brands fa-wolf-pack-battalion fa-shake"></i></div>
                     <div class="navi-text">TIGER THRASHERS</div>
                 </button>
             </div>
             <div class="navi-item4">
                 <button class="nav-button" onclick="populateItems(eventData, 'VIOLET VIPERS')" id="violet">
-                    <div class="navi-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                    <div class="navi-icon"><i class="fa-solid fa-staff-snake fa-flip"></i></div>
                     <div class="navi-text">VIOLET VIPERS</div>
                 </button>
             </div>

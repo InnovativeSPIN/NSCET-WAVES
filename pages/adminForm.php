@@ -310,7 +310,7 @@ include('../routes/connect.php');
 
                 <div class="form-group"> <label for="house_name">
                         <h6>House Name</h6>
-                    </label> <input type="text" list="houseName" name="house_name" placeholder="Enter Event Name"
+                    </label> <input type="text" list="houseName" name="house_name" placeholder="Enter House Name"
                         required class="form-control ">
                     <datalist id="houseName">
                         <?php
@@ -346,7 +346,7 @@ include('../routes/connect.php');
             <form role="form" action="../routes/admin/assignCaptain.php" method="post">
                 <div class="form-group"> <label for="house_name">
                         <h6>House Name</h6>
-                    </label> <input type="text" list="houseName" name="house_name" placeholder="Enter Event Name"
+                    </label> <input type="text" list="houseName" name="house_name" placeholder="Enter House Name"
                         required class="form-control ">
                     <datalist id="houseName">
                         <?php

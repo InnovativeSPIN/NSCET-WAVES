@@ -7,10 +7,6 @@ if (!isset($_SESSION['role']) && !isset($_SESSION['name']) && !isset($_SESSION['
 }
 
 $role = $_SESSION['role'];
-if ($role != 'team captain') {
-    header('Location: /');
-    exit();
-}
 
 include('../routes/connect.php');
 
@@ -26,14 +22,14 @@ include('../routes/connect.php');
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/houseDashboardStyles.css">
 
 
 </head>
 
 <body>
-<header class="site-header">
+    <header class="site-header">
         <div class="header-bar">
             <div class="container-fluid">
                 <div class="row align-items-center">
@@ -44,14 +40,15 @@ include('../routes/connect.php');
                     </div>
                     <div class="col-2 col-lg-8">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none" >
+                            <div class="hamburger-menu d-lg-none">
                                 <span style="background-color:black"></span>
                                 <span style="background-color:black"></span>
                                 <span style="background-color:black"></span>
                                 <span style="background-color:black"></span>
                             </div>
                             <ul>
-                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
+                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary"
+                                            data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -69,16 +66,9 @@ include('../routes/connect.php');
 
         <div class="card-body">
             <div class="text-section">
-                <h1 class='card-title'>
+                <h1 style="color:#e22361" class='card-title'>
                     <?php echo $_SESSION['house_name'] ?>
                 </h1>
-                <h5 class="card-text">
-                    Team Captain:
-                    <?php echo $_SESSION['name'] ?>
-                </h5>
-                <!-- <h5 class="card-text">
-                        Vice Captain:
-                    </h5> -->
                 <?php
                 $houseName = $_SESSION['house_name'];
                 $totalMembersResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM studentdb WHERE house = '$houseName'");
@@ -97,6 +87,31 @@ include('../routes/connect.php');
                     <?php echo $registeredStudentsDetails['row_count'];
                     mysqli_free_result($registeredStudentsQuery);
                     ?>
+                </h5>
+
+                <?php
+					$house_name = $_SESSION['house'];
+					$queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
+					$getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
+
+					$houseLeads = array();
+					while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
+						array_push($houseLeads, $houseLead['name']);
+					}
+					?>
+                <h3 style="color:#e22361" class='card-title'> House Leads Details
+                </h3>
+                <h5 class="card-text">
+                    House Incharges:
+                    <?php echo $houseLeads[0] . ', ' . $houseLeads[1] ?>
+                </h5>
+                <h5 class="card-text">
+                    House Captain:
+                    <?php echo $houseLeads[2] ?>
+                </h5>
+                <h5 class="card-text">
+                    House Vice Captain:
+                    <?php echo $houseLeads[3] ?>
                 </h5>
             </div>
             <div class="cta-section">
