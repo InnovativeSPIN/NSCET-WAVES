@@ -2,7 +2,8 @@
 require('fpdf.php');
 include('../connect.php');
 
-$house = mysqli_real_escape_string($conn, $_POST["houes"]);
+$house = mysqli_real_escape_string($conn, $_POST["house"]);
+
 
 $sql = mysqli_query($conn,"SELECT * FROM `studentdb` WHERE `house`='$house'");
 
@@ -24,8 +25,7 @@ class PDF extends FPDF
         $this->Cell(80);
           
         // Set the title of pages.
-        $this->Cell(30, 20, 'WAVES 2023', 0, 2, 'C');
-          
+        $this->Cell(30, 20, 'WAVES 2023', 0, 2, 'C');          
         // Break line with given space
         $this->Ln(5);
     }
@@ -58,6 +58,12 @@ $pdf->Ln( 5 );
 
 
 // Set font-family and font-size.
+
+$pdf->SetFont('Times','B',18);
+
+$pdf->Cell(190, 10, "$house", 0, 1, 'C');
+
+
 $pdf->SetFont('Times','B',12);
 
 $pdf->SetTextColor(255,255,255);
@@ -94,7 +100,9 @@ while ($data = mysqli_fetch_array($sql)) {
     $fill = !$fill;
     $pdf->Ln( 10 );
 }
-      
+    
+$pdf->Cell(190, 10, "---------------------------------------", 0, 1, 'C');
+
 $pdf->Output();
   
 ?>

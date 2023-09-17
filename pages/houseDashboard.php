@@ -110,7 +110,7 @@ include('../routes/connect.php');
                         }
                         ?>
                         <form role="form" action="../routes/admin/captainEdit.php" method="post">
-                            
+
                             <input type="text" name="assignedByIncharge" value="TEAM_INCHARGE" style="display: none;" id="">
                             <div class="form-group"> <label for="house_name">
                                     <h6>House Name</h6>
@@ -125,7 +125,7 @@ include('../routes/connect.php');
                                         <h6>Captain Name</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="captain_name" placeholder="Enter Captain Name" class="form-control " required>
-                                    <input type="text" name="captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[2]?>" required>
+                                        <input type="text" name="captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[2] ?>" required>
                                     </div>
                                 </div>
 
@@ -133,9 +133,9 @@ include('../routes/connect.php');
                                         <h6>Vice Captain Name</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="vice_captain_name" placeholder="Enter Vice Captain Name" class="form-control " required>
-                                    <input type="text" name="vice_captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[3]?>" required>
-                                    
-                                </div>
+                                        <input type="text" name="vice_captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[3] ?>" required>
+
+                                    </div>
                                 </div>
 
                             </div>
@@ -225,15 +225,26 @@ include('../routes/connect.php');
                     <?php echo $houseLeads[3] ?>
                 </h5>
             </div>
-            <div class="cta-section">
+            <div class="cta-section" style="margin-left: 24px;align-items: center;text-align: center;">
                 <?php
                 $scoreResult = mysqli_query($conn, "SELECT score FROM housedb WHERE name = '$houseName'");
                 $score = mysqli_fetch_assoc($scoreResult);
                 ?>
-                <div>Score:
-                    <?php echo $score['score'];
-                    mysqli_free_result($scoreResult);
-                    ?>
+                <button style="margin-bottom: 12px;" class="btn btn-primary">Score : <?php echo $score['score'];
+                                                        mysqli_free_result($scoreResult);
+                                                        ?></button>
+
+                <div>
+                    <form style="margin-bottom: 8px;" action="../routes/pdf/HousepdfGen.php" method="post">
+                        <input type="text" style="display: none;" value="<?php echo $houseName ?>" name='house'>
+                        <button class="btn btn-primary">House Data Export</button>
+
+                    </form>
+                    <form style="margin-top: 8px;" action="../routes/pdf/HousepdfGen.php" method="post">
+                        <input type="text" style="display: none;" value="<?php echo $houseName ?>" name='house'>
+                        <button class="btn btn-primary">Event Data Export</button>
+
+                    </form>
                 </div>
                 <!-- <a href="#" class="btn btn-light">Buy Now</a> -->
             </div>
