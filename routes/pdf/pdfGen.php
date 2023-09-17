@@ -75,15 +75,6 @@ $pdf->Ln( 10 );
 $fill = false;
 $row = 0;
 
-$data = array(
-    array( 921020104057, 'VENKATESH M', 'CSE', 'IV' ),
-    array( 921020104057, 'VENKATESH M', 'CSE', 'IV' ),
-    array( 921020104057, 'VENKATESH M', 'CSE', 'IV' ),
-    array( 921020104057, 'VENKATESH M', 'CSE', 'IV' ),
-    array( 921020104057, 'VENKATESH M', 'CSE', 'IV' ),
-    array( 921020104057, 'VENKATESH M', 'CSE', 'IV' ),
-  );
-
 while ($data = mysqli_fetch_array($sql)) {
 
  
