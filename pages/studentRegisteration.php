@@ -125,7 +125,20 @@ include('../routes/connect.php');
                 <input style="width: 90%;margin: 12px;" type="text" name="house_name" value="<?php echo $houseName ?>" readonly>
                 <input style="width: 90%;margin: 12px;" type="text" name="event_name" value="<?php echo $eventName ?>" readonly>
 
-                <input style="width: 90%;margin: 12px;" placeholder="Student Reg No" type="text" name="reg_number" id="reg_number">
+                <?php
+
+                $studentResult = mysqli_query($conn, "SELECT reg_no FROM `studentdb` WHERE house = '$houseName'");
+
+                echo "<div class='form-group'>
+                <input style='width: 90%; margin: 12px;' type='text' list='listName' name='reg_number' id='reg_number' placeholder='Student Reg No' required class='form-control'>
+                <datalist id='listName'>";
+                while ($studentDetail = mysqli_fetch_array($studentResult)) {
+                    echo "<option value='$studentDetail[0]'>$studentDetail[0]</option>";
+                }
+
+                echo "</datalist></div>";
+                ?>
+
                 <?php
                 if ($event['is_group'] == 1) {
                     $groupCountResult = mysqli_query($conn, "SELECT group_counts FROM `eventdb` WHERE event_name = '$eventName'");
@@ -135,13 +148,12 @@ include('../routes/connect.php');
                         $count = (int)$groupCount['group_counts'];
 
                         echo "<div class='form-group'>
-                            <input style='width: 90%; margin: 12px;' type='text' list='listName' name='group' id='group' placeholder='Group Number' required class='form-control'>
-                            <datalist id='listName'>";
+                            <select style='width: 90%; margin: 12px;' type='text' list='listName' name='group' id='group' placeholder='Group Number' required class='form-control'>";
                         for ($i = 1; $i <= $count; $i++) {
                             echo "<option value='$i'>$i</option>";
                         }
 
-                        echo "</datalist></div>";
+                        echo "</select></div>";
                     }
                 } else {
                     echo '<input type="text" name="group" value="0" id="group" hidden>';
@@ -210,19 +222,19 @@ include('../routes/connect.php');
                                                         <?php echo $list['student_dept']; ?>
                                                     </td>
                                                     <td>
-                                                            <?php 
-                                                            $sql = "SELECT * FROM studentdb WHERE reg_no = '$list[reg_no]'";
+                                                        <?php
+                                                        $sql = "SELECT * FROM studentdb WHERE reg_no = '$list[reg_no]'";
 
-                                                            $result = $conn->query($sql);
-                                                            if ($result->num_rows > 0) {
-                                                                // Fetch the row as an associative array
-                                                                $row = $result->fetch_assoc();
-                                                            
-                                                                // Display the data from the selected row
-                                                                echo $row["year"];
-                                                            }
-                                                            ?>
-                                                        </td>
+                                                        $result = $conn->query($sql);
+                                                        if ($result->num_rows > 0) {
+                                                            // Fetch the row as an associative array
+                                                            $row = $result->fetch_assoc();
+
+                                                            // Display the data from the selected row
+                                                            echo $row["year"];
+                                                        }
+                                                        ?>
+                                                    </td>
                                                     <td>
                                                         <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a>
                                                     </td>
@@ -275,14 +287,14 @@ include('../routes/connect.php');
                                                             <?php echo $list['student_dept'] ?>
                                                         </td>
                                                         <td>
-                                                            <?php 
+                                                            <?php
                                                             $sql = "SELECT * FROM studentdb WHERE reg_no = '$list[reg_no]'";
 
                                                             $result = $conn->query($sql);
                                                             if ($result->num_rows > 0) {
                                                                 // Fetch the row as an associative array
                                                                 $row = $result->fetch_assoc();
-                                                            
+
                                                                 // Display the data from the selected row
                                                                 echo $row["year"];
                                                             }

@@ -98,7 +98,7 @@ if ($data['is_group'] == '0') {
     </header>
     <div class="container">
         <div class="header" style="margin-top:85px">
-            <div class="title">Events Details</div>
+            <div class="title">Participants Details</div>
         </div>
         <div class="indicators">
             <div id="i1">

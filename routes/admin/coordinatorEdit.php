@@ -28,7 +28,7 @@ if (isset($_POST["submit"])) {
     }
 
     $update_password = mysqli_real_escape_string($conn, $_POST["update_password"]);
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $hashed_password = password_hash($update_password, PASSWORD_DEFAULT);
 
     $query1 = "UPDATE admindb SET password = '$hashed_password' WHERE name = '$coordinator_name_1'";
     $query2 = "UPDATE admindb SET password = '$hashed_password' WHERE name = '$coordinator_name_2'";
