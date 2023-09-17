@@ -1,3 +1,6 @@
+<?php
+include('../routes/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,14 +110,38 @@
         </div>
 
         <div class="buttons">
-            <button onclick="confetiiShow()" style="PADDING: 10PX 29PX;border: none;FONT-SIZE: 25PX;" class="btn-primary" id="spinner">Spin</button>
+            <button onclick="confetiiShow()" style="PADDING: 10PX 29PX;border: none;FONT-SIZE: 25PX; border-radius: 4px;" class="btn-primary" id="spinner">Spin</button>
             <a class="btn" id="reseter" href=" ">Reset</a>
         </div>
 
+        <form class="buttons row" action="../routes/admin/assignSlot.php" method="post">
+            <input type="text" id="slot" name="slot_array" style="display: none;">
+            <input type="text" id="slot" name="gender" value="girls" style="display: none;">
+            <div class="form-group col-8" id='login-event-name'>
+                <input type="text" list="listName" name="event_name" placeholder="Enter Event Name"
+                    class="form-control">
+                <datalist id="listName">
+                    <?php
+                    $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `is_group`='1' && `gender`!='BOYS'");
+                    while ($event = mysqli_fetch_array($events)) {
+                        ?>
+                        <option value="<?php echo $event['event_name'] ?>">
+                            <?php echo $event['event_name'] ?>
+                        </option>
+
+                        <?php
+                    }
+                    ?>
+                </datalist>
+            </div>
+            
+            <button type="submit" name='submit' class="btn-primary col-4" style="height: 40px; border-radius: 4px;" id="spinner">Submit</button>
+        </form>
+        
         <p class="info" style="visibility: hidden;"></p>
     </div>
 
-    <script src="groped.js"></script>
+    <script src="./groped.js"></script>
 </body>
 <script>
         const duration = 10 * 1200,

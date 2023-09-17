@@ -7,6 +7,7 @@
     "3",
     "4"
   ];
+  var slot = [];
   let temp;
   document.querySelector(".info").textContent = items.join(" ");
 
@@ -91,8 +92,10 @@
       var pos = items.findIndex((val) => val == temp);
       if (pos != -1) {
         items.splice(pos, 1);
+        slot.push(temp);
       }
     }
+    document.getElementById("slot").value = slot; 
   }
 
   function shuffle([...arr]) {
