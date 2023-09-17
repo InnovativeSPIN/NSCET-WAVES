@@ -40,6 +40,8 @@ include('../routes/connect.php');
                                 <span style="background-color:black"></span>
                             </div>
                             <ul>
+                            <li><button type="button" class="btn btn-login btn-primary"
+                                            data-toggle="modal" data-target="#resetModal">Password</button></li>
                                 <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary"
                                             data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
                             </ul>
@@ -49,6 +51,48 @@ include('../routes/connect.php');
             </div>
         </div>
     </header>
+    <!-- Reset Modal -->
+    <div style='margin-top: 32px' class="modal fade loginModal" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="padding: 28px;">
+            <div class="modal-content">
+                <div class="modal-body login-modal-body">
+                    <div class="column" id="main">
+                        <h1 style='margin-bottom: 34px'>Reset Password</h1>
+                        <form action="../routes/admin/captainEdit.php" method="post">
+
+                            <div class="form-group" id='login-event-name'> <label for="event_name">
+                                    <h6>House Name</h6>
+                                </label> <input type="text" name="house_name" value="<?php echo $_SESSION['house_name'] ?>" readonly class="form-control">
+                            </div>
+                            <input type="text" value="HOUSE_CORDINATOR" name="whoUpdate" style="display: none;">
+                            <div class="col-md-12 form-group"> <label for="update_password">
+                                    <h6>Update Common Password</h6>
+                                </label>
+                                <div class="input-group"> <input type="password" name="update_password" placeholder="New Password" class="form-control " required>
+                                </div>
+                            </div>
+                            <button type="submit" name="submit" class="btn btn-login btn-primary">Update</button>
+                        </form>
+                    </div>
+                    <div>
+                        <svg width="67px" height="480px" viewBox="0 0 67 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>Path</title>
+                            <desc>Created with Sketch.</desc>
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z" id="Path" fill="#0ee1e7"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="column" id="secondary">
+                        <div class="sec-content">
+                            <!-- <h2>Welcome Back!</h2>
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card dark gradient-border" style="margin-top:140px">
 
         <?php

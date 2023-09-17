@@ -43,9 +43,12 @@ if (isset($_POST["submit"])) {
     $query4 = "UPDATE admindb SET password = '$hashed_password' WHERE name = '$vice_captain_name'";
 
     if (mysqli_query($conn, $query1) && mysqli_query($conn, $query2) && mysqli_query($conn, $query3) && mysqli_query($conn, $query4)) {
-        header('Location: ../../pages/adminForm.php');
-    } else {
-        echo "Error updating record: " . mysqli_error($conn);
+        if($_POST['whoUpdate']){
+            header('Location: ../../pages/houseDashboard.php');
+
+        }else{
+            header('Location: ../../pages/adminForm.php');
+        }
     }
 }
 
