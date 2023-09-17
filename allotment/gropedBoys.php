@@ -119,7 +119,7 @@ include('../routes/connect.php');
 
         <form class="buttons row" action="../routes/admin/assignSlot.php" method="post">
             <input type="text" id="slot" name="slot_array" style="display: none;">
-            <input type="text" id="slot" name="gender" value="boys" style="display: none;">
+            <input type="text" id="slot" name="gender" value="BOYS" style="display: none;">
             <div class="form-group col-8" id='login-event-name'>
                 <input type="text" list="listName" name="event_name" placeholder="Enter Event Name"
                     class="form-control">
