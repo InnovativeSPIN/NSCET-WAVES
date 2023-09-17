@@ -34,9 +34,13 @@ if (isset($_POST["submit"])) {
     $query2 = "UPDATE admindb SET password = '$hashed_password' WHERE name = '$coordinator_name_2'";
 
     if (mysqli_query($conn, $query1) && mysqli_query($conn, $query2)) {
-        header('Location: ../../pages/adminForm.php');
-    } else {
-        echo "Error updating record: " . mysqli_error($conn);
+        if($_POST['whoUpdate']){
+            header('Location: ../../pages/eventCoordinatorDashboard.php');
+
+        }else{
+            header('Location: ../../pages/adminForm.php');
+
+        }
     }
 }
 

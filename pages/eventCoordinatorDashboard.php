@@ -56,21 +56,16 @@ if ($data['is_group'] == '0') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Coordinator | Dashboard</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rubik:wght@300;700&display=swap"
-        rel="stylesheet">
-        <link rel="stylesheet" href="../public/css/swiper.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rubik:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../public/css/swiper.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/eventCoordinatorDashboard.css">
     <script src="https://kit.fontawesome.com/5fe2f4c2ef.js" crossorigin="anonymous"></script>
-
-    
-
-    
 </head>
 
 <body>
-<header class="site-header">
+    <header class="site-header">
         <div class="header-bar">
             <div class="container-fluid">
                 <div class="row align-items-center">
@@ -81,13 +76,14 @@ if ($data['is_group'] == '0') {
                     </div>
                     <div class="col-2 col-lg-8">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none" >
+                            <div class="hamburger-menu d-lg-none">
                                 <span style="background-color:black"></span>
                                 <span style="background-color:black"></span>
                                 <span style="background-color:black"></span>
                                 <span style="background-color:black"></span>
                             </div>
                             <ul>
+                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#resetModal">Passoword</button></li>
                                 <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
                             </ul>
                         </nav>
@@ -96,7 +92,51 @@ if ($data['is_group'] == '0') {
             </div>
         </div>
     </header>
-    <div class="container">
+
+
+    <!-- Reset Modal -->
+    <div style='margin-top: 32px' class="modal fade loginModal" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="padding: 28px;">
+            <div class="modal-content">
+                <div class="modal-body login-modal-body">
+                    <div class="column" id="main">
+                        <h1 style='margin-bottom: 34px'>Reset Password</h1>
+                        <form action="../routes/admin/coordinatorEdit.php" method="post">
+
+                            <div class="form-group" id='login-event-name'> <label for="event_name">
+                                    <h6>Event Name</h6>
+                                </label> <input type="text" name="event_name" value="<?php echo $eventName ?>" readonly class="form-control">
+                            </div>
+                            <input type="text" value="EVENT_CORDINATOR" name="whoUpdate" style="display: none;">
+                            <div class="col-md-12 form-group"> <label for="update_password">
+                                    <h6>Update Password</h6>
+                                </label>
+                                <div class="input-group"> <input type="password" name="update_password" placeholder="New Password" class="form-control " required>
+                                </div>
+                            </div>
+                            <button type="submit" name="submit" class="btn btn-login btn-primary">Update</button>
+                        </form>
+                    </div>
+                    <div>
+                        <svg width="67px" height="480px" viewBox="0 0 67 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>Path</title>
+                            <desc>Created with Sketch.</desc>
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z" id="Path" fill="#0ee1e7"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="column" id="secondary">
+                        <div class="sec-content">
+                            <!-- <h2>Welcome Back!</h2>
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="background-color: white;">
         <div class="header" style="margin-top:85px">
             <div class="title">Participants Details</div>
         </div>
@@ -180,7 +220,7 @@ if ($data['is_group'] == '0') {
             </div>
         </div>
         <div class="menu">
-            
+
         </div>
     </div>
     <script src="../public/js/coordinatordashboard.js"></script>
