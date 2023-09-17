@@ -254,25 +254,26 @@ include('../routes/connect.php');
                                             $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName' && `student_house` = '$house_name' && `grouped` = $i");
                                 ?>
                                     <div class="col col-sm-3 col-xs-12">
-                                        <h4 class="title">Group <span><?php echo $i ?></span></h4>
+                                        <h4 class="title" style="margin-top: 24px;">Group <span><?php echo $i ?></span></h4>
                                     </div>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Register Number</th>
-                                                <th>Student Name</th>
-                                                <th>Department</th>
-                                                <th>Year</th>
 
-                                                <th>Delete</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
+                                    <?php
                                             while ($list = mysqli_fetch_array($participantsList)) {
-                                            ?>
-                                                <div class="panel-body table-responsive">
+                                    ?>
+                                        <div class="panel-body table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Register Number</th>
+                                                        <th>Student Name</th>
+                                                        <th>Department</th>
+                                                        <th>Year</th>
+
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
                                                     <tr>
                                                         <td>
                                                             <?php echo $k++ ?>
@@ -304,12 +305,12 @@ include('../routes/connect.php');
                                                             <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a>
                                                         </td>
                                                     </tr>
-                                                </div>
-                                            <?php
+                                        </div>
+                                    <?php
                                             }
                                             $i++;
-                                            ?>
-                                        </tbody>
+                                    ?>
+                                    </tbody>
                                     </table>
                             </div>
                     <?php

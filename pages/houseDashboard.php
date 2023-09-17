@@ -13,8 +13,7 @@ include('../routes/connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House | Dashboard</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/houseDashboardStyles.css">
 
@@ -40,10 +39,9 @@ include('../routes/connect.php');
                                 <span style="background-color:black"></span>
                             </div>
                             <ul>
-                            <li><button type="button" class="btn btn-login btn-primary"
-                                            data-toggle="modal" data-target="#resetModal">Password</button></li>
-                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary"
-                                            data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
+                                <li><button style="margin: 8px;" type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#assignLeadModal">Assign Lead</button></li>
+                                <li><button style="margin: 8px;" type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#resetModal">Password</button></li>
+                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#">Logout</button></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -93,6 +91,82 @@ include('../routes/connect.php');
             </div>
         </div>
     </div>
+
+    <!-- Assign Lead Model Modal -->
+    <div style='margin-top: 32px' class="modal fade loginModal" id="assignLeadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="padding: 28px;">
+            <div class="modal-content">
+                <div class="modal-body login-modal-body">
+                    <div class="column" id="main">
+                        <h1 style='margin-bottom: 34px'>Assign Lead</h1>
+                        <?php
+                        $house_name = $_SESSION['house_name'];
+                        $queryHouseLeadsName = "SELECT id FROM `admindb` WHERE house_name = '$house_name'";
+                        $getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
+
+                        $houseLeads = array();
+                        while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
+                            array_push($houseLeads, $houseLead['id']);
+                        }
+                        ?>
+                        <form role="form" action="../routes/admin/captainEdit.php" method="post">
+                            
+                            <input type="text" name="assignedByIncharge" value="TEAM_INCHARGE" style="display: none;" id="">
+                            <div class="form-group"> <label for="house_name">
+                                    <h6>House Name</h6>
+                                </label> <input type="text" readonly value="<?php echo $_SESSION['house_name'] ?>" list="houseName" name="house_name" placeholder="Enter House Name" required class="form-control ">
+                                <datalist id="houseName">
+
+                                </datalist>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 form-group"> <label for="captain_name">
+                                        <h6>Captain Name</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="captain_name" placeholder="Enter Captain Name" class="form-control " required>
+                                    <input type="text" name="captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[2]?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 form-group"> <label for="vice_captain_name">
+                                        <h6>Vice Captain Name</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="vice_captain_name" placeholder="Enter Vice Captain Name" class="form-control " required>
+                                    <input type="text" name="vice_captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[3]?>" required>
+                                    
+                                </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="card-footer"> <button type="submit" name='submit' class="subscribe btn btn-primary shadow-sm">
+                                    Assign House Leads </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <svg width="67px" height="480px" viewBox="0 0 67 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Path</title>
+                        <desc>Created with Sketch.</desc>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <path d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z" id="Path" fill="#0ee1e7"></path>
+                        </g>
+                    </svg>
+                </div>
+                <div class="column" id="secondary">
+                    <div class="sec-content">
+                        <!-- <h2>Welcome Back!</h2>
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
     <div class="card dark gradient-border" style="margin-top:140px">
 
         <?php
@@ -127,15 +201,15 @@ include('../routes/connect.php');
                 </h5>
 
                 <?php
-					$house_name = $_SESSION['house_name'];
-					$queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
-					$getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
+                $house_name = $_SESSION['house_name'];
+                $queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
+                $getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
 
-					$houseLeads = array();
-					while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
-						array_push($houseLeads, $houseLead['name']);
-					}
-					?>
+                $houseLeads = array();
+                while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
+                    array_push($houseLeads, $houseLead['name']);
+                }
+                ?>
                 <h3 style="color:#e22361" class='card-title'> House Leads Details
                 </h3>
                 <h5 class="card-text">
@@ -235,7 +309,7 @@ include('../routes/connect.php');
                                     } else {
                                         $isGroup = 'No';
                                     }
-                                    ?>
+                                ?>
                                     <tr>
                                         <td>
                                             <?php echo $i++ ?>
@@ -268,17 +342,15 @@ include('../routes/connect.php');
 
                                         <td>
                                             <ul class="action-list">
-                                                <li><a href=<?php echo './studentRegisteration.php' . "?eventName=" . urlencode($eventName) ?> data-tip="edit"><i
-                                                            class="fa fa-edit"></i></a></li>
+                                                <li><a href=<?php echo './studentRegisteration.php' . "?eventName=" . urlencode($eventName) ?> data-tip="edit"><i class="fa fa-edit"></i></a></li>
                                             </ul>
                                         </td>
                                     </tr>
 
-                                    <?php
+                                <?php
                                     mysqli_free_result($eventCoordinatorResult);
                                     if ($SpecificEventRegStuCountResult) {
                                         mysqli_free_result($SpecificEventRegStuCountResult);
-
                                     }
                                 }
                                 mysqli_free_result($eventsResult);
@@ -335,7 +407,7 @@ include('../routes/connect.php');
                                     $dept = $studentDetail['dept'];
                                     $year = $studentDetail['year'];
 
-                                    ?>
+                                ?>
                                     <tr>
                                         <td>
                                             <?php echo $i++ ?>
@@ -354,7 +426,7 @@ include('../routes/connect.php');
                                         </td>
                                     </tr>
 
-                                    <?php
+                                <?php
                                 }
                                 mysqli_free_result($stuDBResult);
                                 ?>
@@ -389,7 +461,7 @@ include('../routes/connect.php');
             return Math.random() * (max - min) + min;
         }
 
-        const interval = setInterval(function () {
+        const interval = setInterval(function() {
             const timeLeft = animationEnd - Date.now();
 
             if (timeLeft <= 0) {

@@ -34,10 +34,10 @@ body {
   }
   .card-body {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
   .text-section {
-    max-width: 60%;
+    /* max-width: 60%; */
   }
   .cta-section {
     max-width: 40%;
