@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 16, 2023 at 11:25 PM
+-- Generation Time: Sep 18, 2023 at 05:50 PM
 -- Server version: 5.7.43
 -- PHP Version: 8.1.16
 
@@ -127,6 +127,23 @@ INSERT INTO `admindb` (`id`, `name`, `dept`, `reg_no`, `role`, `password`, `even
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `allotmentdb`
+--
+
+CREATE TABLE `allotmentdb` (
+  `house` varchar(255) NOT NULL,
+  `event` varchar(255) NOT NULL,
+  `isGroup` int(11) NOT NULL DEFAULT '0',
+  `group_count` int(11) NOT NULL,
+  `grouped` int(11) NOT NULL,
+  `slot` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `gender` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `eventdb`
 --
 
@@ -161,7 +178,7 @@ INSERT INTO `eventdb` (`event_name`, `event_id`, `event_date`, `event_time`, `ev
 ('TALK ON THE SPOT', 6, '26/09/23', '01:00 PM to 02:00 PM', 'Language Lab', 4, 1, 2, 2, 4, 'COMMON', 'public/images/event/talk.jpg', 'Off Stage', 'This is a solo event where participants can choose to speak in either Tamil or English but should not mix languages during their speech. It\'s open to both boys and girls teams, with a participant count of 2 per team. The event allows 2 minutes for preparation and 3 minutes for the talk. The topic will be given on the spot, and judgment will be based on relevance to the title, fluency, organized content delivery, and clarity of the presentation.', 'Mr.R.C.RICHARD BRITTO|Mr.V.SIVAGANESAN'),
 ('BLOSSOM AND CRAFTS', 7, '26/09/23', '02:00 PM to 03:00 PM', 'Chemistry Lab', 4, 1, 2, 2, 4, 'COMMON', 'public/images/event/several-colorful-gifts-with-bow.jpg', 'Off Stage', 'This is a team event open to both boys and girls teams. Each team consists of 2 groups, with 2 members in each group, totaling 4 participants per team. The teams have a time limit of 1 hour to create their chosen art, which may be floral or any gift, depending on the participants\' preferences. Participants are required to bring all necessary materials for their project.', 'Dr.C.SIVAKANDHAN|Mr.C.SURULIMANI'),
 ('CUISINE MASTER', 8, '26/09/23', '03:15 PM to 04:15 PM', 'Physics Lab', 6, 1, 2, 3, 6, 'COMMON', 'public/images/event/cuisine_master.jpg', 'Off Stage', '\r\nThis is a team event that welcomes both boys and girls teams. Each team is composed of 2 groups, with 3 members in each group, making a total of 6 participants per team. Teams have a time limit of 1 hour to create their culinary masterpiece. Participants are responsible for bringing all the necessary materials for their cooking project. The results of this event will be based on taste and creativity. It\'s important to note that participants are allowed to use an induction stove for their cooking, but the use of open flames or fire is strictly prohibited for safety reasons.', 'Mr.M.IDHAYACHANDRAN|Mr.R.RAJAKARTHICK'),
-('TECH QUEST CHALLENGE', 9, '26/09/23', '03:30 PM to 04:30 PM', 'Sir. C. V. Raman Auditorium', 5, 0, 0, 0, 5, 'COMMON', 'public/images/event/treasure-hunt.png', 'Off Stage', 'It is team event. This event is for both boys and girls teams. Participants count : Maximum 4 members. Time limit : 1 hour. Detailed rules will be announced by organizers.', 'Mr. K.KIRUBAKARAN|Mr.A.VENNIMALAIRAJAN'),
+('TECH QUEST CHALLENGE', 9, '26/09/23', '03:30 PM to 04:30 PM', 'Sir. C. V. Raman Auditorium', 5, 0, 0, 0, 5, 'COMMON', 'public/images/event/treasure-hunt.png', 'Off Stage', 'It is team event. This event is for both boys and girls teams. Participants count : Maximum 5 members. Time limit : 1 hour. Detailed rules will be announced by organizers.', 'Mr. K.KIRUBAKARAN|Mr.A.VENNIMALAIRAJAN'),
 ('HANDY HENNA', 10, '27/09/23', '09:45 AM – 10:45 AM', 'Chemistry Lab', 4, 1, 2, 2, 4, 'GIRLS', 'public/images/event/henna.jpg', 'Off Stage', 'It is team event. This event is for Girls teams only. Participants count : 2 groups/ team with 2 members in each group. Time limit : 1 hour. The participants should bring all necessary materials.', 'Mrs.R.ARCHANA|Ms.R.VINITHA\r\n'),
 ('HAIRY DORA', 11, '27/09/23', '11:00 AM to 12:00 noon', 'Physics Lab', 4, 1, 2, 2, 4, 'GIRLS', 'public/images/event/hairy.jpg', 'Off Stage', 'It is team event. This event is for Girls teams only. Participants count : 2 groups/ team with 2 members in each group. Time limit : 1 hour. The participants should bring all necessary materials.', 'Mrs.P.NALINI|Mrs.A.RAJAPRIYADHARSHINI\r\n'),
 ('ODYSSEY ENGLISH', 12, '27/09/23', '12:15 PM to 01:15 PM', 'Ohm’s Lab', 7, 0, 0, 0, 7, 'GIRLS', 'public/images/event/webpage 3.jpg', 'Off Stage', 'This is a team event exclusively for girls teams, with each team allowed a maximum of 7 participants. The total performance time should not exceed 5 minutes, and teams must inform the organizers and event coordinator of their chosen theme at least two days before the event. The theme should revolve around creating awareness about a specific issue or topic. The complete skit should be in the English language. Safety is a priority, and the use of fire, water, glass, or any materials that could litter the stage is strictly prohibited. Audio tracks should be submitted and verified with the event coordinator on the day before the event. Judging criteria will assess creativity, team coordination, the use of costumes, and properties within the performance.', 'Mrs.M.FATHIMA BEEVI|Mrs.J.PREETHA'),
@@ -865,6 +882,12 @@ ALTER TABLE `admindb`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `allotmentdb`
+--
+ALTER TABLE `allotmentdb`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `eventdb`
 --
 ALTER TABLE `eventdb`
@@ -900,6 +923,12 @@ ALTER TABLE `studentdb`
 --
 ALTER TABLE `admindb`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
+--
+-- AUTO_INCREMENT for table `allotmentdb`
+--
+ALTER TABLE `allotmentdb`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `registerationdb`
