@@ -13,21 +13,27 @@ class PDF extends FPDF
     function Header()
     {
         // GFG logo image
-        $this->Image('../../public/images/logos/clg-logo.png', 30, 13, 20);
+        $this->Image('../../public/images/logos/clg-logo.png', 10, 13, 20);
           
         // GFG logo image
-        $this->Image('../../public/images/logos/waves-logo.png', 160, 15, 20);
+        $this->Image('../../public/images/logos/waves-logo.png', 180, 15, 20);
           
         // Set font-family and font-size
-        $this->SetFont('Times','B',20);
+        $this->SetFont('Times','B',12);
           
         // Move to the right
         $this->Cell(80);
           
         // Set the title of pages.
-        $this->Cell(30, 20, 'WAVES 2023', 0, 2, 'C');          
+        $this->Cell(30, 10, 'NADAR SARASWATHI COLLEGE OF ENGINEERING & TECHNOLOGY', 0, 2, 'C');
+        $this->SetFont('Times','BIU',12);
+
+        $this->Cell(30, 8, 'WAVES 23', 0, 2, 'C');   
+        
+        // $this->Text(35,190,'W a t e r m a r k   d e m o');
+        $this->Image('../../public/images/logos/background-logo.png',15,100,177,86);
         // Break line with given space
-        $this->Ln(5);
+        $this->Ln(1);
     }
        
     // Page footer
@@ -54,24 +60,31 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 
 // $pdf->SetDrawColor(240,248,255);
-$pdf->Ln( 5 );
 
 
 // Set font-family and font-size.
 
-$pdf->SetFont('Times','B',18);
+$pdf->SetFont('Times','B',15);
 
-$pdf->Cell(190, 10, "$house", 0, 1, 'C');
+$pdf->Cell(190, 10, "$house", 0, 2, 'C');
+$pdf->SetFont('Helvetica','',10);
 
+$houseDetail = mysqli_query($conn,"SELECT * FROM `admindb` WHERE `house_name`='$house'");
+
+while($data = mysqli_fetch_array($houseDetail)) {
+    $pdf->Cell(190, 5, "$data[role] : $data[name]", 0, 1, 'C');
+}
+
+$pdf->Ln( 2 );
 
 $pdf->SetFont('Times','B',12);
 
 $pdf->SetTextColor(255,255,255);
 
 $pdf->Cell( 12, 10, "S_no", 1, 0, 'C', true );
-$pdf->Cell( 50, 10, "Register Number", 1, 0, 'C', true );
-$pdf->Cell( 70, 10, "Student Name", 1, 0, 'C', true );
-$pdf->Cell( 45, 10, "Deparment", 1, 0, 'C', true );
+$pdf->Cell( 45, 10, "Register Number", 1, 0, 'C', true );
+$pdf->Cell( 85, 10, "Student Name", 1, 0, 'C', true );
+$pdf->Cell( 35, 10, "Deparment", 1, 0, 'C', true );
 $pdf->Cell( 15, 10, "Year", 1, 0, 'C', true );
 
 $pdf->Ln( 10 );
@@ -86,18 +99,17 @@ while ($data = mysqli_fetch_array($sql)) {
  
     // Create the data cells
     $pdf->SetTextColor( 0,0,0 );
-    $pdf->SetFillColor( 255, 255, 255 );
-    $pdf->SetFont( 'Arial', '', 15 );
+    // $pdf->SetFillColor( 255, 255, 255 );
+    $pdf->SetFont( 'Arial', '', 12 );
     
     
     $pdf->Cell( 12, 10, $row+1, 1, 0, 'C', $fill );
-    $pdf->Cell( 50, 10, $data['reg_no'], 1, 0, 'C', $fill );
-    $pdf->Cell( 70, 10, $data['name'], 1, 0, 'C', $fill );
-    $pdf->Cell( 45, 10, $data['dept'], 1, 0, 'C', $fill );
+    $pdf->Cell( 45, 10, $data['reg_no'], 1, 0, 'C', $fill );
+    $pdf->Cell( 85, 10, $data['name'], 1, 0, 'C', $fill );
+    $pdf->Cell( 35, 10, $data['dept'], 1, 0, 'C', $fill );
     $pdf->Cell( 15, 10, $data['year'], 1, 0, 'C', $fill );
   
     $row++;
-    $fill = !$fill;
     $pdf->Ln( 10 );
 }
     
