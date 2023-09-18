@@ -106,7 +106,7 @@ while ($data = mysqli_fetch_array($event)) {
 
     $pdf->Ln(10);
     $row = 0;
-    $query = mysqli_query($conn, "SELECT * FROM `registerationdb` WHERE `event_name`='$data[event_name]' && `student_house`='$house'");
+    $query = mysqli_query($conn, "SELECT * FROM `registerationdb` WHERE `event_name`='$data[event_name]' && `student_house`='$house' ORDER BY `registerationdb`.`grouped` ASC");
     $i=0;
     while ($row < $data['max_participants']) { 
         $pdf->SetTextColor(0, 0, 0);
