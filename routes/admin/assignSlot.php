@@ -24,14 +24,17 @@ if (isset($_POST["submit"])) {
 
     if (count($slot) == 4) {
         for ($i = 0; $i < count($slot); $i++) {
-            
+
             $slotNo = $slot[$i];
 
             // group_count - is fixed to 2. further may increase
             $query = "INSERT INTO `allotmentdb`(`house`, `event`, `isGroup`, `group_count`, `grouped`, `slot`, `gender`) VALUES ('$teams[$i]', '$event_name', 0, 0, 0, $slotNo, '$gender')";
             mysqli_query($conn, $query);
-            echo "Error : " . mysqli_error($conn);
+
+
+            // echo "Error : " . mysqli_error($conn);
         }
+        header('Location: ../../allotment/ungroped.php?eventName=' . urlencode($_POST["event_name"]));
     }
 
 
@@ -46,9 +49,12 @@ if (isset($_POST["submit"])) {
                 // group_count - is fixed to 2. further may increase
                 $query = "INSERT INTO `allotmentdb`(`house`, `event`, `isGroup`, `group_count`, `grouped`, `slot`, `gender`) VALUES ('$teams[$j]', '$event_name', 1, 2, $i+1, $slotNo, '$gender')";
                 mysqli_query($conn, $query);
-                echo "Error : " . mysqli_error($conn);
+
+
+                // echo "Error : " . mysqli_error($conn);
             }
         }
+        header('Location: ../../allotment/ungroped.php?eventName=' . urlencode($_POST["event_name"]));
     }
 }
 mysqli_close($conn);

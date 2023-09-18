@@ -218,7 +218,7 @@ body {
   left: 0;
   z-index: 99;
   width: 100%;
-  padding: 40px 0;
+  padding: 0px 0px;
 }
 
 .header-bar .site-branding {
@@ -2578,6 +2578,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+  .site-header .header-bar {
+    padding: 40px 0px;
+  }
   .team-display {
     display: block;
   }

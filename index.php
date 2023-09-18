@@ -225,19 +225,19 @@ if (!isset($_SESSION)) {
                     </div>
                     <div class="col-2 col-lg-8">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none">
+                            <div class="hamburger-menu d-lg-none" style="position: fixed;">
                                 <span></span>
                                 <span></span>
                                 <span></span>
                                 <span></span>
                             </div>
                             <ul>
-                                <!-- <li><a href="#">HOME</a></li>
-                                <li><a href="#">Waves'23</a></li>
-                                <li><a href="#">ARTISTS</a></li>
-                                <li><a href="#">BLOG</a></li>
-                                <li><a href="#">CONTACT</a></li>
-                                <li><a href="#"><i class="fas fa-search"></i></a></li> -->
+                                <li><a href=" ">Home</a></li>
+                                <li><a href="#gallary">Waves'22</a></li>
+                                <li><a href="#boysEvent">Boys Event</a></li>
+                                <li><a href="#girlsEvent">Girls Event</a></li>
+                                <li><a href="#footer">Contact Us</a></li>
+                                <!-- <li><a href="#"><i class="fas fa-search"></i></a></li> -->
                                 <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
                             </ul>
                         </nav>
@@ -400,7 +400,7 @@ if (!isset($_SESSION)) {
                 <div class="col-12">
                     <div class="lineup-artists-headline">
                         <div class="entry-title">
-                            <p>JUST THE BEST</p>
+                            <p> </p>
                             <h2>The Lineup Artists-Headliners</h2>
                         </div>
                         <div class="lineup-artists">
@@ -469,7 +469,7 @@ if (!isset($_SESSION)) {
                 <div class="col-12">
                     <div class="lineup-artists-headline">
                         <div class="entry-title">
-                            <p>JUST THE BEST</p>
+                            <p> </p>
                             <h2>Waves & Team</h2>
                         </div>
                         <div class="team-display">
@@ -508,7 +508,7 @@ if (!isset($_SESSION)) {
                 <div class="col-12">
                     <div class="the-complete-lineup">
                         <div class="entry-title">
-                            <p>JUST THE BEST</p>
+                            <p> </p>
                             <h2>The Event Lineup</h2>
                         </div>
                         <div class="row the-complete-lineup-artists">
@@ -540,10 +540,10 @@ if (!isset($_SESSION)) {
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div id="boysEvent" class="col-12">
                     <div class="the-complete-lineup">
                         <div class="entry-title">
-                            <p>JUST THE BEST</p>
+                            <p> </p>
                             <h2>Exclusive for Boys</h2>
                         </div>
                         <div class="row the-complete-lineup-artists">
@@ -574,10 +574,10 @@ if (!isset($_SESSION)) {
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div id="girlsEvent" class="col-12">
                     <div class="the-complete-lineup">
                         <div class="entry-title">
-                            <p>JUST THE BEST</p>
+                            <p> </p>
                             <h2>Exclusive for Girls</h2>
                         </div>
                         <div class="row the-complete-lineup-artists">
@@ -613,7 +613,7 @@ if (!isset($_SESSION)) {
                 <div class="row">
                     <div class="col-12">
                         <div class="entry-title">
-                            <p>JUST THE BEST</p>
+                            <p> </p>
                             <h2>Our Events</h2>
                         </div>
                     </div>
@@ -888,11 +888,11 @@ if (!isset($_SESSION)) {
 
             }
         </style>
-        <div class="home-page-last-news">
+        <div id="gallary" class="home-page-last-news">
             <div class="container">
                 <div class="header">
                     <div class="entry-title">
-                        <p>JUST THE BEST</p>
+                        <p> </p>
                         <h2>Our Waves'22</h2>
                     </div>
                 </div>
@@ -983,7 +983,7 @@ if (!isset($_SESSION)) {
             </div>
         </div>
     </div>
-    <footer class="site-footer">
+    <footer id="footer" class="site-footer">
         <div class="footer-cover-title flex justify-content-center align-items-center">
             <h2>Waves'23</h2>
         </div>

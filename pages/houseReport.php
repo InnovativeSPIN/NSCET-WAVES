@@ -40,7 +40,7 @@ include('../routes/connect.php');
             <div class="container-fluid">
                 <div class="row align-items-center" style="justify-content: space-around;">
                 <img src="../public/images/logos/clg-logo-min.png" alt="" class="" width="120">
-                        <img src="../public/images/logos/waves-logo.png" alt="" class="" width="120">
+                <a href="../AdminOfWaves23.php"><img src="../public/images/logos/waves-logo.png" alt="" class="" width="120"></a>
                         <img src="../public/images/logos/ispin-logo.png" alt="" class="" width="80">
 
                 </div>
