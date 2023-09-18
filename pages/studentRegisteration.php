@@ -22,7 +22,6 @@ include('../routes/connect.php');
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
-
     <link rel="stylesheet" href="../public/css/houseDashboardStyles.css">
 
 
@@ -165,7 +164,6 @@ include('../routes/connect.php');
             </form>
         </div> <br><br>
     <?php } else { ?>
-        <display an error>
         <?php } ?>
 
         <!-- table -->
@@ -256,24 +254,25 @@ include('../routes/connect.php');
                                     <div class="col col-sm-3 col-xs-12">
                                         <h4 class="title" style="margin-top: 24px;">Group <span><?php echo $i ?></span></h4>
                                     </div>
+                                    <div class="panel-body table-responsive">
 
-                                    <?php
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Register Number</th>
+                                                <th>Student Name</th>
+                                                <th>Department</th>
+                                                <th>Year</th>
+
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
                                             while ($list = mysqli_fetch_array($participantsList)) {
-                                    ?>
-                                        <div class="panel-body table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Register Number</th>
-                                                        <th>Student Name</th>
-                                                        <th>Department</th>
-                                                        <th>Year</th>
+                                            ?>
 
-                                                        <th>Delete</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
                                                     <tr>
                                                         <td>
                                                             <?php echo $k++ ?>
@@ -305,12 +304,12 @@ include('../routes/connect.php');
                                                             <a href=<?php echo '../routes/studentReg/removeStudentRegisteration.php' . "?ID=" . urlencode($list['id']) . "&eventName=" . urlencode($eventName) ?> data-tip="trash"><i style="color: red;" class="fa fa-trash"></i></a>
                                                         </td>
                                                     </tr>
-                                        </div>
-                                    <?php
+                                                </div>
+                                            <?php
                                             }
                                             $i++;
-                                    ?>
-                                    </tbody>
+                                            ?>
+                                        </tbody>
                                     </table>
                             </div>
                     <?php
@@ -328,7 +327,16 @@ include('../routes/connect.php');
         </div>
         </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+        <script src="../public/js/coordinatordashboard.js"></script>
         <script type="text/javascript" src="../public/js/jquery.js"></script>
+        <script type="text/javascript" src="../public/js/masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="../public/js/jquery.collapsible.min.js"></script>
+        <script type="text/javascript" src="../public/js/swiper.min.js"></script>
+        <script type="text/javascript" src="../public/js/jquery.countdown.min.js"></script>
+        <script type="text/javascript" src="../public/js/circle-progress.min.js"></script>
+        <script type="text/javascript" src="../public/js/jquery.countTo.min.js"></script>
+        <script type="text/javascript" src="../public/js/custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
         <script src="https://kit.fontawesome.com/6a9b11d703.js" crossorigin="anonymous"></script>
 </body>
 
