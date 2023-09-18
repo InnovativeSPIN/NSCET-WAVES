@@ -10,6 +10,7 @@ $eventData['event'] = array(
     'is_group' => $data['is_group'],
     'group_counts' => $data['group_counts']
 );
+
 if ($data['is_group'] == '0') {
     $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName'");
     $participants = array();
@@ -21,7 +22,18 @@ if ($data['is_group'] == '0') {
             'student_house' => $list['student_house']
         );
     }
+
+    $allotmentListResult = mysqli_query($conn, "SELECT * FROM `allotmentdb` WHERE `event`= '$eventName'");
+    $allotmentSlot = array();
+    while ($allotmentData = mysqli_fetch_array($allotmentListResult)) {
+        $allotmentSlot[] = array(
+            'house' => $allotmentData['house'],
+            'slot' => $allotmentData['slot']
+        );
+    }
     $eventData['participants'] = $participants;
+    $eventData['allotmentSlot'] = $allotmentSlot;
+
 } else {
     $eventData['groups'] = array();
     $i = 1;
@@ -37,9 +49,18 @@ if ($data['is_group'] == '0') {
             );
         }
 
+        $allotmentListResult = mysqli_query($conn, "SELECT * FROM `allotmentdb` WHERE `event`= '$eventName'");
+        $allotmentSlot = array();
+        while ($allotmentData = mysqli_fetch_array($allotmentListResult)) {
+            $allotmentSlot[] = array(
+                'house' => $allotmentData['house'],
+                'slot' => $allotmentData['slot']
+            );
+        }
         $eventData['groups'][] = array(
             'group_number' => $i,
-            'participants' => $participants
+            'participants' => $participants,
+            'allotmentSlot' =>  $allotmentSlot
         );
         $i++;
     }
@@ -56,9 +77,11 @@ if ($data['is_group'] == '0') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Coordinator | Dashboard</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rubik:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rubik:wght@300;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../public/css/swiper.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/eventCoordinatorDashboard.css">
     <script src="https://kit.fontawesome.com/5fe2f4c2ef.js" crossorigin="anonymous"></script>
@@ -93,8 +116,7 @@ if ($data['is_group'] == '0') {
         </div>
     </header>
 
-
-    <!-- Reset Modal -->
+<!-- Reset Modal -->
     <div style='margin-top: 32px' class="modal fade loginModal" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="padding: 28px;">
             <div class="modal-content">
@@ -128,8 +150,6 @@ if ($data['is_group'] == '0') {
                     </div>
                     <div class="column" id="secondary">
                         <div class="sec-content">
-                            <!-- <h2>Welcome Back!</h2>
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3> -->
                         </div>
                     </div>
                 </div>

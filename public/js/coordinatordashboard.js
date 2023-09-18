@@ -54,14 +54,14 @@ function populateItems(eventData, houseName) {
         const event = eventData.event;
 
         if (event.is_group === "0") {
-            createEventTable(eventData.participants, houseName, menu,'Event Details');
+            createEventTable(eventData.participants,eventData.allotmentSlot, houseName, menu,'Event Details');
         } else if (event.is_group === "1") {
             const groups = eventData.groups;
 
 			var groupCount = eventData.event.group_counts
             for (const group of groups) {
                 if (group.participants && group.participants.length > 0) {
-                    createEventTable(group.participants, houseName, menu,`Group ${group.group_number} Details `);
+                    createEventTable(group.participants,group.allotmentSlot, houseName, menu,`Group ${group.group_number} Details `);
                 }
             }
         }
@@ -70,8 +70,9 @@ function populateItems(eventData, houseName) {
     }
 }
 
-function createEventTable(participants, houseName, menu,title) {
+function createEventTable(participants,allotmentSlots, houseName, menu,title) {
     const filteredParticipants = participants.filter(participant => participant.student_house === houseName);
+    const slotNumber = allotmentSlots.filter(allotmentSlot => allotmentSlot.house === houseName);
 
     if (filteredParticipants.length > 0) {
         let eventDetails = document.createElement("div");
@@ -81,10 +82,11 @@ function createEventTable(participants, houseName, menu,title) {
             <table class="table">
                 <thead>
                     <tr>
-                        <th>s.no</th>
+                        <th>S.NO</th>
                         <th>REGISTER NUMBER</th>
                         <th>STUDENT NAME</th>
                         <th>STUDENT DEPARTMENT</th>
+                        <th>SLOT NUMBER</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,11 +96,11 @@ function createEventTable(participants, houseName, menu,title) {
                             <td>${participant.reg_no}</td>
                             <td>${participant.student_name}</td>
                             <td>${participant.student_dept}</td>
+                            <td>${slotNumber[0].slot}</td>
                         </tr>
                     `).join('')}
                 </tbody>
-            </table>
-        `;
+            </table>`
 
         menu.appendChild(eventDetails);
     }
