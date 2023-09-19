@@ -9,64 +9,26 @@ if (isset($_POST['importExcelFile'])) {
         if (($handle = fopen($csvFileTmpName, 'r')) !== false) {
             
             $header = fgetcsv($handle, 1000, ',');
-            print_r($header);
-
-            function convert1stYearRegNo($inputRegNo) {
-                $deptCode = [
-                    "AI" => "243",
-                    "CE" => "103",
-                    "CS" => "104",
-                    "EE" => "105",
-                    "EC" => "106",
-                    "ME" => "114",
-                    "IT" => "205",
-                ];
-                $year = substr($inputRegNo, 0, 2);
-                $inputDeptCode = substr($inputRegNo, 2, 2);
-                $departmentCode="";
-                if (array_key_exists($inputDeptCode, $deptCode)) {
-                    global $departmentCode;
-                    $departmentCode = $deptCode[$inputDeptCode];
-                }
-                
-                $studentCode = str_pad(substr($inputRegNo, 4), 3, '0', STR_PAD_LEFT);
-                $originalRegNo = "9210" . $year . $departmentCode . $studentCode;
-            
-                return $originalRegNo;
-            }
             while (($data = fgetcsv($handle, 1000, ',')) !== false) {
-                print_r($header);
+                $dept = $conn->real_escape_string($data[1]);
+                $inputRegNo = $conn->real_escape_string($data[2]);
+                $inputAdmissionNo = $conn->real_escape_string($data[3]);
+                $stu_name = $conn->real_escape_string($data[4]);
 
-                $inputRegNo = $conn->real_escape_string($data[1]);
-                $stu_name = $conn->real_escape_string($data[2]);
-                // $final_col = $conn->real_escape_string($data[3]);
-                $dept = $conn->real_escape_string($data[3]);
-                $year = "I";
+                $stu_batch = $conn->real_escape_string($data[5]);
 
-                // $parts = explode("/", $final_col);
-                // if (count($parts) === 2) {
-                //     $year = $parts[0];
-                //     $dept = $parts[1];
-                // }
+                $batch_year = [
+                    "2020" => "IV",
+                    "2021" => "III",
+                    "2022" => "II",
+                    "2023" => "I"
+                ];
 
-                // if ($year === 'IV') {
-                //     continue;
-                // }
+                $year = $batch_year[$stu_batch];
 
-                // $yearMapping = [
-                //     "I" => "II",
-                //     "II" => "III",
-                //     "III" => "IV",
-                // ];
-
-                // if (array_key_exists($year, $yearMapping)) {
-                //     $year = $yearMapping[$year];
-                // }              
-                // if (strlen($inputRegNo) === 6) {
-                //     $reg_no = convert1stYearRegNo($inputRegNo);
-                // }else{
-                //     $reg_no = $inputRegNo;
-                // }
+                if($inputRegNo == ''){
+                    $inputRegNo = $inputAdmissionNo;
+                }
 
                 $house_name = $conn->real_escape_string($_POST['house_name']);
                 $gender = $conn->real_escape_string($_POST['gender']);
@@ -82,7 +44,7 @@ if (isset($_POST['importExcelFile'])) {
         }
     }
     $conn->close();
-    // header('Location: ../../pages/adminForm.php');
+    header('Location: ../../pages/adminForm.php');
 
 }
 ob_end_flush();
