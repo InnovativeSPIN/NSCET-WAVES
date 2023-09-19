@@ -99,6 +99,11 @@ if (!isset($_SESSION)) {
                             Event and Slot Allotment
                         </a>
                         <a href="/pages/houseReport.php" class="btn current">House Status</a>
+                        <a href="/pages/adminForm.php" class="btn current">Admin Panel</a>
+
+                        <a href="/pages/adminForm.php" class="btn current">Allot Group Name</a>
+
+
                     </div>
                 </div>
 
