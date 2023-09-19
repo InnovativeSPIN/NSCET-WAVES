@@ -33,32 +33,33 @@ include('../routes/connect.php');
 </head>
 
 <body>
-<header class="site-header">
-        <div class="header-bar">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-10 col-lg-4">
-                        <h1 class="site-branding flex">
-                            <img src="../public/images/logos/waves-logo.png" alt="" class="" width="120">
-                        </h1>
-                    </div>
-                    <div class="col-2 col-lg-8">
-                        <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none" >
-                                <span style="background-color:black"></span>
-                                <span style="background-color:black"></span>
-                                <span style="background-color:black"></span>
-                                <span style="background-color:black"></span>
-                            </div>
-                            <ul>
-                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+	<header class="site-header">
+		<div class="header-bar">
+			<div class="container-fluid">
+				<div class="row align-items-center">
+					<div class="col-10 col-lg-4">
+						<h1 class="site-branding flex">
+							<img src="../public/images/logos/waves-logo.png" alt="" class="" width="120">
+						</h1>
+					</div>
+					<div class="col-2 col-lg-8">
+						<nav class="site-navigation">
+							<div class="hamburger-menu d-lg-none">
+								<span style="background-color:black"></span>
+								<span style="background-color:black"></span>
+								<span style="background-color:black"></span>
+								<span style="background-color:black"></span>
+							</div>
+							<ul>
+								<li><a href="../index.php"><button type="button" class="btn btn-login btn-primary"
+											data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 	<div class="container">
 		<div style="margin-top: 138px;">
 			<div class="card dark gradient-border">
@@ -69,18 +70,18 @@ include('../routes/connect.php');
 				?>
 				<img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="...">
 				<?php
-					$house_name = $_SESSION['house'];
-					$queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
-					$getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
+				$house_name = $_SESSION['house'];
+				$queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
+				$getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
 
-					$houseLeads = array();
-					while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
-						array_push($houseLeads, $houseLead['name']);
-					}
-					?>
+				$houseLeads = array();
+				while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
+					array_push($houseLeads, $houseLead['name']);
+				}
+				?>
 				<div class="card-body">
 					<div class="text-section">
-						<h1  style="color:#e22361" class='card-title'>
+						<h1 style="color:#e22361" class='card-title'>
 							<?php echo $_SESSION['house'] ?>
 						</h1>
 						<h5 class="card-text">
@@ -100,22 +101,22 @@ include('../routes/connect.php');
 							<?php echo $_SESSION['year'] ?>
 						</h5>
 						<h3 style="color:#e22361" class='card-title'> House Leads Details
-							</h3>
+						</h3>
 						<h5 class="card-text">
-								House Incharges:
-								<?php echo $houseLeads[0].', '.$houseLeads[1] ?>
-							</h5>
-							<h5 class="card-text">
-								House Captain:
-								<?php echo $houseLeads[2] ?>
-							</h5>
-							<h5 class="card-text">
-								House Vice Captain:
-								<?php echo $houseLeads[3] ?>
-							</h5>
+							House Incharges:
+							<?php echo $houseLeads[0] . ', ' . $houseLeads[1] ?>
+						</h5>
+						<h5 class="card-text">
+							House Captain:
+							<?php echo $houseLeads[2] ?>
+						</h5>
+						<h5 class="card-text">
+							House Vice Captain:
+							<?php echo $houseLeads[3] ?>
+						</h5>
 					</div>
-					
-					
+
+
 				</div>
 			</div>
 			<div class="row">
@@ -135,6 +136,9 @@ include('../routes/connect.php');
 					$houseName = $registeredEvent['student_house'];
 					$houseDetails = mysqli_query($conn, "SELECT * FROM `housedb` WHERE name = '$houseName'");
 					$houseDetail = mysqli_fetch_array($houseDetails);
+
+					$allotmentListResult = mysqli_query($conn, "SELECT * FROM `allotmentdb` WHERE `event`= '$eventName' && house = '$houseName'");
+					$slot = mysqli_fetch_array($allotmentListResult);
 					?>
 					<!-- Modal -->
 					<div class="modal fade <?php echo $eventDetail['event_id'] ?>" tabindex="-1" role="dialog"
@@ -229,6 +233,7 @@ include('../routes/connect.php');
 								<p><i class="zmdi zmdi-map"></i>
 									<?php echo $eventDetail['event_venue'] ?>
 								</p>
+								<p>Slot No: <?php echo $slot['slot'] ?></p>
 							</div>
 
 							<a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
