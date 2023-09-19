@@ -15,15 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['house_name']) && isse
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "s", $house_name);
     mysqli_stmt_execute($stmt);
-    
+
     mysqli_stmt_store_result($stmt);
-    
+
     if (mysqli_stmt_num_rows($stmt) == 4) {
         mysqli_stmt_bind_result($stmt, $dept, $house_name, $reg_no, $role, $username, $hashed_password);
         mysqli_stmt_fetch($stmt);
-        
+
         $password = $_POST['password'];
-        
+
         if (password_verify($password, $hashed_password) && $_POST['house_name'] === $house_name) {
             // session_unset();
             $_SESSION['role'] = $role;
@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['house_name']) && isse
             // echo "Incorrect username or password or role";
             // $error = "Incorrect username or password or role";
             header('Location: ../../pages/404.php');
-
         }
     } else {
         // echo "User not found";
@@ -50,23 +49,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['house_name']) && isse
     mysqli_close($conn);
 }
 // student login
-else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isset($_POST['role']) && $_POST['role'] != 'event coordinator'){
-    
+else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && isset($_POST['role']) && $_POST['role'] != 'event coordinator') {
+
     $reg_number = $_POST['reg_number'];
     $query = "SELECT name,reg_no,house,dept,gender,year FROM studentdb WHERE reg_no = ?";
 
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "s", $reg_number);
     mysqli_stmt_execute($stmt);
-    
+
     mysqli_stmt_store_result($stmt);
 
     if (mysqli_stmt_num_rows($stmt) === 1) {
-            
+
         mysqli_stmt_bind_result($stmt, $name, $reg_no, $house, $dept, $gender, $year);
         mysqli_stmt_fetch($stmt);
 
-        if($_POST['reg_number'] === $reg_no){
+        if ($_POST['reg_number'] === $reg_no) {
             session_unset();
             $_SESSION['role'] = $_POST['role'];
             $_SESSION['name'] = $name;
@@ -76,13 +75,18 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && 
             $_SESSION['gender'] = $gender;
             $_SESSION['year'] = $year;
 
-            header('Location: ../../pages/studentDashboard.php');
+            $query = "UPDATE studentdb SET `viewed` = 1 WHERE `reg_no` = '$reg_number'";
+            if (mysqli_query($conn, $query)) {
+                header('Location: ../../pages/studentDashboard.php');
+            } else {
+                echo "Error updating record: " . mysqli_error($conn);
+            }
             exit();
-        }else {
+        } else {
             header('Location: ../../pages/404.php');
             // echo "Incorrect register number";
         }
-    }else {
+    } else {
         // echo "User not found";
         // $error = "User not found";
         header('Location: ../../index.php');
@@ -92,23 +96,23 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reg_number']) && 
     mysqli_close($conn);
 }
 // event coordinator login
-else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && isset($_POST['password']) && isset($_POST['role'])){
-    
+else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && isset($_POST['password']) && isset($_POST['role'])) {
+
     $event_name = $_POST['event_name'];
     $query = "SELECT dept,event_name, reg_no,role, name, password FROM admindb WHERE event_name = ?";
 
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "s", $event_name);
     mysqli_stmt_execute($stmt);
-    
+
     mysqli_stmt_store_result($stmt);
-    
+
     if (mysqli_stmt_num_rows($stmt) == 2) {
         mysqli_stmt_bind_result($stmt, $dept, $event_name, $reg_no, $role, $username, $hashed_password);
         mysqli_stmt_fetch($stmt);
-        
+
         $password = $_POST['password'];
-        
+
         if (password_verify($password, $hashed_password) && $_POST['role'] === $role) {
             session_unset();
             $_SESSION['role'] = $role;
@@ -116,7 +120,7 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_name']) && 
             $_SESSION['name'] = $username;
             $_SESSION['dept'] = $dept;
             $_SESSION['event_name'] = $event_name;
-            
+
             header('Location: ../../pages/eventCoordinatorDashboard.php');
             exit();
         } else {
