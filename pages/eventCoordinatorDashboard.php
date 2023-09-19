@@ -24,15 +24,23 @@ if ($data['is_group'] == '0') {
     }
 
     $allotmentListResult = mysqli_query($conn, "SELECT * FROM `allotmentdb` WHERE `event`= '$eventName'");
-    $allotmentSlot = array();
+    $allotmentSlots = array();
     while ($allotmentData = mysqli_fetch_array($allotmentListResult)) {
-        $allotmentSlot[] = array(
+        $allotmentSlots[] = array(
             'house' => $allotmentData['house'],
             'slot' => $allotmentData['slot']
         );
     }
+
+    for ($k = 0; $k < count($participants); $k++) {
+        for ($j = 0; $j < count($allotmentSlots); $j++) {
+            if ($participants[$k]['student_house'] == $allotmentSlots[$j]['house']) {
+                $participants[$k]['slot'] = $allotmentSlots[$j]['slot'];
+            }
+        }
+    }
+
     $eventData['participants'] = $participants;
-    $eventData['allotmentSlot'] = $allotmentSlot;
 
 } else {
     $eventData['groups'] = array();
@@ -49,18 +57,26 @@ if ($data['is_group'] == '0') {
             );
         }
 
-        $allotmentListResult = mysqli_query($conn, "SELECT * FROM `allotmentdb` WHERE `event`= '$eventName'");
-        $allotmentSlot = array();
+        $allotmentListResult = mysqli_query($conn, "SELECT * FROM `allotmentdb` WHERE `event`= '$eventName' && `grouped` = '$i'");
+        $allotmentSlots = array();
         while ($allotmentData = mysqli_fetch_array($allotmentListResult)) {
-            $allotmentSlot[] = array(
+            $allotmentSlots[] = array(
                 'house' => $allotmentData['house'],
                 'slot' => $allotmentData['slot']
             );
         }
+
+        for ($k = 0; $k < count($participants); $k++) {
+            for ($j = 0; $j < count($allotmentSlots); $j++) {
+                if ($participants[$k]['student_house'] == $allotmentSlots[$j]['house']) {
+                    $participants[$k]['slot'] = $allotmentSlots[$j]['slot'];
+                }
+            }
+        }
+
         $eventData['groups'][] = array(
             'group_number' => $i,
-            'participants' => $participants,
-            'allotmentSlot' =>  $allotmentSlot
+            'participants' => $participants
         );
         $i++;
     }
@@ -116,7 +132,6 @@ if ($data['is_group'] == '0') {
         </div>
     </header>
 
-<!-- Reset Modal -->
     <div style='margin-top: 32px' class="modal fade loginModal" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="padding: 28px;">
             <div class="modal-content">

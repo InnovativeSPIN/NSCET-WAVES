@@ -54,14 +54,14 @@ function populateItems(eventData, houseName) {
         const event = eventData.event;
 
         if (event.is_group === "0") {
-            createEventTable(eventData.participants,eventData.allotmentSlot, houseName, menu,'Event Details');
+            createEventTable(eventData.participants, houseName, menu,'Event Details');
         } else if (event.is_group === "1") {
             const groups = eventData.groups;
 
 			var groupCount = eventData.event.group_counts
             for (const group of groups) {
                 if (group.participants && group.participants.length > 0) {
-                    createEventTable(group.participants,group.allotmentSlot, houseName, menu,`Group ${group.group_number} Details `);
+                    createEventTable(group.participants, houseName, menu,`Group ${group.group_number} Details `);
                 }
             }
         }
@@ -70,9 +70,8 @@ function populateItems(eventData, houseName) {
     }
 }
 
-function createEventTable(participants,allotmentSlots, houseName, menu,title) {
+function createEventTable(participants, houseName, menu,title) {
     const filteredParticipants = participants.filter(participant => participant.student_house === houseName);
-    const slotNumber = allotmentSlots.filter(allotmentSlot => allotmentSlot.house === houseName);
 
     if (filteredParticipants.length > 0) {
         let eventDetails = document.createElement("div");
@@ -96,7 +95,7 @@ function createEventTable(participants,allotmentSlots, houseName, menu,title) {
                             <td>${participant.reg_no}</td>
                             <td>${participant.student_name}</td>
                             <td>${participant.student_dept}</td>
-                            <td>${slotNumber[0].slot}</td>
+                            <td>${participant.slot}</td>
                         </tr>
                     `).join('')}
                 </tbody>
