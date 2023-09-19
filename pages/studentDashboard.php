@@ -68,7 +68,8 @@ include('../routes/connect.php');
 				$path = '../public/images/house/';
 				$img = str_replace(" ", "_", $_SESSION['house']);
 				?>
-				<img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="...">
+				
+				<!-- <img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="..."> -->
 				<?php
 				$house_name = $_SESSION['house'];
 				$queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
@@ -81,8 +82,8 @@ include('../routes/connect.php');
 				?>
 				<div class="card-body">
 					<div class="text-section">
-						<h1 style="color:#e22361" class='card-title'>
-							<?php echo $_SESSION['house'] ?>
+						<h1 style="color:#e22361;text-align: center;" class='card-title'>
+							Group : <?php echo $_SESSION['house'] ?>
 						</h1>
 						<h5 class="card-text">
 							Your Reg No:
