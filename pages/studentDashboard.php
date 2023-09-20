@@ -69,7 +69,7 @@ include('../routes/connect.php');
 				$img = str_replace(" ", "_", $_SESSION['house']);
 				?>
 				
-				<!-- <img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="..."> -->
+				<img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="...">
 				<?php
 				$house_name = $_SESSION['house'];
 				$queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";

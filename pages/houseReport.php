@@ -97,7 +97,7 @@ include('../routes/connect.php');
                             array_push($houseLeads, $houseLead['name']);
                         }
                         ?>
-                        <!-- <h3 style="color:#e22361" class='card-title'> House Leads Details
+                        <h3 style="color:#e22361" class='card-title'> House Leads Details
                     </h3>
                     <h5 class="card-text">
                         House Incharges:
@@ -110,7 +110,7 @@ include('../routes/connect.php');
                     <h5 class="card-text">
                         House Vice Captain:
                         <?php echo $houseLeads[3] ?>
-                    </h5> -->
+                    </h5>
                     </div>
                     <div class="cta-section">
                         <?php
