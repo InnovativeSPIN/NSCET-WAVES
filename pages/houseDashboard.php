@@ -253,10 +253,9 @@ include('../routes/connect.php');
                         <button class="btn btn-primary">House Data Export</button>
 
                     </form>
-                    <!-- <form style="margin-top: 8px;" action="../routes/pdf/HousepdfGen.php" method="post">
+                    <!-- <form style="margin-top: 8px;" action="../routes/pdf/EventpdfGen.php" method="post">
                         <input type="text" style="display: none;" value="<?php echo $houseName ?>" name='house'>
                         <button class="btn btn-primary">Event Data Export</button>
-
                     </form> -->
                 </div>
                 <!-- <a href="#" class="btn btn-light">Buy Now</a> -->

@@ -101,7 +101,7 @@ if (!isset($_SESSION)) {
                         <a href="/pages/houseReport.php" class="btn current">House Status</a>
                         <a href="/pages/adminForm.php" class="btn current">Admin Panel</a>
 
-                        <a href="/pages/adminForm.php" class="btn current">Allot Group Name</a>
+                        <!-- <a href="/pages/adminForm.php" class="btn current">Allot Group Name</a> -->
 
 
                     </div>

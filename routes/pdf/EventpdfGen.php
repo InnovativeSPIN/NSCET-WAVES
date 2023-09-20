@@ -100,43 +100,52 @@ while ($data = mysqli_fetch_array($event)) {
     $pdf->Cell(12, 10, "S_no", 1, 0, 'C', true);
     $pdf->Cell(45, 10, "Register Number", 1, 0, 'C', true);
     $pdf->Cell(70, 10, "Student Name", 1, 0, 'C', true);
-    $pdf->Cell(15, 10, "Group", 1, 0, 'C', true);
+    if ($data['is_group'] == 1) {
+        $pdf->Cell(15, 10, "Group", 1, 0, 'C', true);
+    } else {
+    }
     $pdf->Cell(35, 10, "Deparment", 1, 0, 'C', true);
     $pdf->Cell(15, 10, "Year", 1, 0, 'C', true);
 
     $pdf->Ln(10);
     $row = 0;
     $query = mysqli_query($conn, "SELECT * FROM `registerationdb` WHERE `event_name`='$data[event_name]' && `student_house`='$house' ORDER BY `registerationdb`.`grouped` ASC");
-    $i=0;
-    while ($row < $data['max_participants']) { 
+    $i = 0;
+    while ($row < $data['max_participants']) {
         $pdf->SetTextColor(0, 0, 0);
         $pdf->SetFont('Arial', '', 12);
-        if ($i==0) {
+        if ($i == 0) {
             while ($eventData = mysqli_fetch_array($query)) {
                 $pdf->Cell(12, 10, $row + 1, 1, 0, 'C', $fill);
                 $pdf->Cell(45, 10, $eventData['reg_no'], 1, 0, 'C', $fill);
                 $pdf->Cell(70, 10, $eventData['student_name'], 1, 0, 'C', $fill);
-                $pdf->Cell(15, 10, $eventData['grouped'], 1, 0, 'C', $fill);
+                if ($data['is_group'] == 1) {
+                    $pdf->Cell(15, 10, $eventData['grouped'], 1, 0, 'C', $fill);
+                } else {
+                }
                 $pdf->Cell(35, 10, $eventData['student_dept'], 1, 0, 'C', $fill);
                 $pdf->Cell(15, 10, $eventData['student_year'], 1, 0, 'C', $fill);
                 $row++;
                 $pdf->Ln(10);
             }
-            $i=1;
+            $i = 1;
         } else {
             $pdf->Cell(12, 10, $row + 1, 1, 0, 'C', $fill);
             $pdf->Cell(45, 10, ' ', 1, 0, 'C', $fill);
             $pdf->Cell(70, 10, ' ', 1, 0, 'C', $fill);
-            $pdf->Cell(15, 10, ' ', 1, 0, 'C', $fill);
+            if ($data['is_group'] == 1) {
+                $pdf->Cell(15, 10, ' ', 1, 0, 'C', $fill);
+            } else {
+            }
+
             $pdf->Cell(35, 10, ' ', 1, 0, 'C', $fill);
             $pdf->Cell(15, 10, ' ', 1, 0, 'C', $fill);
             $row++;
             $pdf->Ln(10);
-
         }
     }
-    
 
+    $pdf->AddPage();
     $pdf->Ln(10);
 }
 $pdf->SetTextColor(0, 0, 0);
@@ -144,5 +153,3 @@ $pdf->SetTextColor(0, 0, 0);
 $pdf->Cell(190, 10, "---------------------------------------", 0, 1, 'C');
 
 $pdf->Output();
-
-?>

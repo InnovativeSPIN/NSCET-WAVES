@@ -57,7 +57,7 @@ include('../routes/connect.php');
             $path = '../public/images/house/';
             $img = str_replace(" ", "_", $house['name']);
         ?>
-            <div class="card dark gradient-border" style="margin-top:20px;display: block;text-align: c;">
+            <div class="card dark gradient-border" style="margin-top:20px;display: block;text-align: center;height: 620px;width: 420px;">
                 <div style="display: flex;justify-content: center;">
                     <img class='img-logo' style="max-width: 15vw;" src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="...">
 

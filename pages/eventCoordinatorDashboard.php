@@ -41,7 +41,6 @@ if ($data['is_group'] == '0') {
     }
 
     $eventData['participants'] = $participants;
-
 } else {
     $eventData['groups'] = array();
     $i = 1;
@@ -93,11 +92,9 @@ if ($data['is_group'] == '0') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Coordinator | Dashboard</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rubik:wght@300;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rubik:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/css/swiper.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/eventCoordinatorDashboard.css">
     <script src="https://kit.fontawesome.com/5fe2f4c2ef.js" crossorigin="anonymous"></script>
@@ -122,6 +119,13 @@ if ($data['is_group'] == '0') {
                                 <span style="background-color:black"></span>
                             </div>
                             <ul>
+                                <li>
+                                    <!-- <form style="margin-top: 8px;margin-right: 24px;" action="../routes/pdf/EventCopdf.php" method="post">
+                                        <input type="text" style="display: none;" value="<?php echo $_SESSION['event_name'] ?>" name='event'>
+                                        <button class="btn btn-primary">Data Export</button>
+                                    </form> -->
+                                </li>
+
                                 <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#resetModal">Passoword</button></li>
                                 <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
                             </ul>
