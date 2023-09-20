@@ -118,7 +118,7 @@ while ($data = mysqli_fetch_array($event)) {
                 $pdf->Cell(70, 10, $eventData['student_name'], 1, 0, 'C', $fill);
                 $pdf->Cell(15, 10, $eventData['grouped'], 1, 0, 'C', $fill);
                 $pdf->Cell(35, 10, $eventData['student_dept'], 1, 0, 'C', $fill);
-                $pdf->Cell(15, 10, $eventData['grouped'], 1, 0, 'C', $fill);
+                $pdf->Cell(15, 10, $eventData['student_year'], 1, 0, 'C', $fill);
                 $row++;
                 $pdf->Ln(10);
             }
@@ -137,7 +137,7 @@ while ($data = mysqli_fetch_array($event)) {
     }
     
 
-    $pdf->Ln(30);
+    $pdf->Ln(10);
 }
 $pdf->SetTextColor(0, 0, 0);
 

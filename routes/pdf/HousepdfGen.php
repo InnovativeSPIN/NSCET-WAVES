@@ -5,7 +5,7 @@ include('../connect.php');
 $house = mysqli_real_escape_string($conn, $_POST["house"]);
 
 
-$sql = mysqli_query($conn,"SELECT * FROM `studentdb` WHERE `house`='$house'");
+$sql = mysqli_query($conn,"SELECT * FROM `studentdb` WHERE `house`='$house' ORDER BY `studentdb`.`year` DESC");
 
 class PDF extends FPDF
 {

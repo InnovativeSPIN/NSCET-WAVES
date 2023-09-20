@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 19, 2023 at 10:27 PM
--- Server version: 5.7.43
--- PHP Version: 8.1.16
+-- Host: 127.0.0.1
+-- Generation Time: Sep 20, 2023 at 09:39 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nscet_waves_23`
+-- Database: `waves_23`
 --
 
 -- --------------------------------------------------------
@@ -36,7 +36,7 @@ CREATE TABLE `admindb` (
   `password` varchar(255) NOT NULL,
   `event_name` varchar(255) NOT NULL,
   `house_name` varchar(255) NOT NULL DEFAULT '-'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admindb`
@@ -133,13 +133,13 @@ INSERT INTO `admindb` (`id`, `name`, `dept`, `reg_no`, `role`, `password`, `even
 CREATE TABLE `allotmentdb` (
   `house` varchar(255) NOT NULL,
   `event` varchar(255) NOT NULL,
-  `isGroup` int(11) NOT NULL DEFAULT '0',
+  `isGroup` int(11) NOT NULL DEFAULT 0,
   `group_count` int(11) NOT NULL,
   `grouped` int(11) NOT NULL,
   `slot` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `gender` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,7 @@ CREATE TABLE `eventdb` (
   `event_type` varchar(255) DEFAULT NULL,
   `event_rules` varchar(2550) DEFAULT NULL,
   `event_cordinators` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `eventdb`
@@ -204,7 +204,7 @@ CREATE TABLE `housedb` (
   `id` int(11) NOT NULL,
   `score` int(11) DEFAULT NULL,
   `gender` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `housedb`
@@ -229,13 +229,14 @@ INSERT INTO `housedb` (`name`, `id`, `score`, `gender`) VALUES
 CREATE TABLE `registerationdb` (
   `reg_no` varchar(255) NOT NULL,
   `event_name` varchar(255) NOT NULL,
-  `grouped` int(11) NOT NULL DEFAULT '0',
+  `grouped` int(11) NOT NULL DEFAULT 0,
   `student_house` varchar(255) DEFAULT NULL,
   `student_dept` varchar(255) DEFAULT NULL,
   `gender` varchar(255) DEFAULT NULL,
   `id` int(11) NOT NULL,
-  `student_name` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `student_name` varchar(200) DEFAULT NULL,
+  `student_year` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -251,8 +252,8 @@ CREATE TABLE `studentdb` (
   `gender` varchar(255) DEFAULT NULL,
   `year` varchar(255) DEFAULT NULL,
   `id` int(11) NOT NULL,
-  `viewed` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `viewed` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `studentdb`
@@ -1146,13 +1147,13 @@ ALTER TABLE `admindb`
 -- AUTO_INCREMENT for table `allotmentdb`
 --
 ALTER TABLE `allotmentdb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `registerationdb`
 --
 ALTER TABLE `registerationdb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `studentdb`
