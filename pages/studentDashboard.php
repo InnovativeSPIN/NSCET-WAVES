@@ -115,6 +115,10 @@ include('../routes/connect.php');
 							House Vice Captain:
 							<?php echo $houseLeads[3] ?>
 						</h5>
+						<h5 class="card-text">
+							House Vice Captain:
+							<?php echo $houseLeads[4] ?>
+						</h5>
 					</div>
 
 

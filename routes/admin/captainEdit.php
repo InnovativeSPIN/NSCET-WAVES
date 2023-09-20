@@ -14,11 +14,15 @@ if (isset($_POST["submit"])) {
         $vicecaptainNumber = $_POST['vice_captain_number'];
         $vicecaptainName = $_POST['vice_captain_name'];
 
+        $vicevicecaptainNumber = $_POST['vice_vice_captain_number'];
+        $vicevicecaptainName = $_POST['vice_vice_captain_name'];
+
 
         $query1 = "UPDATE admindb SET name = '$captainName' WHERE id = '$captainNumber'";
         $query2 = "UPDATE admindb SET name = '$vicecaptainName' WHERE id = '$vicecaptainNumber'";
+        $query3 = "UPDATE admindb SET name = '$vicevicecaptainName' WHERE id = '$vicevicecaptainNumber'";
 
-        if (mysqli_query($conn, $query1) && mysqli_query($conn, $query2)) {
+        if (mysqli_query($conn, $query1) && mysqli_query($conn, $query2) && mysqli_query($conn, $query3)) {
             if ($_POST['assignedByIncharge']) {
                 header('Location: ../../pages/houseDashboard.php');
             } else {

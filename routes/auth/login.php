@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['house_name']) && isse
 
     mysqli_stmt_store_result($stmt);
 
-    if (mysqli_stmt_num_rows($stmt) == 4) {
+    if (mysqli_stmt_num_rows($stmt) == 5) {
         mysqli_stmt_bind_result($stmt, $dept, $house_name, $reg_no, $role, $username, $hashed_password);
         mysqli_stmt_fetch($stmt);
 

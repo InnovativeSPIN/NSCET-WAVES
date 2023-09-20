@@ -96,7 +96,7 @@ include('../routes/connect.php');
     <div style='margin-top: 32px' class="modal fade loginModal" id="assignLeadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="padding: 28px;">
             <div class="modal-content">
-                <div class="modal-body login-modal-body">
+                <div class="modal-body login-modal-body" style="height:590px">
                     <div class="column" id="main">
                         <h1 style='margin-bottom: 34px'>Assign Lead</h1>
                         <?php
@@ -138,6 +138,15 @@ include('../routes/connect.php');
                                     </div>
                                 </div>
 
+                                <div class="col-md-12 form-group"> <label for="vice_captain_name">
+                                        <h6>Vice Captain Name</h6>
+                                    </label>
+                                    <div class="input-group"> <input type="text" name="vice_vice_captain_name" placeholder="Enter Vice Captain Name" class="form-control " required>
+                                        <input type="text" name="vice_vice_captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[4] ?>" required>
+
+                                    </div>
+                                </div>
+
                             </div>
 
 
@@ -148,7 +157,7 @@ include('../routes/connect.php');
                 </div>
 
                 <div>
-                    <svg width="67px" height="480px" viewBox="0 0 67 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <svg width="67px" height="620px" viewBox="0 0 67 620" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <title>Path</title>
                         <desc>Created with Sketch.</desc>
                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -223,6 +232,10 @@ include('../routes/connect.php');
                 <h5 class="card-text">
                     House Vice Captain:
                     <?php echo $houseLeads[3] ?>
+                </h5>
+                <h5 class="card-text">
+                    House Vice Captain:
+                    <?php echo $houseLeads[4] ?>
                 </h5>
             </div>
             <div class="cta-section" style="margin-left: 24px;align-items: center;text-align: center;">
