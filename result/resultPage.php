@@ -6,10 +6,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>3D Particle Explorations | Demo 8 | Codrops</title>
-	<meta name="description" content="An exploration of 3D particle animations using three.js and easing" />
-	<meta name="keywords" content="preloader, loader, animation, 3d, particles, three.js, easing, web development" />
-	<meta name="author" content="Jack Rugile for Codrops" />
+	<title>Result Page</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:100,400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../public/css/base.css" />
 	<script>document.documentElement.className = "js"; var supportsCssVars = function () { var e, t = document.createElement("style"); return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e }; supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
