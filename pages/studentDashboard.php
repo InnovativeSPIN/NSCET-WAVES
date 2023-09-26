@@ -126,10 +126,10 @@ include('../routes/connect.php');
 			</div>
 			<div class="row">
 				<h2 style="color: black;">Your Events</h2>
-
+				
 				<?php
 				$student_reg_no = $_SESSION['reg_no'];
-				$registeredEvents = mysqli_query($conn, "SELECT * FROM `registerationdb` WHERE reg_no = $student_reg_no");
+				$registeredEvents = mysqli_query($conn, "SELECT * FROM `registerationdb` WHERE reg_no = '$student_reg_no'");
 				while ($registeredEvent = mysqli_fetch_array($registeredEvents)) {
 					?>
 
