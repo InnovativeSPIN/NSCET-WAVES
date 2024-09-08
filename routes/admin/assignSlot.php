@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // echo "Error : " . mysqli_error($conn);
             }
         }
-        header('Location: ../../allotment/ungrouped.php?eventName=' . urlencode($_POST["event_name"]));
+        header('Location: ../../allotment/grouped.php?eventName=' . urlencode($_POST["event_name"]));
     }
 }
 mysqli_close($conn);

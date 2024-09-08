@@ -214,7 +214,7 @@
         <div class="wheel"></div>
         <div class="imageWheel"></div>
     </div>
-    <div class="container" style="margin-top:100px">
+    <div class="container" style="margin-top:100px; margin-bottom:100px">
         <div class="spinBtn1">Spin</div>
         <div class="wheel1"></div>
         <div class="imageWheel1"></div>
@@ -232,6 +232,7 @@
         <option value="BOYS">Boys</option>
     </select>
     <button class="submitBtn">Submit</button>
+    <button id="triggerSpin">Spin Both</button>
 
     <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
 
@@ -446,6 +447,13 @@
                     document.getElementById('hidden-form').submit()
                 }
             })
+
+            const triggerSpin = document.getElementById('triggerSpin');
+
+            triggerSpin.addEventListener('click', () => {
+                spinBtn.click();
+                spinBtn1.click();
+            });
         })
 
     </script>
