@@ -18,7 +18,7 @@
 
         body {
             margin: 0;
-            overflow: hidden;
+            /* overflow: hidden; */
             flex-direction: column;
             min-height: 100vh;
             background-color: #281f1f;
@@ -53,7 +53,8 @@
             z-index: 2;
         }
 
-        .spinBtn {
+        .spinBtn,
+        .spinBtn1 {
             position: absolute;
             width: 60px;
             height: 60px;
@@ -74,7 +75,9 @@
         }
 
         .wheel,
-        .imageWheel {
+        .wheel1,
+        .imageWheel,
+        .imageWheel1 {
             position: absolute;
             top: 0;
             left: 80%;
@@ -85,12 +88,14 @@
             transition: transform 5s ease-in-out;
         }
 
-        .wheel {
+        .wheel,
+        .wheel1 {
             background: #333;
             box-shadow: 0 0 0 5px #333, 0 0 0 15px #fff, 0 0 0 18px #111;
         }
 
-        .imageWheel {
+        .imageWheel,
+        .imageWheel1 {
             width: 150%;
             height: 150%;
             top: -25%;
@@ -203,11 +208,16 @@
     <canvas id="particleCanvas"></canvas>
 
     <audio id="spinSound" src="../public/music/spinning-jar-cap.mp3"></audio>
-    <h1 class="head">Solo Event Allotment</h1>
+    <h1 class="head">Grouped Event Allotment</h1>
     <div class="container">
         <div class="spinBtn">Spin</div>
         <div class="wheel"></div>
         <div class="imageWheel"></div>
+    </div>
+    <div class="container" style="margin-top:100px">
+        <div class="spinBtn1">Spin</div>
+        <div class="wheel1"></div>
+        <div class="imageWheel1"></div>
     </div>
 
     <form id="hidden-form" action="../routes/admin/assignSlot.php" method="post" style="display:none;">
@@ -243,14 +253,37 @@
                 ]
             }
 
+            const allSlots1 = {
+                GIRLS: [
+                    { name: 'Slot 5', color: '#db7093', image: 'BLUE_BLASTERS.png' },
+                    { name: 'Slot 6', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
+                    { name: 'Slot 7', color: '#d63e92', image: 'ROSY_RIDERS.png' },
+                    { name: 'Slot 8', color: '#daa520', image: 'VIOLET_VIPERS.png' }
+                ],
+                BOYS: [
+                    { name: 'Slot 5', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
+                    { name: 'Slot 6', color: '#ff7f50', image: 'DRAGON_WARRIORS.png' },
+                    { name: 'Slot 7', color: '#3cb371', image: 'PHOENIX_BLASTERS.png' },
+                    { name: 'Slot 8', color: '#4169e1', image: 'TIGER_THRASHERS.png' }
+                ]
+            }
+
             let slots = allSlots.BOYS
+            let slots1 = allSlots1.BOYS
 
             const wheel = document.querySelector('.wheel')
             const imageWheel = document.querySelector('.imageWheel')
 
+            const wheel1 = document.querySelector('.wheel1')
+            const imageWheel1 = document.querySelector('.imageWheel1')
+
             function populateWheel() {
                 wheel.innerHTML = ''
                 imageWheel.innerHTML = ''
+
+                wheel1.innerHTML = ''
+                imageWheel1.innerHTML = ''
+
                 slots.forEach((slot, index) => {
                     const numberSlot = document.createElement('div')
                     numberSlot.classList.add('number')
@@ -268,6 +301,24 @@
                     imageSlot.appendChild(img)
                     imageWheel.appendChild(imageSlot)
                 })
+
+                slots1.forEach((slot, index) => {
+                    const numberSlot1 = document.createElement('div')
+                    numberSlot1.classList.add('number')
+                    numberSlot1.style.setProperty('--i', index + 1)
+                    numberSlot1.style.setProperty('--clr', slot.color)
+                    numberSlot1.innerHTML = `<span>${slot.name}</span>`
+                    wheel1.appendChild(numberSlot1)
+
+                    const imageSlot1 = document.createElement('div')
+                    imageSlot1.classList.add('imageSlot')
+                    imageSlot1.style.setProperty('--i', index + 1)
+                    const img1 = document.createElement('img')
+                    img1.src = `../public/images/house/${slot.image}`
+                    img1.alt = slot.image.slice(0, slot.image.length - 4)
+                    imageSlot1.appendChild(img1)
+                    imageWheel1.appendChild(imageSlot1)
+                })
             }
 
             function updateSlots() {
@@ -280,10 +331,14 @@
 
             populateWheel()
             const spinBtn = document.querySelector('.spinBtn')
+            const spinBtn1 = document.querySelector('.spinBtn1')
             const spinSound = document.getElementById("spinSound")
 
             let isSpinning = false
             let spinned = false
+
+            let isSpinning1 = false
+            let spinned1 = false
 
             spinBtn.addEventListener('click', () => {
                 if (isSpinning) return
@@ -302,6 +357,29 @@
 
                 wheel.addEventListener('transitionend', () => {
                     isSpinning = false
+                    spinSound.pause()
+                    spinSound.currentTime = 0
+                    trackPositions()
+                }, { once: true })
+            })
+
+            spinBtn1.addEventListener('click', () => {
+                if (isSpinning1) return
+                isSpinning1 = true
+                spinned1 = true
+
+                const randomDegree = Math.floor(Math.random() * 3600)
+                const rotationAmount = randomDegree + 1800
+
+                wheel1.style.transition = 'transform 5s ease-in-out'
+                imageWheel1.style.transition = 'transform 5s ease-in-out'
+                wheel1.style.transform = `rotate(${rotationAmount}deg)`
+                imageWheel1.style.transform = `rotate(${-rotationAmount}deg)`
+
+                spinSound.play()
+
+                wheel1.addEventListener('transitionend', () => {
+                    isSpinning1 = false
                     spinSound.pause()
                     spinSound.currentTime = 0
                     trackPositions()
