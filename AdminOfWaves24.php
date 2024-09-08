@@ -189,7 +189,7 @@ if (!isset($_SESSION)) {
 
                                                         if ($data == 0) {
                                                         ?>
-                                                            <a href=<?php echo '/allotment/ungroped.php?eventName=' . urlencode($event['event_name']) ?> class="btn confer-btn"> Slot <i class="zmdi zmdi-long-arrow-right"></i></a>
+                                                            <a href=<?php echo '/allotment/ungrouped.php?eventName=' . urlencode($event['event_name']) ?> class="btn confer-btn"> Slot <i class="zmdi zmdi-long-arrow-right"></i></a>
                                                         <?php
                                                         }else{
                                                             ?>
@@ -246,7 +246,7 @@ if (!isset($_SESSION)) {
 
                                                         if ($data == 0) {
                                                         ?>
-                                                            <a href=<?php echo '/allotment/ungroped.php?eventName=' . urlencode($event['event_name']) ?> class="btn confer-btn"> Slot <i class="zmdi zmdi-long-arrow-right"></i></a>
+                                                            <a href=<?php echo '/allotment/ungrouped.php?eventName=' . urlencode($event['event_name']) ?> class="btn confer-btn"> Slot <i class="zmdi zmdi-long-arrow-right"></i></a>
                                                         <?php
                                                         }else{
                                                             ?>
@@ -302,7 +302,7 @@ if (!isset($_SESSION)) {
                                                             
                                                         if ($data == 0) {
                                                         ?>
-                                                            <a href=<?php echo '/allotment/ungroped.php?eventName=' . urlencode($event['event_name']) ?> class="btn confer-btn"> Slot <i class="zmdi zmdi-long-arrow-right"></i></a>
+                                                            <a href=<?php echo '/allotment/ungrouped.php?eventName=' . urlencode($event['event_name']) ?> class="btn confer-btn"> Slot <i class="zmdi zmdi-long-arrow-right"></i></a>
                                                         <?php
                                                         }else{
                                                             ?>
@@ -360,7 +360,7 @@ if (!isset($_SESSION)) {
 
                                                         if ($data == 0) {
                                                         ?>
-                                                            <a href=<?php echo '/allotment/ungroped.php?eventName=' . urlencode($event['event_name']) ?> class="btn confer-btn"> Slot <i class="zmdi zmdi-long-arrow-right"></i></a>
+                                                            <a href=<?php echo '/allotment/ungrouped.php?eventName=' . urlencode($event['event_name']) ?> class="btn confer-btn"> Slot <i class="zmdi zmdi-long-arrow-right"></i></a>
                                                         <?php
                                                         }else{
                                                             ?>

@@ -5,13 +5,13 @@ include('../connect.php');
 
 <?php
 
-if (isset($_POST["submit"])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $slot_array = mysqli_real_escape_string($conn, $_POST["slot_array"]);
     $event_name = mysqli_real_escape_string($conn, $_POST["event_name"]);
     $gender = mysqli_real_escape_string($conn, $_POST["gender"]);
 
-    $slot = explode(",", $slot_array);
+    $slot = json_decode($slot_array, true);
 
     if ($gender == 'GIRLS') {
         $teams = array("BLUE BLASTERS", "GALACTIC STARS", "ROSY RIDERS", "VIOLET VIPERS");
@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
 
             // echo "Error : " . mysqli_error($conn);
         }
-        header('Location: ../../allotment/ungroped.php?eventName=' . urlencode($_POST["event_name"]));
+        header('Location: ../../allotment/ungrouped.php?eventName=' . urlencode($_POST["event_name"]));
     }
 
 
@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
                 // echo "Error : " . mysqli_error($conn);
             }
         }
-        header('Location: ../../allotment/ungroped.php?eventName=' . urlencode($_POST["event_name"]));
+        header('Location: ../../allotment/ungrouped.php?eventName=' . urlencode($_POST["event_name"]));
     }
 }
 mysqli_close($conn);

@@ -42,7 +42,7 @@ include('../../routes/connect.php');
                                 <span></span>
                             </div>
                             <ul>
-                                <li><a href="../../AdminOfWaves23.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">BACK</button></a> </li>
+                                <li><a href="../../AdminOfWaves24.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">BACK</button></a> </li>
                             </ul>
                         </nav>
                     </div>
