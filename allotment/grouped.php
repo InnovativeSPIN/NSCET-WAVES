@@ -18,10 +18,10 @@
 
         body {
             margin: 0;
-            /* overflow: hidden; */
+            overflow: hidden;
             flex-direction: column;
             min-height: 100vh;
-            background-color: #281f1f;
+            background-color: black;
             position: relative;
         }
 
@@ -52,13 +52,46 @@
             align-items: center;
             z-index: 2;
         }
+        @keyframes zoom {
+        0% {
+            transform: scale(1); /* Initial size */
+        }
+        50% {
+            transform: scale(1.2); /* Zoom in */
+        }
+        100% {
+            transform: scale(1); /* Zoom out */
+        }
+        }
 
-        .spinBtn,
-        .spinBtn1 {
+        .spinBtn {
+            animation: zoom 2s infinite;
             position: absolute;
             width: 60px;
             height: 60px;
-            left: 124%;
+            left: 115%;
+            top: 70%;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: .1em;
+            border: 4px solid rgba(0, 0, 0, 0.75);
+            cursor: pointer;
+            user-select: none;
+        }
+        .spinBtn1 {
+            animation: zoom 2s infinite;
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            left: 185%;
+            top: 50%;
             background: #fff;
             border-radius: 50%;
             z-index: 3;
@@ -75,12 +108,10 @@
         }
 
         .wheel,
-        .wheel1,
-        .imageWheel,
-        .imageWheel1 {
+        .imageWheel {
             position: absolute;
-            top: 0;
-            left: 80%;
+            top: 25%;
+            left: 70%;
             width: 100%;
             height: 100%;
             border-radius: 50%;
@@ -88,18 +119,40 @@
             transition: transform 5s ease-in-out;
         }
 
+        .wheel1,
+        .imageWheel1 {
+            position: absolute;
+            top: 5%;
+            left: 140%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 5s ease-in-out;
+        }
+    
+
         .wheel,
         .wheel1 {
             background: #333;
             box-shadow: 0 0 0 5px #333, 0 0 0 15px #fff, 0 0 0 18px #111;
         }
 
-        .imageWheel,
-        .imageWheel1 {
+        .imageWheel {
             width: 150%;
             height: 150%;
-            top: -25%;
-            left: 56%;
+            top:0%;
+            left: 48%;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 5s ease-in-out;
+        }
+
+        .imageWheel1 {
+            width: 150%;
+            height: 148%;
+            top: -20%;
+            left: 117%;
             border-radius: 50%;
             overflow: hidden;
             transition: transform 5s ease-in-out;
@@ -131,18 +184,35 @@
         .number span {
             position: relative;
             transform: rotate(45deg);
-            font-size: 1em;
+            font-size: 2.5em;
             font-weight: 700;
             color: #fff;
             text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15);
+            left:50px;
+            top: 50px;
         }
 
+        @keyframes animateDropShadow {
+            0% {
+                filter: drop-shadow(0px 0px 30px rgba(255, 0, 0, 0.7)); /* Red */
+            }
+            33% {
+                filter: drop-shadow(0px 0px 30px rgba(0, 255, 0, 0.7)); /* Green */
+            }
+            66% {
+                filter: drop-shadow(0px 0px 30px rgba(0, 0, 255, 0.7)); /* Blue */
+            }
+            100% {
+                filter: drop-shadow(0px 0px 30px rgba(255, 0, 0, 0.7)); /* Back to Red */
+            }
+        }
         .imageSlot img {
-            width: 100px;
-            height: 100px;
+            width: 190px;
+            height: 190px;
             border-radius: 50%;
             object-fit: cover;
             transform: rotate(30deg);
+            animation: animateDropShadow 5s infinite;
         }
 
         #teamSelect {
@@ -204,11 +274,15 @@
 </head>
 
 <body>
+    <!-- <img width=240px src="https://www.nscet.org/hackathon/img/logoHack.png" alt=""> -->
     <canvas id="backgroundCanvas"></canvas>
     <canvas id="particleCanvas"></canvas>
 
     <audio id="spinSound" src="../public/music/spinning-jar-cap.mp3"></audio>
-    <h1 class="head">Grouped Event Allotment</h1>
+    <!-- <h1 class="head">Grouped Event Allotment</h1> -->
+
+    <div style='display:flex'>
+
     <div class="container">
         <div class="spinBtn">Spin</div>
         <div class="wheel"></div>
@@ -219,13 +293,22 @@
         <div class="wheel1"></div>
         <div class="imageWheel1"></div>
     </div>
-
+    </div>
+    
+        
     <form id="hidden-form" action="../routes/admin/assignSlot.php" method="post" style="display:none;">
         <input type="hidden" id="gender" name="gender" value="">
         <input type="hidden" id="slots" name="slot_array" value="">
         <input type="hidden" name="event_name" value="<?php echo $_GET['eventName'] ?>">
     </form>
 
+    <div style="display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 20%;
+    text-align:center;position: absolute;
+    bottom: 5%;
+    left: 2%">
     <select id="teamSelect">
         <option value="BOYS">Select Gender</option>
         <option value="GIRLS">Girls</option>
@@ -235,6 +318,8 @@
     <button id="triggerSpin">Spin Both</button>
 
     <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
+    </div>
+    
 
 
     <script>
@@ -457,7 +542,51 @@
         })
 
     </script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+<script>
+    const duration = 15 * 1000,
+        animationEnd = Date.now() + duration,
+        defaults = {
+            startVelocity: 30,
+            spread: 360,
+            ticks: 60,
+            zIndex: 50
+        };
 
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+
+        const particleCount = 20 * (timeLeft / duration);
+
+        // since particles fall down, start a bit higher than random
+        confetti(
+            Object.assign({}, defaults, {
+                particleCount,
+                origin: {
+                    x: randomInRange(0.2, 0.7),
+                    y: Math.random() - 0.2
+                },
+            })
+        );
+        confetti(
+            Object.assign({}, defaults, {
+                particleCount,
+                origin: {
+                    x: randomInRange(0.7, 0.9),
+                    y: Math.random() - 0.2
+                },
+            })
+        );
+    }, 250);
+</script>
 </body>
 
 </html>

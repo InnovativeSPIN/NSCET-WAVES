@@ -21,7 +21,7 @@
             overflow: hidden;
             flex-direction: column;
             min-height: 100vh;
-            background-color: #281f1f;
+            background-color: black;
             position: relative;
         }
 
@@ -53,11 +53,25 @@
             z-index: 2;
         }
 
+        @keyframes zoom {
+        0% {
+            transform: scale(1); /* Initial size */
+        }
+        50% {
+            transform: scale(1.2); /* Zoom in */
+        }
+        100% {
+            transform: scale(1); /* Zoom out */
+        }
+        }
+
         .spinBtn {
+            animation: zoom 2s infinite;
             position: absolute;
             width: 60px;
             height: 60px;
-            left: 124%;
+            left: 185%;
+            top: 70%;
             background: #fff;
             border-radius: 50%;
             z-index: 3;
@@ -76,8 +90,8 @@
         .wheel,
         .imageWheel {
             position: absolute;
-            top: 0;
-            left: 80%;
+            top: 25%;
+            left: 140%;
             width: 100%;
             height: 100%;
             border-radius: 50%;
@@ -93,8 +107,8 @@
         .imageWheel {
             width: 150%;
             height: 150%;
-            top: -25%;
-            left: 56%;
+            top:0%;
+            left: 120%;
             border-radius: 50%;
             overflow: hidden;
             transition: transform 5s ease-in-out;
@@ -126,18 +140,34 @@
         .number span {
             position: relative;
             transform: rotate(45deg);
-            font-size: 1em;
+            font-size: 2.5em;
             font-weight: 700;
             color: #fff;
             text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15);
+            left:50px;
+            top: 50px;
         }
-
+        @keyframes animateDropShadow {
+            0% {
+                filter: drop-shadow(0px 0px 30px rgba(255, 0, 0, 0.7)); /* Red */
+            }
+            33% {
+                filter: drop-shadow(0px 0px 30px rgba(0, 255, 0, 0.7)); /* Green */
+            }
+            66% {
+                filter: drop-shadow(0px 0px 30px rgba(0, 0, 255, 0.7)); /* Blue */
+            }
+            100% {
+                filter: drop-shadow(0px 0px 30px rgba(255, 0, 0, 0.7)); /* Back to Red */
+            }
+        }
         .imageSlot img {
-            width: 100px;
-            height: 100px;
+            width: 190px;
+            height: 190px;
             border-radius: 50%;
             object-fit: cover;
             transform: rotate(30deg);
+            animation: animateDropShadow 5s infinite;
         }
 
         #teamSelect {
@@ -149,6 +179,7 @@
             color: #333;
             transition: border-color 0.3s, background-color 0.3s;
             cursor: pointer;
+            
         }
 
         #teamSelect:focus {
@@ -203,7 +234,7 @@
     <canvas id="particleCanvas"></canvas>
 
     <audio id="spinSound" src="../public/music/spinning-jar-cap.mp3"></audio>
-    <h1 class="head">Solo Event Allotment</h1>
+    <!-- <h1 class="head">Solo Event Allotment</h1> -->
     <div class="container">
         <div class="spinBtn">Spin</div>
         <div class="wheel"></div>
@@ -216,6 +247,13 @@
         <input type="hidden" name="event_name" value="<?php echo $_GET['eventName'] ?>">
     </form>
 
+    <div style="display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 20%;
+    text-align:center;position: absolute;
+    bottom: 5%;
+    left: 2%">
     <select id="teamSelect">
         <option value="BOYS">Select Gender</option>
         <option value="GIRLS">Girls</option>
@@ -224,6 +262,7 @@
     <button class="submitBtn">Submit</button>
 
     <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
+    </div>
 
 
     <script>
@@ -291,11 +330,13 @@
                 spinned = true
 
                 const randomDegree = Math.floor(Math.random() * 3600)
-                const rotationAmount = randomDegree + 1800
 
-                wheel.style.transition = 'transform 5s ease-in-out'
-                imageWheel.style.transition = 'transform 5s ease-in-out'
+                var rotationAmount = randomDegree + Math.floor(Math.random() * (2000 - 800 + 1)) + 800;
+                wheel.style.transition = 'transform 8s ease-in-out'
                 wheel.style.transform = `rotate(${rotationAmount}deg)`
+
+                var rotationAmount = randomDegree + Math.floor(Math.random() * (1800 - 800 + 1)) + 1200;
+                imageWheel.style.transition = 'transform 9s ease-in-out'
                 imageWheel.style.transform = `rotate(${-rotationAmount}deg)`
 
                 spinSound.play()
@@ -372,6 +413,51 @@
 
     </script>
 
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+<script>
+    const duration = 15 * 1000,
+        animationEnd = Date.now() + duration,
+        defaults = {
+            startVelocity: 30,
+            spread: 360,
+            ticks: 60,
+            zIndex: 50
+        };
+
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+
+        const particleCount = 20 * (timeLeft / duration);
+
+        // since particles fall down, start a bit higher than random
+        confetti(
+            Object.assign({}, defaults, {
+                particleCount,
+                origin: {
+                    x: randomInRange(0.2, 0.7),
+                    y: Math.random() - 0.2
+                },
+            })
+        );
+        confetti(
+            Object.assign({}, defaults, {
+                particleCount,
+                origin: {
+                    x: randomInRange(0.7, 0.9),
+                    y: Math.random() - 0.2
+                },
+            })
+        );
+    }, 250);
+</script>
 </body>
 
 </html>
