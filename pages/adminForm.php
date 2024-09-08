@@ -417,6 +417,36 @@ include('../routes/connect.php');
                 </div>
 
                 <div class="row">
+                    <div class="col-md-6 form-group"> <label for="captain_name">
+                            <h6>House Incharge Name 3</h6>
+                        </label>
+                        <div class="input-group"> <input type="text" name="incharge_name_3"
+                                placeholder="House Incharge Name 3" class="form-control " required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group"> <label for="dept">
+                            <h6>Incharge Department</h6>
+                        </label>
+                        <div class="input-group"> <select name="staff_dept_3" id="" placeholder="Select Role"
+                                class="form-control" required>
+                                <option value="" hidden>Select Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="MECH">MECH</option>
+                                <option value="CIVIL">CIVIL</option>
+                                <option value="EEE">EEE</option>
+                                <option value="IT">IT</option>
+                                <option value="AIDS">AI & DS</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-6 form-group"> <label for="captain_number">
                             <h6>Captain Name</h6>
                         </label>

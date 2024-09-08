@@ -18,10 +18,10 @@ if (isset($_POST['importExcelFile'])) {
                 $stu_batch = $conn->real_escape_string($data[5]);
 
                 $batch_year = [
-                    "2020" => "IV",
-                    "2021" => "III",
-                    "2022" => "II",
-                    "2023" => "I"
+                    "2021" => "IV",
+                    "2022" => "III",
+                    "2023" => "II",
+                    "2024" => "I"
                 ];
 
                 $year = $batch_year[$stu_batch];

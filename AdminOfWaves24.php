@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Waves'23</title>
+    <title>Waves'24</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@ if (!isset($_SESSION)) {
                         <h1 class="site-branding flex">
                             <!-- <img src="public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
 
-                            <!-- <a href="#">Waves'23</a> -->
+                            <!-- <a href="#">Waves'24</a> -->
                         </h1>
                     </div>
                     <div class="col-2 col-lg-8">
@@ -51,7 +51,7 @@ if (!isset($_SESSION)) {
                             </div>
                             <ul>
                                 <!-- <li><a href="#">HOME</a></li>
-                                <li><a href="#">Waves'23</a></li>
+                                <li><a href="#">Waves'24</a></li>
                                 <li><a href="#">ARTISTS</a></li>
                                 <li><a href="#">BLOG</a></li>
                                 <li><a href="#">CONTACT</a></li>
@@ -80,14 +80,14 @@ if (!isset($_SESSION)) {
                         <img style="margin-bottom: 24px;" src="public/images/logos/waves-logo.png" alt="" class="" width="150">
 
                     </div>
-                    <!-- <h2 id="waves-text" style="filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 1));;font-family: 'mountains';padding: 0;margin-bottom: 32px;">Waves 23</h2> -->
+                    <!-- <h2 id="waves-text" style="filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 1));;font-family: 'mountains';padding: 0;margin-bottom: 32px;">Waves 24</h2> -->
 
 
                     <!-- <div id="stage" style="margin-top: 64px;display: nonr;"></div> -->
 
                     <!-- <canvas id="text" width="800" height="200"></canvas> -->
 
-                    <!-- <input id="input" type="text" value="Waves'23 W" style="display: none;" /> -->
+                    <!-- <input id="input" type="text" value="Waves'24 W" style="display: none;" /> -->
 
                 </div>
 
@@ -387,7 +387,7 @@ if (!isset($_SESSION)) {
         </div>
         <footer class="site-footer">
             <div class="footer-cover-title flex justify-content-center align-items-center">
-                <h2>Waves'23</h2>
+                <h2>Waves'24</h2>
             </div>
             <div class="footer-content-wrapper">
                 <div class="container">
@@ -401,7 +401,7 @@ if (!isset($_SESSION)) {
 
                         <div class="col-md-8">
                             <div class="entry-title">
-                                <a href="#">Waves'23</a>
+                                <a href="#">Waves'24</a>
                             </div>
 
                             <div class="copyright-info">
