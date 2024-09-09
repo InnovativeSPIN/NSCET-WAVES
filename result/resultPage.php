@@ -39,7 +39,7 @@ include('../routes/connect.php');
 			<div class="content-inner">
 				<h1 style="display:none;">Superposition</h1>
 				<a style="display:none;" href="#" class="replay-animation">Replay</a>
-
+				
 
 				<section>
 					<div class="row">
@@ -128,8 +128,9 @@ include('../routes/connect.php');
 					<br><br>
 				</section>
 			</div>
-		</div>
+		</div>	
 	</main>
+	
 	<script src="../public/js/demo.js"></script>
 	<script src="../public/js/vendor/three.min.js"></script>
 	<script src="../public/js/vendor/OrbitControls.js"></script>

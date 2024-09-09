@@ -896,7 +896,82 @@ if (!isset($_SESSION)) {
                         <h2>Our Waves'22</h2>
                     </div>
                 </div>
-                <div class="home-page-last-news-wrap">
+                <div class="main">
+                    <div class="gallery">
+                        <div class="img">
+                            <img src="public\images\galary\IMG_20230221_134347.jpg" alt="">
+                    
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary2\IMG_20230221_130317.jpg" alt="">
+                        </div>
+                        
+                         <div class="img">
+                            <img src="public\images\galary\IMG_20230221_134347.jpg" alt="">
+                                </div>
+                        <div class="img">
+                            <img src="public\images\galary\IMG_20230221_140610.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\IMG_20230221_141129.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\SBD_0278.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\IMG_20230221_161034.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary2\IMG_20230221_154406.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\IMG_20230222_133306.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary2\IMG_20230228_121013.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary2\IMG_20230222_140922.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\SBD_0762.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\SBD_0110.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\IMG_20230222_151824.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\IMG_20230228_105338.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\IMG_20230222_150822.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary\IMG_20230301_111333.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary2\IMG_20230221_134534.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary2\IMG_20230221_130317.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary2\IMG_20230221_154406.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary2\IMG_20230222_141607.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public\images\galary2\IMG_20230222_151721.jpg" alt="">
+                        </div>
+    
+                    </div>
+               </div>
+
+                
+                <!--<div class="home-page-last-news-wrap">
 
                     <div class="container-fluid">
                         <div class="row">
@@ -927,8 +1002,8 @@ if (!isset($_SESSION)) {
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                 <img src="public\images\galary\SBD_0769.jpg" class="img-fluid">
-                                <!-- <img src="public\images\galary\SBD_0110.jpg" class="img-fluid"> -->
-                                <img src="public\images\galary\IMG_20230221_153426.jpg" class="img-fluid">
+                                 <img src="public\images\galary\SBD_0110.jpg" class="img-fluid"> -->
+                            <!--<img src="public\images\galary\IMG_20230221_153426.jpg" class="img-fluid">
                                 <img src="public\images\galary\SBD_0571.jpg" class="img-fluid">
                                 <img src="public\images\galary\SBD_0684.jpg" class="img-fluid">
                                 <img src="public\images\galary2\IMG_20230221_130347.jpg" class="img-fluid">
@@ -950,9 +1025,9 @@ if (!isset($_SESSION)) {
                                 <img src="public\images\galary2\IMG_20230228_121013.jpg" class="img-fluid">
                             </div>
                         </div>
-                    </div>
-                    <div class="container">
-                        <!-- <div class="col-12 col-md-6">
+                    </div>-->
+                    <!--<div class="container">
+                         <div class="col-12 col-md-6">
                             <figure class="featured-image">
                                 <a href="#"> <img src="public/images/news-image-1.jpg" alt="fesival+celebration"> </a>
                             </figure>
@@ -977,8 +1052,8 @@ if (!isset($_SESSION)) {
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-                    </div>
+                        </div>
+                    </div>-->
                 </div>
             </div>
         </div>

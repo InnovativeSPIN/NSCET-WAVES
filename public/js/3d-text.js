@@ -180,7 +180,7 @@ function initCanvas() {
 function initInput() {
   input = document.getElementById("input");
   input.addEventListener("keyup", updateText);
-  input.value = "WAVES'23";
+  input.value = "WAVES'24";
 }
 
 function updateText() {
@@ -209,14 +209,56 @@ function updateText() {
   setParticles();
 }
 
+function mousemove(e) {
+  var x = e.pageX - width / 2;
+  var y = e.pageY - height / 2;
+  cameraTarget.x = x * -1;
+  cameraTarget.y = y;
+
+  // Check if mouse is hovering over text canvas
+  if (e.target === textCanvas) {
+    // Get the mouse position relative to the text canvas
+    var rect = textCanvas.getBoundingClientRect();
+    var mouseX = e.clientX - rect.left;
+    var mouseY = e.clientY - rect.top;
+
+    // Check if the mouse is hovering over the "WAVES" text
+    var textWidth = textCtx.measureText(input.value.toUpperCase()).width;
+    var textHeight = 100; // Assuming the text height is 100 pixels
+    var textX = (width - textWidth) / 2;
+    var textY = 50; // Assuming the text y-position is 50 pixels
+    if (mouseX > textX && mouseX < textX + textWidth && mouseY > textY - textHeight / 2 && mouseY < textY + textHeight / 2) {
+      // Dispose of particles on mouse hover
+      for (var i = particles.length - 1; i >= 0; i--) {
+        scene.remove(particles[i].particle);
+        particles.splice(i, 1);
+      } 
+    }
+  }
+}
+
+    // Update particle target positions on mouse move
+    for (var i = 0; i < particles.length; i++) {
+      particles[i].particle.targetPosition.x += (Math.random() - 0.5) * 10;
+      particles[i].particle.targetPosition.y += (Math.random() - 0.5) * 10;
+    }
+  }
+}
+
 function animate() {
   requestAnimationFrame(animate);
   updateParticles();
   camera.position.lerp(cameraTarget, 0.2);
   camera.lookAt(cameraLookAt);
   render();
-}
 
+  // Animate particles
+  for (var i = 0; i < particles.length; i++) {
+    particles[i].particle.position.z += Math.random() * 0.1 - 0.05;
+    particles[i].particle.rotation.x += Math.random() * 0.01 - 0.005;
+    particles[i].particle.rotation.y += Math.random() * 0.01 - 0.005;
+  }
+}
 // function resize() {
 //     width = 800;
 //     height = 200;
@@ -231,12 +273,7 @@ function animate() {
 //     updateText();
 // }
 
-function mousemove(e) {
-  var x = e.pageX - width / 2;
-  var y = e.pageY - height / 2;
-  cameraTarget.x = x * -1;
-  cameraTarget.y = y;
-}
+
 
 initStage();
 initScene();
