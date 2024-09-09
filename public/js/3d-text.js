@@ -237,13 +237,6 @@ function mousemove(e) {
   }
 }
 
-    // Update particle target positions on mouse move
-    for (var i = 0; i < particles.length; i++) {
-      particles[i].particle.targetPosition.x += (Math.random() - 0.5) * 10;
-      particles[i].particle.targetPosition.y += (Math.random() - 0.5) * 10;
-    }
-  }
-}
 
 function animate() {
   requestAnimationFrame(animate);

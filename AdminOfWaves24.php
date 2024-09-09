@@ -410,7 +410,7 @@ if (!isset($_SESSION)) {
                                 <script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                                 <script>
                                     document.write(new Date().getFullYear());
-                                </script> Design & Developed with <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> by <br /> <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;color: white;">Department of Computer Science Engineering | iSPIN</a>
+                                </script> Design & Developed with <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> by <br /> <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;color: white;">Department of CSE, AI&DS and IT | iSPIN</a>
                             </div>
 
 

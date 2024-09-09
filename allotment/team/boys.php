@@ -30,7 +30,7 @@ include('../../routes/connect.php');
                         <h1 class="site-branding flex">
                             <img src="../../public/images/logos/waves-logo.png" alt="" class="" width="120">
 
-                            <!-- <a href="#">Waves'23</a> -->
+                            <!-- <a href="#">Waves'24</a> -->
                         </h1>
                     </div>
                     <div class="col-2 col-lg-8">

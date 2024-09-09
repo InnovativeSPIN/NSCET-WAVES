@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Waves'23</title>
+    <title>Waves'24</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -442,7 +442,7 @@ if (!isset($_SESSION)) {
     </section>
     <footer id="footer" class="site-footer" style='margin-top: 128px;'>
         <div class="footer-cover-title flex justify-content-center align-items-center">
-            <h2>Waves'23</h2>
+            <h2>Waves'24</h2>
         </div>
         <div class="footer-content-wrapper">
             <div class="container">
@@ -456,7 +456,7 @@ if (!isset($_SESSION)) {
 
                     <div class="col-md-8">
                         <div class="entry-title">
-                            <a href="#">Waves'23</a>
+                            <a href="#">Waves'24</a>
                         </div>
 
                         <div class="copyright-info">
@@ -465,7 +465,7 @@ if (!isset($_SESSION)) {
                             <script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                             <script>
                                 document.write(new Date().getFullYear());
-                            </script> Design & Developed with <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> by <br /> <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;color: white;">Department of Computer Science Engineering | iSPIN</a>
+                            </script> Design & Developed with <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> by <br /> <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;color: white;">Department of CSE, AI&DS and IT | iSPIN</a>
                         </div>
 
 

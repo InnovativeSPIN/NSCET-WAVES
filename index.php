@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Waves'23</title>
+    <title>Waves'24</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -202,7 +202,7 @@ if (!isset($_SESSION)) {
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -220,7 +220,7 @@ if (!isset($_SESSION)) {
                         <h1 class="site-branding flex">
                             <!-- <img src="public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
 
-                            <!-- <a href="#">Waves'23</a> -->
+                            <!-- <a href="#">Waves'24</a> -->
                         </h1>
                     </div>
                     <div class="col-2 col-lg-8">
@@ -352,10 +352,10 @@ if (!isset($_SESSION)) {
                         <canvas id="text" width="800" height="200"></canvas>
                         <img style="margin-bottom: 24px;" src="public/images/logos/waves-logo.png" alt="" class="" width="280">
 
-                        <input id="input" type="text" value="Waves'23 W" style="display: none;" />
+                        <input id="input" type="text" value="Waves'24 W" style="display: none;" />
 
                     </div>
-                    <div class="col-md-12 countdown flex flex-wrap justify-content-between" data-date="2023/09/29">
+                    <div class="col-md-12 countdown flex flex-wrap justify-content-between" data-date="2024/09/27">
                         <div class="col-md-12 flex-wrap" style="display:flex;justify-content:center">
                             <div class="countdown-holder">
                                 <div class="dday"></div>
@@ -654,7 +654,7 @@ if (!isset($_SESSION)) {
                 </div>
             </div>
         </div>
-        <section class="our-schedule-area section-padding-100">
+        <!-- <section class="our-schedule-area section-padding-100">
             <div class="container">
                 <div class="row">
 
@@ -874,7 +874,7 @@ if (!isset($_SESSION)) {
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
 
         <style>
@@ -1060,7 +1060,7 @@ if (!isset($_SESSION)) {
     </div>
     <footer id="footer" class="site-footer">
         <div class="footer-cover-title flex justify-content-center align-items-center">
-            <h2>Waves'23</h2>
+            <h2>Waves'24</h2>
         </div>
         <div class="footer-content-wrapper">
             <div class="container">
@@ -1074,7 +1074,7 @@ if (!isset($_SESSION)) {
 
                     <div class="col-md-8">
                         <div class="entry-title">
-                            <a href="#">Waves'23</a>
+                            <a href="#">Waves'24</a>
                         </div>
 
                         <div class="copyright-info">
@@ -1083,7 +1083,7 @@ if (!isset($_SESSION)) {
                             <script data-cfasync="false" src="public/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                             <script>
                                 document.write(new Date().getFullYear());
-                            </script> Design & Developed with <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> by <br /> <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;color: white;">Department of Computer Science Engineering | iSPIN</a>
+                            </script> Design & Developed with <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> by <br /> <a href="https://nscet.org/ispin/" target="_blank" style="font-size: 19px;color: white;">Department of CSE, AI&DS and IT | iSPIN</a>
                         </div>
 
 
