@@ -20,7 +20,15 @@ if (isset($_POST["submit"])) {
     $query1 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$coordinator_name_1','$staff_dept_1','-','event coordinator','$hashed_password','$event_name','-')";
     $query2 = "INSERT INTO `admindb`(`name`, `dept`, `reg_no`, `role`, `password`, `event_name`, `house_name`) VALUES ('$coordinator_name_2','$staff_dept_2','-','event coordinator','$hashed_password','$event_name','-')";
 
-    if (mysqli_query($conn, $query1) && mysqli_query($conn, $query2)) {
+    $coordinators = $coordinator_name_1 . '|' . $coordinator_name_2;
+
+    $query3 = "UPDATE eventdb 
+    SET 
+        event_cordinators = '$coordinators'
+    WHERE event_name = '$event_name'";
+
+
+    if (mysqli_query($conn, $query1) && mysqli_query($conn, $query2) && mysqli_query($conn, $query3)) {
         header('Location: ../../pages/adminForm.php');
     } else {
         echo "Error updating record: " . mysqli_error($conn);

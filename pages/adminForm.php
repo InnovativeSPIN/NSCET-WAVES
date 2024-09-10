@@ -225,6 +225,7 @@ include('../routes/connect.php');
                                     <div class="input-group"> <select name="staff_dept_1" id=""
                                             placeholder="Select Role" class="form-control" required>
                                             <option value="" hidden>Select Department</option>
+                                            <option value="AIDS">S&H</option>
                                             <option value="CSE">CSE</option>
                                             <option value="ECE">ECE</option>
                                             <option value="MECH">MECH</option>
@@ -242,6 +243,7 @@ include('../routes/connect.php');
                                     <div class="input-group"> <select name="staff_dept_2" id=""
                                             placeholder="Select Role" class="form-control" required>
                                             <option value="" hidden>Select Department</option>
+                                            <option value="AIDS">S&H</option>
                                             <option value="CSE">CSE</option>
                                             <option value="ECE">ECE</option>
                                             <option value="MECH">MECH</option>
@@ -386,6 +388,7 @@ include('../routes/connect.php');
                         <div class="input-group"> <select name="staff_dept_1" id="" placeholder="Select Role"
                                 class="form-control" required>
                                 <option value="" hidden>Select Department</option>
+                                <option value="AIDS">S&H</option>
                                 <option value="CSE">CSE</option>
                                 <option value="ECE">ECE</option>
                                 <option value="MECH">MECH</option>
@@ -403,6 +406,7 @@ include('../routes/connect.php');
                         <div class="input-group"> <select name="staff_dept_2" id="" placeholder="Select Role"
                                 class="form-control" required>
                                 <option value="" hidden>Select Department</option>
+                                <option value="AIDS">S&H</option>
                                 <option value="CSE">CSE</option>
                                 <option value="ECE">ECE</option>
                                 <option value="MECH">MECH</option>
@@ -433,6 +437,7 @@ include('../routes/connect.php');
                         <div class="input-group"> <select name="staff_dept_3" id="" placeholder="Select Role"
                                 class="form-control" required>
                                 <option value="" hidden>Select Department</option>
+                                <option value="AIDS">S&H</option>
                                 <option value="CSE">CSE</option>
                                 <option value="ECE">ECE</option>
                                 <option value="MECH">MECH</option>
@@ -470,6 +475,7 @@ include('../routes/connect.php');
                         <div class="input-group"> <select name="cap_dept" id="" placeholder="Select Role"
                                 class="form-control" required>
                                 <option value="" hidden>Select Department</option>
+                                <option value="AIDS">S&H</option>
                                 <option value="CSE">CSE</option>
                                 <option value="ECE">ECE</option>
                                 <option value="MECH">MECH</option>
@@ -487,6 +493,7 @@ include('../routes/connect.php');
                         <div class="input-group"> <select name="vice_cap_dept" id="" placeholder="Select Role"
                                 class="form-control" required>
                                 <option value="" hidden>Select Department</option>
+                                <option value="AIDS">S&H</option>
                                 <option value="CSE">CSE</option>
                                 <option value="ECE">ECE</option>
                                 <option value="MECH">MECH</option>
