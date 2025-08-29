@@ -233,7 +233,7 @@ if (!isset($_SESSION)) {
                             </div>
                             <ul>
                                 <li><a href=" ">Home</a></li>
-                                <li><a href="#gallary">Waves'22</a></li>
+                                <li><a href="#gallary">Waves'24</a></li>
                                 <li><a href="#boysEvent">Boys Event</a></li>
                                 <li><a href="#girlsEvent">Girls Event</a></li>
                                 <li><a href="#footer">Contact Us</a></li>
@@ -352,7 +352,7 @@ if (!isset($_SESSION)) {
                         <canvas id="text" width="800" height="200"></canvas>
                         <img style="margin-bottom: 24px;" src="public/images/logos/waves-logo.png" alt="" class="" width="280">
 
-                        <input id="input" type="text" value="Waves'24 W" style="display: none;" />
+                        <input id="input" type="text" value="Waves'25 W" style="display: none;" />
 
                     </div>
                     <div class="col-md-12 countdown flex flex-wrap justify-content-between" data-date="2024/09/27">
@@ -1074,7 +1074,7 @@ if (!isset($_SESSION)) {
 
                     <div class="col-md-8">
                         <div class="entry-title">
-                            <a href="#">Waves'24</a>
+                            <a href="#">Waves'25</a>
                         </div>
 
                         <div class="copyright-info">

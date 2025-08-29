@@ -180,7 +180,7 @@ function initCanvas() {
 function initInput() {
   input = document.getElementById("input");
   input.addEventListener("keyup", updateText);
-  input.value = "WAVES'24";
+  input.value = "WAVES'25";
 }
 
 function updateText() {
