@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Waves'24</title>
+    <title>Waves'25 | NSCET</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -344,7 +344,7 @@ if (!isset($_SESSION)) {
 
                             <img src="public/images/logos/clg-logo.png" alt="" class="" width="180">
                         </div>
-                        <h2 id="waves-text" style="filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 1));;font-family: 'mountains';padding: 0;margin-bottom: 32px;">Waves 23</h2>
+                        <h2 id="waves-text" style="filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 1));;font-family: 'mountains';padding: 0;margin-bottom: 32px;">Waves 25</h2>
 
 
                         <div id="stage" style="margin-top: 64px;"></div>
@@ -1060,7 +1060,7 @@ if (!isset($_SESSION)) {
     </div>
     <footer id="footer" class="site-footer">
         <div class="footer-cover-title flex justify-content-center align-items-center">
-            <h2>Waves'24</h2>
+            <h2>Waves'25</h2>
         </div>
         <div class="footer-content-wrapper">
             <div class="container">
