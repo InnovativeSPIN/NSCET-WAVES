@@ -7,44 +7,55 @@ if (isset($_POST['importExcelFile'])) {
         $csvFileTmpName = $_FILES['csvFile']['tmp_name'];
 
         if (($handle = fopen($csvFileTmpName, 'r')) !== false) {
-            
-            $header = fgetcsv($handle, 1000, ',');
-            while (($data = fgetcsv($handle, 1000, ',')) !== false) {
-                $dept = $conn->real_escape_string($data[1]);
-                $inputRegNo = $conn->real_escape_string($data[2]);
-                $inputAdmissionNo = $conn->real_escape_string($data[3]);
-                $stu_name = $conn->real_escape_string($data[4]);
 
-                $stu_batch = $conn->real_escape_string($data[5]);
+            $header = fgetcsv($handle, 1000, ',');
+            $header = array_map(function($h) {
+                return strtolower(trim($h));
+            }, $header);
+
+            while (($data = fgetcsv($handle, 1000, ',')) !== false) {
+                $row = array_combine($header, $data);
+
+                $stu_name   = $conn->real_escape_string($row['name']);
+                $inputRegNo = $conn->real_escape_string($row['reg_no']);
+                $dept       = $conn->real_escape_string($row['dept']);
+                $stu_batch  = $conn->real_escape_string($row['year']);
 
                 $batch_year = [
-                    "2021" => "IV",
-                    "2022" => "III",
-                    "2023" => "II",
-                    "2024" => "I"
+                    "2022" => "IV",
+                    "2023" => "III",
+                    "2024" => "II",
+                    "2025" => "I"
                 ];
+                $year = isset($batch_year[$stu_batch]) ? $batch_year[$stu_batch] : $stu_batch;
 
-                $year = $batch_year[$stu_batch];
-
-                if($inputRegNo == ''){
-                    $inputRegNo = $inputAdmissionNo;
-                }
+                $inputRegNo = !empty($inputRegNo) ? $inputRegNo : (isset($row['admission_no']) ? $row['admission_no'] : '');
 
                 $house_name = $conn->real_escape_string($_POST['house_name']);
-                $gender = $conn->real_escape_string($_POST['gender']);
+                $gender     = $conn->real_escape_string($_POST['gender']);
 
-                $sql = "INSERT INTO studentdb(name,reg_no,house,dept,gender,year) VALUES ('$stu_name', '$inputRegNo','$house_name','$dept','$gender','$year')";
+                // Use ON DUPLICATE KEY UPDATE to insert or update other columns if reg_no exists
+                $sql = "INSERT INTO studentdb (name, reg_no, house, dept, gender, year) 
+                        VALUES ('$stu_name', '$inputRegNo', '$house_name', '$dept', '$gender', '$year')
+                        ON DUPLICATE KEY UPDATE
+                            name='$stu_name',
+                            house='$house_name',
+                            dept='$dept',
+                            gender='$gender',
+                            year='$year'";
+
                 $result = $conn->query($sql);
 
                 if (!$result) {
                     die("Error: " . $conn->error);
                 }
             }
+
             fclose($handle);
         }
     }
+
     $conn->close();
     header('Location: ../../pages/adminForm.php');
-
 }
 ob_end_flush();
