@@ -893,7 +893,7 @@ if (!isset($_SESSION)) {
                 <div class="header">
                     <div class="entry-title">
                         <p> </p>
-                        <h2>Our Waves'22</h2>
+                        <h2>Splash of Memories</h2>
                     </div>
                 </div>
                 <div class="main">
