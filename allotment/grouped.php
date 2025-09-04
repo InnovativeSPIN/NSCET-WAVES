@@ -928,6 +928,7 @@
 
             closePopupBtn.addEventListener('click', () => {
                 popup.classList.remove('show')
+                document.getElementById('hidden-form').submit()
             })
 
             submitBtn.addEventListener('click', () => {
