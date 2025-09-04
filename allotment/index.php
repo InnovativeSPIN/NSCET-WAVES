@@ -29,14 +29,15 @@ include('../routes/connect.php');
             padding: 32px 24px;
             margin-bottom: 32px;
             transition: box-shadow 0.3s;
-            min-height: 320px;
-            max-height: 320px;
-            min-width: 320px;
-            max-width: 320px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-start;
+            width: 100%;
+            min-width: 0;
+            min-height: 0;
+            max-width: none;
+            max-height: none;
         }
         .event-card:hover {
             box-shadow: 0 12px 32px rgba(0,255,231,0.2);
