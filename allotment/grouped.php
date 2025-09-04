@@ -392,7 +392,7 @@
                     { name: 'Slot 2', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
                     { name: 'Slot 3', color: '#d63e92', image: 'ROSY_RIDERS.png' },
                     { name: 'Slot 4', color: '#daa520', image: 'VIOLET_VIPERS.png' },
-                    { name: 'Slot 5', color: '#228B22', image: 'emerald_eagles.png' }
+                    { name: 'Slot 5', color: '#228B22', image: 'EMERALD_EAGLES.png' }
                 ],
                 BOYS: [
                     { name: 'Slot 1', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
@@ -408,7 +408,7 @@
                     { name: 'Slot 7', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
                     { name: 'Slot 8', color: '#d63e92', image: 'ROSY_RIDERS.png' },
                     { name: 'Slot 9', color: '#daa520', image: 'VIOLET_VIPERS.png' },
-                    { name: 'Slot 10', color: '#228B22', image: 'emerald_eagles.png' }
+                    { name: 'Slot 10', color: '#228B22', image: 'EMERALD_EAGLES.png' }
                 ],
                 BOYS: [
                     { name: 'Slot 5', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
@@ -424,7 +424,7 @@
                     { name: 'Slot 12', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
                     { name: 'Slot 13', color: '#d63e92', image: 'ROSY_RIDERS.png' },
                     { name: 'Slot 14', color: '#daa520', image: 'VIOLET_VIPERS.png' },
-                    { name: 'Slot 15', color: '#228B22', image: 'emerald_eagles.png' }
+                    { name: 'Slot 15', color: '#228B22', image: 'EMERALD_EAGLES.png' }
                 ],
                 BOYS: [
                     { name: 'Slot 9', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
@@ -440,7 +440,7 @@
                     { name: 'Slot 17', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
                     { name: 'Slot 18', color: '#d63e92', image: 'ROSY_RIDERS.png' },
                     { name: 'Slot 19', color: '#daa520', image: 'VIOLET_VIPERS.png' },
-                    { name: 'Slot 20', color: '#228B22', image: 'emerald_eagles.png' }
+                    { name: 'Slot 20', color: '#228B22', image: 'EMERALD_EAGLES.png' }
                 ],
                 BOYS: [
                     { name: 'Slot 13', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
