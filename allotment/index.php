@@ -75,9 +75,27 @@ include('../routes/connect.php');
 <body>
     <div class="container">
         <h1 class="mb-5 text-center event-title">Allotment Events</h1>
+        <?php
+        // Get all unique event dates
+        $dateResult = mysqli_query($conn, "SELECT DISTINCT event_date FROM eventdb WHERE event_date != '-' ORDER BY event_date ASC");
+        $dates = [];
+        while ($dateRow = mysqli_fetch_assoc($dateResult)) {
+            $dates[] = $dateRow['event_date'];
+        }
+        $selectedDate = isset($_GET['date']) ? $_GET['date'] : (count($dates) > 0 ? $dates[0] : null);
+        ?>
+        <div class="mb-4 text-center">
+            <?php $dayNum = 1; foreach ($dates as $date): ?>
+                <a href="?date=<?php echo urlencode($date); ?>" class="btn btn-info mx-2 <?php echo ($selectedDate == $date) ? 'active' : ''; ?>">
+                    Day <?php echo $dayNum; ?> <span style="font-size:0.8em;color:#ccc;">(<?php echo htmlspecialchars($date); ?>)</span>
+                </a>
+                <?php $dayNum++; ?>
+            <?php endforeach; ?>
+        </div>
         <div class="row">
         <?php
-        $result = mysqli_query($conn, "SELECT event_name, event_type, event_date, event_time, event_venue FROM eventdb ORDER BY event_name ASC");
+        $query = "SELECT event_name, event_type, event_date, event_time, event_venue FROM eventdb WHERE event_date = '" . mysqli_real_escape_string($conn, $selectedDate) . "' ORDER BY event_name ASC";
+        $result = mysqli_query($conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $eventName = htmlspecialchars($row['event_name']);
@@ -96,7 +114,7 @@ include('../routes/connect.php');
                 echo '</div>';
             }
         } else {
-            echo '<div class="col-12"><div class="event-card text-center">No events found.</div></div>';
+            echo '<div class="col-12"><div class="event-card text-center">No events found for this day.</div></div>';
         }
         ?>
         </div>
