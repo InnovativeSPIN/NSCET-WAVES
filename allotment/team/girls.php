@@ -91,7 +91,14 @@ include('../../routes/connect.php');
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-2 ">
+                <div class="boxes">
+                    <div class="box">
+                        <h1>G5</h1>
+                        <img src="../../public/images/house/emerald_eagles.png" alt="Emerald Eagles Logo" width="80" />
+                    </div>
+                </div>
+            </div>
 
 
             <div class="col-md-2" style="align-self: center;text-align:center;color: black;font-size:20px"></div>

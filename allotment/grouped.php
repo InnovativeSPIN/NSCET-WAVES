@@ -18,7 +18,8 @@
 
         body {
             margin: 0;
-            overflow: hidden;
+            overflow: auto;
+            display: flex;
             flex-direction: column;
             min-height: 100vh;
             background-color: black;
@@ -27,71 +28,75 @@
 
         canvas {
             position: absolute;
-            top: 0%;
-            right: 10%;
-            left: -0%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: block;
+            z-index: 1;
         }
 
         .head {
             position: absolute;
-            left: 30%;
+            left: 50%;
             top: 5%;
+            transform: translateX(-50%);
             font-size: 40px;
             font-family: Georgia, 'Times New Roman', Times, serif;
             color: aqua;
             z-index: 2;
         }
 
-        .container {
-            position: relative;
-            width: 500px;
-            height: 500px;
+        .wheel-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
+            gap: 60px;
+            margin: 100px auto 20px;
+            max-width: 1400px;
             z-index: 2;
         }
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 3;
+        }
+
         @keyframes zoom {
-        0% {
-            transform: scale(1); /* Initial size */
-        }
-        50% {
-            transform: scale(1.2); /* Zoom in */
-        }
-        100% {
-            transform: scale(1); /* Zoom out */
-        }
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
 
-        .spinBtn {
+        .spinBtn, .spinBtn1, .spinBtn2, .spinBtn3 {
             animation: zoom 2s infinite;
             position: absolute;
             width: 60px;
             height: 60px;
-            left: 115%;
-            top: 70%;
-            background: #fff;
-            border-radius: 50%;
-            z-index: 3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: #333;
-            letter-spacing: .1em;
-            border: 4px solid rgba(0, 0, 0, 0.75);
-            cursor: pointer;
-            user-select: none;
-        }
-        .spinBtn1 {
-            animation: zoom 2s infinite;
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            left: 185%;
             top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: #fff;
             border-radius: 50%;
             z-index: 3;
@@ -108,51 +113,39 @@
         }
 
         .wheel,
-        .imageWheel {
-            position: absolute;
-            top: 25%;
-            left: 70%;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            overflow: hidden;
-            transition: transform 5s ease-in-out;
-        }
-
+        .imageWheel,
         .wheel1,
-        .imageWheel1 {
+        .imageWheel1,
+        .wheel2,
+        .imageWheel2,
+        .wheel3,
+        .imageWheel3 {
             position: absolute;
-            top: 5%;
-            left: 140%;
             width: 100%;
             height: 100%;
             border-radius: 50%;
             overflow: hidden;
             transition: transform 5s ease-in-out;
+            top: 0;
+            left: 0;
         }
-    
 
         .wheel,
-        .wheel1 {
+        .wheel1,
+        .wheel2,
+        .wheel3 {
             background: #333;
             box-shadow: 0 0 0 5px #333, 0 0 0 15px #fff, 0 0 0 18px #111;
         }
 
-        .imageWheel {
-            width: 150%;
-            height: 150%;
-            top:0%;
-            left: 48%;
-            border-radius: 50%;
-            overflow: hidden;
-            transition: transform 5s ease-in-out;
-        }
-
-        .imageWheel1 {
-            width: 150%;
-            height: 148%;
+        .imageWheel,
+        .imageWheel1,
+        .imageWheel2,
+        .imageWheel3 {
+            width: 140%;
+            height: 140%;
             top: -20%;
-            left: 117%;
+            left: -20%;
             border-radius: 50%;
             overflow: hidden;
             transition: transform 5s ease-in-out;
@@ -174,153 +167,222 @@
 
         .number {
             background: var(--clr);
-            transform: rotate(calc(90deg * var(--i)));
+            transform: rotate(calc(var(--slot-angle, 90deg) * var(--i)));
         }
 
         .imageSlot {
-            transform: rotate(calc(-90deg * var(--i)));
+            transform: rotate(calc(var(--slot-angle-neg, -90deg) * var(--i)));
         }
 
         .number span {
             position: relative;
             transform: rotate(45deg);
-            font-size: 2.5em;
+            font-size: 2em;
             font-weight: 700;
             color: #fff;
             text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15);
-            left:50px;
-            top: 50px;
+            left: 40px;
+            top: 40px;
         }
 
         @keyframes animateDropShadow {
             0% {
-                filter: drop-shadow(0px 0px 30px rgba(255, 0, 0, 0.7)); /* Red */
+                filter: drop-shadow(0px 0px 30px rgba(255, 0, 0, 0.7));
             }
             33% {
-                filter: drop-shadow(0px 0px 30px rgba(0, 255, 0, 0.7)); /* Green */
+                filter: drop-shadow(0px 0px 30px rgba(0, 255, 0, 0.7));
             }
             66% {
-                filter: drop-shadow(0px 0px 30px rgba(0, 0, 255, 0.7)); /* Blue */
+                filter: drop-shadow(0px 0px 30px rgba(0, 0, 255, 0.7));
             }
             100% {
-                filter: drop-shadow(0px 0px 30px rgba(255, 0, 0, 0.7)); /* Back to Red */
+                filter: drop-shadow(0px 0px 30px rgba(255, 0, 0, 0.7));
             }
         }
+
         .imageSlot img {
-            width: 190px;
-            height: 190px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
             transform: rotate(30deg);
             animation: animateDropShadow 5s infinite;
         }
 
-        #teamSelect {
-            font-size: 16px;
-            padding: 10px 15px;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            background-color: #f9f9f9;
-            color: #333;
-            transition: border-color 0.3s, background-color 0.3s;
-            cursor: pointer;
+        .select-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin: 40px auto;
+            padding: 20px 32px;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(0, 255, 231, 0.2);
+            backdrop-filter: blur(8px);
+            max-width: 800px;
+            z-index: 10;
         }
 
-        #teamSelect:focus {
-            border-color: #007bff;
-            background-color: #e9f5ff;
+        #teamSelect {
+            padding: 12px 16px;
+            font-size: 1.1em;
+            font-weight: 500;
+            background: #1a1a1a;
+            color: #00ffe7;
+            border: 2px solid #00ffe7;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 160px;
+        }
+
+        #teamSelect:hover, #teamSelect:focus {
+            background: #2a2a2a;
+            border-color: #00ccff;
+            box-shadow: 0 0 12px rgba(0, 255, 231, 0.3);
             outline: none;
         }
 
         #teamSelect option {
+            background: #1a1a1a;
+            color: #00ffe7;
             padding: 10px;
         }
 
-        .select-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px;
-        }
-
-        #teamSelect {
-            margin: 10px;
-        }
-
         .submitBtn {
-            background-color: #4CAF50;
+            background: linear-gradient(135deg, #00ffe7, #ff00cc);
             border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 10px 2px;
+            color: #fff;
+            padding: 14px 28px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 10px;
             cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 255, 231, 0.2);
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
         }
 
         .submitBtn:hover {
-            background-color: #45a049;
+            background: linear-gradient(135deg, #ff00cc, #00ffe7);
+            box-shadow: 0 6px 16px rgba(0, 255, 231, 0.3);
+            transform: translateY(-2px);
         }
 
         .submitBtn:active {
-            background-color: #3e8e41;
-            transform: translateY(2px);
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(0, 255, 231, 0.2);
+        }
+
+        #triggerSpin {
+            background: linear-gradient(135deg, #007bff, #00ffe7);
+            border: none;
+            color: #fff;
+            padding: 14px 28px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 255, 231, 0.2);
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #triggerSpin:hover {
+            background: linear-gradient(135deg, #00ffe7, #007bff);
+            box-shadow: 0 6px 16px rgba(0, 255, 231, 0.3);
+            transform: translateY(-2px);
+        }
+
+        #triggerSpin:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(0, 255, 231, 0.2);
+        }
+
+        #triggerSpin span {
+            font-size: 1.3em;
+        }
+
+        #event_name {
+            padding: 12px 16px;
+            font-size: 1.1em;
+            font-weight: 500;
+            background: #1a1a1a;
+            color: #00ffe7;
+            border: 2px solid rgba(0, 255, 231, 0.5);
+            border-radius: 8px;
+            cursor: not-allowed;
+            opacity: 0.7;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .select-container {
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px 24px;
+                max-width: 90%;
+            }
+
+            #teamSelect, .submitBtn, #triggerSpin, #event_name {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- <img width=240px src="https://www.nscet.org/hackathon/img/logoHack.png" alt=""> -->
     <canvas id="backgroundCanvas"></canvas>
     <canvas id="particleCanvas"></canvas>
 
     <audio id="spinSound" src="../public/music/spinning-jar-cap.mp3"></audio>
-    <!-- <h1 class="head">Grouped Event Allotment</h1> -->
 
-    <div style='display:flex'>
+    <div class="wheel-container">
+        <div class="container">
+            <div class="spinBtn">Spin</div>
+            <div class="wheel"></div>
+            <div class="imageWheel"></div>
+        </div>
+        <div class="container">
+            <div class="spinBtn1">Spin</div>
+            <div class="wheel1"></div>
+            <div class="imageWheel1"></div>
+        </div>
+        <div class="container">
+            <div class="spinBtn2">Spin</div>
+            <div class="wheel2"></div>
+            <div class="imageWheel2"></div>
+        </div>
+        <div class="container">
+            <div class="spinBtn3">Spin</div>
+            <div class="wheel3"></div>
+            <div class="imageWheel3"></div>
+        </div>
+    </div>
 
-    <div class="container">
-        <div class="spinBtn">Spin</div>
-        <div class="wheel"></div>
-        <div class="imageWheel"></div>
-    </div>
-    <div class="container" style="margin-top:100px; margin-bottom:100px">
-        <div class="spinBtn1">Spin</div>
-        <div class="wheel1"></div>
-        <div class="imageWheel1"></div>
-    </div>
-    </div>
-    
-        
     <form id="hidden-form" action="../routes/admin/assignSlot.php" method="post" style="display:none;">
         <input type="hidden" id="gender" name="gender" value="">
         <input type="hidden" id="slots" name="slot_array" value="">
         <input type="hidden" name="event_name" value="<?php echo $_GET['eventName'] ?>">
     </form>
 
-    <div style="display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 20%;
-    text-align:center;position: absolute;
-    bottom: 5%;
-    left: 2%">
-    <select id="teamSelect">
-        <option value="BOYS">Select Gender</option>
-        <option value="GIRLS">Girls</option>
-        <option value="BOYS">Boys</option>
-    </select>
-    <button class="submitBtn">Submit</button>
-    <button id="triggerSpin">Spin Both</button>
-
-    <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
+    <div class="select-container">
+        <select id="teamSelect">
+            <option value="BOYS">Select Gender</option>
+            <option value="GIRLS">Girls</option>
+            <option value="BOYS">Boys</option>
+        </select>
+        <button class="submitBtn">Submit</button>
+        <button id="triggerSpin"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin All</button>
+        <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
     </div>
-    
-
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -329,7 +391,8 @@
                     { name: 'Slot 1', color: '#db7093', image: 'BLUE_BLASTERS.png' },
                     { name: 'Slot 2', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
                     { name: 'Slot 3', color: '#d63e92', image: 'ROSY_RIDERS.png' },
-                    { name: 'Slot 4', color: '#daa520', image: 'VIOLET_VIPERS.png' }
+                    { name: 'Slot 4', color: '#daa520', image: 'VIOLET_VIPERS.png' },
+                    { name: 'Slot 5', color: '#228B22', image: 'emerald_eagles.png' }
                 ],
                 BOYS: [
                     { name: 'Slot 1', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
@@ -341,10 +404,11 @@
 
             const allSlots1 = {
                 GIRLS: [
-                    { name: 'Slot 5', color: '#db7093', image: 'BLUE_BLASTERS.png' },
-                    { name: 'Slot 6', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
-                    { name: 'Slot 7', color: '#d63e92', image: 'ROSY_RIDERS.png' },
-                    { name: 'Slot 8', color: '#daa520', image: 'VIOLET_VIPERS.png' }
+                    { name: 'Slot 6', color: '#db7093', image: 'BLUE_BLASTERS.png' },
+                    { name: 'Slot 7', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
+                    { name: 'Slot 8', color: '#d63e92', image: 'ROSY_RIDERS.png' },
+                    { name: 'Slot 9', color: '#daa520', image: 'VIOLET_VIPERS.png' },
+                    { name: 'Slot 10', color: '#228B22', image: 'emerald_eagles.png' }
                 ],
                 BOYS: [
                     { name: 'Slot 5', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
@@ -354,8 +418,37 @@
                 ]
             }
 
-            let slots = allSlots.BOYS
-            let slots1 = allSlots1.BOYS
+            const allSlots2 = {
+                GIRLS: [
+                    { name: 'Slot 10', color: '#db7093', image: 'BLUE_BLASTERS.png' },
+                    { name: 'Slot 11', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
+                    { name: 'Slot 12', color: '#d63e92', image: 'ROSY_RIDERS.png' },
+                    { name: 'Slot 13', color: '#daa520', image: 'VIOLET_VIPERS.png' },
+                    { name: 'Slot 14', color: '#228B22', image: 'emerald_eagles.png' }
+                ],
+                BOYS: [
+                    { name: 'Slot 9', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
+                    { name: 'Slot 10', color: '#ff7f50', image: 'DRAGON_WARRIORS.png' },
+                    { name: 'Slot 11', color: '#3cb371', image: 'PHOENIX_BLASTERS.png' },
+                    { name: 'Slot 12', color: '#4169e1', image: 'TIGER_THRASHERS.png' }
+                ]
+            }
+
+            const allSlots3 = {
+                GIRLS: [
+                    { name: 'Slot 15', color: '#db7093', image: 'BLUE_BLASTERS.png' },
+                    { name: 'Slot 16', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
+                    { name: 'Slot 17', color: '#d63e92', image: 'ROSY_RIDERS.png' },
+                    { name: 'Slot 18', color: '#daa520', image: 'VIOLET_VIPERS.png' },
+                    { name: 'Slot 19', color: '#228B22', image: 'emerald_eagles.png' }
+                ],
+                BOYS: [
+                    { name: 'Slot 13', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
+                    { name: 'Slot 14', color: '#ff7f50', image: 'DRAGON_WARRIORS.png' },
+                    { name: 'Slot 15', color: '#3cb371', image: 'PHOENIX_BLASTERS.png' },
+                    { name: 'Slot 16', color: '#4169e1', image: 'TIGER_THRASHERS.png' }
+                ]
+            }
 
             const wheel = document.querySelector('.wheel')
             const imageWheel = document.querySelector('.imageWheel')
@@ -363,24 +456,45 @@
             const wheel1 = document.querySelector('.wheel1')
             const imageWheel1 = document.querySelector('.imageWheel1')
 
+            const wheel2 = document.querySelector('.wheel2')
+            const imageWheel2 = document.querySelector('.imageWheel2')
+
+            const wheel3 = document.querySelector('.wheel3')
+            const imageWheel3 = document.querySelector('.imageWheel3')
+
             function populateWheel() {
+                const selectedValue = document.getElementById('teamSelect').value
+
                 wheel.innerHTML = ''
                 imageWheel.innerHTML = ''
 
                 wheel1.innerHTML = ''
                 imageWheel1.innerHTML = ''
 
-                slots.forEach((slot, index) => {
+                wheel2.innerHTML = ''
+                imageWheel2.innerHTML = ''
+
+                wheel3.innerHTML = ''
+                imageWheel3.innerHTML = ''
+
+                // Wheel 0 (first wheel)
+                let slots0 = allSlots[selectedValue]
+                let slotAngle0 = slots0.length === 5 ? '72deg' : '90deg'
+                let slotAngleNeg0 = slots0.length === 5 ? '-72deg' : '-90deg'
+                wheel.style.setProperty('--slot-angle', slotAngle0)
+                imageWheel.style.setProperty('--slot-angle-neg', slotAngleNeg0)
+
+                slots0.forEach((slot, index) => {
                     const numberSlot = document.createElement('div')
                     numberSlot.classList.add('number')
-                    numberSlot.style.setProperty('--i', index + 1)
+                    numberSlot.style.setProperty('--i', index)
                     numberSlot.style.setProperty('--clr', slot.color)
                     numberSlot.innerHTML = `<span>${slot.name}</span>`
                     wheel.appendChild(numberSlot)
 
                     const imageSlot = document.createElement('div')
                     imageSlot.classList.add('imageSlot')
-                    imageSlot.style.setProperty('--i', index + 1)
+                    imageSlot.style.setProperty('--i', index)
                     const img = document.createElement('img')
                     img.src = `../public/images/house/${slot.image}`
                     img.alt = slot.image.slice(0, slot.image.length - 4)
@@ -388,28 +502,99 @@
                     imageWheel.appendChild(imageSlot)
                 })
 
-                slots1.forEach((slot, index) => {
-                    const numberSlot1 = document.createElement('div')
-                    numberSlot1.classList.add('number')
-                    numberSlot1.style.setProperty('--i', index + 1)
-                    numberSlot1.style.setProperty('--clr', slot.color)
-                    numberSlot1.innerHTML = `<span>${slot.name}</span>`
-                    wheel1.appendChild(numberSlot1)
+                // Wheel 1 (second wheel)
+                let slots1 = allSlots1[selectedValue]
+                if (selectedValue === 'GIRLS') {
+                    slots1 = [
+                        { name: 'Slot 6', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
+                        { name: 'Slot 7', color: '#ff7f50', image: 'DRAGON_WARRIORS.png' },
+                        { name: 'Slot 8', color: '#3cb371', image: 'PHOENIX_BLASTERS.png' },
+                        { name: 'Slot 9', color: '#4169e1', image: 'TIGER_THRASHERS.png' }
+                    ]
+                }
+                let slotAngle1 = slots1.length === 5 ? '72deg' : '90deg'
+                let slotAngleNeg1 = slots1.length === 5 ? '-72deg' : '-90deg'
+                wheel1.style.setProperty('--slot-angle', slotAngle1)
+                imageWheel1.style.setProperty('--slot-angle-neg', slotAngleNeg1)
 
-                    const imageSlot1 = document.createElement('div')
-                    imageSlot1.classList.add('imageSlot')
-                    imageSlot1.style.setProperty('--i', index + 1)
-                    const img1 = document.createElement('img')
-                    img1.src = `../public/images/house/${slot.image}`
-                    img1.alt = slot.image.slice(0, slot.image.length - 4)
-                    imageSlot1.appendChild(img1)
-                    imageWheel1.appendChild(imageSlot1)
+                slots1.forEach((slot, index) => {
+                    const numberSlot = document.createElement('div')
+                    numberSlot.classList.add('number')
+                    numberSlot.style.setProperty('--i', index)
+                    numberSlot.style.setProperty('--clr', slot.color)
+                    numberSlot.innerHTML = `<span>${slot.name}</span>`
+                    wheel1.appendChild(numberSlot)
+
+                    const imageSlot = document.createElement('div')
+                    imageSlot.classList.add('imageSlot')
+                    imageSlot.style.setProperty('--i', index)
+                    const img = document.createElement('img')
+                    img.src = `../public/images/house/${slot.image}`
+                    img.alt = slot.image.slice(0, slot.image.length - 4)
+                    imageSlot.appendChild(img)
+                    imageWheel1.appendChild(imageSlot)
+                })
+
+                // Wheel 2 (third wheel)
+                let slots2 = allSlots2[selectedValue]
+                let slotAngle2 = slots2.length === 5 ? '72deg' : '90deg'
+                let slotAngleNeg2 = slots2.length === 5 ? '-72deg' : '-90deg'
+                wheel2.style.setProperty('--slot-angle', slotAngle2)
+                imageWheel2.style.setProperty('--slot-angle-neg', slotAngleNeg2)
+
+                slots2.forEach((slot, index) => {
+                    const numberSlot = document.createElement('div')
+                    numberSlot.classList.add('number')
+                    numberSlot.style.setProperty('--i', index)
+                    numberSlot.style.setProperty('--clr', slot.color)
+                    numberSlot.innerHTML = `<span>${slot.name}</span>`
+                    wheel2.appendChild(numberSlot)
+
+                    const imageSlot = document.createElement('div')
+                    imageSlot.classList.add('imageSlot')
+                    imageSlot.style.setProperty('--i', index)
+                    const img = document.createElement('img')
+                    img.src = `../public/images/house/${slot.image}`
+                    img.alt = slot.image.slice(0, slot.image.length - 4)
+                    imageSlot.appendChild(img)
+                    imageWheel2.appendChild(imageSlot)
+                })
+
+                // Wheel 3 (fourth wheel)
+                let slots3 = allSlots3[selectedValue]
+                if (selectedValue === 'GIRLS') {
+                    slots3 = [
+                        { name: 'Slot 15', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
+                        { name: 'Slot 16', color: '#ff7f50', image: 'DRAGON_WARRIORS.png' },
+                        { name: 'Slot 17', color: '#3cb371', image: 'PHOENIX_BLASTERS.png' },
+                        { name: 'Slot 18', color: '#4169e1', image: 'TIGER_THRASHERS.png' }
+                    ]
+                }
+                let slotAngle3 = slots3.length === 5 ? '72deg' : '90deg'
+                let slotAngleNeg3 = slots3.length === 5 ? '-72deg' : '-90deg'
+                wheel3.style.setProperty('--slot-angle', slotAngle3)
+                imageWheel3.style.setProperty('--slot-angle-neg', slotAngleNeg3)
+
+                slots3.forEach((slot, index) => {
+                    const numberSlot = document.createElement('div')
+                    numberSlot.classList.add('number')
+                    numberSlot.style.setProperty('--i', index)
+                    numberSlot.style.setProperty('--clr', slot.color)
+                    numberSlot.innerHTML = `<span>${slot.name}</span>`
+                    wheel3.appendChild(numberSlot)
+
+                    const imageSlot = document.createElement('div')
+                    imageSlot.classList.add('imageSlot')
+                    imageSlot.style.setProperty('--i', index)
+                    const img = document.createElement('img')
+                    img.src = `../public/images/house/${slot.image}`
+                    img.alt = slot.image.slice(0, slot.image.length - 4)
+                    imageSlot.appendChild(img)
+                    imageWheel3.appendChild(imageSlot)
                 })
             }
 
             function updateSlots() {
-                const selectedValue = document.getElementById('teamSelect').value
-                slots = allSlots[selectedValue]
                 populateWheel()
             }
 
@@ -418,6 +603,8 @@
             populateWheel()
             const spinBtn = document.querySelector('.spinBtn')
             const spinBtn1 = document.querySelector('.spinBtn1')
+            const spinBtn2 = document.querySelector('.spinBtn2')
+            const spinBtn3 = document.querySelector('.spinBtn3')
             const spinSound = document.getElementById("spinSound")
 
             let isSpinning = false
@@ -425,6 +612,12 @@
 
             let isSpinning1 = false
             let spinned1 = false
+
+            let isSpinning2 = false
+            let spinned2 = false
+
+            let isSpinning3 = false
+            let spinned3 = false
 
             spinBtn.addEventListener('click', () => {
                 if (isSpinning) return
@@ -445,7 +638,6 @@
                     isSpinning = false
                     spinSound.pause()
                     spinSound.currentTime = 0
-                    trackPositions()
                 }, { once: true })
             })
 
@@ -468,13 +660,56 @@
                     isSpinning1 = false
                     spinSound.pause()
                     spinSound.currentTime = 0
-                    trackPositions()
                 }, { once: true })
             })
 
-            function trackPositions() {
-                const imageSlots = document.querySelectorAll('.imageSlot')
-                const numberSlots = document.querySelectorAll('.number')
+            spinBtn2.addEventListener('click', () => {
+                if (isSpinning2) return
+                isSpinning2 = true
+                spinned2 = true
+
+                const randomDegree = Math.floor(Math.random() * 3600)
+                const rotationAmount = randomDegree + 1800
+
+                wheel2.style.transition = 'transform 5s ease-in-out'
+                imageWheel2.style.transition = 'transform 5s ease-in-out'
+                wheel2.style.transform = `rotate(${rotationAmount}deg)`
+                imageWheel2.style.transform = `rotate(${-rotationAmount}deg)`
+
+                spinSound.play()
+
+                wheel2.addEventListener('transitionend', () => {
+                    isSpinning2 = false
+                    spinSound.pause()
+                    spinSound.currentTime = 0
+                }, { once: true })
+            })
+
+            spinBtn3.addEventListener('click', () => {
+                if (isSpinning3) return
+                isSpinning3 = true
+                spinned3 = true
+
+                const randomDegree = Math.floor(Math.random() * 3600)
+                const rotationAmount = randomDegree + 1800
+
+                wheel3.style.transition = 'transform 5s ease-in-out'
+                imageWheel3.style.transition = 'transform 5s ease-in-out'
+                wheel3.style.transform = `rotate(${rotationAmount}deg)`
+                imageWheel3.style.transform = `rotate(${-rotationAmount}deg)`
+
+                spinSound.play()
+
+                wheel3.addEventListener('transitionend', () => {
+                    isSpinning3 = false
+                    spinSound.pause()
+                    spinSound.currentTime = 0
+                }, { once: true })
+            })
+
+            function trackPositions(wheelSelector, imageWheelSelector) {
+                const imageSlots = document.querySelectorAll(`${imageWheelSelector} .imageSlot`)
+                const numberSlots = document.querySelectorAll(`${wheelSelector} .number`)
 
                 const matchedSlots = []
 
@@ -508,6 +743,7 @@
 
                 return matchedSlots
             }
+
             const submitBtn = document.querySelector('.submitBtn')
             const eventName = document.getElementById('event_name').value
             let gender = 'BOYS'
@@ -519,8 +755,13 @@
             document.getElementById('teamSelect').addEventListener('change', updateGender)
 
             submitBtn.addEventListener('click', () => {
-                if (spinned) {
-                    const slotValues = trackPositions()
+                if (spinned && spinned1 && spinned2 && spinned3) {
+                    const slotValues = [
+                        ...trackPositions('.wheel', '.imageWheel'),
+                        ...trackPositions('.wheel1', '.imageWheel1'),
+                        ...trackPositions('.wheel2', '.imageWheel2'),
+                        ...trackPositions('.wheel3', '.imageWheel3')
+                    ]
 
                     const slotNumbers = slotValues.map(item => {
                         return parseInt(item.slot.slice(5), 10)
@@ -530,63 +771,67 @@
                     document.getElementById('gender').value = gender
 
                     document.getElementById('hidden-form').submit()
+                } else {
+                    alert('Please spin all wheels before submitting!');
                 }
             })
 
             const triggerSpin = document.getElementById('triggerSpin');
 
             triggerSpin.addEventListener('click', () => {
-                spinBtn.click();
-                spinBtn1.click();
+                if (!isSpinning && !isSpinning1 && !isSpinning2 && !isSpinning3) {
+                    spinBtn.click();
+                    spinBtn1.click();
+                    spinBtn2.click();
+                    spinBtn3.click();
+                }
             });
         })
-
     </script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
-<script>
-    const duration = 15 * 1000,
-        animationEnd = Date.now() + duration,
-        defaults = {
-            startVelocity: 30,
-            spread: 360,
-            ticks: 60,
-            zIndex: 50
-        };
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+    <script>
+        const duration = 15 * 1000,
+            animationEnd = Date.now() + duration,
+            defaults = {
+                startVelocity: 30,
+                spread: 360,
+                ticks: 60,
+                zIndex: 50
+            };
 
-    function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-    }
-
-    const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-            return clearInterval(interval);
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
         }
 
-        const particleCount = 20 * (timeLeft / duration);
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
 
-        // since particles fall down, start a bit higher than random
-        confetti(
-            Object.assign({}, defaults, {
-                particleCount,
-                origin: {
-                    x: randomInRange(0.2, 0.7),
-                    y: Math.random() - 0.2
-                },
-            })
-        );
-        confetti(
-            Object.assign({}, defaults, {
-                particleCount,
-                origin: {
-                    x: randomInRange(0.7, 0.9),
-                    y: Math.random() - 0.2
-                },
-            })
-        );
-    }, 250);
-</script>
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            const particleCount = 20 * (timeLeft / duration);
+
+            confetti(
+                Object.assign({}, defaults, {
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.2, 0.7),
+                        y: Math.random() - 0.2
+                    },
+                })
+            );
+            confetti(
+                Object.assign({}, defaults, {
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.7, 0.9),
+                        y: Math.random() - 0.2
+                    },
+                })
+            );
+        }, 250);
+    </script>
 </body>
 
 </html>
