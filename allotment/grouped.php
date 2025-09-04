@@ -322,6 +322,88 @@
             text-align: center;
         }
 
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            max-width: 800px; /* Increased max-width */
+            width: 95%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 3px solid #00ffe7;
+        }
+
+        .popup.show {
+            display: block;
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .popup-header h2 {
+            color: #00ffe7;
+            font-size: 2em; /* Increased font size */
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #00ffe7;
+            font-size: 2em; /* Increased font size */
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #ff00cc;
+        }
+
+        .slot-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #fff;
+        }
+
+        .slot-table th,
+        .slot-table td {
+            padding: 16px; /* Increased padding */
+            text-align: left;
+            border-bottom: 1.5px solid rgba(0, 255, 231, 0.2);
+            font-size: 1.2em; /* Increased font size */
+        }
+
+        .slot-table th {
+            background: #1a1a1a;
+            color: #00ffe7;
+            font-weight: 600;
+        }
+
+        .slot-table td {
+            background: #2a2a2a;
+        }
+
+        .slot-table img {
+            width: 70px; /* Increased image size */
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            vertical-align: middle;
+            margin-right: 12px; /* Increased margin */
+        }
+
         @media (max-width: 600px) {
             .select-container {
                 flex-direction: column;
@@ -333,6 +415,32 @@
             #teamSelect, .submitBtn, #triggerSpin, #event_name {
                 width: 100%;
                 max-width: 300px;
+            }
+
+            .popup {
+                width: 95%;
+                padding: 20px; /* Adjusted padding for smaller screens */
+                max-width: 95%; /* Ensure it fits on small screens */
+            }
+
+            .popup-header h2 {
+                font-size: 1.8em; /* Slightly smaller for mobile */
+            }
+
+            .close-btn {
+                font-size: 1.8em; /* Slightly smaller for mobile */
+            }
+
+            .slot-table th,
+            .slot-table td {
+                font-size: 1em; /* Slightly smaller for mobile */
+                padding: 12px; /* Adjusted padding for mobile */
+            }
+
+            .slot-table img {
+                width: 60px; /* Slightly smaller for mobile */
+                height: 60px;
+                margin-right: 8px;
             }
         }
     </style>
@@ -382,6 +490,23 @@
         <button class="submitBtn">Submit</button>
         <button id="triggerSpin"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin All</button>
         <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
+    </div>
+
+    <!-- Popup for displaying slot assignments -->
+    <div class="popup" id="slotPopup">
+        <div class="popup-header">
+            <h2>Slot Assignments</h2>
+            <button class="close-btn" id="closePopup">&times;</button>
+        </div>
+        <table class="slot-table">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Slot Number</th>
+                </tr>
+            </thead>
+            <tbody id="slotTableBody"></tbody>
+        </table>
     </div>
 
     <script>
@@ -598,7 +723,6 @@
             // Helper to get slot numbers from slot objects
             function getSlotNumbers(slots) {
                 return slots.map(slot => {
-                    // Extract slot number from name, e.g. 'Slot 1' => 1
                     const match = slot.name.match(/\d+/)
                     return match ? parseInt(match[0]) : null
                 }).filter(n => n !== null)
@@ -606,23 +730,19 @@
 
             // Spin All button logic
             document.getElementById('triggerSpin').addEventListener('click', () => {
-                // Get current slots for each wheel
                 const selectedValue = document.getElementById('teamSelect').value
                 let slots0 = allSlots[selectedValue].slice()
                 let slots1 = allSlots1[selectedValue].slice()
                 let slots2 = allSlots2[selectedValue].slice()
                 let slots3 = allSlots3[selectedValue].slice()
 
-                // Shuffle each wheel's slots
                 const shuffledSlots0 = shuffle(slots0)
                 const shuffledSlots1 = shuffle(slots1)
                 const shuffledSlots2 = shuffle(slots2)
                 const shuffledSlots3 = shuffle(slots3)
 
-                // Update wheels visually with shuffled slots
                 populateWheel(shuffledSlots0, shuffledSlots1, shuffledSlots2, shuffledSlots3)
 
-                // Combine all slot numbers for backend
                 const slotNumbers = [
                     ...getSlotNumbers(shuffledSlots0),
                     ...getSlotNumbers(shuffledSlots1),
@@ -630,7 +750,6 @@
                     ...getSlotNumbers(shuffledSlots3)
                 ]
 
-                // Set hidden input value
                 document.getElementById('slots').value = JSON.stringify(slotNumbers)
             })
             const spinBtn1 = document.querySelector('.spinBtn1')
@@ -768,7 +887,7 @@
                     if (closestSlot) {
                         const slotNumber = closestSlot.querySelector('span').innerText
                         const imageName = imageSlot.querySelector('img').alt
-                        matchedSlots.push({ image: imageName, slot: slotNumber })
+                        matchedSlots.push({ image: imageName, slot: slotNumber, imageSrc: imageSlot.querySelector('img').src })
                     }
                 })
 
@@ -778,12 +897,38 @@
             const submitBtn = document.querySelector('.submitBtn')
             const eventName = document.getElementById('event_name').value
             let gender = 'BOYS'
+            const popup = document.getElementById('slotPopup')
+            const closePopupBtn = document.getElementById('closePopup')
+            const slotTableBody = document.getElementById('slotTableBody')
 
             function updateGender() {
                 gender = document.getElementById('teamSelect').value
             }
 
             document.getElementById('teamSelect').addEventListener('change', updateGender)
+
+            function showPopup(slotValues) {
+                slotTableBody.innerHTML = ''
+                // Sort slotValues by slot number in ascending order
+                slotValues.sort((a, b) => {
+                    const slotA = parseInt(a.slot.match(/\d+/)[0])
+                    const slotB = parseInt(b.slot.match(/\d+/)[0])
+                    return slotA - slotB
+                })
+                slotValues.forEach(item => {
+                    const row = document.createElement('tr')
+                    row.innerHTML = `
+                        <td><img src="${item.imageSrc}" alt="${item.image}">${item.image}</td>
+                        <td>${item.slot}</td>
+                    `
+                    slotTableBody.appendChild(row)
+                })
+                popup.classList.add('show')
+            }
+
+            closePopupBtn.addEventListener('click', () => {
+                popup.classList.remove('show')
+            })
 
             submitBtn.addEventListener('click', () => {
                 if (spinned && spinned1 && spinned2 && spinned3) {
@@ -801,25 +946,27 @@
                     document.getElementById('slots').value = JSON.stringify(slotNumbers)
                     document.getElementById('gender').value = gender
 
-                    document.getElementById('hidden-form').submit()
+                    showPopup(slotValues)
+                    // Uncomment the following line to submit the form after showing the popup
+                    // document.getElementById('hidden-form').submit()
                 } else {
-                    alert('Please spin all wheels before submitting!');
+                    alert('Please spin all wheels before submitting!')
                 }
             })
 
-            const triggerSpin = document.getElementById('triggerSpin');
+            const triggerSpin = document.getElementById('triggerSpin')
 
             triggerSpin.addEventListener('click', () => {
                 if (!isSpinning && !isSpinning1 && !isSpinning2 && !isSpinning3) {
-                    spinBtn.click();
-                    spinBtn1.click();
-                    spinBtn2.click();
-                    spinBtn3.click();
+                    spinBtn.click()
+                    spinBtn1.click()
+                    spinBtn2.click()
+                    spinBtn3.click()
                 }
-            });
+            })
         })
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles-confetti.bundle.min.js"></script>
     <script>
         const duration = 15 * 1000,
             animationEnd = Date.now() + duration,
@@ -828,20 +975,20 @@
                 spread: 360,
                 ticks: 60,
                 zIndex: 50
-            };
+            }
 
         function randomInRange(min, max) {
-            return Math.random() * (max - min) + min;
+            return Math.random() * (max - min) + min
         }
 
         const interval = setInterval(function() {
-            const timeLeft = animationEnd - Date.now();
+            const timeLeft = animationEnd - Date.now()
 
             if (timeLeft <= 0) {
-                return clearInterval(interval);
+                return clearInterval(interval)
             }
 
-            const particleCount = 20 * (timeLeft / duration);
+            const particleCount = 20 * (timeLeft / duration)
 
             confetti(
                 Object.assign({}, defaults, {
@@ -851,7 +998,7 @@
                         y: Math.random() - 0.2
                     },
                 })
-            );
+            )
             confetti(
                 Object.assign({}, defaults, {
                     particleCount,
@@ -860,8 +1007,8 @@
                         y: Math.random() - 0.2
                     },
                 })
-            );
-        }, 250);
+            )
+        }, 250)
     </script>
 </body>
 
