@@ -420,11 +420,11 @@
 
             const allSlots2 = {
                 GIRLS: [
-                    { name: 'Slot 10', color: '#db7093', image: 'BLUE_BLASTERS.png' },
-                    { name: 'Slot 11', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
-                    { name: 'Slot 12', color: '#d63e92', image: 'ROSY_RIDERS.png' },
-                    { name: 'Slot 13', color: '#daa520', image: 'VIOLET_VIPERS.png' },
-                    { name: 'Slot 14', color: '#228B22', image: 'emerald_eagles.png' }
+                    { name: 'Slot 11', color: '#db7093', image: 'BLUE_BLASTERS.png' },
+                    { name: 'Slot 12', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
+                    { name: 'Slot 13', color: '#d63e92', image: 'ROSY_RIDERS.png' },
+                    { name: 'Slot 14', color: '#daa520', image: 'VIOLET_VIPERS.png' },
+                    { name: 'Slot 15', color: '#228B22', image: 'emerald_eagles.png' }
                 ],
                 BOYS: [
                     { name: 'Slot 9', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
@@ -436,11 +436,11 @@
 
             const allSlots3 = {
                 GIRLS: [
-                    { name: 'Slot 15', color: '#db7093', image: 'BLUE_BLASTERS.png' },
-                    { name: 'Slot 16', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
-                    { name: 'Slot 17', color: '#d63e92', image: 'ROSY_RIDERS.png' },
-                    { name: 'Slot 18', color: '#daa520', image: 'VIOLET_VIPERS.png' },
-                    { name: 'Slot 19', color: '#228B22', image: 'emerald_eagles.png' }
+                    { name: 'Slot 16', color: '#db7093', image: 'BLUE_BLASTERS.png' },
+                    { name: 'Slot 17', color: '#20b2aa', image: 'GALACTIC_STARS.png' },
+                    { name: 'Slot 18', color: '#d63e92', image: 'ROSY_RIDERS.png' },
+                    { name: 'Slot 19', color: '#daa520', image: 'VIOLET_VIPERS.png' },
+                    { name: 'Slot 20', color: '#228B22', image: 'emerald_eagles.png' }
                 ],
                 BOYS: [
                     { name: 'Slot 13', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
@@ -462,7 +462,16 @@
             const wheel3 = document.querySelector('.wheel3')
             const imageWheel3 = document.querySelector('.imageWheel3')
 
-            function populateWheel() {
+            // Fisher-Yates shuffle
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function populateWheel(shuffledSlots0, shuffledSlots1, shuffledSlots2, shuffledSlots3) {
                 const selectedValue = document.getElementById('teamSelect').value
 
                 wheel.innerHTML = ''
@@ -478,7 +487,7 @@
                 imageWheel3.innerHTML = ''
 
                 // Wheel 0 (first wheel)
-                let slots0 = allSlots[selectedValue]
+                let slots0 = shuffledSlots0 || allSlots[selectedValue]
                 let slotAngle0 = slots0.length === 5 ? '72deg' : '90deg'
                 let slotAngleNeg0 = slots0.length === 5 ? '-72deg' : '-90deg'
                 wheel.style.setProperty('--slot-angle', slotAngle0)
@@ -503,15 +512,7 @@
                 })
 
                 // Wheel 1 (second wheel)
-                let slots1 = allSlots1[selectedValue]
-                if (selectedValue === 'GIRLS') {
-                    slots1 = [
-                        { name: 'Slot 6', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
-                        { name: 'Slot 7', color: '#ff7f50', image: 'DRAGON_WARRIORS.png' },
-                        { name: 'Slot 8', color: '#3cb371', image: 'PHOENIX_BLASTERS.png' },
-                        { name: 'Slot 9', color: '#4169e1', image: 'TIGER_THRASHERS.png' }
-                    ]
-                }
+                let slots1 = shuffledSlots1 || allSlots1[selectedValue]
                 let slotAngle1 = slots1.length === 5 ? '72deg' : '90deg'
                 let slotAngleNeg1 = slots1.length === 5 ? '-72deg' : '-90deg'
                 wheel1.style.setProperty('--slot-angle', slotAngle1)
@@ -536,7 +537,7 @@
                 })
 
                 // Wheel 2 (third wheel)
-                let slots2 = allSlots2[selectedValue]
+                let slots2 = shuffledSlots2 || allSlots2[selectedValue]
                 let slotAngle2 = slots2.length === 5 ? '72deg' : '90deg'
                 let slotAngleNeg2 = slots2.length === 5 ? '-72deg' : '-90deg'
                 wheel2.style.setProperty('--slot-angle', slotAngle2)
@@ -561,15 +562,7 @@
                 })
 
                 // Wheel 3 (fourth wheel)
-                let slots3 = allSlots3[selectedValue]
-                if (selectedValue === 'GIRLS') {
-                    slots3 = [
-                        { name: 'Slot 15', color: '#ff34f0', image: 'DINO_THUNDERS.png' },
-                        { name: 'Slot 16', color: '#ff7f50', image: 'DRAGON_WARRIORS.png' },
-                        { name: 'Slot 17', color: '#3cb371', image: 'PHOENIX_BLASTERS.png' },
-                        { name: 'Slot 18', color: '#4169e1', image: 'TIGER_THRASHERS.png' }
-                    ]
-                }
+                let slots3 = shuffledSlots3 || allSlots3[selectedValue]
                 let slotAngle3 = slots3.length === 5 ? '72deg' : '90deg'
                 let slotAngleNeg3 = slots3.length === 5 ? '-72deg' : '-90deg'
                 wheel3.style.setProperty('--slot-angle', slotAngle3)
@@ -599,9 +592,47 @@
             }
 
             document.getElementById('teamSelect').addEventListener('change', updateSlots)
-
+            // Initial wheel population
             populateWheel()
             const spinBtn = document.querySelector('.spinBtn')
+            // Helper to get slot numbers from slot objects
+            function getSlotNumbers(slots) {
+                return slots.map(slot => {
+                    // Extract slot number from name, e.g. 'Slot 1' => 1
+                    const match = slot.name.match(/\d+/)
+                    return match ? parseInt(match[0]) : null
+                }).filter(n => n !== null)
+            }
+
+            // Spin All button logic
+            document.getElementById('triggerSpin').addEventListener('click', () => {
+                // Get current slots for each wheel
+                const selectedValue = document.getElementById('teamSelect').value
+                let slots0 = allSlots[selectedValue].slice()
+                let slots1 = allSlots1[selectedValue].slice()
+                let slots2 = allSlots2[selectedValue].slice()
+                let slots3 = allSlots3[selectedValue].slice()
+
+                // Shuffle each wheel's slots
+                const shuffledSlots0 = shuffle(slots0)
+                const shuffledSlots1 = shuffle(slots1)
+                const shuffledSlots2 = shuffle(slots2)
+                const shuffledSlots3 = shuffle(slots3)
+
+                // Update wheels visually with shuffled slots
+                populateWheel(shuffledSlots0, shuffledSlots1, shuffledSlots2, shuffledSlots3)
+
+                // Combine all slot numbers for backend
+                const slotNumbers = [
+                    ...getSlotNumbers(shuffledSlots0),
+                    ...getSlotNumbers(shuffledSlots1),
+                    ...getSlotNumbers(shuffledSlots2),
+                    ...getSlotNumbers(shuffledSlots3)
+                ]
+
+                // Set hidden input value
+                document.getElementById('slots').value = JSON.stringify(slotNumbers)
+            })
             const spinBtn1 = document.querySelector('.spinBtn1')
             const spinBtn2 = document.querySelector('.spinBtn2')
             const spinBtn3 = document.querySelector('.spinBtn3')
