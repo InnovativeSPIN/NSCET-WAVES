@@ -180,7 +180,7 @@ include('../routes/connect.php');
 
         <?php
         $path = '../public/images/house/';
-        $img = str_replace("", "_", $_SESSION['house_name']);
+        $img = str_replace(" ", "_", $_SESSION['house_name']);
         ?>
         <img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="...">
 
