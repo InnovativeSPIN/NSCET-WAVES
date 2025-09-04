@@ -34,7 +34,6 @@ if (isset($_POST['importExcelFile'])) {
                 $house_name = $conn->real_escape_string($_POST['house_name']);
                 $gender     = $conn->real_escape_string($_POST['gender']);
 
-                // Use ON DUPLICATE KEY UPDATE to insert or update other columns if reg_no exists
                 $sql = "INSERT INTO studentdb (name, reg_no, house, dept, gender, year) 
                         VALUES ('$stu_name', '$inputRegNo', '$house_name', '$dept', '$gender', '$year')
                         ON DUPLICATE KEY UPDATE
