@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['house_name']) && isse
     } else {
         // echo "User not found";
         // $error = "User not found";
-        header('Location: ../../index.php');
+        header('Location: ../../');
     }
 
     mysqli_stmt_close($stmt);
