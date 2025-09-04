@@ -178,17 +178,12 @@ include('../routes/connect.php');
 
     <div class="card dark gradient-border" style="margin-top:140px">
 
-    <?php
+   <?php
 $path = '../public/images/house/';
 $img  = str_replace(" ", "_", $_SESSION['house_name']);
-
-if ($_SESSION['house_name'] == "EMERALD_EAGLES") {
-  
-    echo '<img src="../public/images/house/EMERALD_EAGLES.png" class="card-img-top" alt="...">';
-} else {
-    echo '<img src="' . $path . $img . '.png" class="card-img-top" alt="...">';
-}
+echo '<img src="' . $path . $img . '.png" class="card-img-top" alt="...">';
 ?>
+
 
 
         <div class="card-body">
