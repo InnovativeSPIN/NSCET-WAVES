@@ -182,7 +182,15 @@ include('../routes/connect.php');
         $path = '../public/images/house/';
         $img = str_replace(" ", "_", $_SESSION['house_name']);
         ?>
-        <img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="...">
+        <?php 
+
+        if($_SESSION['house_name']=="EMERALD EAGLES"){
+            echo '<img src="../public/images/house/EMERALD_EAGLES.png" class="card-img-top" alt="...">';
+        }else{
+             echo '<img src="<?php echo $path . $img . ".png" ?>" class="card-img-top" alt="...">';
+        } 
+
+?>
 
         <div class="card-body">
             <div class="text-section">
