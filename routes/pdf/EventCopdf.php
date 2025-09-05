@@ -28,7 +28,7 @@ class PDF extends FPDF
         $this->Cell(30, 10, 'NADAR SARASWATHI COLLEGE OF ENGINEERING & TECHNOLOGY', 0, 2, 'C');
         $this->SetFont('Times', 'BIU', 12);
 
-        $this->Cell(30, 8, 'WAVES 23', 0, 2, 'C');
+        $this->Cell(30, 8, 'WAVES 25', 0, 2, 'C');
 
         // $this->Text(35,190,'W a t e r m a r k   d e m o');
         $this->Image('../../public/images/logos/background-logo.png', 15, 100, 177, 86);
