@@ -134,8 +134,7 @@ if (!isset($_SESSION)) {
                         between events themselves.<br />
                         16. Maximum Participation: Each student can participate in a maximum of two
                         events.<br />
-                        17. IMPORTANT NOTE : The team with the highest number of individual
-                        participants will receive an additional 10 points added to their total score.
+                      
                     </div>
 
                 </div>
