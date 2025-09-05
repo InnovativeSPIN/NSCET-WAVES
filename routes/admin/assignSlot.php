@@ -52,18 +52,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($isGroup == 0 && $group_count == 1) {
-        // Assign slots per participant for ungrouped events
-        $participantsList = mysqli_query($conn, "SELECT reg_no, student_house FROM registerationdb WHERE event_name = '$event_name' AND gender = '$gender'");
-        $idx = 0;
-        while ($row = mysqli_fetch_assoc($participantsList)) {
-            $reg_no = $row['reg_no'];
-            $team = $row['student_house'];
-            $slotNo = isset($slot[$idx]) ? $slot[$idx] : 0;
-            $query = "INSERT INTO `allotmentdb`(`house`, `event`, `isGroup`, `group_count`, `grouped`, `slot`, `gender`, `reg_no`) VALUES ('$team', '$event_name', 0, 1, 0, $slotNo, '$gender', '$reg_no')";
-            if (!mysqli_query($conn, $query)) {
-                echo '<div style=\"color:red;background:#fff;padding:1em;\">Error: ' . mysqli_error($conn) . '<br>Query: ' . htmlspecialchars($query) . '</div>';
+        // Assign slots per participant for ungrouped events, matching slot order to registration order per house
+        $housesQuery = mysqli_query($conn, "SELECT DISTINCT student_house FROM registerationdb WHERE event_name = '$event_name' AND gender = '$gender'");
+        while ($houseRow = mysqli_fetch_assoc($housesQuery)) {
+            $house = $houseRow['student_house'];
+            // Get all registered students for this house, event, and gender
+            $studentsQuery = mysqli_query($conn, "SELECT reg_no FROM registerationdb WHERE event_name = '$event_name' AND gender = '$gender' AND student_house = '$house' ORDER BY id ASC");
+            $studentIdx = 0;
+            while ($studentRow = mysqli_fetch_assoc($studentsQuery)) {
+                $reg_no = $studentRow['reg_no'];
+                $slotNo = isset($slot[$studentIdx]) ? $slot[$studentIdx] : 0;
+                $query = "INSERT INTO `allotmentdb`(`house`, `event`, `isGroup`, `group_count`, `grouped`, `slot`, `gender`, `reg_no`) VALUES ('$house', '$event_name', 0, 1, 0, $slotNo, '$gender', '$reg_no')";
+                if (!mysqli_query($conn, $query)) {
+                    echo '<div style="color:red;background:#fff;padding:1em;">Error: ' . mysqli_error($conn) . '<br>Query: ' . htmlspecialchars($query) . '</div>';
+                    exit;
+                }
+                $studentIdx++;
             }
-            $idx++;
         }
     } else {
         // Grouped logic as before
