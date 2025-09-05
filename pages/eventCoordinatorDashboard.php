@@ -120,10 +120,10 @@ if ($data['is_group'] == '0') {
                             </div>
                             <ul>
                                 <li>
-                                    <!-- <form style="margin-top: 8px;margin-right: 24px;" action="../routes/pdf/EventCopdf.php" method="post">
+                                    <form style="margin-top: 8px;margin-right: 24px;" action="../routes/pdf/EventCopdf.php" method="post">
                                         <input type="text" style="display: none;" value="<?php echo $_SESSION['event_name'] ?>" name='event'>
                                         <button class="btn btn-primary">Data Export</button>
-                                    </form> -->
+                                    </form>
                                 </li>
 
                                 <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#resetModal">Passoword</button></li>

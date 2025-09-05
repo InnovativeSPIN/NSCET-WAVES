@@ -91,6 +91,11 @@ include('../routes/connect.php');
                 </a>
                 <?php $dayNum++; ?>
             <?php endforeach; ?>
+            <a href="./report.php">
+                <button class="btn btn-info mx-2">
+                 Report
+            </button>
+            </a>
         </div>
         <div class="row">
         <?php
