@@ -492,6 +492,7 @@ if (!isset($_SESSION)) {
 
                                         <figure><img src="public\images\house\TIGER_THRASHERS.png" alt=""></figure>
                                         <figure><img src="public\images\house\GALACTIC_STARS.png" alt=""></figure>
+                                        <figure><img src="public\images\house\EMERALD_EAGLES.png" alt=""></figure>
 
                                         <figure><img src="public\images\logos\waves-logo.png" alt=""></figure>
                                         
