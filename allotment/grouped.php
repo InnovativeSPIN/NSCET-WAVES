@@ -2,6 +2,44 @@
 <html lang="en">
 
 <head>
+    <style>
+        .button-54 {
+            font-family: "Poppins", "Open Sans", sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #00bfff;
+            background: #fff;
+            cursor: pointer;
+            border: 3px solid #00bfff;
+            padding: 0.25em 0.5em;
+            box-shadow: 1px 1px 0px 0px #00bfff, 2px 2px 0px 0px #00bfff, 3px 3px 0px 0px #00bfff, 4px 4px 0px 0px #00bfff, 5px 5px 0px 0px #00bfff;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            border-radius: 10px;
+            margin: 0 4px 8px 0;
+            transition: box-shadow 0.2s, top 0.2s, left 0.2s, background 0.2s, color 0.2s;
+        }
+        .button-54:active, .button-54.active, .button-54:focus {
+            box-shadow: 0px 0px 0px 0px #00bfff;
+            top: 5px;
+            left: 5px;
+            background: #00bfff;
+            color: #fff;
+        }
+        .button-54:hover {
+            background: #00bfff;
+            color: #fff;
+        }
+        @media (min-width: 768px) {
+            .button-54 {
+                padding: 0.25em 0.75em;
+            }
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NSCET WAVES SLOT</title>
@@ -447,6 +485,7 @@
 </head>
 
 <body>
+    <a href="index.php" class="button-54" style="position: absolute; left: 30px; top: 30px; z-index: 100;">&larr; Back to Event List</a>
     <canvas id="backgroundCanvas"></canvas>
     <canvas id="particleCanvas"></canvas>
 
