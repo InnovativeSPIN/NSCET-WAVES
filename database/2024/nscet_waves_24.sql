@@ -52,7 +52,8 @@ CREATE TABLE `allotmentdb` (
   `grouped` int(11) NOT NULL,
   `slot` int(11) NOT NULL,
   `id` int(11) NOT NULL,
-  `gender` varchar(255) NOT NULL
+  `gender` varchar(255) NOT NULL,
+  `reg_no` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

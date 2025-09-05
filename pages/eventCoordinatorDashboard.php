@@ -15,31 +15,19 @@ if ($data['is_group'] == '0') {
     $participantsList = mysqli_query($conn, "SELECT * FROM registerationdb WHERE event_name = '$eventName'");
     $participants = array();
     while ($list = mysqli_fetch_array($participantsList)) {
+        // Fetch slot for this participant
+        $reg_no = $list['reg_no'];
+        $slotRes = mysqli_query($conn, "SELECT slot FROM allotmentdb WHERE event = '$eventName' AND reg_no = '$reg_no' LIMIT 1");
+        $slotRow = mysqli_fetch_assoc($slotRes);
+        $slot = $slotRow ? $slotRow['slot'] : '';
         $participants[] = array(
             'reg_no' => $list['reg_no'],
             'student_name' => $list['student_name'],
             'student_dept' => $list['student_dept'],
-            'student_house' => $list['student_house']
+            'student_house' => $list['student_house'],
+            'slot' => $slot
         );
     }
-
-    $allotmentListResult = mysqli_query($conn, "SELECT * FROM `allotmentdb` WHERE `event`= '$eventName'");
-    $allotmentSlots = array();
-    while ($allotmentData = mysqli_fetch_array($allotmentListResult)) {
-        $allotmentSlots[] = array(
-            'house' => $allotmentData['house'],
-            'slot' => $allotmentData['slot']
-        );
-    }
-
-    for ($k = 0; $k < count($participants); $k++) {
-        for ($j = 0; $j < count($allotmentSlots); $j++) {
-            if ($participants[$k]['student_house'] == $allotmentSlots[$j]['house']) {
-                $participants[$k]['slot'] = $allotmentSlots[$j]['slot'];
-            }
-        }
-    }
-
     $eventData['participants'] = $participants;
 } else {
     $eventData['groups'] = array();

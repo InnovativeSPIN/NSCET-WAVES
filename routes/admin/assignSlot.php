@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $slot_array = isset($_POST["slot_array"]) ? mysqli_real_escape_string($conn, $_POST["slot_array"]) : null;
     $event_name = isset($_POST["event_name"]) ? mysqli_real_escape_string($conn, $_POST["event_name"]) : null;
     $gender = isset($_POST["gender"]) ? mysqli_real_escape_string($conn, $_POST["gender"]) : null;
+    $isGroup_post = isset($_POST["isGroup"]) ? intval($_POST["isGroup"]) : null;
+    $group_count_post = isset($_POST["group_count"]) ? intval($_POST["group_count"]) : null;
 
     $slot = $slot_array ? json_decode($slot_array, true) : null;
 
@@ -38,19 +40,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $teams = array_merge($teams_girls, $teams_boys);
     }
 
-    // Determine group logic based on slot count
     $slotCount = count($slot);
-    $isGroup = ($slotCount > count($teams)) ? 1 : 0;
-    $group_count = $isGroup ? 2 : 0;
 
-    for ($i = 0; $i < $slotCount; $i++) {
-        $slotNo = $slot[$i];
-        // Assign team cyclically
-        $team = $teams[$i % count($teams)];
-        $grouped = $isGroup ? (int)floor($i / count($teams)) + 1 : 0;
-        $query = "INSERT INTO `allotmentdb`(`house`, `event`, `isGroup`, `group_count`, `grouped`, `slot`, `gender`) VALUES ('$team', '$event_name', $isGroup, $group_count, $grouped, $slotNo, '$gender')";
-        if (!mysqli_query($conn, $query)) {
-            echo '<div style="color:red;background:#fff;padding:1em;">Error: ' . mysqli_error($conn) . '<br>Query: ' . htmlspecialchars($query) . '</div>';
+    // If isGroup and group_count are set in POST (from ungrouped.php), use them. Otherwise, use old logic (grouped.php)
+    if ($isGroup_post !== null && $group_count_post !== null) {
+        $isGroup = $isGroup_post;
+        $group_count = $group_count_post;
+    } else {
+        $isGroup = ($slotCount > count($teams)) ? 1 : 0;
+        $group_count = $isGroup ? 2 : 0;
+    }
+
+    if ($isGroup == 0 && $group_count == 1) {
+        // Assign slots per participant for ungrouped events
+        $participantsList = mysqli_query($conn, "SELECT reg_no, student_house FROM registerationdb WHERE event_name = '$event_name' AND gender = '$gender'");
+        $idx = 0;
+        while ($row = mysqli_fetch_assoc($participantsList)) {
+            $reg_no = $row['reg_no'];
+            $team = $row['student_house'];
+            $slotNo = isset($slot[$idx]) ? $slot[$idx] : 0;
+            $query = "INSERT INTO `allotmentdb`(`house`, `event`, `isGroup`, `group_count`, `grouped`, `slot`, `gender`, `reg_no`) VALUES ('$team', '$event_name', 0, 1, 0, $slotNo, '$gender', '$reg_no')";
+            if (!mysqli_query($conn, $query)) {
+                echo '<div style=\"color:red;background:#fff;padding:1em;\">Error: ' . mysqli_error($conn) . '<br>Query: ' . htmlspecialchars($query) . '</div>';
+            }
+            $idx++;
+        }
+    } else {
+        // Grouped logic as before
+        for ($i = 0; $i < $slotCount; $i++) {
+            $slotNo = $slot[$i];
+            $team = $teams[$i % count($teams)];
+            $grouped = $isGroup ? (int)floor($i / count($teams)) + 1 : 0;
+            $query = "INSERT INTO `allotmentdb`(`house`, `event`, `isGroup`, `group_count`, `grouped`, `slot`, `gender`) VALUES ('$team', '$event_name', $isGroup, $group_count, $grouped, $slotNo, '$gender')";
+            if (!mysqli_query($conn, $query)) {
+                echo '<div style=\"color:red;background:#fff;padding:1em;\">Error: ' . mysqli_error($conn) . '<br>Query: ' . htmlspecialchars($query) . '</div>';
+            }
         }
     }
 
