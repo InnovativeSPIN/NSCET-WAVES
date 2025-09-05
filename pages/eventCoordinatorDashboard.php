@@ -257,9 +257,9 @@ if ($data['is_group'] == '0') {
                     <div class="navi-text">VIOLET VIPERS</div>
                 </button>
             </div>
-            <div class="navi-item4">
+            <div class="navi-item8">
                 <button class="nav-button" onclick="populateItems(eventData, 'EMERALD EAGLES')" id="emerald">
-                    <div class="navi-icon"><i class="fa-solid fa-staff-snake fa-flip"></i></div>
+                    <div class="navi-icon"><i class="fa-solid fa-eagle"></i></div>
                     <div class="navi-text">EMERALD EAGLES</div>
                 </button>
             </div>

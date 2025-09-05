@@ -11,6 +11,7 @@
 	--icolor6: #38FF13;
 	--icolor7: #FF5F1F;
 	--icolor8: #BC13FE;
+	--icolor9: #12412b;
 }
 
 body {
@@ -258,7 +259,9 @@ body {
 #violet .navi-icon {
 	color: var(--icolor8);
 }
-
+#emerald .navi-icon {
+	color: var(--icolor9);
+}
 .navi-icon {
 	height: 40px;
 	line-height: 50px;
