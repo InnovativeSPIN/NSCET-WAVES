@@ -92,26 +92,23 @@ if (!isset($_SESSION)) {
                             role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="tuesday-tab" data-toggle="tab" href="#step-one"
-                                    role="tab" aria-controls="step-one" aria-expanded="true">Tuesday <br>
-                                    <span>September 26, 2023</span></a>
+                                    role="tab" aria-controls="step-one" aria-expanded="true">Monday<br>
+                                    <span>08/09/2025</span></a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" id="wednesday-tab" data-toggle="tab" href="#step-two" role="tab"
-                                    aria-controls="step-two" aria-expanded="true">Wednesday <br> <span>September 27,
-                                        2023</span></a>
+                                    aria-controls="step-two" aria-expanded="true">Tuesday<br> <span>09/09/2025</span></a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" id="friday-tab" data-toggle="tab" href="#step-three" role="tab"
-                                    aria-controls="step-three" aria-expanded="true">Friday <br> <span>September 29,
-                                        2023</span></a>
+                                    aria-controls="step-three" aria-expanded="true">Wednesday<br> <span>10/09/25</span></a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" id="saturday-tab" data-toggle="tab" href="#step-four" role="tab"
-                                    aria-controls="step-three" aria-expanded="true">Saturday <br> <span>September 30,
-                                        2023</span></a>
+                                    aria-controls="step-three" aria-expanded="true">Friday<br> <span>12/09/25</span></a>
                             </li>
                         </ul>
                     </div>
@@ -124,7 +121,7 @@ if (!isset($_SESSION)) {
                                 <div class="row">
                                     <div class="col-12">
                                         <?php
-                                        $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='26/09/23'");
+                                        $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='08/09/2025'");
                                         while ($event = mysqli_fetch_array($events)) {
                                             ?>
                                             <div class="col-md-12" style='margin-top: 64px;'>
@@ -205,7 +202,7 @@ if (!isset($_SESSION)) {
                                 <div class="row">
                                     <div class="col-12">
                                         <?php
-                                        $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='27/09/23'");
+                                        $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='09/09/2025'");
                                         while ($event = mysqli_fetch_array($events)) {
                                             ?>
                                             <div class="col-md-12" style='margin-top: 64px;'>
@@ -283,7 +280,7 @@ if (!isset($_SESSION)) {
                                 <div class="row">
                                     <div class="col-12">
                                         <?php
-                                        $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='29/09/23'");
+                                        $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='10/09/25'");
                                         while ($event = mysqli_fetch_array($events)) {
                                             ?>
                                             <div class="col-md-12" style='margin-top: 64px;'>
@@ -362,7 +359,7 @@ if (!isset($_SESSION)) {
                                 <div class="row">
                                     <div class="col-12">
                                         <?php
-                                        $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='30/09/23'");
+                                        $events = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE `event_date`='12/09/25'");
                                         while ($event = mysqli_fetch_array($events)) {
                                             ?>
                                             <div class="col-md-12" style='margin-top: 64px;'>
