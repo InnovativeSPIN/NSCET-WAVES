@@ -127,7 +127,7 @@ while ($data = mysqli_fetch_array($house)) {
                 $pdf->Cell(12, 10, $row + 1, 1, 0, 'C', $fill);
                 $pdf->Cell(40, 10, $eventData['reg_no'], 1, 0, 'C', $fill);
                 $pdf->Cell(65, 10, $eventData['student_name'], 1, 0, 'C', $fill);
-                // $pdf->Cell(87, 10, $eventData['student_house'], 1, 0, 'C', $fill);
+                $pdf->Cell(87, 10, $eventData['student_house'], 1, 0, 'C', $fill);
                 if ($eventData['grouped'] == 0) {
                     $pdf->Cell(15, 10, "-", 1, 0, 'C', $fill);
                 } else {
@@ -138,7 +138,7 @@ while ($data = mysqli_fetch_array($house)) {
                     $pdf->Cell(15, 10, $slotDetail['slot'], 1, 0, 'C', $fill);
                 } else {
                     $pdf->Cell(15, 10, "-", 1, 0, 'C', $fill);
-                }
+                }1
                 $pdf->Cell(30, 10, $eventData['student_dept'], 1, 0, 'C', $fill);
                 $pdf->Cell(15, 10, $eventData['student_year'], 1, 0, 'C', $fill);
                 $row++;

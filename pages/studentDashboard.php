@@ -238,7 +238,7 @@ include('../routes/connect.php');
 								<p><i class="zmdi zmdi-map"></i>
 									<?php echo $eventDetail['event_venue'] ?>
 								</p>
-								<p>Slot No: <?php echo $slot['slot'] ?></p>
+								<!-- <p>Slot No: <?php //echo $slot['slot'] ?></p> -->
 							</div>
 
 							<a class="btn confer-btn">Detail <i class="zmdi zmdi-long-arrow-right"></i></a>
