@@ -134,6 +134,9 @@ include('../routes/connect.php');
 					?>
 
 					<?php
+
+					$student_reg_no = $_SESSION['reg_no'];
+
 					$eventName = $registeredEvent['event_name'];
 					$eventDetails = mysqli_query($conn, "SELECT * FROM `eventdb` WHERE event_name = '$eventName'");
 					$eventDetail = mysqli_fetch_array($eventDetails);
@@ -142,7 +145,14 @@ include('../routes/connect.php');
 					$houseDetails = mysqli_query($conn, "SELECT * FROM `housedb` WHERE name = '$houseName'");
 					$houseDetail = mysqli_fetch_array($houseDetails);
 
-					$allotmentListResult = mysqli_query($conn, "SELECT * FROM `allotmentdb` WHERE `event`= '$eventName' && house = '$houseName'");
+					$allotmentListResult = mysqli_query(
+    $conn,
+    "SELECT * FROM `allotmentdb` 
+     WHERE event = '$eventName' 
+     AND house = '$houseName' 
+     AND reg_no = '$student_reg_no'"
+);
+
 					$slot = mysqli_fetch_array($allotmentListResult);
 					?>
 					<!-- Modal -->
