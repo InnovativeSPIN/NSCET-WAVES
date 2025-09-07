@@ -99,7 +99,7 @@ include('../routes/connect.php');
         </div>
         <div class="row">
         <?php
-        $query = "SELECT event_name, event_type, event_date, event_time, event_venue, is_group FROM eventdb WHERE event_date = '" . mysqli_real_escape_string($conn, $selectedDate) . "' ORDER BY event_name ASC";
+        $query = "SELECT event_name, event_type, event_date, event_time, event_venue FROM eventdb WHERE event_date = '" . mysqli_real_escape_string($conn, $selectedDate) . "' ORDER BY event_name ASC";
         $result = mysqli_query($conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -108,15 +108,13 @@ include('../routes/connect.php');
                 $eventDate = htmlspecialchars($row['event_date']);
                 $eventTime = htmlspecialchars($row['event_time']);
                 $eventVenue = htmlspecialchars($row['event_venue']);
-                $isGroup = $row['is_group'];
-                $redirectPage = $isGroup ? 'grouped.php' : 'ungrouped.php';
                 echo '<div class="col-md-6 col-lg-4">';
                 echo '<div class="event-card">';
                 echo '<div class="event-title">' . $eventName . '</div>';
                 echo '<div class="event-meta">Type: ' . $eventType . '</div>';
                 echo '<div class="event-meta">Date: ' . $eventDate . ' | Time: ' . $eventTime . '</div>';
                 echo '<div class="event-meta">Venue: ' . $eventVenue . '</div>';
-                echo '<a href="' . $redirectPage . '?eventName=' . urlencode($eventName) . '" class="allot-btn mt-3">Allot Slot</a>';
+                echo '<a href="grouped.php?eventName=' . urlencode($eventName) . '" class="allot-btn mt-3">Allot Slot</a>';
                 echo '</div>';
                 echo '</div>';
             }

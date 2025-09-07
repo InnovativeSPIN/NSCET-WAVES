@@ -314,7 +314,7 @@
             box-shadow: 0 2px 8px rgba(0, 255, 231, 0.2);
         }
 
-        #triggerSpin {
+        #triggerSpin, #triggerSpinTwo {
             background: linear-gradient(135deg, #007bff, #00ffe7);
             border: none;
             color: #fff;
@@ -331,18 +331,18 @@
             gap: 8px;
         }
 
-        #triggerSpin:hover {
+        #triggerSpin:hover, #triggerSpinTwo:hover {
             background: linear-gradient(135deg, #00ffe7, #007bff);
             box-shadow: 0 6px 16px rgba(0, 255, 231, 0.3);
             transform: translateY(-2px);
         }
 
-        #triggerSpin:active {
+        #triggerSpin:active, #triggerSpinTwo:active {
             transform: translateY(1px);
             box-shadow: 0 2px 8px rgba(0, 255, 231, 0.2);
         }
 
-        #triggerSpin span {
+        #triggerSpin span, #triggerSpinTwo span {
             font-size: 1.3em;
         }
 
@@ -372,7 +372,7 @@
             padding: 32px;
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
             z-index: 100;
-            max-width: 800px; /* Increased max-width */
+            max-width: 800px;
             width: 95%;
             max-height: 85vh;
             overflow-y: auto;
@@ -392,7 +392,7 @@
 
         .popup-header h2 {
             color: #00ffe7;
-            font-size: 2em; /* Increased font size */
+            font-size: 2em;
             font-weight: 600;
         }
 
@@ -400,7 +400,7 @@
             background: none;
             border: none;
             color: #00ffe7;
-            font-size: 2em; /* Increased font size */
+            font-size: 2em;
             cursor: pointer;
             transition: color 0.3s ease;
         }
@@ -417,10 +417,10 @@
 
         .slot-table th,
         .slot-table td {
-            padding: 16px; /* Increased padding */
+            padding: 16px;
             text-align: left;
             border-bottom: 1.5px solid rgba(0, 255, 231, 0.2);
-            font-size: 1.2em; /* Increased font size */
+            font-size: 1.2em;
         }
 
         .slot-table th {
@@ -434,12 +434,12 @@
         }
 
         .slot-table img {
-            width: 70px; /* Increased image size */
+            width: 70px;
             height: 70px;
             border-radius: 50%;
             object-fit: cover;
             vertical-align: middle;
-            margin-right: 12px; /* Increased margin */
+            margin-right: 12px;
         }
 
         @media (max-width: 600px) {
@@ -450,33 +450,33 @@
                 max-width: 90%;
             }
 
-            #teamSelect, .submitBtn, #triggerSpin, #event_name {
+            #teamSelect, .submitBtn, #triggerSpin, #triggerSpinTwo, #event_name {
                 width: 100%;
                 max-width: 300px;
             }
 
             .popup {
                 width: 95%;
-                padding: 20px; /* Adjusted padding for smaller screens */
-                max-width: 95%; /* Ensure it fits on small screens */
+                padding: 20px;
+                max-width: 95%;
             }
 
             .popup-header h2 {
-                font-size: 1.8em; /* Slightly smaller for mobile */
+                font-size: 1.8em;
             }
 
             .close-btn {
-                font-size: 1.8em; /* Slightly smaller for mobile */
+                font-size: 1.8em;
             }
 
             .slot-table th,
             .slot-table td {
-                font-size: 1em; /* Slightly smaller for mobile */
-                padding: 12px; /* Adjusted padding for mobile */
+                font-size: 1em;
+                padding: 12px;
             }
 
             .slot-table img {
-                width: 60px; /* Slightly smaller for mobile */
+                width: 60px;
                 height: 60px;
                 margin-right: 8px;
             }
@@ -515,11 +515,11 @@
     </div>
 
     <form id="hidden-form" action="../routes/admin/assignSlot.php" method="post" style="display:none;">
-    <input type="hidden" id="gender" name="gender" value="">
-    <input type="hidden" id="slots" name="slot_array" value="">
-    <input type="hidden" name="event_name" value="<?php echo $_GET['eventName'] ?>">
-    <input type="hidden" name="isGroup" value="0">
-    <input type="hidden" name="group_count" value="1">
+        <input type="hidden" id="gender" name="gender" value="">
+        <input type="hidden" id="slots" name="slot_array" value="">
+        <input type="hidden" name="event_name" value="<?php echo $_GET['eventName'] ?>">
+        <input type="hidden" name="isGroup" value="0">
+        <input type="hidden" name="group_count" value="1">
     </form>
 
     <div class="select-container">
@@ -530,6 +530,7 @@
         </select>
         <button class="submitBtn">Submit</button>
         <button id="triggerSpin"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin All</button>
+        <button id="triggerSpinTwo"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin Two</button>
         <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
     </div>
 
@@ -793,6 +794,27 @@
 
                 document.getElementById('slots').value = JSON.stringify(slotNumbers)
             })
+
+            // Spin Two button logic
+            document.getElementById('triggerSpinTwo').addEventListener('click', () => {
+                spinMode = 'two';
+                const selectedValue = document.getElementById('teamSelect').value
+                let slots0 = allSlots[selectedValue].slice()
+                let slots1 = allSlots1[selectedValue].slice()
+
+                const shuffledSlots0 = shuffle(slots0)
+                const shuffledSlots1 = shuffle(slots1)
+
+                populateWheel(shuffledSlots0, shuffledSlots1)
+
+                const slotNumbers = [
+                    ...getSlotNumbers(shuffledSlots0),
+                    ...getSlotNumbers(shuffledSlots1)
+                ]
+
+                document.getElementById('slots').value = JSON.stringify(slotNumbers)
+            })
+
             const spinBtn1 = document.querySelector('.spinBtn1')
             const spinBtn2 = document.querySelector('.spinBtn2')
             const spinBtn3 = document.querySelector('.spinBtn3')
@@ -809,6 +831,8 @@
 
             let isSpinning3 = false
             let spinned3 = false
+
+            let spinMode = 'all';
 
             spinBtn.addEventListener('click', () => {
                 if (isSpinning) return
@@ -898,6 +922,13 @@
                 }, { once: true })
             })
 
+            document.getElementById('triggerSpinTwo').addEventListener('click', () => {
+                if (!isSpinning && !isSpinning1) {
+                    spinBtn.click()
+                    spinBtn1.click()
+                }
+            })
+
             function trackPositions(wheelSelector, imageWheelSelector) {
                 const imageSlots = document.querySelectorAll(`${imageWheelSelector} .imageSlot`)
                 const numberSlots = document.querySelectorAll(`${wheelSelector} .number`)
@@ -950,7 +981,6 @@
 
             function showPopup(slotValues) {
                 slotTableBody.innerHTML = ''
-                // Sort slotValues by slot number in ascending order
                 slotValues.sort((a, b) => {
                     const slotA = parseInt(a.slot.match(/\d+/)[0])
                     const slotB = parseInt(b.slot.match(/\d+/)[0])
@@ -973,13 +1003,22 @@
             })
 
             submitBtn.addEventListener('click', () => {
-                if (spinned && spinned1 && spinned2 && spinned3) {
-                    const slotValues = [
-                        ...trackPositions('.wheel', '.imageWheel'),
-                        ...trackPositions('.wheel1', '.imageWheel1'),
-                        ...trackPositions('.wheel2', '.imageWheel2'),
-                        ...trackPositions('.wheel3', '.imageWheel3')
-                    ]
+                const spunCheck = spinMode === 'two' ? (spinned && spinned1) : (spinned && spinned1 && spinned2 && spinned3);
+                if (spunCheck) {
+                    let slotValues;
+                    if (spinMode === 'two') {
+                        slotValues = [
+                            ...trackPositions('.wheel', '.imageWheel'),
+                            ...trackPositions('.wheel1', '.imageWheel1')
+                        ]
+                    } else {
+                        slotValues = [
+                            ...trackPositions('.wheel', '.imageWheel'),
+                            ...trackPositions('.wheel1', '.imageWheel1'),
+                            ...trackPositions('.wheel2', '.imageWheel2'),
+                            ...trackPositions('.wheel3', '.imageWheel3')
+                        ]
+                    }
 
                     const slotNumbers = slotValues.map(item => {
                         return parseInt(item.slot.slice(5), 10)
@@ -987,21 +1026,19 @@
 
                     document.getElementById('slots').value = JSON.stringify(slotNumbers)
                     document.getElementById('gender').value = gender
-                    // Enforce ungrouped values
                     document.querySelector('input[name="isGroup"]').value = '0';
                     document.querySelector('input[name="group_count"]').value = '1';
 
                     showPopup(slotValues)
-                    // Uncomment the following line to submit the form after showing the popup
-                    // document.getElementById('hidden-form').submit()
                 } else {
-                    alert('Please spin all wheels before submitting!')
+                    alert('Please spin the required wheels before submitting!')
                 }
             })
 
             const triggerSpin = document.getElementById('triggerSpin')
 
             triggerSpin.addEventListener('click', () => {
+                spinMode = 'all';
                 if (!isSpinning && !isSpinning1 && !isSpinning2 && !isSpinning3) {
                     spinBtn.click()
                     spinBtn1.click()

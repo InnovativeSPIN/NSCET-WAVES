@@ -314,7 +314,7 @@
             box-shadow: 0 2px 8px rgba(0, 255, 231, 0.2);
         }
 
-        #triggerSpin {
+        #triggerSpin, #triggerSpinTwo {
             background: linear-gradient(135deg, #007bff, #00ffe7);
             border: none;
             color: #fff;
@@ -331,18 +331,18 @@
             gap: 8px;
         }
 
-        #triggerSpin:hover {
+        #triggerSpin:hover, #triggerSpinTwo:hover {
             background: linear-gradient(135deg, #00ffe7, #007bff);
             box-shadow: 0 6px 16px rgba(0, 255, 231, 0.3);
             transform: translateY(-2px);
         }
 
-        #triggerSpin:active {
+        #triggerSpin:active, #triggerSpinTwo:active {
             transform: translateY(1px);
             box-shadow: 0 2px 8px rgba(0, 255, 231, 0.2);
         }
 
-        #triggerSpin span {
+        #triggerSpin span, #triggerSpinTwo span {
             font-size: 1.3em;
         }
 
@@ -450,7 +450,7 @@
                 max-width: 90%;
             }
 
-            #teamSelect, .submitBtn, #triggerSpin, #event_name {
+            #teamSelect, .submitBtn, #triggerSpin, #triggerSpinTwo, #event_name {
                 width: 100%;
                 max-width: 300px;
             }
@@ -528,6 +528,7 @@
         </select>
         <button class="submitBtn">Submit</button>
         <button id="triggerSpin"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin All</button>
+        <button id="triggerSpinTwo"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin Two</button>
         <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
     </div>
 
@@ -970,14 +971,25 @@
                 document.getElementById('hidden-form').submit()
             })
 
+            let spinMode = 'all';
+
             submitBtn.addEventListener('click', () => {
-                if (spinned && spinned1 && spinned2 && spinned3) {
-                    const slotValues = [
-                        ...trackPositions('.wheel', '.imageWheel'),
-                        ...trackPositions('.wheel1', '.imageWheel1'),
-                        ...trackPositions('.wheel2', '.imageWheel2'),
-                        ...trackPositions('.wheel3', '.imageWheel3')
-                    ]
+                const spunCheck = spinMode === 'two' ? (spinned && spinned1) : (spinned && spinned1 && spinned2 && spinned3);
+                if (spunCheck) {
+                    let slotValues;
+                    if (spinMode === 'two') {
+                        slotValues = [
+                            ...trackPositions('.wheel', '.imageWheel'),
+                            ...trackPositions('.wheel1', '.imageWheel1')
+                        ]
+                    } else {
+                        slotValues = [
+                            ...trackPositions('.wheel', '.imageWheel'),
+                            ...trackPositions('.wheel1', '.imageWheel1'),
+                            ...trackPositions('.wheel2', '.imageWheel2'),
+                            ...trackPositions('.wheel3', '.imageWheel3')
+                        ]
+                    }
 
                     const slotNumbers = slotValues.map(item => {
                         return parseInt(item.slot.slice(5), 10)
@@ -990,18 +1002,47 @@
                     // Uncomment the following line to submit the form after showing the popup
                     // document.getElementById('hidden-form').submit()
                 } else {
-                    alert('Please spin all wheels before submitting!')
+                    alert('Please spin the required wheels before submitting!')
                 }
             })
 
             const triggerSpin = document.getElementById('triggerSpin')
 
             triggerSpin.addEventListener('click', () => {
+                spinMode = 'all';
                 if (!isSpinning && !isSpinning1 && !isSpinning2 && !isSpinning3) {
                     spinBtn.click()
                     spinBtn1.click()
                     spinBtn2.click()
                     spinBtn3.click()
+                }
+            })
+
+            const triggerSpinTwo = document.getElementById('triggerSpinTwo')
+
+            triggerSpinTwo.addEventListener('click', () => {
+                spinMode = 'two';
+                const selectedValue = document.getElementById('teamSelect').value
+                let slots0 = allSlots[selectedValue].slice()
+                let slots1 = allSlots1[selectedValue].slice()
+
+                const shuffledSlots0 = shuffle(slots0)
+                const shuffledSlots1 = shuffle(slots1)
+
+                populateWheel(shuffledSlots0, shuffledSlots1)
+
+                const slotNumbers = [
+                    ...getSlotNumbers(shuffledSlots0),
+                    ...getSlotNumbers(shuffledSlots1)
+                ]
+
+                document.getElementById('slots').value = JSON.stringify(slotNumbers)
+            })
+
+            triggerSpinTwo.addEventListener('click', () => {
+                if (!isSpinning && !isSpinning1) {
+                    spinBtn.click()
+                    spinBtn1.click()
                 }
             })
         })
