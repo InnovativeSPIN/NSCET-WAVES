@@ -263,7 +263,7 @@
             z-index: 10;
         }
 
-        #teamSelect {
+        #teamSelect, #wheelCountSelect {
             padding: 12px 16px;
             font-size: 1.1em;
             font-weight: 500;
@@ -276,20 +276,20 @@
             min-width: 160px;
         }
 
-        #teamSelect:hover, #teamSelect:focus {
+        #teamSelect:hover, #teamSelect:focus, #wheelCountSelect:hover, #wheelCountSelect:focus {
             background: #2a2a2a;
             border-color: #00ccff;
             box-shadow: 0 0 12px rgba(0, 255, 231, 0.3);
             outline: none;
         }
 
-        #teamSelect option {
+        #teamSelect option, #wheelCountSelect option {
             background: #1a1a1a;
             color: #00ffe7;
             padding: 10px;
         }
 
-        .submitBtn {
+        .submitBtn, #triggerSpin {
             background: linear-gradient(135deg, #00ffe7, #ff00cc);
             border: none;
             color: #fff;
@@ -303,46 +303,18 @@
             letter-spacing: 0.05em;
         }
 
-        .submitBtn:hover {
+        .submitBtn:hover, #triggerSpin:hover {
             background: linear-gradient(135deg, #ff00cc, #00ffe7);
             box-shadow: 0 6px 16px rgba(0, 255, 231, 0.3);
             transform: translateY(-2px);
         }
 
-        .submitBtn:active {
+        .submitBtn:active, #triggerSpin:active {
             transform: translateY(1px);
             box-shadow: 0 2px 8px rgba(0, 255, 231, 0.2);
         }
 
-        #triggerSpin, #triggerSpinTwo {
-            background: linear-gradient(135deg, #007bff, #00ffe7);
-            border: none;
-            color: #fff;
-            padding: 14px 28px;
-            font-size: 1.1em;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 255, 231, 0.2);
-            transition: all 0.3s ease;
-            letter-spacing: 0.05em;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        #triggerSpin:hover, #triggerSpinTwo:hover {
-            background: linear-gradient(135deg, #00ffe7, #007bff);
-            box-shadow: 0 6px 16px rgba(0, 255, 231, 0.3);
-            transform: translateY(-2px);
-        }
-
-        #triggerSpin:active, #triggerSpinTwo:active {
-            transform: translateY(1px);
-            box-shadow: 0 2px 8px rgba(0, 255, 231, 0.2);
-        }
-
-        #triggerSpin span, #triggerSpinTwo span {
+        #triggerSpin span {
             font-size: 1.3em;
         }
 
@@ -360,7 +332,6 @@
             text-align: center;
         }
 
-        /* Popup Styles */
         .popup {
             display: none;
             position: fixed;
@@ -450,7 +421,7 @@
                 max-width: 90%;
             }
 
-            #teamSelect, .submitBtn, #triggerSpin, #triggerSpinTwo, #event_name {
+            #teamSelect, .submitBtn, #triggerSpin, #wheelCountSelect, #event_name {
                 width: 100%;
                 max-width: 300px;
             }
@@ -528,13 +499,17 @@
             <option value="GIRLS">Girls</option>
             <option value="BOYS">Boys</option>
         </select>
+        <select id="wheelCountSelect">
+            <option value="1">1 Wheel</option>
+            <option value="2">2 Wheels</option>
+            <option value="3">3 Wheels</option>
+            <option value="4" selected>4 Wheels</option>
+        </select>
         <button class="submitBtn">Submit</button>
-        <button id="triggerSpin"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin All</button>
-        <button id="triggerSpinTwo"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin Two</button>
+        <button id="triggerSpin"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin</button>
         <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
     </div>
 
-    <!-- Popup for displaying slot assignments -->
     <div class="popup" id="slotPopup">
         <div class="popup-header">
             <h2>Slot Assignments</h2>
@@ -629,7 +604,6 @@
             const wheel3 = document.querySelector('.wheel3')
             const imageWheel3 = document.querySelector('.imageWheel3')
 
-            // Fisher-Yates shuffle
             function shuffle(array) {
                 for (let i = array.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
@@ -643,17 +617,13 @@
 
                 wheel.innerHTML = ''
                 imageWheel.innerHTML = ''
-
                 wheel1.innerHTML = ''
                 imageWheel1.innerHTML = ''
-
                 wheel2.innerHTML = ''
                 imageWheel2.innerHTML = ''
-
                 wheel3.innerHTML = ''
                 imageWheel3.innerHTML = ''
 
-                // Wheel 0 (first wheel)
                 let slots0 = shuffledSlots0 || allSlots[selectedValue]
                 let slotAngle0 = slots0.length === 5 ? '72deg' : '90deg'
                 let slotAngleNeg0 = slots0.length === 5 ? '-72deg' : '-90deg'
@@ -678,7 +648,6 @@
                     imageWheel.appendChild(imageSlot)
                 })
 
-                // Wheel 1 (second wheel)
                 let slots1 = shuffledSlots1 || allSlots1[selectedValue]
                 let slotAngle1 = slots1.length === 5 ? '72deg' : '90deg'
                 let slotAngleNeg1 = slots1.length === 5 ? '-72deg' : '-90deg'
@@ -703,7 +672,6 @@
                     imageWheel1.appendChild(imageSlot)
                 })
 
-                // Wheel 2 (third wheel)
                 let slots2 = shuffledSlots2 || allSlots2[selectedValue]
                 let slotAngle2 = slots2.length === 5 ? '72deg' : '90deg'
                 let slotAngleNeg2 = slots2.length === 5 ? '-72deg' : '-90deg'
@@ -728,7 +696,6 @@
                     imageWheel2.appendChild(imageSlot)
                 })
 
-                // Wheel 3 (fourth wheel)
                 let slots3 = shuffledSlots3 || allSlots3[selectedValue]
                 let slotAngle3 = slots3.length === 5 ? '72deg' : '90deg'
                 let slotAngleNeg3 = slots3.length === 5 ? '-72deg' : '-90deg'
@@ -759,62 +726,9 @@
             }
 
             document.getElementById('teamSelect').addEventListener('change', updateSlots)
-            // Initial wheel population
             populateWheel()
+
             const spinBtn = document.querySelector('.spinBtn')
-            // Helper to get slot numbers from slot objects
-            function getSlotNumbers(slots) {
-                return slots.map(slot => {
-                    const match = slot.name.match(/\d+/)
-                    return match ? parseInt(match[0]) : null
-                }).filter(n => n !== null)
-            }
-
-            // Spin All button logic
-            document.getElementById('triggerSpin').addEventListener('click', () => {
-                const selectedValue = document.getElementById('teamSelect').value
-                let slots0 = allSlots[selectedValue].slice()
-                let slots1 = allSlots1[selectedValue].slice()
-                let slots2 = allSlots2[selectedValue].slice()
-                let slots3 = allSlots3[selectedValue].slice()
-
-                const shuffledSlots0 = shuffle(slots0)
-                const shuffledSlots1 = shuffle(slots1)
-                const shuffledSlots2 = shuffle(slots2)
-                const shuffledSlots3 = shuffle(slots3)
-
-                populateWheel(shuffledSlots0, shuffledSlots1, shuffledSlots2, shuffledSlots3)
-
-                const slotNumbers = [
-                    ...getSlotNumbers(shuffledSlots0),
-                    ...getSlotNumbers(shuffledSlots1),
-                    ...getSlotNumbers(shuffledSlots2),
-                    ...getSlotNumbers(shuffledSlots3)
-                ]
-
-                document.getElementById('slots').value = JSON.stringify(slotNumbers)
-            })
-
-            // Spin Two button logic
-            document.getElementById('triggerSpinTwo').addEventListener('click', () => {
-                spinMode = 'two';
-                const selectedValue = document.getElementById('teamSelect').value
-                let slots0 = allSlots[selectedValue].slice()
-                let slots1 = allSlots1[selectedValue].slice()
-
-                const shuffledSlots0 = shuffle(slots0)
-                const shuffledSlots1 = shuffle(slots1)
-
-                populateWheel(shuffledSlots0, shuffledSlots1)
-
-                const slotNumbers = [
-                    ...getSlotNumbers(shuffledSlots0),
-                    ...getSlotNumbers(shuffledSlots1)
-                ]
-
-                document.getElementById('slots').value = JSON.stringify(slotNumbers)
-            })
-
             const spinBtn1 = document.querySelector('.spinBtn1')
             const spinBtn2 = document.querySelector('.spinBtn2')
             const spinBtn3 = document.querySelector('.spinBtn3')
@@ -822,17 +736,12 @@
 
             let isSpinning = false
             let spinned = false
-
             let isSpinning1 = false
             let spinned1 = false
-
             let isSpinning2 = false
             let spinned2 = false
-
             let isSpinning3 = false
             let spinned3 = false
-
-            let spinMode = 'all';
 
             spinBtn.addEventListener('click', () => {
                 if (isSpinning) return
@@ -922,13 +831,6 @@
                 }, { once: true })
             })
 
-            document.getElementById('triggerSpinTwo').addEventListener('click', () => {
-                if (!isSpinning && !isSpinning1) {
-                    spinBtn.click()
-                    spinBtn1.click()
-                }
-            })
-
             function trackPositions(wheelSelector, imageWheelSelector) {
                 const imageSlots = document.querySelectorAll(`${imageWheelSelector} .imageSlot`)
                 const numberSlots = document.querySelectorAll(`${wheelSelector} .number`)
@@ -964,6 +866,13 @@
                 })
 
                 return matchedSlots
+            }
+
+            function getSlotNumbers(slots) {
+                return slots.map(slot => {
+                    const match = slot.name.match(/\d+/)
+                    return match ? parseInt(match[0]) : null
+                }).filter(n => n !== null)
             }
 
             const submitBtn = document.querySelector('.submitBtn')
@@ -1002,26 +911,63 @@
                 document.getElementById('hidden-form').submit()
             })
 
-            submitBtn.addEventListener('click', () => {
-                const spunCheck = spinMode === 'two' ? (spinned && spinned1) : (spinned && spinned1 && spinned2 && spinned3);
-                if (spunCheck) {
-                    let slotValues;
-                    if (spinMode === 'two') {
-                        slotValues = [
-                            ...trackPositions('.wheel', '.imageWheel'),
-                            ...trackPositions('.wheel1', '.imageWheel1')
-                        ]
-                    } else {
-                        slotValues = [
-                            ...trackPositions('.wheel', '.imageWheel'),
-                            ...trackPositions('.wheel1', '.imageWheel1'),
-                            ...trackPositions('.wheel2', '.imageWheel2'),
-                            ...trackPositions('.wheel3', '.imageWheel3')
-                        ]
+            const triggerSpin = document.getElementById('triggerSpin')
+
+            triggerSpin.addEventListener('click', () => {
+                const wheelCount = parseInt(document.getElementById('wheelCountSelect').value)
+                const selectedValue = document.getElementById('teamSelect').value
+
+                let slots0 = allSlots[selectedValue].slice()
+                let slots1 = allSlots1[selectedValue].slice()
+                let slots2 = allSlots2[selectedValue].slice()
+                let slots3 = allSlots3[selectedValue].slice()
+
+                const shuffledSlots0 = shuffle(slots0)
+                const shuffledSlots1 = shuffle(slots1)
+                const shuffledSlots2 = shuffle(slots2)
+                const shuffledSlots3 = shuffle(slots3)
+
+                populateWheel(shuffledSlots0, shuffledSlots1, shuffledSlots2, shuffledSlots3)
+
+                const spinButtons = [spinBtn, spinBtn1, spinBtn2, spinBtn3]
+                const isSpinningFlags = [isSpinning, isSpinning1, isSpinning2, isSpinning3]
+                const spinnedFlags = [spinned, spinned1, spinned2, spinned3]
+
+                for (let i = 0; i < wheelCount; i++) {
+                    if (!isSpinningFlags[i]) {
+                        spinButtons[i].click()
+                        spinnedFlags[i] = true
                     }
+                }
+
+                const slotNumbers = [
+                    ...(wheelCount >= 1 ? getSlotNumbers(shuffledSlots0) : []),
+                    ...(wheelCount >= 2 ? getSlotNumbers(shuffledSlots1) : []),
+                    ...(wheelCount >= 3 ? getSlotNumbers(shuffledSlots2) : []),
+                    ...(wheelCount >= 4 ? getSlotNumbers(shuffledSlots3) : [])
+                ]
+
+                document.getElementById('slots').value = JSON.stringify(slotNumbers)
+            })
+
+            submitBtn.addEventListener('click', () => {
+                const wheelCount = parseInt(document.getElementById('wheelCountSelect').value)
+                const spunCheck = 
+                    wheelCount === 1 ? spinned :
+                    wheelCount === 2 ? (spinned && spinned1) :
+                    wheelCount === 3 ? (spinned && spinned1 && spinned2) :
+                    (spinned && spinned1 && spinned2 && spinned3)
+
+                if (spunCheck) {
+                    let slotValues = [
+                        ...(wheelCount >= 1 ? trackPositions('.wheel', '.imageWheel') : []),
+                        ...(wheelCount >= 2 ? trackPositions('.wheel1', '.imageWheel1') : []),
+                        ...(wheelCount >= 3 ? trackPositions('.wheel2', '.imageWheel2') : []),
+                        ...(wheelCount >= 4 ? trackPositions('.wheel3', '.imageWheel3') : [])
+                    ]
 
                     const slotNumbers = slotValues.map(item => {
-                        return parseInt(item.slot.slice(5), 10)
+                        return parseInt(item.slot.match(/\d+/)[0])
                     })
 
                     document.getElementById('slots').value = JSON.stringify(slotNumbers)
@@ -1031,19 +977,7 @@
 
                     showPopup(slotValues)
                 } else {
-                    alert('Please spin the required wheels before submitting!')
-                }
-            })
-
-            const triggerSpin = document.getElementById('triggerSpin')
-
-            triggerSpin.addEventListener('click', () => {
-                spinMode = 'all';
-                if (!isSpinning && !isSpinning1 && !isSpinning2 && !isSpinning3) {
-                    spinBtn.click()
-                    spinBtn1.click()
-                    spinBtn2.click()
-                    spinBtn3.click()
+                    alert(`Please spin ${wheelCount} wheel${wheelCount > 1 ? 's' : ''} before submitting!`)
                 }
             })
         })
