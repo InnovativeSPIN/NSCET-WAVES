@@ -103,6 +103,7 @@ if (!isset($_SESSION)) {
                     </button>
                 </div>
                 <div class="modal-body" style="height: 625px !important;">
+<<<<<<< Updated upstream
                     <div style="color: black;">
                         1. Separate Events for Boys and Girls: Events will be conducted separately for
                         boys and girls, with a focus on team participation.<br />
@@ -136,8 +137,42 @@ if (!isset($_SESSION)) {
                         events.<br />
                       
                     </div>
+=======
+    <div style="color: black;">
+        1. Separate Events for Boys and Girls: Events will be conducted separately for boys and girls, focusing on team participation.<br />
 
-                </div>
+        2. Registration Deadline: Participants must register for events within the specified deadline set by the organizers.<br />
+
+        3. No Alterations after Deadline: Once the registration deadline has passed, no changes or alterations to registrations will be accepted.<br />
+
+        4. Lot System for Order: The order in which teams perform will be determined by a random lot system.<br />
+
+        5. Team Captain’s Role: The team in-charges and team captains will draw lots and communicate the order of events to team members.<br />
+
+        6. ID Card Submission: Participants must submit their ID cards before participating in the event and collect them after their performance.<br />
+
+        7. Maintaining Discipline: Proper discipline must be maintained throughout the event.<br />
+
+        8. Rules and Registration Deviation: Any deviation from the rules and regulations of the event, or changes in registered participants, will result in disqualification.<br />
+
+        9. Prizes: Prizes will be awarded for first and second place in each event, with points assigned as follows:<br />
+        - 1st Place: 10 points<br />
+        - 2nd Place: 5 points<br />
+        - Participation Certificates: All participants will receive a participation certificate.<br />
+        - Judge’s Decision: The decision of the judge(s) is final.<br />
+
+        10. Rolling Shields: Overall winners and runners-up will receive rolling shields as awards.<br />
+
+        11. Managing Time Clashes: Teams are responsible for managing any time clashes between events themselves.<br />
+
+        12. Maximum Participation: Each student can participate in a maximum of three events, provided that the combination includes:<br />
+        i) One dance event + two off-stage events<br />
+        ii) Two dance events + one off-stage event<br /><br />
+        <b>Note:</b> Three off-stage events or three on-stage events are not permitted.
+    </div>
+</div>
+>>>>>>> Stashed changes
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
                 </div>
