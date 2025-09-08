@@ -1,3 +1,8 @@
+<?php
+if (!isset($_GET['eventName']) || empty(trim($_GET['eventName']))) {
+    die('Error: Event name is missing or invalid.');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -488,7 +493,9 @@
     <form id="hidden-form" action="../routes/admin/assignSlot.php" method="post" style="display:none;">
         <input type="hidden" id="gender" name="gender" value="">
         <input type="hidden" id="slots" name="slot_array" value="">
-        <input type="hidden" name="event_name" value="<?php echo $_GET['eventName'] ?>">
+        <input type="hidden" name="event_name" value="<?php echo htmlspecialchars($_GET['eventName']); ?>">
+        <input type="hidden" id="source" name="source" value="">
+        <input type="hidden" id="wheel_count" name="wheel_count" value="">
     </form>
 
     <div class="select-container">
@@ -505,7 +512,7 @@
         </select>
         <button class="submitBtn">Submit</button>
         <button id="triggerSpin"><span style="font-size:1.3em;">&#x1F3B2;</span> Spin</button>
-        <input type="text" id="event_name" name="eventName" readonly value="<?php echo $_GET['eventName'] ?>">
+        <input type="text" id="event_name" name="eventName" readonly value="<?php echo htmlspecialchars($_GET['eventName']); ?>">
     </div>
 
     <div class="popup" id="slotPopup">
@@ -915,6 +922,11 @@
                 const wheelCount = parseInt(document.getElementById('wheelCountSelect').value)
                 const selectedValue = document.getElementById('teamSelect').value
 
+                if (selectedValue !== 'BOYS' && selectedValue !== 'GIRLS') {
+                    alert('Please select a valid gender (Boys or Girls).');
+                    return;
+                }
+
                 let slots0 = allSlots[selectedValue].slice()
                 let slots1 = allSlots1[selectedValue].slice()
                 let slots2 = allSlots2[selectedValue].slice()
@@ -949,31 +961,49 @@
             })
 
             submitBtn.addEventListener('click', () => {
-                const wheelCount = parseInt(document.getElementById('wheelCountSelect').value)
+                const wheelCount = parseInt(document.getElementById('wheelCountSelect').value);
+                const selectedValue = document.getElementById('teamSelect').value;
+
+                if (selectedValue !== 'BOYS' && selectedValue !== 'GIRLS') {
+                    alert('Please select a valid gender (Boys or Girls).');
+                    return;
+                }
+
+                const expectedSlots = selectedValue === 'BOYS' ? wheelCount * 4 : wheelCount * 5;
+                const slotValues = [
+                    ...(wheelCount >= 1 ? trackPositions('.wheel', '.imageWheel') : []),
+                    ...(wheelCount >= 2 ? trackPositions('.wheel1', '.imageWheel1') : []),
+                    ...(wheelCount >= 3 ? trackPositions('.wheel2', '.imageWheel2') : []),
+                    ...(wheelCount >= 4 ? trackPositions('.wheel3', '.imageWheel3') : [])
+                ];
+                const slotNumbers = slotValues.map(item => parseInt(item.slot.match(/\d+/)[0]));
+
+                if (slotNumbers.length !== expectedSlots) {
+                    alert(`Expected ${expectedSlots} slots for ${wheelCount} ${selectedValue.toLowerCase()} wheels, but got ${slotNumbers.length}.`);
+                    return;
+                }
+
                 const spunCheck = 
                     wheelCount === 1 ? spinned :
                     wheelCount === 2 ? (spinned && spinned1) :
                     wheelCount === 3 ? (spinned && spinned1 && spinned2) :
-                    (spinned && spinned1 && spinned2 && spinned3)
+                    (spinned && spinned1 && spinned2 && spinned3);
 
                 if (spunCheck) {
-                    let slotValues = [
-                        ...(wheelCount >= 1 ? trackPositions('.wheel', '.imageWheel') : []),
-                        ...(wheelCount >= 2 ? trackPositions('.wheel1', '.imageWheel1') : []),
-                        ...(wheelCount >= 3 ? trackPositions('.wheel2', '.imageWheel2') : []),
-                        ...(wheelCount >= 4 ? trackPositions('.wheel3', '.imageWheel3') : [])
-                    ]
-
-                    const slotNumbers = slotValues.map(item => {
-                        return parseInt(item.slot.match(/\d+/)[0])
-                    })
-
-                    document.getElementById('slots').value = JSON.stringify(slotNumbers)
-                    document.getElementById('gender').value = gender
-
-                    showPopup(slotValues)
+                    console.log({
+                        gender: selectedValue,
+                        source: selectedValue.toLowerCase(),
+                        wheel_count: wheelCount,
+                        slot_array: JSON.stringify(slotNumbers),
+                        event_name: document.getElementById('event_name').value
+                    });
+                    document.getElementById('slots').value = JSON.stringify(slotNumbers);
+                    document.getElementById('gender').value = selectedValue;
+                    document.getElementById('source').value = selectedValue.toLowerCase();
+                    document.getElementById('wheel_count').value = wheelCount;
+                    showPopup(slotValues);
                 } else {
-                    alert(`Please spin ${wheelCount} wheel${wheelCount > 1 ? 's' : ''} before submitting!`)
+                    alert(`Please spin ${wheelCount} wheel${wheelCount > 1 ? 's' : ''} before submitting!`);
                 }
             })
         })
@@ -1024,4 +1054,4 @@
     </script>
 </body>
 
-</html>
+</html>     
