@@ -57,13 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_stmt_close($stmt);
 
     // Validate POST gender against eventdb gender
-   // Validate POST gender against eventdb gender
-if ($event_gender !== 'COMMON' && $event_gender !== $gender) {
-    error_log("Gender mismatch: POST gender=$gender, eventdb gender=$event_gender for event_name: $event_name");
-    echo '<div style="color:red;background:#fff;padding:1em;">Error: Invalid gender for event ' . htmlspecialchars($event_name) . '. Expected gender: ' . htmlspecialchars($event_gender) . '.</div>';
-    exit;
-}
-
+    if ($event_gender !== $gender) {
+        error_log("Gender mismatch: POST gender=$gender, eventdb gender=$event_gender for event_name: $event_name");
+        echo '<div style="color:red;background:#fff;padding:1em;">Error: Invalid gender for event ' . htmlspecialchars($event_name) . '. Expected gender: ' . htmlspecialchars($event_gender) . '.</div>';
+        exit;
+    }
 
     if ($isGroup == 1 && $group_count <= 0) {
         error_log("Invalid group_count for grouped event: $group_count");

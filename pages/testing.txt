@@ -1,0 +1,29 @@
+
+-- WARRIORS SHOWCASE registration db grouped update it - 
+
+   UPDATE registerationdb 
+SET grouped = 0 
+WHERE event_name = 'WARRIORS SHOWCASE';
+
+SET @grp := 0;
+
+UPDATE registerationdb r
+JOIN (
+    SELECT reg_no,
+           @grp := IF(@house = student_house, @grp + 1, 1) AS new_group,
+           @house := student_house
+    FROM registerationdb
+    WHERE event_name = 'WARRIORS SHOWCASE'
+    ORDER BY student_house, reg_no
+) x ON r.reg_no = x.reg_no
+SET r.grouped = x.new_group;
+
+https://nscet.org/wavestesting/allotment/grouped.php?eventName=WARRIORS+SHOWCASE use this 
+
+     
+WARRIORS show case checking
+
+-- ONSTAGE ODYSSEY - problem
+
+row checking
+

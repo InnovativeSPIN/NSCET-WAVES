@@ -100,6 +100,7 @@ if (!isset($_SESSION)) {
                         </a>
                         <a href="./pages/houseReport.php" class="btn current">House Status</a>
                         <a href="./pages/adminForm.php" class="btn current">Admin Panel</a>
+                        <a href="./pages/adminForm.php" class="btn current">itha amuku</a>
 
                         <!-- <a href="/pages/adminForm.php" class="btn current">Allot Group Name</a> -->
 
