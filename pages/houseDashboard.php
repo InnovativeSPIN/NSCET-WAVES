@@ -366,9 +366,7 @@ echo '<img src="' . $path . $img . '.png" class="card-img-top" alt="...">';
                                         </td>
 
                                         <td>
-                                            <ul class="action-list">
-<li><a href=<?php echo './studentRegisteration.php' . "?eventName=" . urlencode($eventName) ?> data-tip="edit"><i class="fa fa-edit"></i></a></li>
-</ul> -->
+                                           
                                         </td>
                                     </tr>
 
