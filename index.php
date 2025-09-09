@@ -389,7 +389,7 @@ if (!isset($_SESSION)) {
                         <input id="input" type="text" value="Waves'25 W" style="display: none;" />
 
                     </div>
-                    <div class="col-md-12 countdown flex flex-wrap justify-content-between" data-date="2025/09/12">
+                        <div class="col-md-12 countdown flex flex-wrap justify-content-between" data-date="2025/09/12">
                         <div class="col-md-12 flex-wrap" style="display:flex;justify-content:center">
                             <div class="countdown-holder">
                                 <div class="dday"></div>

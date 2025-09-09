@@ -45,7 +45,7 @@ include('../routes/connect.php');
 					<div class="row">
 						<?php
 						$i=0;
-						$houseDetails = mysqli_query($conn, "SELECT * FROM `housedb` WHERE `gender` = 'BOYS' ORDER BY `housedb`.`score` ASC");
+						$houseDetails = mysqli_query($conn, "SELECT * FROM `housedb` WHERE `gender` = 'BOYS' ORDER BY `housedb`.`score` DESC");
 						while ($houseDetail = mysqli_fetch_array($houseDetails)) {
 							?>
 							<div class="col-lg-3 col-md-3 col-sm-6">
@@ -87,7 +87,7 @@ include('../routes/connect.php');
 					<div class="row">
 						<?php
 						$i = 0;
-						$houseDetails = mysqli_query($conn, "SELECT * FROM `housedb` WHERE `gender` = 'GIRLS' ORDER BY `housedb`.`score` ASC");
+						$houseDetails = mysqli_query($conn, "SELECT * FROM `housedb` WHERE `gender` = 'GIRLS' ORDER BY `housedb`.`score` DESC");
 						while ($houseDetail = mysqli_fetch_array($houseDetails)) {
 							?>
 							<div class="col-lg-3 col-md-3 col-sm-6">
