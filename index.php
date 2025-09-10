@@ -271,10 +271,13 @@ if (!isset($_SESSION)) {
                                 <li><a href="#boysEvent">Boys Event</a></li>
                                 <li><a href="#girlsEvent">Girls Event</a></li>
                                 <li><a href="#footer">Contact Us</a></li>
+                                <li><a href="./result/resultPage.php">Score</a></li>
+                                
                                 <!-- <li><a href="#"><i class="fas fa-search"></i></a></li> -->
                                 <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
                             </ul>
                         </nav>
+                        
                     </div>
                 </div>
             </div>
