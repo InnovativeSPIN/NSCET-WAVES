@@ -6,6 +6,13 @@
     $( '.hamburger-menu' ).on( 'click', function() {
         $(this).toggleClass('open');
         $('.site-navigation').toggleClass('show');
+        $('.nav-overlay').toggleClass('show');
+    });
+
+    $( '.nav-overlay, .site-navigation ul li a' ).on( 'click', function() {
+        $('.hamburger-menu').removeClass('open');
+        $('.site-navigation').removeClass('show');
+        $('.nav-overlay').removeClass('show');
     });
 
     var countdown_date = $('.countdown').data("date");

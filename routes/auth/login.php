@@ -20,31 +20,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['house_name']) && isse
 
     mysqli_stmt_store_result($stmt);
 
-    if (mysqli_stmt_num_rows($stmt) == 5) {
+    if (mysqli_stmt_num_rows($stmt) > 0) {
         mysqli_stmt_bind_result($stmt, $dept, $house_name, $reg_no, $role, $username, $hashed_password);
-        mysqli_stmt_fetch($stmt);
-
         $password = $_POST['password'];
+        $authenticated = false;
 
-        if (password_verify($password, $hashed_password) && $_POST['house_name'] === $house_name) {
-            // session_unset();
-            $_SESSION['role'] = $role;
-            $_SESSION['reg_no'] = $reg_no;
-            $_SESSION['name'] = $username;
-            $_SESSION['house_name'] = $house_name;
-            $_SESSION['dept'] = $dept;
+        while (mysqli_stmt_fetch($stmt)) {
+            if (password_verify($password, $hashed_password) && $_POST['house_name'] === $house_name) {
+                $_SESSION['role'] = $role;
+                $_SESSION['reg_no'] = $reg_no;
+                $_SESSION['name'] = $username;
+                $_SESSION['house_name'] = $house_name;
+                $_SESSION['dept'] = $dept;
+                $authenticated = true;
+                break;
+            }
+        }
 
+        if ($authenticated) {
             header('Location: ../../pages/houseDashboard.php');
             exit();
         } else {
-            // echo "Incorrect username or password or role";
-            // $error = "Incorrect username or password or role";
             header('Location: ../../pages/404.php');
+            exit();
         }
     } else {
-        // echo "User not found";
-        // $error = "User not found";
         header('Location: ../../');
+        exit();
     }
 
     mysqli_stmt_close($stmt);
