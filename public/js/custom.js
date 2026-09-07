@@ -2,18 +2,31 @@
 (function($) {
     // 'use strict';
 
-    // Main Navigation
-    $( '.hamburger-menu' ).on( 'click', function() {
+    // Main Navigation — Hamburger toggle
+    $('#hamburgerBtn, .hamburger-menu').on('click', function() {
+        var isOpen = $(this).hasClass('open');
         $(this).toggleClass('open');
+        $(this).attr('aria-expanded', !isOpen);
         $('.site-navigation').toggleClass('show');
         $('.nav-overlay').toggleClass('show');
+        $('body').toggleClass('nav-open');
     });
 
-    $( '.nav-overlay, .site-navigation ul li a' ).on( 'click', function() {
-        $('.hamburger-menu').removeClass('open');
+    // Close nav when overlay or a nav link is clicked
+    $('.nav-overlay').on('click', function() {
+        $('#hamburgerBtn, .hamburger-menu').removeClass('open').attr('aria-expanded', 'false');
         $('.site-navigation').removeClass('show');
         $('.nav-overlay').removeClass('show');
+        $('body').removeClass('nav-open');
     });
+
+    $('.nav-menu li a').on('click', function() {
+        $('#hamburgerBtn, .hamburger-menu').removeClass('open').attr('aria-expanded', 'false');
+        $('.site-navigation').removeClass('show');
+        $('.nav-overlay').removeClass('show');
+        $('body').removeClass('nav-open');
+    });
+
 
     var countdown_date = $('.countdown').data("date");
 

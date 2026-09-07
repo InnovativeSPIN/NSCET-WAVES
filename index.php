@@ -16,6 +16,11 @@ if (!isset($_SESSION)) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Waves'25 | NSCET</title>
+    <!-- Waves Logo as Website Header Icon / Favicon -->
+    <link rel="icon" type="image/png" href="public/images/logos/waves-logo.png">
+    <link rel="shortcut icon" type="image/png" href="public/images/logos/waves-logo.png">
+    <link rel="apple-touch-icon" href="public/images/logos/waves-logo.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -219,30 +224,28 @@ if (!isset($_SESSION)) {
         <div class="header-bar">
             <div class="container-fluid px-3 px-lg-4">
                 <div class="d-flex align-items-center justify-content-between">
-                    <!-- Left: Waves Logo + WAVES text -->
+                    <!-- Left: Waves Logo as Header of the Website -->
                     <div class="header-left d-flex align-items-center">
-                        <a href="index.php" class="header-waves-brand d-inline-flex align-items-center text-decoration-none">
+                        <a href="index.php" class="header-waves-brand d-inline-flex align-items-center text-decoration-none" title="NSCET WAVES 2.0">
                             <img src="public/images/logos/waves-logo.png" alt="Waves Logo" class="header-waves-logo">
-                            <span class="header-waves-title">WAVES</span>
                         </a>
                     </div>
 
                     <!-- Right: Navigation Menu & Login -->
                     <div class="header-right d-flex align-items-center">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none">
+                            <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle Navigation" aria-expanded="false">
                                 <span></span>
                                 <span></span>
                                 <span></span>
                                 <span></span>
-                            </div>
-                            <ul class="d-flex align-items-center mb-0">
+                            </button>
+                            <ul class="nav-menu">
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="#gallary">Waves'24</a></li>
+                                <li><a href="#gallary">Waves'25</a></li>
                                 <li><a href="#boysEvent">Boys Event</a></li>
                                 <li><a href="#girlsEvent">Girls Event</a></li>
                                 <li><a href="#footer">Contact Us</a></li>
-                                <!-- <li><a href="./result/resultPage.php">Score</a></li> -->
                                 <li class="login-nav-item"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">LOGIN</button></li>
                             </ul>
                         </nav>
