@@ -52,8 +52,8 @@ include('../routes/connect.php');
                                 <span></span>
                             </button>
                             <ul class="nav-menu">
-                                <li><a href="../showcase/eventShowcase.php">Events</a></li>
-                                <li class="login-nav-item"><a href="../ispin/logout.php"><button type="button" class="btn btn-login btn-primary">Logout</button></a></li>
+                                <li><a href="../index.php#boysEvent">Events</a></li>
+                                <li class="login-nav-item"><a href="../routes/studentReg/logout.php" class="btn btn-login btn-primary" style="display:inline-block; padding:8px 20px; color:white; text-decoration:none;">Logout</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -308,15 +308,7 @@ include('../routes/connect.php');
 		<script type="text/javascript" src="../public/js/circle-progress.min.js"></script>
 		<script type="text/javascript" src="../public/js/jquery.countTo.min.js"></script>
 		<script type="text/javascript" src="../public/js/custom.js"></script>
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-			</script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-			</script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-			</script>
+<!-- Removed duplicate slim jQuery/Bootstrap that was overwriting full jQuery -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
 		<script>
@@ -366,5 +358,8 @@ include('../routes/connect.php');
 </body>
 
 </html>
+
+
+
 
 

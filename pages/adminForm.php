@@ -374,8 +374,9 @@ include('../routes/connect.php');
                                     <div class="col-md-12 form-group"> <label for="file">
                                             <h6>Upload Image</h6>
                                         </label>
-                                        <div class="input-group"> <input type="file" name="image"
+                                        <div class="input-group"> <input type="file" name="image" accept="image/jpeg,image/png,image/gif,image/webp"
                                                 placeholder="Upload Image" class="form-control " required>
+                                        <small class="form-text text-muted w-100">Max 5MB. Formats: JPG, PNG, GIF, WEBP</small>
                                         </div>
                                     </div>
                                     <div class="col-md-12 form-group"> <label for="event_rules">
@@ -1736,5 +1737,44 @@ include('../routes/connect.php');
             btn.innerHTML = "<i class='fas fa-save mr-1'></i> Save Changes";
         });
     }
+</script>
+
+
+
+<script>
+    // Client-side image size validation for Add Event form
+    document.addEventListener('DOMContentLoaded', function() {
+        var addEventForm = document.querySelector('#add-event form');
+        if (addEventForm) {
+            addEventForm.addEventListener('submit', function(e) {
+                var fileInput = addEventForm.querySelector('input[name="image"]');
+                if (fileInput && fileInput.files.length > 0) {
+                    var file = fileInput.files[0];
+                    var maxSize = 5 * 1024 * 1024; // 5MB
+                    var allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
+                    if (!allowedTypes.includes(file.type)) {
+                        e.preventDefault();
+                        alert('Invalid image format! Allowed formats: JPG, PNG, GIF, WEBP.\n\nYou selected: ' + file.type);
+                        return false;
+                    }
+
+                    if (file.size > maxSize) {
+                        e.preventDefault();
+                        var sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                        alert('Image too large!\n\nYour file: ' + sizeMB + ' MB\nMaximum allowed: 5 MB\n\nPlease compress or resize your image before uploading.');
+                        return false;
+                    }
+                }
+            });
+        }
+
+        // Show error as popup if redirected with ?error=
+        var urlParams = new URLSearchParams(window.location.search);
+        var errorMsg = urlParams.get('error');
+        if (errorMsg) {
+            alert('Error: ' + decodeURIComponent(errorMsg));
+        }
+    });
 </script>
 
