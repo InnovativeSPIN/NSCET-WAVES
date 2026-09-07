@@ -1176,6 +1176,45 @@ include('../routes/connect.php');
                                     </button>
                                 </div>
                             </form>
+
+                            <hr class="my-4">
+                            <h5 class="mb-3"><i class="fas fa-users-cog mr-2"></i>Manage Students</h5>
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="manage_house_select"><strong>Select House</strong></label>
+                                            <select id="manage_house_select" class="form-control" onchange="loadStudentsForHouse()">
+                                                <option value="">-- Select House --</option>
+                                                <?php
+                                                $q = mysqli_query($conn, "SELECT DISTINCT house_name FROM admindb WHERE role = 'team captain' ORDER BY house_name ASC");
+                                                while ($h = mysqli_fetch_assoc($q)) {
+                                                    echo '<option value="' . htmlspecialchars($h['house_name']) . '">' . htmlspecialchars($h['house_name']) . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive" id="manage_students_table_container" style="display: none; max-height: 400px; overflow-y: auto;">
+                                        <table class="table table-bordered table-hover table-sm" style="font-size: 13px;">
+                                            <thead class="thead-light" style="position: sticky; top: 0; z-index: 1;">
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Reg No</th>
+                                                    <th>Dept</th>
+                                                    <th>Year</th>
+                                                    <th>Gender</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="manage_students_tbody">
+                                                <!-- Students loaded via AJAX -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="manage_students_status" class="text-muted mt-2 small"></div>
+                                </div>
+                            </div>
                         </div>
                     </div> <!-- End tab-content -->
 
@@ -1589,6 +1628,8 @@ include('../routes/connect.php');
             });
     }
 </script>
+
+
 
 
 
