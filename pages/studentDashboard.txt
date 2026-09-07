@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 
 if (!isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
@@ -33,35 +33,33 @@ include('../routes/connect.php');
 </head>
 
 <body>
-    <header class="site-header">
-        <div class="header-bar">
-            <div class="container-fluid px-3 px-lg-4">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="header-left d-flex align-items-center">
-                        <a href="../index.php" class="header-waves-brand d-inline-flex align-items-center text-decoration-none" title="NSCET WAVES 2.0">
-                            <img src="../public/images/logos/waves-logo.png" alt="Waves Logo" class="header-waves-logo" width="120">
-                            <span style="font-size: 24px; font-weight: bold; margin-left: 10px; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">WAVES</span>
-                        </a>
-                    </div>
-                    <div class="header-right d-flex align-items-center">
-                        <nav class="site-navigation">
-                            <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle Navigation" aria-expanded="false">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </button>
-                            <ul class="nav-menu">
-                                <li><a href="../showcase/eventShowcase.php">Events</a></li>
-                                <li class="login-nav-item"><a href="../ispin/logout.php"><button type="button" class="btn btn-login btn-primary">Logout</button></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="nav-overlay"></div>
+	<header class="site-header">
+		<div class="header-bar">
+			<div class="container-fluid">
+				<div class="row align-items-center">
+					<div class="col-10 col-lg-4">
+						<h1 class="site-branding flex">
+							<img src="../public/images/logos/waves-logo.png" alt="" class="" width="120"> <span style="font-size: 24px; font-weight: bold; margin-left: 10px; color: white;">WAVES</span>
+						</h1>
+					</div>
+					<div class="col-2 col-lg-8">
+						<nav class="site-navigation">
+							<div class="hamburger-menu d-lg-none">
+								<span style="background-color:black"></span>
+								<span style="background-color:black"></span>
+								<span style="background-color:black"></span>
+								<span style="background-color:black"></span>
+							</div>
+							<ul>
+								<li><a href="../index.php"><button type="button" class="btn btn-login btn-primary"
+											data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 	<div class="container">
 		<div style="margin-top: 138px;">
 			<div class="card dark gradient-border">
@@ -366,5 +364,4 @@ include('../routes/connect.php');
 </body>
 
 </html>
-
 

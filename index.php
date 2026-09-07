@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Waves'25 | NSCET</title>
+    <title>Waves'26 | NSCET</title>
     <!-- Waves Logo as Website Header Icon / Favicon -->
     <link rel="icon" type="image/png" href="public/images/logos/waves-logo.png">
     <link rel="shortcut icon" type="image/png" href="public/images/logos/waves-logo.png">
@@ -202,6 +202,7 @@ if (!isset($_SESSION)) {
                     <div class="header-left d-flex align-items-center">
                         <a href="index.php" class="header-waves-brand d-inline-flex align-items-center text-decoration-none" title="NSCET WAVES 2.0">
                             <img src="public/images/logos/waves-logo.png" alt="Waves Logo" class="header-waves-logo">
+                            <span style="font-size: 24px; font-weight: bold; margin-left: 10px; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">WAVES</span>
                         </a>
                     </div>
 
@@ -216,7 +217,7 @@ if (!isset($_SESSION)) {
                             </button>
                             <ul class="nav-menu">
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="#gallary">Waves'25</a></li>
+                                <li><a href="#gallary">Waves'26</a></li>
                                 <li><a href="#boysEvent">Boys Event</a></li>
                                 <li><a href="#girlsEvent">Girls Event</a></li>
                                 <li><a href="#footer">Contact Us</a></li>
@@ -469,7 +470,7 @@ if (!isset($_SESSION)) {
                         </div>
                         <div class="teams-cultural-subtitle text-center">
                             <span class="cultural-badge boys-tag"><i class="fas fa-fire-alt mr-1"></i> 5 Boys Teams</span>
-                            <span class="cultural-star">✦</span>
+                            <span class="cultural-star">âœ¦</span>
                             <span class="cultural-badge girls-tag"><i class="fas fa-crown mr-1"></i> 6 Girls Teams</span>
                         </div>
                         <p class="teams-cultural-motto text-center">
@@ -1064,7 +1065,7 @@ if (!isset($_SESSION)) {
     </div>
     <footer id="footer" class="site-footer">
         <div class="footer-cover-title flex justify-content-center align-items-center">
-            <h2>Waves'25</h2>
+            <h2>Waves'26</h2>
         </div>
         <div class="footer-content-wrapper">
             <div class="container">
@@ -1231,3 +1232,4 @@ if (!isset($_SESSION)) {
 </body>
 
 </html>
+
