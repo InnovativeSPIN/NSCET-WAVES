@@ -16,7 +16,10 @@ if (!isset($_SESSION)) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Waves'25 | NSCET</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/modern.css">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
@@ -214,36 +217,35 @@ if (!isset($_SESSION)) {
 
     <header class="site-header">
         <div class="header-bar">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-10 col-lg-4">
-                        <h1 class="site-branding flex">
-                            <!-- <img src="public/images/logos/waves-logo.png" alt="" class="" width="120"> -->
-
-                            <!-- <a href="#">Waves'24</a> -->
-                        </h1>
+            <div class="container-fluid px-3 px-lg-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <!-- Left: Waves Logo + WAVES text -->
+                    <div class="header-left d-flex align-items-center">
+                        <a href="index.php" class="header-waves-brand d-inline-flex align-items-center text-decoration-none">
+                            <img src="public/images/logos/waves-logo.png" alt="Waves Logo" class="header-waves-logo">
+                            <span class="header-waves-title">WAVES</span>
+                        </a>
                     </div>
-                    <div class="col-2 col-lg-8">
+
+                    <!-- Right: Navigation Menu & Login -->
+                    <div class="header-right d-flex align-items-center">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none" style="position: fixed;">
+                            <div class="hamburger-menu d-lg-none">
                                 <span></span>
                                 <span></span>
                                 <span></span>
                                 <span></span>
                             </div>
-                            <ul>
-                                <li><a href=" ">Home</a></li>
+                            <ul class="d-flex align-items-center mb-0">
+                                <li><a href="index.php">Home</a></li>
                                 <li><a href="#gallary">Waves'24</a></li>
                                 <li><a href="#boysEvent">Boys Event</a></li>
                                 <li><a href="#girlsEvent">Girls Event</a></li>
                                 <li><a href="#footer">Contact Us</a></li>
-                                <li><a href="./result/resultPage.php">Score</a></li>
-                                
-                                <!-- <li><a href="#"><i class="fas fa-search"></i></a></li> -->
-                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></li>
+                                <!-- <li><a href="./result/resultPage.php">Score</a></li> -->
+                                <li class="login-nav-item"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">LOGIN</button></li>
                             </ul>
                         </nav>
-                        
                     </div>
                 </div>
             </div>
@@ -337,29 +339,33 @@ if (!isset($_SESSION)) {
 
 
     <div class="hero-content">
-        <div class="container" style="margin:0;display:flex">
-            <div class="row">
-                <div class="col-md-12" style="
-    align-items: center;">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10 text-center">
 
-                    <div class="entry-header">
-                        <div class="shadow">
-
-                            <img src="public/images/logos/clg-logo.png" alt="" class="" width="180">
+                    <div class="entry-header text-center d-flex flex-column align-items-center justify-content-center">
+                        <!-- 1. NSCET College Logo -->
+                        <div class="hero-clg-wrap mb-2">
+                            <img src="public/images/logos/clg-logo.png" alt="NSCET College Logo" class="hero-clg-logo img-fluid">
                         </div>
-                        <h2 id="waves-text" style="filter: drop-shadow( 0px 0px 30px rgba(255, 255, 255, 1));;font-family: 'mountains';padding: 0;margin-bottom: 32px;">Waves 25</h2>
 
+                        <!-- 2. Text: NSCET Cultural Fest & Talent Extravaganza -->
+                        <p class="waves-fest-subtitle mb-4">NSCET Cultural Fest &amp; Talent Extravaganza</p>
 
-                        <div id="stage" style="margin-top: 64px;"></div>
+                        <!-- 3. Waves Logo -->
+                        <div class="hero-waves-wrap mb-2">
+                            <img src="public/images/logos/waves-logo.png" alt="Waves Logo" class="hero-waves-logo img-fluid">
+                        </div>
 
-                        <canvas id="text" width="800" height="200"></canvas>
-                        <img style="margin-bottom: 24px;" src="public/images/logos/waves-logo.png" alt="" class="" width="280">
-
-                        <input id="input" type="text" value="Waves'25 W" style="display: none;" />
+                        <!-- 4. Waves 25 (3D Particle Text) -->
+                        <h2 id="waves-text" class="waves-fest-title" style="display: none;">Waves '26</h2>
+                        <div id="stage" class="hero-waves-stage"></div>
+                        <canvas id="text" width="800" height="200" style="display: none;"></canvas>
+                        <input id="input" type="text" value="WAVES'26" style="display: none;" />
 
                     </div>
-                        <div class="col-md-12 countdown flex flex-wrap justify-content-between" data-date="2025/09/12">
-                        <div class="col-md-12 flex-wrap" style="display:flex;justify-content:center">
+                    <div class="col-12 countdown flex flex-wrap justify-content-center mt-0 mb-4" data-date="2026/09/18">
+                        <div class="col-12 flex-wrap" style="display:flex;justify-content:center">
                             <div class="countdown-holder">
                                 <div class="dday"></div>
                                 <label>Days</label>
@@ -379,18 +385,14 @@ if (!isset($_SESSION)) {
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-12 text-center">
                         <div class="entry-footer">
-
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commonRules">
+                            <button type="button" class="btn btn-primary mr-2 mb-2" data-toggle="modal" data-target="#commonRules">
                                 Rules and Regulation
                             </button>
-                            <a href="#events" class="btn current">See Events</a>
+                            <a href="#events" class="btn current mb-2">See Events</a>
                         </div>
                     </div>
-
-                </div>
-                <div class="row">
 
                 </div>
             </div>
@@ -478,7 +480,7 @@ if (!isset($_SESSION)) {
                         <div class="team-display">
                             <div class="col-md-5">
                                 <h3 style="color: black;">
-                                    "Waves is the cultural extravaganza hosted by NSCET, a celebration dedicated to our vibrant student community. Join us to immerse yourself in a world of talent, creativity, and unforgettable experiences!" 🌊🎉</h3>
+                                    "Waves is the cultural extravaganza hosted by NSCET, a celebration dedicated to our vibrant student community. Join us to immerse yourself in a world of talent, creativity, and unforgettable experiences!"</h3>
                             </div>
                             <div class="col-md-2"></div>
                             <div class="col-md-4" style="margin-top: 24px;padding: 52px;">

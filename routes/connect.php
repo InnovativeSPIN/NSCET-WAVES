@@ -1,13 +1,15 @@
 <?php
+// Database connection configuration
+$db_host = 'localhost';
+$db_user = 'root';
+$db_pass = 'root';
+$db_name = 'nscet_waves_25';
 
-// $conn = mysqli_connect('localhost', 'root', '', 'nscet_waves_25');        // make sql db connection
-// if (!$conn) {
-//     echo 'Connection Error  ' . mysqli_connect_error();
-// }
+// Create connection
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
-$conn = mysqli_connect('localhost', 'nscet_waves_25', 'nscet_waves_25', 'nscet_waves_25');        
+// Check connection
 if (!$conn) {
-    echo 'Connection Error  ' . mysqli_connect_error();
+    die('Connection Error: ' . mysqli_connect_error());
 }
-
 ?>

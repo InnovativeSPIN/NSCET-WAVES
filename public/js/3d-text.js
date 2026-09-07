@@ -13,24 +13,44 @@ var height,
   textCtx,
   textPixels = [],
   input;
-var colors = ["#db4e98", "#24fdc3", "#0ee1e7", "#ef235c", "#0ee1e7"];
+
+var colors = ["#db4e98", "#24fdc3", "#0ee1e7", "#ef235c", "#0ee1e7", "#38bdf8"];
 
 function initStage() {
-  width = screen.width - 24;
-  height = 420;
   container = document.getElementById("stage");
-  // window.addEventListener('resize', resize);
+  if (!container) return false;
+  
+  width = Math.min(container.clientWidth || window.innerWidth || 1000, 1100);
+  if (width < 320) width = 320;
+  height = 260;
+
   container.addEventListener("mousemove", mousemove);
+  window.addEventListener("resize", function () {
+    if (container && renderer && camera) {
+      width = Math.min(container.clientWidth || window.innerWidth || 1000, 1100);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+      if (textCanvas) {
+        textCanvas.style.width = width + "px";
+        textCanvas.width = width;
+      }
+      updateText();
+    }
+  });
+  return true;
 }
 
 function initScene() {
+  if (!container) return;
   scene = new THREE.Scene();
   renderer = new THREE.WebGLRenderer({
     alpha: true,
     antialias: true,
   });
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(width, height);
+  container.innerHTML = "";
   container.appendChild(renderer.domElement);
 }
 
@@ -39,20 +59,18 @@ function randomPos(vector) {
   var centerX = 0;
   var centerY = 0;
 
-  // ensure that p(r) ~ r instead of p(r) ~ constant
   var r = width + radius * Math.random();
   var angle = Math.random() * Math.PI * 2;
 
-  // compute desired coordinates
   vector.x = centerX + r * Math.cos(angle);
   vector.y = centerY + r * Math.sin(angle);
 }
 
 function initCamera() {
-  fieldOfView = 70;
-  aspectRatio = width / height;
-  nearPlane = 1;
-  farPlane = 3000;
+  var fieldOfView = 70;
+  var aspectRatio = width / height;
+  var nearPlane = 1;
+  var farPlane = 3000;
   camera = new THREE.PerspectiveCamera(
     fieldOfView,
     aspectRatio,
@@ -60,22 +78,19 @@ function initCamera() {
     farPlane
   );
   camera.position.z = 800;
-  console.log(camera.position);
-  console.log(cameraTarget);
 }
 
 function createLights() {
-  shadowLight = new THREE.DirectionalLight(0xffffff, 2);
+  var shadowLight = new THREE.DirectionalLight(0xffffff, 2);
   shadowLight.position.set(20, 0, 10);
   shadowLight.castShadow = true;
-  shadowLight.shadowDarkness = 0.01;
   scene.add(shadowLight);
 
-  light = new THREE.DirectionalLight(0xffffff, 0.5);
+  var light = new THREE.DirectionalLight(0xffffff, 0.7);
   light.position.set(-20, 0, 20);
   scene.add(light);
 
-  backLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  var backLight = new THREE.DirectionalLight(0x0de1eb, 0.9);
   backLight.position.set(0, 0, -20);
   scene.add(backLight);
 }
@@ -103,10 +118,10 @@ Particle.prototype.init = function (i) {
   particle.position.set(width * 0.5, height * 0.5, -10 * Math.random() + 20);
   randomPos(particle.position);
 
-  for (var i = 0; i < box.geometry.vertices.length; i++) {
-    box.geometry.vertices[i].x += -10 + Math.random() * 20;
-    box.geometry.vertices[i].y += -10 + Math.random() * 20;
-    box.geometry.vertices[i].z += -10 + Math.random() * 20;
+  for (var j = 0; j < box.geometry.vertices.length; j++) {
+    box.geometry.vertices[j].x += -10 + Math.random() * 20;
+    box.geometry.vertices[j].y += -10 + Math.random() * 20;
+    box.geometry.vertices[j].z += -10 + Math.random() * 20;
   }
 
   particle.add(box);
@@ -123,13 +138,17 @@ Particle.prototype.updatePosition = function () {
 };
 
 function render() {
-  renderer.render(scene, camera);
+  if (renderer && scene && camera) {
+    renderer.render(scene, camera);
+  }
 }
 
 function updateParticles() {
   for (var i = 0, l = particles.length; i < l; i++) {
-    particles[i].updateRotation();
-    particles[i].updatePosition();
+    if (particles[i]) {
+      particles[i].updateRotation();
+      particles[i].updatePosition();
+    }
   }
 }
 
@@ -148,62 +167,67 @@ function setParticles() {
     }
   }
 
-  for (var i = textPixels.length; i < particles.length; i++) {
-    randomPos(particles[i].particle.targetPosition);
+  for (var k = textPixels.length; k < particles.length; k++) {
+    if (particles[k]) {
+      randomPos(particles[k].particle.targetPosition);
+    }
   }
 }
 
 function initCanvas() {
   textCanvas = document.getElementById("text");
-  stageCanvas = document.getElementById("stage");
-  wavesTextCanvas = document.getElementById("waves-text");
+  var wavesTextCanvas = document.getElementById("waves-text");
 
-
-
-  if(screen.width < 768){
-    textCanvas.style.display = 'none'
-    stageCanvas.style.display = 'none'
-
-  }else{
-    wavesTextCanvas.style.display = 'none'
-    textCanvas.style.width = width + "px";
-    textCanvas.style.height = height + "px";
-    textCanvas.width = width;
-    textCanvas.height = height;
-    textCtx = textCanvas.getContext("2d");
-    textCtx.font = "700 100px ShantellSans";
-    textCtx.fillStyle = "#555";
+  if (wavesTextCanvas) {
+    wavesTextCanvas.style.display = "none";
   }
-  
+
+  if (!textCanvas) return;
+
+  textCanvas.style.width = width + "px";
+  textCanvas.style.height = height + "px";
+  textCanvas.width = width;
+  textCanvas.height = height;
+  textCtx = textCanvas.getContext("2d");
+  textCtx.font = "900 100px 'Outfit', 'ShantellSans', sans-serif";
+  textCtx.fillStyle = "#555";
 }
 
 function initInput() {
   input = document.getElementById("input");
-  input.addEventListener("keyup", updateText);
-  input.value = "WAVES'25";
+  if (input) {
+    input.addEventListener("keyup", updateText);
+    input.value = "WAVES'2K26";
+  }
 }
 
 function updateText() {
-  var fontSize = width / (input.value.length * 1.3);
-  if (fontSize > 120) fontSize = 120;
-  textCtx.font = "700 " + fontSize + "px ShantellSans";
-  textCtx.clearRect(0, 0, width, 200);
+  if (!textCtx) return;
+  var val = (input && input.value) ? input.value.trim() : "WAVES'2k26";
+  var fontSize = Math.floor(width / (val.length * 1.15));
+  if (fontSize > 115) fontSize = 115;
+  if (fontSize < 45) fontSize = 45;
+
+  textCtx.font = "900 " + fontSize + "px 'Outfit', 'ShantellSans', sans-serif";
+  textCtx.clearRect(0, 0, width, height);
   textCtx.textAlign = "center";
   textCtx.textBaseline = "middle";
-  textCtx.fillText(input.value.toUpperCase(), width / 2, 50);
+  textCtx.fillText(val.toUpperCase(), width / 2, 60);
 
-  var pix = textCtx.getImageData(0, 0, width, 200).data;
+  var pix = textCtx.getImageData(0, 0, width, height).data;
   textPixels = [];
+  var step = width < 600 ? 8 : 6;
   for (var i = pix.length; i >= 0; i -= 4) {
-    if (pix[i] != 0) {
+    if (pix[i] !== 0) {
       var x = (i / 4) % width;
       var y = Math.floor(Math.floor(i / width) / 4);
 
-      if (x && x % 6 == 0 && y && y % 6 == 0)
+      if (x && x % step === 0 && y && y % step === 0) {
         textPixels.push({
           x: x,
-          y: 200 - y + -120,
+          y: 200 - y - 120,
         });
+      }
     }
   }
   setParticles();
@@ -215,67 +239,68 @@ function mousemove(e) {
   cameraTarget.x = x * -1;
   cameraTarget.y = y;
 
-  // Check if mouse is hovering over text canvas
-  if (e.target === textCanvas) {
-    // Get the mouse position relative to the text canvas
+  if (textCanvas && e.target === textCanvas && textCtx && input) {
     var rect = textCanvas.getBoundingClientRect();
     var mouseX = e.clientX - rect.left;
     var mouseY = e.clientY - rect.top;
 
-    // Check if the mouse is hovering over the "WAVES" text
     var textWidth = textCtx.measureText(input.value.toUpperCase()).width;
-    var textHeight = 100; // Assuming the text height is 100 pixels
+    var textHeight = 100;
     var textX = (width - textWidth) / 2;
-    var textY = 50; // Assuming the text y-position is 50 pixels
-    if (mouseX > textX && mouseX < textX + textWidth && mouseY > textY - textHeight / 2 && mouseY < textY + textHeight / 2) {
-      // Dispose of particles on mouse hover
+    var textY = 60;
+    if (
+      mouseX > textX &&
+      mouseX < textX + textWidth &&
+      mouseY > textY - textHeight / 2 &&
+      mouseY < textY + textHeight / 2
+    ) {
       for (var i = particles.length - 1; i >= 0; i--) {
         scene.remove(particles[i].particle);
         particles.splice(i, 1);
-      } 
+      }
     }
   }
 }
 
-
 function animate() {
   requestAnimationFrame(animate);
   updateParticles();
-  camera.position.lerp(cameraTarget, 0.2);
-  camera.lookAt(cameraLookAt);
+  if (camera) {
+    camera.position.lerp(cameraTarget, 0.2);
+    camera.lookAt(cameraLookAt);
+  }
   render();
 
-  // Animate particles
   for (var i = 0; i < particles.length; i++) {
-    particles[i].particle.position.z += Math.random() * 0.1 - 0.05;
-    particles[i].particle.rotation.x += Math.random() * 0.01 - 0.005;
-    particles[i].particle.rotation.y += Math.random() * 0.01 - 0.005;
+    if (particles[i]) {
+      particles[i].particle.position.z += Math.random() * 0.1 - 0.05;
+      particles[i].particle.rotation.x += Math.random() * 0.01 - 0.005;
+      particles[i].particle.rotation.y += Math.random() * 0.01 - 0.005;
+    }
   }
 }
-// function resize() {
-//     width = 800;
-//     height = 200;
-//     camera.aspect = width / height;
-//     camera.updateProjectionMatrix();
-//     renderer.setSize(width, height);
 
-//     textCanvas.style.width = width + 'px';
-//     textCanvas.style.height = height + 'px';
-//     textCanvas.width = width;
-//     textCanvas.height = height;
-//     updateText();
-// }
+function initAll() {
+  if (!initStage()) return;
+  initScene();
+  initCanvas();
+  initCamera();
+  createLights();
+  initInput();
+  animate();
+  updateText();
 
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      updateText();
+    });
+  }
+  setTimeout(updateText, 100);
+  setTimeout(updateText, 500);
+}
 
-
-initStage();
-initScene();
-initCanvas();
-initCamera();
-createLights();
-initInput();
-animate();
-updateText();
-// setTimeout(function () {
-//     updateText();
-// }, 40);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initAll);
+} else {
+  initAll();
+}
