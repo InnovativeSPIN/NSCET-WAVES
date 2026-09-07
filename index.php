@@ -927,14 +927,15 @@ if (!isset($_SESSION)) {
                     </div>
                     <div class="ml-auto" style="min-width:180px;">
                         <select id="memories-year" class="form-control">
-                            <option value="2024" selected>2024</option>
                             <option value="2025">2025</option>
+                            <option value="2024" selected>2024</option>
+                            
                         </select>
                     </div>
                 </div>
                 <div class="main">
                     <!-- 2024 gallery: keep existing images and style unchanged -->
-                    <div class="gallery" id="gallery-2024">
+                    <div class="gallery d-none" id="gallery-2024">
                         <div class="img">
                             <img src="public/images/galary/IMG_20230221_134347.jpg" alt="">
                         </div>
@@ -1004,7 +1005,7 @@ if (!isset($_SESSION)) {
                     </div>
 
                     <!-- 2025 gallery: images should be placed in public/images/waves25/ by you -->
-                    <div class="gallery d-none" id="gallery-2025">
+                    <div class="gallery" id="gallery-2025">
                         <div class="img">
                             <img src="public/images/waves'25/GAN_0004.JPG" alt="">
                         </div>
@@ -1333,4 +1334,5 @@ if (!isset($_SESSION)) {
 </body>
 
 </html>
+
 
