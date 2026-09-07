@@ -3,7 +3,6 @@
 $db_host = 'localhost';
 $db_user = 'waves_user';
 $db_pass = 'waves2026';
-
 $db_name = 'nscet_waves_25';
 
 // Create connection

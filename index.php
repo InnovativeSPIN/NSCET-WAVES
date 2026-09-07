@@ -272,7 +272,6 @@ if (!isset($_SESSION)) {
                                         <option value="student">Student</option>
                                         <option value="event coordinator">Event Co-ordinator</option>
                                         <option value="team captain">Team Captain</option>
-                                        <option value="team incharge">Team Incharge</option>
                                     </select>
                                 </div>
                             </div>
@@ -1334,5 +1333,6 @@ if (!isset($_SESSION)) {
 </body>
 
 </html>
+
 
 
