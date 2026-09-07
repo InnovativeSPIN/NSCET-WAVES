@@ -188,6 +188,20 @@ include('../routes/connect.php');
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                <?php elseif ($_GET['success'] === 'event_added'): ?>
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                        <strong><i class="fas fa-check-circle mr-2"></i>Success!</strong> New event has been added successfully.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php elseif ($_GET['success'] === 'event_deleted'): ?>
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                        <strong><i class="fas fa-check-circle mr-2"></i>Success!</strong> Event has been deleted successfully.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 <?php elseif ($_GET['success'] === 'event_updated'): ?>
                     <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
                         <strong><i class="fas fa-check-circle mr-2"></i>Success!</strong> Event details have been updated successfully.
@@ -224,6 +238,19 @@ include('../routes/connect.php');
                         </button>
                     </div>
                 <?php endif; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['error'])): ?>
+        <div class="row">
+            <div class="col-xl-10 col-lg-11 mx-auto mb-3">
+                <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                    <strong><i class="fas fa-exclamation-triangle mr-2"></i>Error!</strong> <?php echo htmlspecialchars(urldecode($_GET['error'])); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
         </div>
     <?php endif; ?>
@@ -487,9 +514,12 @@ include('../routes/connect.php');
                                 </div>
                             </div>
 
-                            <div class="card-footer px-0 pb-0">
-                                <button type="submit" name="submit" class="subscribe btn btn-block shadow-sm">
+                            <div class="card-footer px-0 pb-0 d-flex gap-2">
+                                <button type="submit" name="submit" class="subscribe btn flex-grow-1 shadow-sm m-0">
                                     <i class="fas fa-save mr-2"></i> Update Event Details
+                                </button>
+                                <button type="submit" name="delete_event" class="btn btn-danger shadow-sm m-0 px-4" onclick="return confirm('Are you sure you want to delete this event? This action cannot be undone.');">
+                                    <i class="fas fa-trash-alt mr-2"></i> Delete
                                 </button>
                             </div>
                         </form>
@@ -1146,6 +1176,45 @@ include('../routes/connect.php');
                                     </button>
                                 </div>
                             </form>
+
+                            <hr class="my-4">
+                            <h5 class="mb-3"><i class="fas fa-users-cog mr-2"></i>Manage Students</h5>
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="manage_house_select"><strong>Select House</strong></label>
+                                            <select id="manage_house_select" class="form-control" onchange="loadStudentsForHouse()">
+                                                <option value="">-- Select House --</option>
+                                                <?php
+                                                $q = mysqli_query($conn, "SELECT name FROM housedb ORDER BY name ASC");
+                                                while ($h = mysqli_fetch_assoc($q)) {
+                                                    echo '<option value="' . htmlspecialchars($h['name']) . '">' . htmlspecialchars($h['name']) . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive" id="manage_students_table_container" style="display: none; max-height: 400px; overflow-y: auto;">
+                                        <table class="table table-bordered table-hover table-sm" style="font-size: 13px;">
+                                            <thead class="thead-light" style="position: sticky; top: 0; z-index: 1;">
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Reg No</th>
+                                                    <th>Dept</th>
+                                                    <th>Year</th>
+                                                    <th>Gender</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="manage_students_tbody">
+                                                <!-- Students loaded via AJAX -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="manage_students_status" class="text-muted mt-2 small"></div>
+                                </div>
+                            </div>
                         </div>
                     </div> <!-- End tab-content -->
 
@@ -1412,7 +1481,7 @@ include('../routes/connect.php');
     }
 
     // Auto-activate tab based on URL hash and initialize student filters
-    $(document).ready(function() {
+    jQuery(document).ready(function($) {
         if (window.location.hash) {
             var hashTab = window.location.hash;
             var tabLink = $('ul.nav-pills a[href="' + hashTab + '"]');
@@ -1559,3 +1628,113 @@ include('../routes/connect.php');
             });
     }
 </script>
+
+
+
+
+
+
+
+
+
+
+<script>
+    // Load students for manage tab
+    function loadStudentsForHouse() {
+        var house = document.getElementById("manage_house_select").value;
+        var tbody = document.getElementById("manage_students_tbody");
+        var container = document.getElementById("manage_students_table_container");
+        var status = document.getElementById("manage_students_status");
+        
+        if (!house) {
+            container.style.display = "none";
+            return;
+        }
+        
+        status.innerHTML = "<i class='fas fa-spinner fa-spin mr-1'></i> Loading...";
+        tbody.innerHTML = "";
+        
+        fetch("../routes/admin/getFormData.php?action=filter_students&house=" + encodeURIComponent(house))
+            .then(res => res.json())
+            .then(resp => {
+                if (resp.status === "success" && resp.students.length > 0) {
+                    var html = "";
+                    resp.students.forEach(s => {
+                        var safeJson = JSON.stringify(s).replace(/"/g, "&quot;");
+                        html += "<tr>" +
+                            "<td>" + (s.name || "") + "</td>" +
+                            "<td>" + (s.reg_no || "") + "</td>" +
+                            "<td>" + (s.dept || "") + "</td>" +
+                            "<td>" + (s.year || "") + "</td>" +
+                            "<td>" + (s.gender || "") + "</td>" +
+                            "<td><button type='button' class='btn btn-sm btn-outline-info py-0 px-2' onclick='openEditStudentModal(" + safeJson + ")'><i class='fas fa-edit'></i> Edit</button></td>" +
+                            "</tr>";
+                    });
+                    tbody.innerHTML = html;
+                    container.style.display = "block";
+                    status.innerHTML = "Found " + resp.students.length + " students.";
+                } else {
+                    container.style.display = "block";
+                    tbody.innerHTML = "<tr><td colspan='6' class='text-center text-muted'>No students found for this house.</td></tr>";
+                    status.innerHTML = "";
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                status.innerHTML = "<span class='text-danger'>Error loading students.</span>";
+            });
+    }
+
+    // Open edit student modal
+    function openEditStudentModal(student) {
+        document.getElementById("edit_stu_id").value = student.id || "";
+        document.getElementById("edit_stu_name").value = student.name || "";
+        document.getElementById("edit_stu_reg_no").value = student.reg_no || "";
+        document.getElementById("edit_stu_dept").value = student.dept || "";
+        document.getElementById("edit_stu_year").value = student.year || "";
+        document.getElementById("edit_stu_house").value = student.house || "";
+        document.getElementById("edit_stu_gender").value = student.gender || "Male";
+        document.getElementById("edit_stu_status").innerHTML = "";
+        
+        jQuery("#editStudentModal").modal("show");
+    }
+
+    // Save student edit
+    function saveStudentEdit() {
+        var form = document.getElementById("editStudentForm");
+        if (!form.reportValidity()) return;
+        
+        var fd = new FormData(form);
+        var btn = document.querySelector("#editStudentModal .btn-info");
+        var status = document.getElementById("edit_stu_status");
+        
+        btn.disabled = true;
+        btn.innerHTML = "<i class='fas fa-spinner fa-spin mr-1'></i> Saving...";
+        
+        fetch("../routes/admin/updateStudent.php", {
+            method: "POST",
+            body: fd
+        })
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.status === "success") {
+                status.innerHTML = "<div class='alert alert-success py-1 mb-0'>" + resp.message + "</div>";
+                setTimeout(() => {
+                    jQuery("#editStudentModal").modal("hide");
+                    loadStudentsForHouse(); // reload table
+                }, 1000);
+            } else {
+                status.innerHTML = "<div class='alert alert-danger py-1 mb-0'>" + (resp.message || "Error saving") + "</div>";
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            status.innerHTML = "<div class='alert alert-danger py-1 mb-0'>Communication error</div>";
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = "<i class='fas fa-save mr-1'></i> Save Changes";
+        });
+    }
+</script>
+

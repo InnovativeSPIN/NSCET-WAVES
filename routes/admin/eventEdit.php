@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 ob_start();
 require_once('../connect.php');
 
@@ -54,8 +54,19 @@ if (isset($_POST["submit"])) {
         echo "<script>alert('Error updating event: " . addslashes(mysqli_error($conn)) . "'); window.history.back();</script>";
         exit;
     }
+} elseif (isset($_POST["delete_event"])) {
+    $event_name = mysqli_real_escape_string($conn, $_POST["event_name"] ?? '');
+    $query = "DELETE FROM eventdb WHERE event_name = '$event_name'";
+    if (mysqli_query($conn, $query)) {
+        header('Location: ../../pages/adminForm.php?success=event_deleted');
+        exit;
+    } else {
+        header('Location: ../../pages/adminForm.php?error=' . urlencode("Error deleting event: " . mysqli_error($conn)));
+        exit;
+    }
 }
 
 mysqli_close($conn);
 ob_end_flush();
 ?>
+

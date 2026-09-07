@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 ob_start();
 include('../connect.php');
 ?>
@@ -55,13 +55,13 @@ if (isset($_POST["submit"])) {
                     $query = "INSERT INTO eventdb VALUES('$event_name','$event_id','$event_date','$event_time','$event_venue','$max_participants','$is_group','$group_counts','$group_participants','$allowance','$gender','public/images/event/$image','$event_type','$event_rules','-')";
 
                     if (mysqli_query($conn, $query)) {
-                        header('Location: ../../pages/adminForm.php');
+                        header('Location: ../../pages/adminForm.php?success=event_added');
                     } else {
                         echo 'query error: ' . mysqli_error($conn);
                     }
 
                 } else {
-                    echo "Error uploading file.";
+                    header('Location: ../../pages/adminForm.php?error=Error+uploading+file');
                 }
             }
         }
