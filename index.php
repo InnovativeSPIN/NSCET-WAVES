@@ -98,6 +98,31 @@ if (!isset($_SESSION)) {
             }(w, d, "zarazData", "script");
         })(window, document);
     </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const select = document.getElementById('memories-year');
+        const g2024 = document.getElementById('gallery-2024');
+        const g2025 = document.getElementById('gallery-2025');
+        if (!select || !g2024 || !g2025) return;
+
+        function showYear(year) {
+            if (year === '2024') {
+                g2024.classList.remove('d-none');
+                g2025.classList.add('d-none');
+            } else {
+                g2025.classList.remove('d-none');
+                g2024.classList.add('d-none');
+            }
+        }
+
+        select.addEventListener('change', function (e) {
+            showYear(e.target.value);
+        });
+
+        // initialize
+        showYear(select.value || '2024');
+    });
+</script>
 </head>
 
 <body id="body">
@@ -895,85 +920,161 @@ if (!isset($_SESSION)) {
         </style>
         <div id="gallary" class="home-page-last-news">
             <div class="container">
-                <div class="header">
+                <div class="header d-flex align-items-center justify-content-between">
                     <div class="entry-title">
                         <p> </p>
-                        <h2>Splash of Memories</h2>
+                        <h2>Memories</h2>
+                    </div>
+                    <div class="ml-auto" style="min-width:180px;">
+                        <select id="memories-year" class="form-control">
+                            <option value="2024" selected>2024</option>
+                            <option value="2025">2025</option>
+                        </select>
                     </div>
                 </div>
                 <div class="main">
-                    <div class="gallery">
+                    <!-- 2024 gallery: keep existing images and style unchanged -->
+                    <div class="gallery" id="gallery-2024">
                         <div class="img">
-                            <img src="public\images\galary\IMG_20230221_134347.jpg" alt="">
-                    
+                            <img src="public/images/galary/IMG_20230221_134347.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary2\IMG_20230221_130317.jpg" alt="">
-                        </div>
-                        
-                         <div class="img">
-                            <img src="public\images\galary\IMG_20230221_134347.jpg" alt="">
-                                </div>
-                        <div class="img">
-                            <img src="public\images\galary\IMG_20230221_140610.jpg" alt="">
+                            <img src="public/images/galary2/IMG_20230221_130317.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\IMG_20230221_141129.jpg" alt="">
+                            <img src="public/images/galary/IMG_20230221_134347.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\SBD_0278.jpg" alt="">
+                            <img src="public/images/galary/IMG_20230221_140610.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\IMG_20230221_161034.jpg" alt="">
+                            <img src="public/images/galary/IMG_20230221_141129.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary2\IMG_20230221_154406.jpg" alt="">
+                            <img src="public/images/galary/SBD_0278.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\IMG_20230222_133306.jpg" alt="">
+                            <img src="public/images/galary/IMG_20230221_161034.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary2\IMG_20230228_121013.jpg" alt="">
+                            <img src="public/images/galary2/IMG_20230221_154406.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary2\IMG_20230222_140922.jpg" alt="">
+                            <img src="public/images/galary/IMG_20230222_133306.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\SBD_0762.jpg" alt="">
+                            <img src="public/images/galary2/IMG_20230228_121013.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\SBD_0110.jpg" alt="">
+                            <img src="public/images/galary2/IMG_20230222_140922.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\IMG_20230222_151824.jpg" alt="">
+                            <img src="public/images/galary/SBD_0762.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\IMG_20230228_105338.jpg" alt="">
+                            <img src="public/images/galary/SBD_0110.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\IMG_20230222_150822.jpg" alt="">
+                            <img src="public/images/galary/IMG_20230222_151824.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary\IMG_20230301_111333.jpg" alt="">
+                            <img src="public/images/galary/IMG_20230228_105338.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary2\IMG_20230221_134534.jpg" alt="">
+                            <img src="public/images/galary/IMG_20230222_150822.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary2\IMG_20230221_130317.jpg" alt="">
+                            <img src="public/images/galary/IMG_20230301_111333.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary2\IMG_20230221_154406.jpg" alt="">
+                            <img src="public/images/galary2/IMG_20230221_134534.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary2\IMG_20230222_141607.jpg" alt="">
+                            <img src="public/images/galary2/IMG_20230221_130317.jpg" alt="">
                         </div>
                         <div class="img">
-                            <img src="public\images\galary2\IMG_20230222_151721.jpg" alt="">
+                            <img src="public/images/galary2/IMG_20230221_154406.jpg" alt="">
                         </div>
-    
+                        <div class="img">
+                            <img src="public/images/galary2/IMG_20230222_141607.jpg" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/galary2/IMG_20230222_151721.jpg" alt="">
+                        </div>
                     </div>
-               </div>
+
+                    <!-- 2025 gallery: images should be placed in public/images/waves25/ by you -->
+                    <div class="gallery d-none" id="gallery-2025">
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0004.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0240.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0273.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0498.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0501.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0534.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0682.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0835.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0838.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0004.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0240.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0273.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0498.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0501.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0534.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0682.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0835.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0838.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0498.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0501.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0534.JPG" alt="">
+                        </div>
+                        <div class="img">
+                            <img src="public/images/waves'25/GAN_0682.JPG" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
                 
                 <!--<div class="home-page-last-news-wrap">
