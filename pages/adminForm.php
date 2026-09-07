@@ -1187,9 +1187,9 @@ include('../routes/connect.php');
                                             <select id="manage_house_select" class="form-control" onchange="loadStudentsForHouse()">
                                                 <option value="">-- Select House --</option>
                                                 <?php
-                                                $q = mysqli_query($conn, "SELECT DISTINCT house_name FROM admindb WHERE role = 'team captain' ORDER BY house_name ASC");
+                                                $q = mysqli_query($conn, "SELECT name FROM housedb ORDER BY name ASC");
                                                 while ($h = mysqli_fetch_assoc($q)) {
-                                                    echo '<option value="' . htmlspecialchars($h['house_name']) . '">' . htmlspecialchars($h['house_name']) . '</option>';
+                                                    echo '<option value="' . htmlspecialchars($h['name']) . '">' . htmlspecialchars($h['name']) . '</option>';
                                                 }
                                                 ?>
                                             </select>
@@ -1628,6 +1628,7 @@ include('../routes/connect.php');
             });
     }
 </script>
+
 
 
 
