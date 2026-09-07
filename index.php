@@ -242,7 +242,7 @@ if (!isset($_SESSION)) {
                             </button>
                             <ul class="nav-menu">
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="#gallary">Waves'26</a></li>
+                                <li><a href="#gallary">Waves'25 &24 </a></li>
                                 <li><a href="#boysEvent">Boys Event</a></li>
                                 <li><a href="#girlsEvent">Girls Event</a></li>
                                 <li><a href="#footer">Contact Us</a></li>
