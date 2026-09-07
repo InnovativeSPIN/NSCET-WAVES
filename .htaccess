@@ -1,0 +1,10 @@
+# Apache Rewrite Rules for NSCET-WAVES
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /NSCET-WAVES/
+
+    # Route /ispin to ispin/index.php
+    RewriteRule ^ispin/?$ ispin/index.php [L,QSA]
+</IfModule>

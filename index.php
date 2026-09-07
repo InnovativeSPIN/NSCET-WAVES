@@ -276,6 +276,7 @@ if (!isset($_SESSION)) {
             </div>
         </div>
     </header>
+    <div class="nav-overlay"></div>
 
     <!-- Login Modal -->
     <div style='margin-top: 32px' class="modal fade loginModal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -495,53 +496,72 @@ if (!isset($_SESSION)) {
                     </div>
                 </div>
             </div> -->
-            <div class="row" style="overflow: hidden;">
-                <div class="col-12">
+        </div>
+        <div class="container-fluid" style="padding-left: clamp(24px, 6vw, 110px); padding-right: 0; overflow-x: hidden;">
+            <div class="row align-items-center" style="overflow: visible; margin-top: 50px; margin-bottom: 70px;">
+                <div class="col-xl-4 col-lg-5 col-md-12 mb-4 mb-lg-0">
                     <div class="lineup-artists-headline">
-                        <div class="entry-title">
+                        <div class="entry-title" style="margin-bottom: 24px;">
                             <p> </p>
-                            <h2>Waves & Team</h2>
+                            <h2>Waves</h2>
                         </div>
-                        <div class="team-display">
-                            <div class="col-md-5">
-                                <h3 style="color: black;">
-                                    "Waves is the cultural extravaganza hosted by NSCET, a celebration dedicated to our vibrant student community. Join us to immerse yourself in a world of talent, creativity, and unforgettable experiences!"</h3>
-                            </div>
-                            <div class="col-md-2"></div>
-                            <div class="col-md-4" style="margin-top: 24px;padding: 52px;">
-                                <div class="container-3dgalary">
-                                    <div id="carousel-3dgalary">
-                                        <figure><img src="public\images\house\DINO_THUNDERS.png" alt=""></figure>
-                                        <figure><img src="public\images\house\BLUE_BLASTERS.png" alt=""></figure>
-
-                                        <figure><img src="public\images\house\DRAGON_WARRIORS.png" alt=""></figure>
-                                        <figure><img src="public\images\house\VIOLET_VIPERS.png" alt=""></figure>
-
-                                        <figure><img src="public\images\house\PHOENIX_BLASTERS.png" alt=""></figure>
-                                        <figure><img src="public\images\house\ROSY_RIDERS.png" alt=""></figure>
-
-                                        <figure><img src="public\images\house\TIGER_THRASHERS.png" alt=""></figure>
-                                        <figure><img src="public\images\house\GALACTIC_STARS.png" alt=""></figure>
-                                        <figure><img src="public\images\house\EMERALD_EAGLES.png" alt=""></figure>
-
-                                        <figure><img src="public\images\logos\waves-logo.png" alt=""></figure>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-
+                        <h3 style="color: #222; font-size: 1.25rem; line-height: 1.8; font-weight: 500;">
+                            "Waves is the cultural extravaganza hosted by NSCET, a celebration dedicated to our vibrant student community. Join us to immerse yourself in a world of talent, creativity, and unforgettable experiences!"</h3>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-7 col-md-12 pr-0 d-flex justify-content-end">
+                    <div class="teams-carousel-section" style="margin-left: auto; margin-right: 0; width: 100%;">
+                        <div class="entry-title text-center teams-entry-title">
+                            <p> </p>
+                            <h2>Teams</h2>
                         </div>
-
-
+                        <div class="teams-cultural-subtitle text-center">
+                            <span class="cultural-badge boys-tag"><i class="fas fa-fire-alt mr-1"></i> 5 Boys Teams</span>
+                            <span class="cultural-star">✦</span>
+                            <span class="cultural-badge girls-tag"><i class="fas fa-crown mr-1"></i> 6 Girls Teams</span>
+                        </div>
+                        <p class="teams-cultural-motto text-center">
+                            "11 Powerhouses Clashing in Passion, Artistry &amp; Team Pride"
+                        </p>
+                        <div class="container-3dgalary">
+                            <div class="center-waves-logo">
+                                <img src="public/images/logos/waves-logo.png" alt="Waves Logo">
+                            </div>
+                            <div id="carousel-3dgalary">
+                                <?php
+                                $houses_res = mysqli_query($conn, "SELECT * FROM `housedb` ORDER BY `id` ASC");
+                                $all_houses = [];
+                                if ($houses_res) {
+                                    while ($h = mysqli_fetch_assoc($houses_res)) {
+                                        $all_houses[] = $h;
+                                    }
+                                }
+                                $total_h = count($all_houses);
+                                if ($total_h > 0) {
+                                    $radius = 330; // Increased radius for an expansive, spacious 3D orbit
+                                    foreach ($all_houses as $idx => $h_item) {
+                                        $angle = round($idx * (360 / $total_h));
+                                        $h_img = !empty($h_item['image']) ? htmlspecialchars($h_item['image']) : 'public/images/logos/waves-logo.png';
+                                        $h_title = htmlspecialchars($h_item['name']);
+                                        echo "<figure style=\"transform: rotateY({$angle}deg) translateZ({$radius}px);\" title=\"{$h_title}\">\n";
+                                        echo "    <img src=\"{$h_img}\" alt=\"{$h_title}\">\n";
+                                        echo "</figure>\n";
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container">
             <div class="row" id="events">
                 <div class="col-12">
                     <div class="the-complete-lineup">
                         <div class="entry-title">
                             <p> </p>
-                            <h2>    </h2>
+                            <h2>Common Events</h2>
                         </div>
                         <div class="row the-complete-lineup-artists">
                             <?php

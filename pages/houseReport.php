@@ -84,28 +84,26 @@ include('../routes/connect.php');
 
                         <?php
                         $house_name = $house['name'];
-                        $queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name'";
+                        $queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name' AND role = 'team captain' ORDER BY id ASC";
                         $getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
 
-                        $houseLeads = array();
+                        $captainsList = array();
                         while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
-                            array_push($houseLeads, $houseLead['name']);
+                            $captainsList[] = $houseLead['name'];
                         }
                         ?>
-                        <h3 style="color:#e22361" class='card-title'> House Leads Details
+                        <h3 style="color:#e22361" class='card-title'> Student House Leads
                     </h3>
+                    <?php if (isset($captainsList[0])): ?>
                     <h5 class="card-text">
-                        House Incharges:
-                        <?php echo $houseLeads[0] . ', ' . $houseLeads[1] ?>
+                        House Captain: <?php echo htmlspecialchars($captainsList[0]); ?>
                     </h5>
+                    <?php endif; ?>
+                    <?php if (isset($captainsList[1])): ?>
                     <h5 class="card-text">
-                        House Captain:
-                        <?php echo $houseLeads[2] ?>
+                        House Vice Captain: <?php echo htmlspecialchars($captainsList[1]); ?>
                     </h5>
-                    <h5 class="card-text">
-                        House Vice Captain:
-                        <?php echo $houseLeads[3] ?>
-                    </h5>
+                    <?php endif; ?>
                     </div>
                     <div class="cta-section">
                         <?php

@@ -2,7 +2,7 @@
 // Database connection configuration
 $db_host = 'localhost';
 $db_user = 'root';
-$db_pass = 'root';
+$db_pass = '';
 $db_name = 'nscet_waves_25';
 
 // Create connection
