@@ -119,50 +119,296 @@ body {
 
 /* login form */
 
+/* Generic modal-body reset (only affects base padding) */
 .modal-body {
-  padding: 0;
   overflow-y: auto;
   overflow-x: hidden;
+}
 
-  /* border-radius: 4rem; */
-  /* font-family: 'PT Sans', sans-serif; */
+/* Login modal specific overrides */
+.loginModal .modal-body {
+  padding: 0;
 }
 .login-modal-body {
   display: flex;
   height: 480px;
   overflow: hidden;
 }
-.modal-content {
+.loginModal .modal-content {
   border-radius: 4rem;
-
   -webkit-box-shadow: -1px -2px 42px -19px rgba(0, 0, 0, 0.74);
   -moz-box-shadow: -1px -2px 42px -19px rgba(0, 0, 0, 0.74);
   box-shadow: -1px -2px 42px -19px rgba(0, 0, 0, 0.74);
 }
-.modal-content h1,
-.modal-content h2,
-.modal-content h3 {
+.loginModal .modal-content h1,
+.loginModal .modal-content h2,
+.loginModal .modal-content h3 {
   text-align: center;
 }
-.modal-content h1 {
+.loginModal .modal-content h1 {
   color: #0ee1e7;
   text-transform: uppercase;
 }
 .modal-dialog {
   margin: auto;
 }
-.modal-content h2 {
+.loginModal .modal-content h2 {
   font-size: 1.5rem;
   color: #000;
 }
-.modal-content h3 {
+.loginModal .modal-content h3 {
   font-size: 1.3rem;
   color: #000;
   letter-spacing: 2px;
 }
 
-.modal-body form label {
+.loginModal .modal-body form label {
   color: #000;
+}
+
+/*------------------------------------------------------------
+  # Event Modal (Responsive)
+------------------------------------------------------------*/
+.event-modal-content {
+  background: #0d1220;
+  border: 1px solid rgba(13, 225, 235, 0.2);
+  border-radius: 18px !important;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.event-modal-header {
+  background: linear-gradient(135deg, #0a0f1d 0%, #111827 100%);
+  border-bottom: 1px solid rgba(13, 225, 235, 0.15);
+  padding: 16px 20px;
+}
+
+.event-modal-header .modal-title {
+  color: #e22361;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  margin: 0;
+}
+
+.event-modal-close {
+  color: rgba(255,255,255,0.7) !important;
+  opacity: 1 !important;
+  font-size: 1.4rem;
+}
+.event-modal-close:hover { color: #0de1eb !important; }
+
+.event-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 70vh;
+  background: #0d1220;
+  color: #e0e0e0;
+}
+
+/* Event Image */
+.event-modal-img-wrap {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.event-modal-img {
+  max-width: 100%;
+  width: auto;
+  max-height: 200px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid rgba(13, 225, 235, 0.2);
+}
+
+/* Meta rows (date / time / venue) */
+.event-modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+  background: rgba(13, 225, 235, 0.06);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.event-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 140px;
+  font-size: 0.9rem;
+  color: #cdd8e3;
+}
+.meta-icon { font-size: 1rem; }
+
+/* Sections */
+.event-modal-section {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.event-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #0de1eb;
+  margin-bottom: 10px;
+}
+.rules-title { color: #e22361; }
+
+/* Coordinators */
+.event-coordinators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.coordinator-badge {
+  display: inline-block;
+  background: rgba(13, 225, 235, 0.1);
+  border: 1px solid rgba(13, 225, 235, 0.3);
+  color: #0de1eb;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* Rules list */
+.event-rules-list {
+  padding-left: 18px;
+  margin: 0;
+  color: #c9d3de;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.event-rules-list li {
+  margin-bottom: 6px;
+}
+
+/* Common rules text */
+.rules-text {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: #c9d3de;
+}
+
+/* Modal footer */
+.event-modal-footer {
+  background: #0a0f1d;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 12px 20px;
+  justify-content: center;
+}
+.btn-close-event {
+  background: linear-gradient(135deg, #0de1eb, #1aecda);
+  color: #080e1a;
+  font-weight: 700;
+  border: none;
+  padding: 8px 28px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+.btn-close-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(13,225,235,0.6);
+  color: #000;
+}
+
+/* Mobile tweaks */
+@media (max-width: 576px) {
+  .event-modal-body {
+    padding: 14px;
+    max-height: 75vh;
+  }
+  .event-modal-img { max-height: 150px; }
+  .modal-dialog {
+    margin: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+}
+
+/*------------------------------------------------------------
+  # Old-theme Event Modal (white, responsive)
+------------------------------------------------------------*/
+.old-event-modal {
+  background: #fff;
+  border-radius: 1.5rem !important;
+  box-shadow: -1px -2px 42px -19px rgba(0,0,0,0.74);
+}
+
+.old-event-modal-body {
+  overflow-y: auto;
+  max-height: 70vh;
+  padding: 16px;
+}
+
+/* Responsive image — replaces hardcoded width/height attrs */
+.old-event-img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  max-height: 200px;
+  height: auto;
+  margin: 16px auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* Keep h4 text dark on white background */
+.old-event-modal h4 {
+  color: #222;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.old-event-modal p {
+  color: #444;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+  .old-event-modal-body {
+    max-height: 75vh;
+    padding: 12px;
+  }
+  .old-event-img { max-height: 150px; }
+}
+
+/*------------------------------------------------------------
+  # Event Dialog Positioning (keeps modal below fixed header)
+------------------------------------------------------------*/
+.event-dialog {
+  /* Push below fixed navbar (≈65px) with breathing room */
+  margin-top: 80px !important;
+  margin-bottom: 20px !important;
+  /* Allow modal to grow but never exceed viewport */
+  max-height: calc(100vh - 100px);
+}
+
+/* The scrollable wrapper Bootstrap generates */
+.event-dialog .modal-content {
+  max-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Body takes all remaining space and scrolls */
+.event-dialog .modal-body,
+.event-dialog .old-event-modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  max-height: none; /* let flex handle it */
+}
+
+@media (max-width: 576px) {
+  .event-dialog {
+    margin-top: 70px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
 }
 
 .column {
