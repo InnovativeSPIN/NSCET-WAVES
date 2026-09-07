@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 if (!isset($_SESSION['ispin_admin_logged_in']) || $_SESSION['ispin_admin_logged_in'] !== true) {
     header("Location: ../ispin/");
@@ -268,23 +268,20 @@ include('../routes/connect.php');
                                     <div class="col-md-6 form-group"> <label for="event_date">
                                             <h6>Event Date</h6>
                                         </label>
-                                        <div class="input-group"> <input type="text" name="event_date"
-                                                placeholder="Enter Event Date" class="form-control " required>
+                                        <div class="input-group"> <input type="text" name="event_date" placeholder="Enter Event Date" class="form-control ">
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group"> <label for="event_time">
                                             <h6>Event Time</h6>
                                         </label>
-                                        <div class="input-group"> <input type="text" name="event_time"
-                                                placeholder="Enter Event Timing" class="form-control " required>
+                                        <div class="input-group"> <input type="text" name="event_time" placeholder="Enter Event Timing" class="form-control ">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group"> <label for="event_venue">
                                         <h6>Event Venue</h6>
                                     </label>
-                                    <div class="input-group"> <input type="text" name="event_venue"
-                                            placeholder="Enter Venue Name" class="form-control " required>
+                                    <div class="input-group"> <input type="text" name="event_venue" placeholder="Enter Venue Name" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -405,13 +402,13 @@ include('../routes/connect.php');
                                     <label for="event_date">
                                         <h6>Event Date</h6>
                                     </label>
-                                    <input type="text" name="event_date" placeholder="Enter Event Date" class="form-control" required>
+                                    <input type="text" name="event_date" placeholder="Enter Event Date" class="form-control">
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="event_time">
                                         <h6>Event Time</h6>
                                     </label>
-                                    <input type="text" name="event_time" placeholder="Enter Event Timing" class="form-control" required>
+                                    <input type="text" name="event_time" placeholder="Enter Event Timing" class="form-control">
                                 </div>
                             </div>
 
@@ -419,7 +416,7 @@ include('../routes/connect.php');
                                 <label for="event_venue">
                                     <h6>Event Venue</h6>
                                 </label>
-                                <input type="text" name="event_venue" placeholder="Enter Venue Name" class="form-control" required>
+                                <input type="text" name="event_venue" placeholder="Enter Venue Name" class="form-control">
                             </div>
 
                             <div class="row">

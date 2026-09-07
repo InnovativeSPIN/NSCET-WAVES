@@ -9,8 +9,6 @@ html {
   --text-color: hsl(0, 0%, 90%);
   scroll-behavior: smooth;
 }
-  scroll-behavior: smooth;
-}
 
 .flex {
   display: flex;
@@ -121,50 +119,296 @@ body {
 
 /* login form */
 
+/* Generic modal-body reset (only affects base padding) */
 .modal-body {
-  padding: 0;
   overflow-y: auto;
   overflow-x: hidden;
+}
 
-  /* border-radius: 4rem; */
-  /* font-family: 'PT Sans', sans-serif; */
+/* Login modal specific overrides */
+.loginModal .modal-body {
+  padding: 0;
 }
 .login-modal-body {
   display: flex;
   height: 480px;
   overflow: hidden;
 }
-.modal-content {
+.loginModal .modal-content {
   border-radius: 4rem;
-
   -webkit-box-shadow: -1px -2px 42px -19px rgba(0, 0, 0, 0.74);
   -moz-box-shadow: -1px -2px 42px -19px rgba(0, 0, 0, 0.74);
   box-shadow: -1px -2px 42px -19px rgba(0, 0, 0, 0.74);
 }
-.modal-content h1,
-.modal-content h2,
-.modal-content h3 {
+.loginModal .modal-content h1,
+.loginModal .modal-content h2,
+.loginModal .modal-content h3 {
   text-align: center;
 }
-.modal-content h1 {
+.loginModal .modal-content h1 {
   color: #0ee1e7;
   text-transform: uppercase;
 }
 .modal-dialog {
   margin: auto;
 }
-.modal-content h2 {
+.loginModal .modal-content h2 {
   font-size: 1.5rem;
   color: #000;
 }
-.modal-content h3 {
+.loginModal .modal-content h3 {
   font-size: 1.3rem;
   color: #000;
   letter-spacing: 2px;
 }
 
-.modal-body form label {
+.loginModal .modal-body form label {
   color: #000;
+}
+
+/*------------------------------------------------------------
+  # Event Modal (Responsive)
+------------------------------------------------------------*/
+.event-modal-content {
+  background: #0d1220;
+  border: 1px solid rgba(13, 225, 235, 0.2);
+  border-radius: 18px !important;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.event-modal-header {
+  background: linear-gradient(135deg, #0a0f1d 0%, #111827 100%);
+  border-bottom: 1px solid rgba(13, 225, 235, 0.15);
+  padding: 16px 20px;
+}
+
+.event-modal-header .modal-title {
+  color: #e22361;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  margin: 0;
+}
+
+.event-modal-close {
+  color: rgba(255,255,255,0.7) !important;
+  opacity: 1 !important;
+  font-size: 1.4rem;
+}
+.event-modal-close:hover { color: #0de1eb !important; }
+
+.event-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 70vh;
+  background: #0d1220;
+  color: #e0e0e0;
+}
+
+/* Event Image */
+.event-modal-img-wrap {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.event-modal-img {
+  max-width: 100%;
+  width: auto;
+  max-height: 200px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid rgba(13, 225, 235, 0.2);
+}
+
+/* Meta rows (date / time / venue) */
+.event-modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+  background: rgba(13, 225, 235, 0.06);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.event-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 140px;
+  font-size: 0.9rem;
+  color: #cdd8e3;
+}
+.meta-icon { font-size: 1rem; }
+
+/* Sections */
+.event-modal-section {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.event-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #0de1eb;
+  margin-bottom: 10px;
+}
+.rules-title { color: #e22361; }
+
+/* Coordinators */
+.event-coordinators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.coordinator-badge {
+  display: inline-block;
+  background: rgba(13, 225, 235, 0.1);
+  border: 1px solid rgba(13, 225, 235, 0.3);
+  color: #0de1eb;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* Rules list */
+.event-rules-list {
+  padding-left: 18px;
+  margin: 0;
+  color: #c9d3de;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.event-rules-list li {
+  margin-bottom: 6px;
+}
+
+/* Common rules text */
+.rules-text {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: #c9d3de;
+}
+
+/* Modal footer */
+.event-modal-footer {
+  background: #0a0f1d;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 12px 20px;
+  justify-content: center;
+}
+.btn-close-event {
+  background: linear-gradient(135deg, #0de1eb, #1aecda);
+  color: #080e1a;
+  font-weight: 700;
+  border: none;
+  padding: 8px 28px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+.btn-close-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(13,225,235,0.6);
+  color: #000;
+}
+
+/* Mobile tweaks */
+@media (max-width: 576px) {
+  .event-modal-body {
+    padding: 14px;
+    max-height: 75vh;
+  }
+  .event-modal-img { max-height: 150px; }
+  .modal-dialog {
+    margin: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+}
+
+/*------------------------------------------------------------
+  # Old-theme Event Modal (white, responsive)
+------------------------------------------------------------*/
+.old-event-modal {
+  background: #fff;
+  border-radius: 1.5rem !important;
+  box-shadow: -1px -2px 42px -19px rgba(0,0,0,0.74);
+}
+
+.old-event-modal-body {
+  overflow-y: auto;
+  max-height: 70vh;
+  padding: 16px;
+}
+
+/* Responsive image — replaces hardcoded width/height attrs */
+.old-event-img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  max-height: 200px;
+  height: auto;
+  margin: 16px auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* Keep h4 text dark on white background */
+.old-event-modal h4 {
+  color: #222;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.old-event-modal p {
+  color: #444;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+  .old-event-modal-body {
+    max-height: 75vh;
+    padding: 12px;
+  }
+  .old-event-img { max-height: 150px; }
+}
+
+/*------------------------------------------------------------
+  # Event Dialog Positioning (keeps modal below fixed header)
+------------------------------------------------------------*/
+.event-dialog {
+  /* Push below fixed navbar (≈65px) with breathing room */
+  margin-top: 80px !important;
+  margin-bottom: 20px !important;
+  /* Allow modal to grow but never exceed viewport */
+  max-height: calc(100vh - 100px);
+}
+
+/* The scrollable wrapper Bootstrap generates */
+.event-dialog .modal-content {
+  max-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Body takes all remaining space and scrolls */
+.event-dialog .modal-body,
+.event-dialog .old-event-modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  max-height: none; /* let flex handle it */
+}
+
+@media (max-width: 576px) {
+  .event-dialog {
+    margin-top: 70px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
 }
 
 .column {
@@ -244,39 +488,22 @@ body {
 }
 
 .header-waves-logo {
-  height: 46px;
+  height: 58px;
   width: auto;
   max-width: 100%;
   object-fit: contain;
   filter: drop-shadow(0 0 16px rgba(13, 225, 235, 0.65));
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .header-waves-brand:hover .header-waves-logo {
-  transform: scale(1.06);
-}
-
-.header-waves-title {
-  font-family: 'Outfit', 'Cinzel Decorative', sans-serif;
-  font-size: 1.65rem;
-  font-weight: 900;
-  letter-spacing: 3px;
-  line-height: 1;
-  background: linear-gradient(135deg, #ffffff 15%, #0de1eb 65%, #24fdc3 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 10px rgba(13, 225, 235, 0.45));
-  text-transform: uppercase;
-  margin-left: 2px;
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 24px rgba(13, 225, 235, 0.9));
 }
 
 @media (max-width: 768px) {
   .header-waves-logo {
-    height: 38px;
-  }
-  .header-waves-title {
-    font-size: 1.3rem;
-    letter-spacing: 2px;
+    height: 46px;
   }
 }
 
@@ -299,12 +526,16 @@ body {
 ----------------------------------------*/
 .hamburger-menu {
   position: relative;
-  width: 100%;
-  max-width: 24px;
+  width: 28px;
   height: 22px;
-  margin-left: auto;
-  transition: 0.5s ease-in-out;
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
+  display: none; /* hidden by default; shown on mobile via media query */
+  flex-shrink: 0;
+  transition: 0.5s ease-in-out;
+  z-index: 100001;
 }
 
 .hamburger-menu span {
@@ -319,37 +550,21 @@ body {
   transition: 0.25s ease-in-out;
 }
 
-.hamburger-menu span:nth-child(1) {
-  top: 2px;
-}
-
+.hamburger-menu span:nth-child(1) { top: 2px; }
 .hamburger-menu span:nth-child(2),
-.hamburger-menu span:nth-child(3) {
-  top: 10px;
-}
+.hamburger-menu span:nth-child(3) { top: 10px; }
+.hamburger-menu span:nth-child(4) { top: 18px; }
 
-.hamburger-menu span:nth-child(4) {
-  top: 18px;
-}
+.hamburger-menu.open span:nth-child(1) { top: 18px; width: 0; left: 50%; }
+.hamburger-menu.open span:nth-child(2) { transform: rotate(45deg); }
+.hamburger-menu.open span:nth-child(3) { transform: rotate(-45deg); }
+.hamburger-menu.open span:nth-child(4) { top: 18px; width: 0; left: 50%; }
 
-.hamburger-menu.open span:nth-child(1) {
-  top: 18px;
-  width: 0;
-  left: 50%;
-}
-
-.hamburger-menu.open span:nth-child(2) {
-  transform: rotate(45deg);
-}
-
-.hamburger-menu.open span:nth-child(3) {
-  transform: rotate(-45deg);
-}
-
-.hamburger-menu.open span:nth-child(4) {
-  top: 18px;
-  width: 0;
-  left: 50%;
+/* --- Base nav-menu --- */
+.nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .site-navigation {
@@ -359,8 +574,20 @@ body {
   justify-content: flex-end;
 }
 
+/* ============================================================
+   MOBILE NAV  (≤ 991px)
+============================================================ */
 @media screen and (max-width: 991px) {
-  .site-navigation ul {
+  /* Show hamburger button on mobile */
+  .hamburger-menu {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* nav-menu is a slide-in drawer, hidden off-screen by default */
+  .nav-menu {
     position: fixed;
     top: 0;
     right: -320px;
@@ -375,7 +602,7 @@ body {
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
     display: flex;
     flex-direction: column;
-    padding: 85px 24px 30px 24px;
+    padding: 90px 24px 30px;
     margin: 0;
     z-index: 100000;
     transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -383,19 +610,19 @@ body {
     list-style: none;
   }
 
-  .site-navigation.show ul {
-    right: 0 !important;
-    left: auto !important;
+  /* Slide in when .show is added */
+  .site-navigation.show .nav-menu {
+    right: 0;
   }
 
-  .site-navigation ul li {
+  .nav-menu li {
     display: block;
     width: 100%;
     padding: 10px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   }
 
-  .site-navigation ul li a {
+  .nav-menu li a {
     display: block;
     font-size: 16px;
     font-weight: 600;
@@ -406,19 +633,19 @@ body {
     transition: all 0.2s ease;
   }
 
-  .site-navigation ul li a:hover,
-  .site-navigation ul li a:active {
+  .nav-menu li a:hover,
+  .nav-menu li a:active {
     color: #0de1eb;
     background: rgba(13, 225, 235, 0.12);
   }
 
-  .site-navigation ul li.login-nav-item {
+  .nav-menu li.login-nav-item {
     border-bottom: none;
     margin-top: 18px;
     padding: 0;
   }
 
-  .site-navigation ul li.login-nav-item .btn-login {
+  .nav-menu li.login-nav-item .btn-login {
     width: 100% !important;
     text-align: center;
     display: flex !important;
@@ -441,9 +668,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.25);  /* lighter — page still visible */
   z-index: 99999;
   opacity: 0;
   visibility: hidden;
@@ -455,7 +680,11 @@ body {
   visibility: visible;
 }
 
+/* ============================================================
+   DESKTOP NAV  (≥ 992px)
+============================================================ */
 @media screen and (min-width: 992px) {
+  /* Hide hamburger on desktop */
   .hamburger-menu {
     display: none !important;
   }
@@ -470,7 +699,7 @@ body {
     align-items: center;
   }
 
-  .site-navigation ul {
+  .nav-menu {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
@@ -488,7 +717,7 @@ body {
     list-style: none !important;
   }
 
-  .site-navigation ul li {
+  .nav-menu li {
     display: inline-flex !important;
     align-items: center !important;
     padding: 0 4px !important;
@@ -496,12 +725,12 @@ body {
     width: auto !important;
   }
 
-  .site-navigation ul li.login-nav-item,
-  .site-navigation ul li:nth-last-of-type(1) {
+  .nav-menu li.login-nav-item,
+  .nav-menu li:nth-last-of-type(1) {
     padding-left: 16px !important;
   }
 
-  .site-navigation ul li a {
+  .nav-menu li a {
     color: #ffffff;
     font-family: 'Outfit', sans-serif;
     font-weight: 600;
@@ -514,7 +743,7 @@ body {
     text-decoration: none;
   }
 
-  .site-navigation ul li a:hover {
+  .nav-menu li a:hover {
     color: #0de1eb;
     background: rgba(13, 225, 235, 0.08);
     text-shadow: 0 0 12px rgba(13, 225, 235, 0.7);
@@ -647,6 +876,7 @@ canvas {
   font-size: 120px;
   background: -webkit-linear-gradient(#e22361, #e22361);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1338,8 +1568,6 @@ canvas {
 /*------------------------------------------------------------
 # site-header
 ------------------------------------------------------------*/
-.about-us .site-header {
-}
 
 .about-us .site-header figure {
   margin: 0;
@@ -2325,6 +2553,7 @@ canvas {
   line-height: 1;
   background: -webkit-linear-gradient(#00d0ff, #25ffbf);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

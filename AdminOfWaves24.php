@@ -388,7 +388,7 @@ if (!isset($_SESSION)) {
         </div>
         <footer class="site-footer">
             <div class="footer-cover-title flex justify-content-center align-items-center">
-                <h2>Waves'24</h2>
+                <h2>Waves'26</h2>
             </div>
             <div class="footer-content-wrapper">
                 <div class="container">

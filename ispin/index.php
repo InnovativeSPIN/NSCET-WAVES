@@ -327,7 +327,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <i class="fas fa-shield-alt"></i> Control Center
                 </div>
                 <h1 class="login-title">iSPIN Admin Login</h1>
-                <p class="login-subtitle">NSCET WAVES'24 Portal Administration</p>
+                <p class="login-subtitle">NSCET WAVES'26 Portal Administration</p>
             </div>
 
             <!-- Error Notification -->

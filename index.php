@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -15,7 +15,12 @@ if (!isset($_SESSION)) {
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Waves'25 | NSCET</title>
+    <title>Waves'26 | NSCET</title>
+    <!-- Waves Logo as Website Header Icon / Favicon -->
+    <link rel="icon" type="image/png" href="public/images/logos/waves-logo.png">
+    <link rel="shortcut icon" type="image/png" href="public/images/logos/waves-logo.png">
+    <link rel="apple-touch-icon" href="public/images/logos/waves-logo.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -121,54 +126,41 @@ if (!isset($_SESSION)) {
 </head>
 
 <body id="body">
-    <div class="modal fade commonRules" id="commonRules" tabindex="-1" role="dialog" aria-labelledby="commonRules" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="padding: 23px;">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel" style="color: #e22361;">Rules and Regulation</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!-- Common Rules Modal -->
+    <div class="modal fade" id="commonRules" tabindex="-1" role="dialog" aria-labelledby="commonRulesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg event-dialog" role="document">
+            <div class="modal-content event-modal-content">
+                <div class="modal-header event-modal-header">
+                    <h4 class="modal-title" id="commonRulesLabel">Rules and Regulation</h4>
+                    <button type="button" class="close event-modal-close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="height: 625px !important;">
-
-    <div style="color: black;">
-        1. Separate Events for Boys and Girls: Events will be conducted separately for boys and girls, focusing on team participation.<br />
-
-        2. Registration Deadline: Participants must register for events within the specified deadline set by the organizers.<br />
-
-        3. No Alterations after Deadline: Once the registration deadline has passed, no changes or alterations to registrations will be accepted.<br />
-
-        4. Lot System for Order: The order in which teams perform will be determined by a random lot system.<br />
-
-        5. Team Captain’s Role: The team in-charges and team captains will draw lots and communicate the order of events to team members.<br />
-
-        6. ID Card Submission: Participants must submit their ID cards before participating in the event and collect them after their performance.<br />
-
-        7. Maintaining Discipline: Proper discipline must be maintained throughout the event.<br />
-
-        8. Rules and Registration Deviation: Any deviation from the rules and regulations of the event, or changes in registered participants, will result in disqualification.<br />
-
-        9. Prizes: Prizes will be awarded for first and second place in each event, with points assigned as follows:<br />
-        - 1st Place: 10 points<br />
-        - 2nd Place: 5 points<br />
-        - Participation Certificates: All participants will receive a participation certificate.<br />
-        - Judge’s Decision: The decision of the judge(s) is final.<br />
-
-        10. Rolling Shields: Overall winners and runners-up will receive rolling shields as awards.<br />
-
-        11. Managing Time Clashes: Teams are responsible for managing any time clashes between events themselves.<br />
-
-        12. Maximum Participation: Each student can participate in a maximum of three events, provided that the combination includes:<br />
-        i) One dance event + two off-stage events<br />
-        ii) Two dance events + one off-stage event<br /><br />
-        <b>Note:</b> Three off-stage events or three on-stage events are not permitted.
-    </div>
-</div>
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
+                <div class="modal-body event-modal-body">
+                    <div class="rules-text">
+                        1. Separate Events for Boys and Girls: Events will be conducted separately for boys and girls, focusing on team participation.<br /><br />
+                        2. Registration Deadline: Participants must register for events within the specified deadline set by the organizers.<br /><br />
+                        3. No Alterations after Deadline: Once the registration deadline has passed, no changes or alterations to registrations will be accepted.<br /><br />
+                        4. Lot System for Order: The order in which teams perform will be determined by a random lot system.<br /><br />
+                        5. Team Captain's Role: The team in-charges and team captains will draw lots and communicate the order of events to team members.<br /><br />
+                        6. ID Card Submission: Participants must submit their ID cards before participating in the event and collect them after their performance.<br /><br />
+                        7. Maintaining Discipline: Proper discipline must be maintained throughout the event.<br /><br />
+                        8. Rules and Registration Deviation: Any deviation from the rules and regulations of the event, or changes in registered participants, will result in disqualification.<br /><br />
+                        9. Prizes: Prizes will be awarded for first and second place in each event, with points assigned as follows:<br />
+                        &nbsp;&nbsp;- 1st Place: 10 points<br />
+                        &nbsp;&nbsp;- 2nd Place: 5 points<br />
+                        &nbsp;&nbsp;- Participation Certificates: All participants will receive a participation certificate.<br />
+                        &nbsp;&nbsp;- Judge's Decision: The decision of the judge(s) is final.<br /><br />
+                        10. Rolling Shields: Overall winners and runners-up will receive rolling shields as awards.<br /><br />
+                        11. Managing Time Clashes: Teams are responsible for managing any time clashes between events themselves.<br /><br />
+                        12. Maximum Participation: Each student can participate in a maximum of three events, provided that the combination includes:<br />
+                        &nbsp;&nbsp;i) One dance event + two off-stage events<br />
+                        &nbsp;&nbsp;ii) Two dance events + one off-stage event<br /><br />
+                        <strong>Note:</strong> Three off-stage events or three on-stage events are not permitted.
+                    </div>
+                </div>
+                <div class="modal-footer event-modal-footer">
+                    <button type="button" class="btn btn-close-event" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -179,55 +171,42 @@ if (!isset($_SESSION)) {
     while ($event = mysqli_fetch_array($events)) {
     ?>
         <!-- Modal -->
-        <div class="modal fade <?php echo $event['event_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $event['event_id'] ?>" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="padding: 23px;">
+        <div class="modal fade <?php echo $event['event_id'] ?>" id="<?php echo $event['event_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $event['event_id'] ?>Label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable event-dialog" role="document">
+                <div class="modal-content old-event-modal" style="padding: 23px;">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel" style="color: #e22361;">
+                        <h4 class="modal-title" id="<?php echo $event['event_id'] ?>Label" style="color: #e22361;">
                             <?php echo $event['event_name'] ?>
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div>
-                            <div style="margin: 12px; text-align: center;">
-                                <img src="<?php echo $event['image'] ?>" alt="" srcset="" width="270px" height="170px" style="margin: 22px;">
-
-                                <h4>
-                                    <?php echo $event['event_date'] ?>
-                                </h4>
-                                <h4>
-                                    <?php echo $event['event_time'] ?>
-                                </h4>
-                                <h4>
-                                    <?php echo $event['event_venue'] ?>
-                                </h4>
-
-                                <p>Event Cordinators
-                                    <br />
-                                    <?php $coordinators = explode("|", $event['event_cordinators']);
-                                    foreach ($coordinators as $letter => $index) {
-                                        echo '<span>' . $coordinators[$letter] . '<br /></span>';
-                                    }
-                                    ?>
-                                </p>
-                            </div>
-                            <h4 style="color: #e22361;">Rules</h4>
-                            <p>
-
-                                <?php $rules = explode(".", $event['event_rules']);
-                                array_pop($rules);
-                                foreach ($rules as $letter => $index) {
-                                    echo ($letter + 1) . '. ' . $rules[$letter] . '<br />';
+                    <div class="modal-body old-event-modal-body">
+                        <div style="margin: 12px; text-align: center;">
+                            <img src="<?php echo $event['image'] ?>" alt="<?php echo $event['event_name'] ?>" class="old-event-img">
+                            <h4><?php echo $event['event_date'] ?></h4>
+                            <h4><?php echo $event['event_time'] ?></h4>
+                            <h4><?php echo $event['event_venue'] ?></h4>
+                            <p>Event Coordinators<br />
+                                <?php
+                                $coordinators = explode("|", $event['event_cordinators']);
+                                foreach ($coordinators as $coord) {
+                                    echo '<span>' . htmlspecialchars(trim($coord)) . '<br /></span>';
                                 }
-
-
                                 ?>
                             </p>
                         </div>
-
+                        <h4 style="color: #e22361;">Rules</h4>
+                        <p>
+                            <?php
+                            $rules = explode(".", $event['event_rules']);
+                            array_pop($rules);
+                            foreach ($rules as $letter => $index) {
+                                echo ($letter + 1) . '. ' . $rules[$letter] . '<br />';
+                            }
+                            ?>
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -244,30 +223,29 @@ if (!isset($_SESSION)) {
         <div class="header-bar">
             <div class="container-fluid px-3 px-lg-4">
                 <div class="d-flex align-items-center justify-content-between">
-                    <!-- Left: Waves Logo + WAVES text -->
+                    <!-- Left: Waves Logo as Header of the Website -->
                     <div class="header-left d-flex align-items-center">
-                        <a href="index.php" class="header-waves-brand d-inline-flex align-items-center text-decoration-none">
+                        <a href="index.php" class="header-waves-brand d-inline-flex align-items-center text-decoration-none" title="NSCET WAVES 2.0">
                             <img src="public/images/logos/waves-logo.png" alt="Waves Logo" class="header-waves-logo">
-                            <span class="header-waves-title">WAVES</span>
+                            <span style="font-size: 24px; font-weight: bold; margin-left: 10px; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">WAVES</span>
                         </a>
                     </div>
 
                     <!-- Right: Navigation Menu & Login -->
                     <div class="header-right d-flex align-items-center">
                         <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none">
+                            <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle Navigation" aria-expanded="false">
                                 <span></span>
                                 <span></span>
                                 <span></span>
                                 <span></span>
-                            </div>
-                            <ul class="d-flex align-items-center mb-0">
+                            </button>
+                            <ul class="nav-menu">
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="#gallary">Odyssey</a></li>
+                                <li><a href="#gallary">Waves'26</a></li>
                                 <li><a href="#boysEvent">Boys Event</a></li>
                                 <li><a href="#girlsEvent">Girls Event</a></li>
                                 <li><a href="#footer">Contact Us</a></li>
-                                <!-- <li><a href="./result/resultPage.php">Score</a></li> -->
                                 <li class="login-nav-item"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">LOGIN</button></li>
                             </ul>
                         </nav>
@@ -517,7 +495,7 @@ if (!isset($_SESSION)) {
                         </div>
                         <div class="teams-cultural-subtitle text-center">
                             <span class="cultural-badge boys-tag"><i class="fas fa-fire-alt mr-1"></i> 5 Boys Teams</span>
-                            <span class="cultural-star">✦</span>
+                            <span class="cultural-star">âœ¦</span>
                             <span class="cultural-badge girls-tag"><i class="fas fa-crown mr-1"></i> 6 Girls Teams</span>
                         </div>
                         <p class="teams-cultural-motto text-center">
@@ -1188,7 +1166,7 @@ if (!isset($_SESSION)) {
     </div>
     <footer id="footer" class="site-footer">
         <div class="footer-cover-title flex justify-content-center align-items-center">
-            <h2>Waves'25</h2>
+            <h2>Waves'26</h2>
         </div>
         <div class="footer-content-wrapper">
             <div class="container">
@@ -1202,7 +1180,7 @@ if (!isset($_SESSION)) {
 
                     <div class="col-md-8">
                         <div class="entry-title">
-                            <a href="#">Waves'25</a>
+                            <a href="#">Waves'26</a>
                         </div>
 
                         <div class="copyright-info">
@@ -1355,3 +1333,4 @@ if (!isset($_SESSION)) {
 </body>
 
 </html>
+
