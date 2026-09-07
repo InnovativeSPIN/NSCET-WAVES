@@ -228,6 +228,19 @@ include('../routes/connect.php');
         </div>
     <?php endif; ?>
 
+    <?php if (isset($_GET['error'])): ?>
+        <div class="row">
+            <div class="col-xl-10 col-lg-11 mx-auto mb-3">
+                <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                    <strong><i class="fas fa-exclamation-triangle mr-2"></i>Error!</strong> <?php echo htmlspecialchars(urldecode($_GET['error'])); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <div class="row">
         <div class="col-xl-10 col-lg-11 mx-auto">
             <div class="card main-admin-card">
@@ -1412,7 +1425,7 @@ include('../routes/connect.php');
     }
 
     // Auto-activate tab based on URL hash and initialize student filters
-    $(document).ready(function() {
+    jQuery(document).ready(function($) {
         if (window.location.hash) {
             var hashTab = window.location.hash;
             var tabLink = $('ul.nav-pills a[href="' + hashTab + '"]');
@@ -1559,3 +1572,4 @@ include('../routes/connect.php');
             });
     }
 </script>
+
