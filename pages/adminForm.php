@@ -188,6 +188,20 @@ include('../routes/connect.php');
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                <?php elseif ($_GET['success'] === 'event_added'): ?>
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                        <strong><i class="fas fa-check-circle mr-2"></i>Success!</strong> New event has been added successfully.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php elseif ($_GET['success'] === 'event_deleted'): ?>
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                        <strong><i class="fas fa-check-circle mr-2"></i>Success!</strong> Event has been deleted successfully.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 <?php elseif ($_GET['success'] === 'event_updated'): ?>
                     <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
                         <strong><i class="fas fa-check-circle mr-2"></i>Success!</strong> Event details have been updated successfully.
@@ -500,9 +514,12 @@ include('../routes/connect.php');
                                 </div>
                             </div>
 
-                            <div class="card-footer px-0 pb-0">
-                                <button type="submit" name="submit" class="subscribe btn btn-block shadow-sm">
+                            <div class="card-footer px-0 pb-0 d-flex gap-2">
+                                <button type="submit" name="submit" class="subscribe btn flex-grow-1 shadow-sm m-0">
                                     <i class="fas fa-save mr-2"></i> Update Event Details
+                                </button>
+                                <button type="submit" name="delete_event" class="btn btn-danger shadow-sm m-0 px-4" onclick="return confirm('Are you sure you want to delete this event? This action cannot be undone.');">
+                                    <i class="fas fa-trash-alt mr-2"></i> Delete
                                 </button>
                             </div>
                         </form>
@@ -1572,4 +1589,8 @@ include('../routes/connect.php');
             });
     }
 </script>
+
+
+
+
 

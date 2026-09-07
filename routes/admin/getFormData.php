@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 header('Content-Type: application/json');
 require_once('../connect.php');
 
@@ -75,6 +75,7 @@ if ($action === 'filter_students') {
     $year   = isset($_GET['year']) ? trim($_GET['year']) : '';
     $dept   = isset($_GET['dept']) ? trim($_GET['dept']) : '';
     $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+    $house  = isset($_GET['house']) ? trim($_GET['house']) : '';
 
     $where  = [];
     $params = [];
@@ -96,12 +97,17 @@ if ($action === 'filter_students') {
         $params[] = "%{$search}%";
         $types .= 'ss';
     }
+    if (!empty($house)) {
+        $where[] = "house = ?";
+        $params[] = $house;
+        $types .= 's';
+    }
 
     $sql = "SELECT id, name, reg_no, dept, year, house, gender FROM studentdb";
     if (!empty($where)) {
         $sql .= " WHERE " . implode(" AND ", $where);
     }
-    $sql .= " ORDER BY name ASC LIMIT 100";
+    $sql .= " ORDER BY name ASC LIMIT 2000";
 
     $stmt = mysqli_prepare($conn, $sql);
     $students = [];
@@ -151,3 +157,4 @@ if ($action === 'get_house_leads') {
 
 echo json_encode(['status' => 'error', 'message' => 'Invalid action']);
 ?>
+
