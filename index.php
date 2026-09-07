@@ -1078,7 +1078,7 @@ if (!isset($_SESSION)) {
 
                     <div class="col-md-8">
                         <div class="entry-title">
-                            <a href="#">Waves'25</a>
+                            <a href="#">Waves'26</a>
                         </div>
 
                         <div class="copyright-info">
