@@ -683,7 +683,7 @@ include('../routes/connect.php');
                                 <label for="password">
                                     <h6>Common Coordinator Password <span class="text-danger">*</span></h6>
                                 </label>
-                                <input type="password" name="password" placeholder="Enter Common Login Password" class="form-control" required>
+                                <input type="password" name="password" placeholder="Enter Common Login Password" class="form-control" autocomplete="new-password" required>
                             </div>
 
                             <div class="card-footer px-0 pb-0">
@@ -854,7 +854,7 @@ include('../routes/connect.php');
                                 <label for="update_password">
                                     <h6>Update Password <small class="text-muted">(Leave blank to keep current password)</small></h6>
                                 </label>
-                                <input type="password" name="update_password" placeholder="Enter New Password (Optional)" class="form-control">
+                                <input type="password" name="update_password" placeholder="Enter New Password (Optional)" class="form-control" autocomplete="new-password">
                             </div>
 
                             <div class="card-footer px-0 pb-0">
@@ -936,7 +936,7 @@ include('../routes/connect.php');
                                 <label for="password">
                                     <h6>Common Password</h6>
                                 </label>
-                                <input type="password" name="password" placeholder="Enter Common Password" class="form-control" required>
+                                <input type="password" name="password" placeholder="Enter Common Password" class="form-control" autocomplete="new-password" required>
                             </div>
 
                             <div class="card-footer px-0 pb-0">
@@ -1021,7 +1021,7 @@ include('../routes/connect.php');
                                 <label for="update_password">
                                     <h6>Update Password <small class="text-muted">(Leave blank to keep current password)</small></h6>
                                 </label>
-                                <input type="password" name="update_password" placeholder="Enter New Password (Optional)" class="form-control">
+                                <input type="password" name="update_password" placeholder="Enter New Password (Optional)" class="form-control" autocomplete="new-password">
                             </div>
 
                             <div class="card-footer px-0 pb-0">
@@ -1777,4 +1777,5 @@ include('../routes/connect.php');
         }
     });
 </script>
+
 
