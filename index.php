@@ -184,29 +184,64 @@ if (!isset($_SESSION)) {
                     </div>
                     <div class="modal-body old-event-modal-body">
                         <div style="margin: 12px; text-align: center;">
-                            <img src="<?php echo $event['image'] ?>" alt="<?php echo $event['event_name'] ?>" class="old-event-img">
-                            <h4><?php echo $event['event_date'] ?></h4>
-                            <h4><?php echo $event['event_time'] ?></h4>
-                            <h4><?php echo $event['event_venue'] ?></h4>
+                            <?php if (!empty($event['image'])) { ?>
+                                <img src="<?php echo htmlspecialchars($event['image']); ?>" alt="<?php echo htmlspecialchars($event['event_name']); ?>" class="old-event-img">
+                            <?php } ?>
+                            
+                            <?php if (!empty($event['event_date'])) { ?><h4><?php echo htmlspecialchars($event['event_date']); ?></h4><?php } ?>
+                            <?php if (!empty($event['event_time'])) { ?><h4><?php echo htmlspecialchars($event['event_time']); ?></h4><?php } ?>
+                            <?php if (!empty($event['event_venue'])) { ?><h4><?php echo htmlspecialchars($event['event_venue']); ?></h4><?php } ?>
+                            
+                            <?php if (!empty($event['event_cordinators']) && trim($event['event_cordinators']) !== '-') { ?>
                             <p>Event Coordinators<br />
                                 <?php
-                                $coordinators = explode("|", $event['event_cordinators']);
+                                $coordinators = array_filter(array_map('trim', explode("|", $event['event_cordinators'])));
                                 foreach ($coordinators as $coord) {
-                                    echo '<span>' . htmlspecialchars(trim($coord)) . '<br /></span>';
+                                    if (!empty($coord)) {
+                                        echo '<span>' . htmlspecialchars($coord) . '<br /></span>';
+                                    }
                                 }
                                 ?>
                             </p>
+                            <?php } ?>
                         </div>
                         <h4 style="color: #e22361;">Rules</h4>
-                        <p>
+                        <div style="text-align: left; line-height: 1.6;">
                             <?php
-                            $rules = explode(".", $event['event_rules']);
-                            array_pop($rules);
-                            foreach ($rules as $letter => $index) {
-                                echo ($letter + 1) . '. ' . $rules[$letter] . '<br />';
+                            $rules_str = trim($event['event_rules']);
+                            if (!empty($rules_str)) {
+                                // Standardize newlines
+                                $rules_str = str_replace(array("\r\n", "\r"), "\n", $rules_str);
+                                
+                                // Collapse single newlines into spaces (fixes PDF paste), but keep double newlines
+                                $rules_str = preg_replace('/(?<!\n)\n(?!\n)/', ' ', $rules_str);
+                                $rules_str = preg_replace('/\n{2,}/', "\n\n", $rules_str);
+                                
+                                // Condense excessive spaces
+                                $rules_str = preg_replace('/[ \t]+/', ' ', $rules_str);
+                                
+                                // Escape HTML before we inject our own tags
+                                $rules_str = htmlspecialchars(trim($rules_str));
+                                
+                                // Highlight common headers and force line breaks
+                                $rules_str = preg_replace('/(Rules:|Judging Criteria:|Note:|Rules & Regulations:|Round 1:|Round 2:|Round 3:)/i', '<br><br><strong style="color:#e22361;">$1</strong><br>', $rules_str);
+                                
+                                // Highlight numbered lists (e.g. "1. ", "2. ") and force them onto a new line
+                                $rules_str = preg_replace('/(\s|^|&nbsp;|<br>|<br\s*\/?>)(\d+\.)\s/', '$1<br><strong>$2</strong> ', $rules_str);
+                                
+                                // Convert remaining actual double newlines to breaks
+                                $rules_str = nl2br($rules_str);
+                                
+                                // Clean up any excessive breaks created by regex overlaps
+                                $rules_str = preg_replace('/^(<br\s*\/?>)+/', '', $rules_str); // remove leading breaks
+                                $rules_str = preg_replace('/(<br\s*\/?>\s*){3,}/', '<br><br>', $rules_str); // max 2 breaks
+                                
+                                echo "<div style=\"margin-bottom: 12px;\">" . $rules_str . "</div>";
+                            } else {
+                                echo "<p>No rules specified for this event.</p>";
                             }
                             ?>
-                        </p>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1333,6 +1368,10 @@ if (!isset($_SESSION)) {
 </body>
 
 </html>
+
+
+
+
 
 
 

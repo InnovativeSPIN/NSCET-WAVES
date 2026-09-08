@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
-    if ($username === 'ISPIN' && $password === 'LVMPAYALUGA') {
+    if ($username === 'ISPIN' && $password === 'LVMP') {
         $_SESSION['ispin_admin_logged_in'] = true;
         $_SESSION['admin_user'] = 'ISPIN';
         $_SESSION['role'] = 'admin';
