@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -206,7 +206,7 @@ if (!isset($_SESSION)) {
                             <?php } ?>
                         </div>
                         <h4 style="color: #e22361;">Rules</h4>
-                        <div style="text-align: left; line-height: 1.6;">
+                        <div style="text-align: left; line-height: 1.6; color: #333 !important;">
                             <?php
                             $rules_str = trim($event['event_rules']);
                             if (!empty($rules_str)) {
@@ -226,8 +226,8 @@ if (!isset($_SESSION)) {
                                 // Highlight common headers and force line breaks
                                 $rules_str = preg_replace('/(Rules:|Judging Criteria:|Note:|Rules & Regulations:|Round 1:|Round 2:|Round 3:)/i', '<br><br><strong style="color:#e22361;">$1</strong><br>', $rules_str);
                                 
-                                // Highlight numbered lists (e.g. "1. ", "2. ") and force them onto a new line
-                                $rules_str = preg_replace('/(\s|^|&nbsp;|<br>|<br\s*\/?>)(\d+\.)\s/', '$1<br><strong>$2</strong> ', $rules_str);
+                                // Highlight numbered lists (e.g. "1. ", "2)", "3.") and force them onto a new line
+                                $rules_str = preg_replace('/(\s|^|&nbsp;|<br>|<br\s*\/?>)(\d+[\.\)])\s*/', '$1<br><strong>$2</strong> ', $rules_str);
                                 
                                 // Convert remaining actual double newlines to breaks
                                 $rules_str = nl2br($rules_str);

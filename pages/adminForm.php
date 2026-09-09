@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 if (!isset($_SESSION['ispin_admin_logged_in']) || $_SESSION['ispin_admin_logged_in'] !== true) {
     header("Location: ../ispin/");
@@ -1397,6 +1397,28 @@ include('../routes/connect.php');
                 }
             });
     }
+
+    // Safe JSON parser to handle free hosting HTML injections
+    const originalJson = Response.prototype.json;
+    Response.prototype.json = function() {
+        return this.text().then(text => {
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                const match = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+                if (match) {
+                    try {
+                        return JSON.parse(match[0]);
+                    } catch (err) {
+                        console.error("Failed to parse extracted JSON:", err);
+                        throw e;
+                    }
+                }
+                console.error("Invalid JSON response:", text);
+                throw e;
+            }
+        });
+    };
 
     // Check existing coordinators on Assign Coordinator tab
     function checkExistingCoordinator(eventName) {

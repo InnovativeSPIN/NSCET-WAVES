@@ -1,11 +1,11 @@
-﻿<?php
+<?php
 header('Content-Type: application/json');
 require_once('../connect.php');
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 if ($action === 'get_event') {
-    $event_name = isset($_GET['name']) ? trim($_GET['name']) : '';
+    $event_name = isset($_GET['name']) ? $_GET['name'] : '';
     if (empty($event_name)) {
         echo json_encode(['status' => 'error', 'message' => 'Event name is required']);
         exit;
@@ -29,7 +29,7 @@ if ($action === 'get_event') {
 }
 
 if ($action === 'get_coordinator') {
-    $event_name = isset($_GET['event']) ? trim($_GET['event']) : '';
+    $event_name = isset($_GET['event']) ? $_GET['event'] : '';
     if (empty($event_name)) {
         echo json_encode(['status' => 'error', 'message' => 'Event name is required']);
         exit;
@@ -72,10 +72,10 @@ if ($action === 'get_coordinator') {
 }
 
 if ($action === 'filter_students') {
-    $year   = isset($_GET['year']) ? trim($_GET['year']) : '';
-    $dept   = isset($_GET['dept']) ? trim($_GET['dept']) : '';
-    $search = isset($_GET['search']) ? trim($_GET['search']) : '';
-    $house  = isset($_GET['house']) ? trim($_GET['house']) : '';
+    $year   = isset($_GET['year']) ? $_GET['year'] : '';
+    $dept   = isset($_GET['dept']) ? $_GET['dept'] : '';
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
+    $house  = isset($_GET['house']) ? $_GET['house'] : '';
 
     $where  = [];
     $params = [];
@@ -128,7 +128,7 @@ if ($action === 'filter_students') {
 }
 
 if ($action === 'get_house_leads') {
-    $house_name = isset($_GET['house']) ? trim($_GET['house']) : '';
+    $house_name = isset($_GET['house']) ? $_GET['house'] : '';
     if (empty($house_name)) {
         echo json_encode(['status' => 'error', 'message' => 'House name is required']);
         exit;
