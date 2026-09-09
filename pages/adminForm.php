@@ -1213,13 +1213,73 @@ include('../routes/connect.php');
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div id="manage_students_status" class="text-muted mt-2 small"></div>
+                                    <div class="mt-3 d-flex justify-content-between align-items-center">
+                                        <div id="manage_students_status" class="text-muted small"></div>
+                                        <button type="button" id="delete_all_students_btn" class="btn btn-sm btn-danger shadow-sm" style="display: none;" onclick="deleteAllStudentsInHouse()">
+                                            <i class="fas fa-trash-alt mr-1"></i> Delete All in House
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div> <!-- End tab-content -->
 
 
+
+<!-- Edit Student Modal -->
+<div class="modal fade" id="editStudentModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title"><i class="fas fa-user-edit mr-2"></i>Edit Student</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editStudentForm">
+                    <input type="hidden" name="id" id="edit_stu_id">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" id="edit_stu_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Register No</label>
+                        <input type="text" name="reg_no" id="edit_stu_reg_no" class="form-control" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>Department</label>
+                            <input type="text" name="dept" id="edit_stu_dept" class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Year</label>
+                            <input type="text" name="year" id="edit_stu_year" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>House</label>
+                            <input type="text" name="house" id="edit_stu_house" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Gender</label>
+                            <select name="gender" id="edit_stu_gender" class="form-control" required>
+                                <option value="BOYS">BOYS</option>
+                                <option value="GIRLS">GIRLS</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <div id="edit_stu_status"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" onclick="saveStudentEdit()"><i class="fas fa-save mr-1"></i> Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- End -->
 </div>
@@ -1668,14 +1728,17 @@ include('../routes/connect.php');
         var tbody = document.getElementById("manage_students_tbody");
         var container = document.getElementById("manage_students_table_container");
         var status = document.getElementById("manage_students_status");
+        var btnDeleteAll = document.getElementById("delete_all_students_btn");
         
         if (!house) {
             container.style.display = "none";
+            if (btnDeleteAll) btnDeleteAll.style.display = "none";
             return;
         }
         
         status.innerHTML = "<i class='fas fa-spinner fa-spin mr-1'></i> Loading...";
         tbody.innerHTML = "";
+        if (btnDeleteAll) btnDeleteAll.style.display = "none";
         
         fetch("../routes/admin/getFormData.php?action=filter_students&house=" + encodeURIComponent(house))
             .then(res => res.json())
@@ -1690,16 +1753,21 @@ include('../routes/connect.php');
                             "<td>" + (s.dept || "") + "</td>" +
                             "<td>" + (s.year || "") + "</td>" +
                             "<td>" + (s.gender || "") + "</td>" +
-                            "<td><button type='button' class='btn btn-sm btn-outline-info py-0 px-2' onclick='openEditStudentModal(" + safeJson + ")'><i class='fas fa-edit'></i> Edit</button></td>" +
+                            "<td>" + 
+                                "<button type='button' class='btn btn-sm btn-outline-info py-0 px-2 mr-1' onclick='openEditStudentModal(" + safeJson + ")'><i class='fas fa-edit'></i> Edit</button>" +
+                                "<button type='button' class='btn btn-sm btn-outline-danger py-0 px-2' onclick='deleteStudent(" + s.id + ")'><i class='fas fa-trash-alt'></i> Delete</button>" +
+                            "</td>" +
                             "</tr>";
                     });
                     tbody.innerHTML = html;
                     container.style.display = "block";
                     status.innerHTML = "Found " + resp.students.length + " students.";
+                    if (btnDeleteAll) btnDeleteAll.style.display = "inline-block";
                 } else {
                     container.style.display = "block";
                     tbody.innerHTML = "<tr><td colspan='6' class='text-center text-muted'>No students found for this house.</td></tr>";
                     status.innerHTML = "";
+                    if (btnDeleteAll) btnDeleteAll.style.display = "none";
                 }
             })
             .catch(err => {
@@ -1757,6 +1825,62 @@ include('../routes/connect.php');
         .finally(() => {
             btn.disabled = false;
             btn.innerHTML = "<i class='fas fa-save mr-1'></i> Save Changes";
+        });
+    }
+
+    // Delete student
+    function deleteStudent(id) {
+        if (!confirm("Are you sure you want to delete this student?")) return;
+        fetch("../routes/admin/deleteStudent.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "action=delete&id=" + encodeURIComponent(id)
+        })
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.status === "success") {
+                loadStudentsForHouse();
+            } else {
+                alert(resp.message || "Failed to delete student");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Error deleting student");
+        });
+    }
+
+    // Delete all students in a house
+    function deleteAllStudentsInHouse() {
+        var house = document.getElementById("manage_house_select").value;
+        if (!house) return;
+        if (!confirm("Are you sure you want to delete ALL students in " + house + "? This action CANNOT be undone!")) return;
+        
+        var btn = document.getElementById("delete_all_students_btn");
+        btn.disabled = true;
+        btn.innerHTML = "<i class='fas fa-spinner fa-spin mr-1'></i> Deleting...";
+        
+        fetch("../routes/admin/deleteStudent.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "action=delete_all_in_house&house=" + encodeURIComponent(house)
+        })
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.status === "success") {
+                alert("All students in " + house + " have been deleted.");
+                loadStudentsForHouse();
+            } else {
+                alert(resp.message || "Failed to delete students");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Error deleting students");
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = "<i class='fas fa-trash-alt mr-1'></i> Delete All in House";
         });
     }
 </script>
