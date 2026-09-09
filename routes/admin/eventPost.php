@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 ob_start();
 include('../connect.php');
 
@@ -26,7 +26,9 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
-    $file_name = basename($_FILES["image"]["name"]);
+    $original_name = basename($_FILES["image"]["name"]);
+    // Clean filename: keep only alphanumeric, dots, hyphens, and underscores
+    $file_name = preg_replace("/[^a-zA-Z0-9\.\-_]/", "_", $original_name);
     $file_size = $_FILES["image"]["size"];
     $file_tmp  = $_FILES["image"]["tmp_name"];
     $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));

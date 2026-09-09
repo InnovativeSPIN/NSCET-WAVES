@@ -184,8 +184,10 @@ if (!isset($_SESSION)) {
                     </div>
                     <div class="modal-body old-event-modal-body">
                         <div style="margin: 12px; text-align: center;">
-                            <?php if (!empty($event['image'])) { ?>
-                                <img src="<?php echo htmlspecialchars($event['image']); ?>" alt="<?php echo htmlspecialchars($event['event_name']); ?>" class="old-event-img">
+                            <?php if (!empty($event['image'])) { 
+                                $safe_img_url = implode('/', array_map('rawurlencode', explode('/', $event['image'])));
+                            ?>
+                                <img src="<?php echo $safe_img_url; ?>" alt="<?php echo htmlspecialchars($event['event_name']); ?>" class="old-event-img">
                             <?php } ?>
                             
                             <?php if (!empty($event['event_date'])) { ?><h4><?php echo htmlspecialchars($event['event_date']); ?></h4><?php } ?>
@@ -651,7 +653,8 @@ if (!isset($_SESSION)) {
                             ?>
                                 <div class="col-6 col-md-4 col-lg-3 artist-single dark-shadow" data-aos="zoom-in-up">
                                     <figure class="featured-image">
-                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $event['image'] ?>" alt> </a>
+                                        <?php $safe_img_url = implode('/', array_map('rawurlencode', explode('/', $event['image']))); ?>
+                                        <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>"> <img src="<?php echo $safe_img_url; ?>" alt> </a>
                                         <a data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="box-link"> <img src="public/images/box.jpg" alt> </a>
                                     </figure>
                                     <h2>
@@ -693,7 +696,8 @@ if (!isset($_SESSION)) {
                             <div class="swiper-slide">
                                 <div class="next-event-content">
                                     <figure class="featured-image">
-                                        <img src="<?php echo $event['image'] ?>" alt>
+                                        <?php $safe_img_url = implode('/', array_map('rawurlencode', explode('/', $event['image']))); ?>
+                                        <img src="<?php echo $safe_img_url; ?>" alt>
                                         <a href="#" data-toggle="modal" data-target=".<?php echo $event['event_id'] ?>" class="entry-content flex flex-column justify-content-center align-items-center">
                                             <h3>
                                                 <?php echo $event['event_name'] ?>
