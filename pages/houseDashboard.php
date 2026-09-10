@@ -439,7 +439,7 @@ include('../routes/connect.php');
             </div>
         </div>
     </div>
-    <script src="../public/js/coordinatordashboard.js"></script>
+
     <script type="text/javascript" src="../public/js/jquery.js"></script>
     <script type="text/javascript" src="../public/js/masonry.pkgd.min.js"></script>
     <script type="text/javascript" src="../public/js/jquery.collapsible.min.js"></script>

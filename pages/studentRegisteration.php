@@ -346,7 +346,7 @@ include('../routes/connect.php');
         </div>
         </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-        <script src="../public/js/coordinatordashboard.js"></script>
+
         <script type="text/javascript" src="../public/js/jquery.js"></script>
         <script type="text/javascript" src="../public/js/masonry.pkgd.min.js"></script>
         <script type="text/javascript" src="../public/js/jquery.collapsible.min.js"></script>

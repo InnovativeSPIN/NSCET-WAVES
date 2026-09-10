@@ -200,7 +200,7 @@ if ($data['is_group'] == '0') {
             </div>
         </div>
     </div>
-    <script src="../public/js/coordinatordashboard.js"></script>
+    <script src="../public/js/coordinatordashboard.js?v=2"></script>
     <script type="text/javascript" src="../public/js/jquery.js"></script>
     <script type="text/javascript" src="../public/js/masonry.pkgd.min.js"></script>
     <script type="text/javascript" src="../public/js/jquery.collapsible.min.js"></script>
