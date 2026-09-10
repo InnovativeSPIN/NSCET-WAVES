@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 
 if (!isset($_SESSION['name']) && !isset($_SESSION['reg_no'])) {
@@ -29,39 +29,32 @@ include('../routes/connect.php');
 	<link rel="stylesheet" href="../public/css/studentDashboardStyles.css">
 	<link rel="stylesheet" href="../public/css/houseDashboardStyles.css">
 	<link rel="stylesheet" href="../public/css/style.css">
-
+    <link rel="stylesheet" href="../public/css/premium-dashboard.css">
 </head>
+<body class="premium-theme">
+    <nav class="navbar navbar-expand-lg premium-navbar sticky-top">
+        <a class="navbar-brand" href="../index.php">
+            <img src="../public/images/logos/waves-logo.png" alt="WAVES Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#premiumNav" aria-controls="premiumNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<body>
-    <header class="site-header">
-        <div class="header-bar">
-            <div class="container-fluid px-3 px-lg-4">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="header-left d-flex align-items-center">
-                        <a href="../index.php" class="header-waves-brand d-inline-flex align-items-center text-decoration-none" title="NSCET WAVES 2.0">
-                            <img src="../public/images/logos/waves-logo.png" alt="Waves Logo" class="header-waves-logo" width="120">
-                            <span style="font-size: 24px; font-weight: bold; margin-left: 10px; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">WAVES</span>
-                        </a>
-                    </div>
-                    <div class="header-right d-flex align-items-center">
-                        <nav class="site-navigation">
-                            <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle Navigation" aria-expanded="false">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </button>
-                            <ul class="nav-menu">
-                                <li><a href="../index.php#boysEvent">Events</a></li>
-                                <li class="login-nav-item"><a href="../routes/studentReg/logout.php" class="btn btn-login btn-primary" style="display:inline-block; padding:8px 20px; color:white; text-decoration:none;">Logout</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+        <div class="collapse navbar-collapse" id="premiumNav">
+            <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <a href="../index.php#boysEvent" class="btn btn-action">
+                        <i class="fas fa-calendar-alt mr-1"></i> Events
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../routes/studentReg/logout.php" class="btn btn-action">
+                        <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                    </a>
+                </li>
+            </ul>
         </div>
-    </header>
-    <div class="nav-overlay"></div>
+    </nav>
 	<div class="container">
 		<div style="margin-top: 138px;">
 			<div class="card dark gradient-border">
@@ -355,6 +348,8 @@ include('../routes/connect.php');
 				);
 			}, 250);
 		</script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/6a9b11d703.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
