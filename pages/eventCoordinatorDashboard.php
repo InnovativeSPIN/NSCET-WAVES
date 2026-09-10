@@ -84,52 +84,46 @@ if ($data['is_group'] == '0') {
     <link rel="stylesheet" href="../public/css/swiper.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
-    <link rel="stylesheet" href="../public/css/eventCoordinatorDashboard.css">
+    <link rel="stylesheet" href="../public/css/premium-dashboard.css">
     <script src="https://kit.fontawesome.com/5fe2f4c2ef.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-    <header class="site-header">
-        <div class="header-bar">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-10 col-lg-4">
-                        <h1 class="site-branding flex">
-                            <img src="../public/images/logos/waves-logo.png" alt="" class="" width="120">
-                        </h1>
-                    </div>
-                    <div class="col-2 col-lg-8">
-                        <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none">
-                                <span style="background-color:black"></span>
-                                <span style="background-color:black"></span>
-                                <span style="background-color:black"></span>
-                                <span style="background-color:black"></span>
-                            </div>
-                            <ul>
-                                <li>
-                                    <form style="margin-top: 8px;margin-right: 24px;" action="../routes/pdf/EventCopdf.php" method="post">
-                                        <input type="text" style="display: none;" value="<?php echo $_SESSION['event_name'] ?>" name='event'>
-                                        <button class="btn btn-primary">Data Export</button>
-                                    </form>
-                                </li>
+<body class="premium-theme">
+    <nav class="navbar navbar-expand-lg premium-navbar sticky-top">
+        <a class="navbar-brand" href="#">
+            <img src="../public/images/logos/waves-logo.png" alt="WAVES Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#premiumNav" aria-controls="premiumNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                                <li><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#resetModal">Passoword</button></li>
-                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#loginModal">Logout</button></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+        <div class="collapse navbar-collapse" id="premiumNav">
+            <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <form action="../routes/pdf/EventCopdf.php" method="post" class="m-0">
+                        <input type="text" style="display: none;" value="<?php echo $_SESSION['event_name'] ?>" name='event'>
+                        <button class="btn btn-action m-0"><i class="fas fa-file-export mr-1"></i> Data Export</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-action" data-toggle="modal" data-target="#resetModal">
+                        <i class="fas fa-key mr-1"></i> Password
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.php" class="btn btn-action">
+                        <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                    </a>
+                </li>
+            </ul>
         </div>
-    </header>
-
-    <div style='margin-top: 32px' class="modal fade loginModal" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document" style="padding: 28px;">
+    </nav>
+    <div class="modal fade premium-modal" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body login-modal-body">
                     <div class="column" id="main">
-                        <h1 style='margin-bottom: 34px'>Reset Password</h1>
+                        <h3 class="mb-4 text-center">Reset Password</h3>
                         <form action="../routes/admin/coordinatorEdit.php" method="post">
 
                             <div class="form-group" id='login-event-name'> <label for="event_name">
@@ -163,97 +157,47 @@ if ($data['is_group'] == '0') {
             </div>
         </div>
     </div>
-    <div class="container" style="background-color: white;">
-        <div class="header" style="margin-top:85px">
-            <div class="title">Participants Details</div>
-        </div>
-        <div class="indicators">
-            <div id="i1">
-                <div class="navi-indicator" id="ni1"></div>
+    <div class="container mb-5">
+        <div class="premium-table-container mt-4">
+            <div class="title-area">
+                <h4 class="title"><i class="fas fa-users mr-2 text-info"></i>Participants Details</h4>
             </div>
-            <div id="i2">
-                <div class="navi-indicator" id="ni2"></div>
-            </div>
-            <div id="i3">
-                <div class="navi-indicator" id="ni3"></div>
-            </div>
-            <div id="i4">
-                <div class="navi-indicator" id="ni4"></div>
-            </div>
-        </div>
-        <div class="indicators-2">
-            <div id="i5">
-                <div class="navi-indicator" id="ni5"></div>
-            </div>
-            <div id="i6">
-                <div class="navi-indicator" id="ni6"></div>
-            </div>
-            <div id="i7">
-                <div class="navi-indicator" id="ni7"></div>
-            </div>
-            <div id="i8">
-                <div class="navi-indicator" id="ni8"></div>
-            </div>
-        </div>
 
-        <div class="navi">
-            <div class="navi-item1">
-                <button class="nav-button" onclick="populateItems(eventData, 'BLUE BLASTERS')" id="startersbutton">
-                    <div class="navi-icon"><i class="fa-sharp fa-solid fa-explosion fa-shake"></i></div>
-                    <div class="navi-text">BLUE BLASTERS</div>
-                </button>
+            <div class="scroll-nav-wrapper">
+                <div class="scroll-nav-container">
+                    <button class="house-pill active" onclick="populateItems(eventData, 'BLUE BLASTERS'); setActive(this)">
+                        <i class="fa-sharp fa-solid fa-explosion"></i> BLUE BLASTERS
+                    </button>
+                    <button class="house-pill" onclick="populateItems(eventData, 'DINO THUNDERS'); setActive(this)">
+                        <i class="fa-solid fa-skull-crossbones"></i> DINO THUNDERS
+                    </button>
+                    <button class="house-pill" onclick="populateItems(eventData, 'DRAGON WARRIORS'); setActive(this)">
+                        <i class="fa-solid fa-dragon"></i> DRAGON WARRIORS
+                    </button>
+                    <button class="house-pill" onclick="populateItems(eventData, 'GALACTIC STARS'); setActive(this)">
+                        <i class="fa-solid fa-star"></i> GALACTIC STARS
+                    </button>
+                    <button class="house-pill" onclick="populateItems(eventData, 'PHOENIX BLASTERS'); setActive(this)">
+                        <i class="fa-brands fa-phoenix-framework"></i> PHOENIX BLASTERS
+                    </button>
+                    <button class="house-pill" onclick="populateItems(eventData, 'ROSY RIDERS'); setActive(this)">
+                        <i class="fa-solid fa-motorcycle"></i> ROSY RIDERS
+                    </button>
+                    <button class="house-pill" onclick="populateItems(eventData, 'TIGER THRASHERS'); setActive(this)">
+                        <i class="fa-brands fa-wolf-pack-battalion"></i> TIGER THRASHERS
+                    </button>
+                    <button class="house-pill" onclick="populateItems(eventData, 'VIOLET VIPERS'); setActive(this)">
+                        <i class="fa-solid fa-staff-snake"></i> VIOLET VIPERS
+                    </button>
+                    <button class="house-pill" onclick="populateItems(eventData, 'EMERALD EAGLES'); setActive(this)">
+                        <img src="../public/images/icon/eagle.png" alt="" width="20px"> EMERALD EAGLES
+                    </button>
+                </div>
             </div>
-            <div class="navi-item2">
-                <button class="nav-button" onclick="populateItems(eventData, 'DINO THUNDERS')" id="mainsbutton">
-                    <div class="navi-icon"><i class="fa-solid fa-skull-crossbones fa-fade"></i></div>
-                    <div class="navi-text">DINO THUNDERS</div>
-                </button>
-            </div>
-            <div class="navi-item3">
-                <button class="nav-button" onclick="populateItems(eventData, 'DRAGON WARRIORS')" id="dessertsbutton">
-                    <div class="navi-icon"><i class="fa-solid fa-dragon fa-bounce"></i></div>
-                    <div class="navi-text">DRAGON WARRIORS</div>
-                </button>
-            </div>
-            <div class="navi-item4">
-                <button class="nav-button" onclick="populateItems(eventData, 'GALACTIC STARS')" id="drinksbutton">
-                    <div class="navi-icon"><i class="fa-solid fa-star fa-beat-fade"></i></div>
-                    <div class="navi-text">GALACTIC STARS</div>
-                </button>
-            </div>
-            <div class="navi-item5">
-                <button class="nav-button" onclick="populateItems(eventData, 'PHOENIX BLASTERS')" id="phoenix">
-                    <div class="navi-icon"><i class="fa-brands fa-phoenix-framework fa-flip"></i></div>
-                    <div class="navi-text">PHOENIX BLASTERS</div>
-                </button>
-            </div>
-            <div class="navi-item6">
-                <button class="nav-button" onclick="populateItems(eventData, 'ROSY RIDERS')" id="rosy">
-                    <div class="navi-icon"><i class="fa-solid fa-motorcycle fa-spin-pulse"></i></div>
-                    <div class="navi-text">ROSY RIDERS</div>
-                </button>
-            </div>
-            <div class="navi-item7">
-                <button class="nav-button" onclick="populateItems(eventData, 'TIGER THRASHERS')" id="tiger">
-                    <div class="navi-icon"><i class="fa-brands fa-wolf-pack-battalion fa-shake"></i></div>
-                    <div class="navi-text">TIGER THRASHERS</div>
-                </button>
-            </div>
-            <div class="navi-item4">
-                <button class="nav-button" onclick="populateItems(eventData, 'VIOLET VIPERS')" id="violet">
-                    <div class="navi-icon"><i class="fa-solid fa-staff-snake fa-flip"></i></div>
-                    <div class="navi-text">VIOLET VIPERS</div>
-                </button>
-            </div>
-            <div class="navi-item8">
-                <button class="nav-button" onclick="populateItems(eventData, 'EMERALD EAGLES')" id="emerald">
-                    <div class="navi-icon"><img src="../public/images/icon/eagle.png" alt="" width="25px"></div>
-                    <div class="navi-text">EMERALD EAGLES</div>
-                </button>
-            </div>
-        </div>
-        <div class="menu">
 
+            <div class="menu p-4">
+                <!-- Javascript will populate the premium tables here -->
+            </div>
         </div>
     </div>
     <script src="../public/js/coordinatordashboard.js"></script>

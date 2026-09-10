@@ -15,47 +15,45 @@ include('../routes/connect.php');
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
-    <link rel="stylesheet" href="../public/css/houseDashboardStyles.css">
-
-
+    <link rel="stylesheet" href="../public/css/premium-dashboard.css">
 </head>
 
-<body>
-    <header class="site-header">
-        <div class="header-bar">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-10 col-lg-4">
-                        <h1 class="site-branding flex">
-                            <img src="../public/images/logos/waves-logo.png" alt="" class="" width="120">
-                        </h1>
-                    </div>
-                    <div class="col-2 col-lg-8">
-                        <nav class="site-navigation">
-                            <div class="hamburger-menu d-lg-none">
-                                <span style="background-color:black"></span>
-                                <span style="background-color:black"></span>
-                                <span style="background-color:black"></span>
-                                <span style="background-color:black"></span>
-                            </div>
-                            <ul>
-                                <li><button style="margin: 8px;" type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#assignLeadModal">Assign Lead</button></li>
-                                <li><button style="margin: 8px;" type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#resetModal">Password</button></li>
-                                <li><a href="../index.php"><button type="button" class="btn btn-login btn-primary" data-toggle="modal" data-target="#">Logout</button></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+<body class="premium-theme">
+    <nav class="navbar navbar-expand-lg premium-navbar sticky-top">
+        <a class="navbar-brand" href="#">
+            <img src="../public/images/logos/waves-logo.png" alt="WAVES Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#premiumNav" aria-controls="premiumNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="premiumNav">
+            <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-action" data-toggle="modal" data-target="#assignLeadModal">
+                        <i class="fas fa-user-plus mr-1"></i> Assign Lead
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-action" data-toggle="modal" data-target="#resetModal">
+                        <i class="fas fa-key mr-1"></i> Password
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.php" class="btn btn-action">
+                        <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                    </a>
+                </li>
+            </ul>
         </div>
-    </header>
+    </nav>
     <!-- Reset Modal -->
-    <div style='margin-top: 32px' class="modal fade loginModal" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document" style="padding: 28px;">
+    <div class="modal fade premium-modal" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body login-modal-body">
                     <div class="column" id="main">
-                        <h1 style='margin-bottom: 34px'>Reset Password</h1>
+                        <h3 class="mb-4 text-center">Reset Password</h3>
                         <form action="../routes/admin/captainEdit.php" method="post">
 
                             <div class="form-group" id='login-event-name'> <label for="event_name">
@@ -93,12 +91,12 @@ include('../routes/connect.php');
     </div>
 
     <!-- Assign Lead Model Modal -->
-    <div style='margin-top: 32px' class="modal fade loginModal" id="assignLeadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document" style="padding: 28px;">
+    <div class="modal fade premium-modal" id="assignLeadModal" tabindex="-1" role="dialog" aria-labelledby="assignLeadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-body login-modal-body" style="height:590px">
+                <div class="modal-body">
                     <div class="column" id="main">
-                        <h1 style='margin-bottom: 34px'>Assign Lead</h1>
+                        <h3 class="mb-4 text-center">Assign Lead</h3>
                         <?php
                         $house_name = $_SESSION['house_name'];
                         $queryHouseLeadsName = "SELECT id FROM `admindb` WHERE house_name = '$house_name'";
@@ -150,8 +148,11 @@ include('../routes/connect.php');
                             </div>
 
 
-                            <div class="card-footer"> <button type="submit" name='submit' class="subscribe btn btn-primary shadow-sm">
-                                    Assign House Leads </button>
+                            <div class="text-center mt-4"> 
+                                <button type="submit" name='submit' class="btn btn-primary btn-block shadow-sm">
+                                    Assign House Leads 
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -176,115 +177,108 @@ include('../routes/connect.php');
     </div>
     </div>
 
-    <div class="card dark gradient-border" style="margin-top:140px">
-
-   <?php
-$path = '../public/images/house/';
-$img  = str_replace(" ", "_", $_SESSION['house_name']);
-echo '<img src="' . $path . $img . '.png" class="card-img-top" alt="...">';
-?>
-
-
-
-        <div class="card-body">
-            <div class="text-section">
-                <h1 style="color:#e22361" class='card-title'>
-                    <?php echo $_SESSION['house_name'] ?>
-                </h1>
-                <?php
-                $houseName = $_SESSION['house_name'];
-                $totalMembersResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM studentdb WHERE house = '$houseName'");
-                $totalMembers = mysqli_fetch_assoc($totalMembersResult);
-                ?>
-                <h5 class="card-text">Total Members:
-                    <?php echo $totalMembers['row_count'];
-                    mysqli_free_result($totalMembersResult);
+    <div class="container mt-5">
+        <div class="glass-card">
+            <div class="house-profile-wrapper">
+                <div class="house-logo-container">
+                    <?php
+                    $path = '../public/images/house/';
+                    $img  = str_replace(" ", "_", $_SESSION['house_name']);
+                    echo '<img src="' . $path . $img . '.png" alt="' . $_SESSION['house_name'] . ' Logo">';
                     ?>
-                </h5>
-                <?php
-                $registeredStudentsQuery = mysqli_query($conn, "SELECT COUNT(DISTINCT reg_no) as row_count FROM registerationdb WHERE student_house = '$houseName'");
-                $registeredStudentsDetails = mysqli_fetch_assoc($registeredStudentsQuery);
-                ?>
-                <h5 class="card-text">Participants Count:
-                    <?php echo $registeredStudentsDetails['row_count'];
-                    mysqli_free_result($registeredStudentsQuery);
-                    ?>
-                </h5>
+                </div>
 
-                <?php
-                $house_name = $_SESSION['house_name'];
-                $queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name' AND role = 'team captain' ORDER BY id ASC";
-                $getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
+                <div class="house-info-container">
+                    <h1><?php echo $_SESSION['house_name'] ?></h1>
+                    
+                    <div class="stats-grid">
+                        <?php
+                        $houseName = $_SESSION['house_name'];
+                        $totalMembersResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM studentdb WHERE house = '$houseName'");
+                        $totalMembers = mysqli_fetch_assoc($totalMembersResult);
+                        ?>
+                        <div class="stat-box">
+                            <span class="label">Total Members</span>
+                            <span class="value">
+                                <?php echo $totalMembers['row_count'];
+                                mysqli_free_result($totalMembersResult);
+                                ?>
+                            </span>
+                        </div>
+                        <?php
+                        $registeredStudentsQuery = mysqli_query($conn, "SELECT COUNT(DISTINCT reg_no) as row_count FROM registerationdb WHERE student_house = '$houseName'");
+                        $registeredStudentsDetails = mysqli_fetch_assoc($registeredStudentsQuery);
+                        ?>
+                        <div class="stat-box">
+                            <span class="label">Participants</span>
+                            <span class="value text-info">
+                                <?php echo $registeredStudentsDetails['row_count'];
+                                mysqli_free_result($registeredStudentsQuery);
+                                ?>
+                            </span>
+                        </div>
 
-                $captainsList = array();
-                while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
-                    $captainsList[] = $houseLead['name'];
-                }
-                ?>
-                <h3 style="color:#e22361" class='card-title'> Student House Leads
-                </h3>
-                <?php if (isset($captainsList[0])): ?>
-                <h5 class="card-text">
-                    House Captain: <?php echo htmlspecialchars($captainsList[0]); ?>
-                </h5>
-                <?php endif; ?>
-                <?php if (isset($captainsList[1])): ?>
-                <h5 class="card-text">
-                    House Vice Captain: <?php echo htmlspecialchars($captainsList[1]); ?>
-                </h5>
-                <?php endif; ?>
-            </div>
-            <div class="cta-section" style="margin-left: 24px;align-items: center;text-align: center;">
-                <?php
-                $scoreResult = mysqli_query($conn, "SELECT score FROM housedb WHERE name = '$houseName'");
-                $score = mysqli_fetch_assoc($scoreResult);
-                ?>
-                <button style="margin-bottom: 12px;" class="btn btn-primary">Score : <?php echo $score['score'];
-                                                        mysqli_free_result($scoreResult);
-                                                        ?></button>
+                        <?php
+                        $scoreResult = mysqli_query($conn, "SELECT score FROM housedb WHERE name = '$houseName'");
+                        $score = mysqli_fetch_assoc($scoreResult);
+                        ?>
+                        <div class="stat-box">
+                            <span class="label">House Score</span>
+                            <span class="value text-warning">
+                                <?php echo $score['score'];
+                                mysqli_free_result($scoreResult);
+                                ?>
+                            </span>
+                        </div>
+                    </div>
 
-                <div>
-                    <form style="margin-bottom: 8px;" action="../routes/pdf/HousepdfGen.php" method="post">
+                    <div class="leads-section mt-4">
+                        <?php
+                        $house_name = $_SESSION['house_name'];
+                        $queryHouseLeadsName = "SELECT name FROM `admindb` WHERE house_name = '$house_name' AND role = 'team captain' ORDER BY id ASC";
+                        $getHouseLeadsResult = mysqli_query($conn, $queryHouseLeadsName);
+
+                        $captainsList = array();
+                        while ($houseLead = mysqli_fetch_array($getHouseLeadsResult)) {
+                            $captainsList[] = $houseLead['name'];
+                        }
+                        ?>
+                        <h3><i class="fas fa-crown mr-2 text-warning"></i>Student House Leads</h3>
+                        <div class="leads-list">
+                            <?php if (isset($captainsList[0])): ?>
+                                <p>Captain: <span><?php echo htmlspecialchars($captainsList[0]); ?></span></p>
+                            <?php endif; ?>
+                            <?php if (isset($captainsList[1])): ?>
+                                <p>Vice Captain: <span><?php echo htmlspecialchars($captainsList[1]); ?></span></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section d-flex flex-column gap-2" style="gap: 10px;">
+                    <form action="../routes/pdf/HousepdfGen.php" method="post" class="w-100">
                         <input type="text" style="display: none;" value="<?php echo $houseName ?>" name='house'>
-                        <button class="btn btn-primary">House Data Export</button>
-
+                        <button class="btn btn-action w-100 m-0"><i class="fas fa-file-pdf mr-1 text-danger"></i> House Data Export</button>
                     </form>
-                    <form style="margin-top: 8px;" action="../routes/pdf/EventpdfGen.php" method="post">
+                    <form action="../routes/pdf/EventpdfGen.php" method="post" class="w-100">
                         <input type="text" style="display: none;" value="<?php echo $houseName ?>" name='house'>
-                        <button class="btn btn-primary">Event Data Export</button>
+                        <button class="btn btn-action w-100 m-0"><i class="fas fa-file-export mr-1 text-success"></i> Event Data Export</button>
                     </form>
                 </div>
-              
             </div>
         </div>
     </div>
 
     <!-- table -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-1 col-md-12">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col col-sm-3 col-xs-12">
-                                <h4 class="title">Event <span>Details</span></h4>
-                            </div>
-                            <!-- <div class="col-sm-9 col-xs-12 text-right">
-                                <div class="btn_group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <button class="btn btn-default" title="Reload"><i
-                                            class="fa fa-sync-alt"></i></button>
-                                    <button class="btn btn-default" title="Pdf"><i class="fa fa-file-pdf"></i></button>
-                                    <button class="btn btn-default" title="Excel"><i
-                                            class="fas fa-file-excel"></i></button>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-                    <div class="panel-body table-responsive">
-                        <table class="table">
-                            <thead>
+    <div class="container mb-5">
+        <div class="premium-table-container">
+            <div class="title-area">
+                <h4 class="title"><i class="fas fa-calendar-alt mr-2 text-warning"></i>Event Details</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="premium-table">
+                    <thead>
                                 <tr>
                                     <th> </th>
                                     <th>Event Name</th>
@@ -385,38 +379,20 @@ echo '<img src="' . $path . $img . '.png" class="card-img-top" alt="...">';
                                 ?>
                             </tbody>
                         </table>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
     <!-- student details table -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-1 col-md-12">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col col-sm-3 col-xs-12">
-                                <h4 class="title">Student <span>Details</span></h4>
-                            </div>
-                            <!-- <div class="col-sm-9 col-xs-12 text-right">
-                                <div class="btn_group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <button class="btn btn-default" title="Reload"><i
-                                            class="fa fa-sync-alt"></i></button>
-                                    <button class="btn btn-default" title="Pdf"><i class="fa fa-file-pdf"></i></button>
-                                    <button class="btn btn-default" title="Excel"><i
-                                            class="fas fa-file-excel"></i></button>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-                    <div class="panel-body table-responsive">
-                        <table class="table">
-                            <thead>
+    <div class="container mb-5">
+        <div class="premium-table-container">
+            <div class="title-area">
+                <h4 class="title"><i class="fas fa-users mr-2 text-info"></i>Student Details</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="premium-table">
+                    <thead>
                                 <tr>
                                     <th> </th>
                                     <th>Register Number</th>
@@ -460,8 +436,6 @@ echo '<img src="' . $path . $img . '.png" class="card-img-top" alt="...">';
                                 ?>
                             </tbody>
                         </table>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
