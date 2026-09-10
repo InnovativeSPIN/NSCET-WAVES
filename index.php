@@ -153,11 +153,10 @@ if (!isset($_SESSION)) {
                         &nbsp;&nbsp;- Judge's Decision: The decision of the judge(s) is final.<br /><br />
                         10. Rolling Shields: Overall winners and runners-up will receive rolling shields as awards.<br /><br />
                         11. Managing Time Clashes: Teams are responsible for managing any time clashes between events themselves.<br /><br />
-                        12. Maximum Participation: Each student can participate in a maximum of three events, provided that the combination includes:<br />
-                        &nbsp;&nbsp;i) One dance event + two off-stage events<br />
-                        &nbsp;&nbsp;ii) Two dance events + one off-stage event<br /><br />
-                        <strong>Note:</strong> Three off-stage events or three on-stage events are not permitted.
-                    </div>
+                        12. Maximum Participation: Each student can participate in a maximum of two events, provided that the combination includes:<br />
+                        &nbsp;&nbsp;i) One on stage event + one off stage or vice-versa<br />
+                        &nbsp;&nbsp;ii) Or both onstage or both offstage<br /><br />
+                        <strong>Note:</strong> For flash mob only two main dance can be reused from onstage performer to lead the show. ( For them alone three events participation is permitted if required)
                 </div>
                 <div class="modal-footer event-modal-footer">
                     <button type="button" class="btn btn-close-event" data-dismiss="modal">Close</button>
