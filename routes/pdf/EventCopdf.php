@@ -106,12 +106,13 @@ while ($data = mysqli_fetch_array($house)) {
 
     $pdf->Cell(12, 10, "S_no", 1, 0, 'C', true);
     $pdf->Cell(40, 10, "Register Number", 1, 0, 'C', true);
-    $pdf->Cell(65, 10, "Student Name", 1, 0, 'C', true);
+    $pdf->Cell(55, 10, "Student Name", 1, 0, 'C', true);
     // $pdf->Cell(87, 10, "Student House", 1, 0, 'C', true);
     $pdf->Cell(15, 10, "Group", 1, 0, 'C', true);
     $pdf->Cell(15, 10, "Slot", 1, 0, 'C', true);
-    $pdf->Cell(30, 10, "Deparment", 1, 0, 'C', true);
-    $pdf->Cell(15, 10, "Year", 1, 0, 'C', true);
+    $pdf->Cell(25, 10, "Deparment", 1, 0, 'C', true);
+    $pdf->Cell(13, 10, "Year", 1, 0, 'C', true);
+    $pdf->Cell(15, 10, "Attendance", 1, 0, 'C', true);
 
     $pdf->Ln(10);
     $row = 0;
@@ -126,7 +127,7 @@ while ($data = mysqli_fetch_array($house)) {
 
                 $pdf->Cell(12, 10, $row + 1, 1, 0, 'C', $fill);
                 $pdf->Cell(40, 10, $eventData['reg_no'], 1, 0, 'C', $fill);
-                $pdf->Cell(65, 10, $eventData['student_name'], 1, 0, 'C', $fill);
+                $pdf->Cell(55, 10, $eventData['student_name'], 1, 0, 'C', $fill);
                 // $pdf->Cell(87, 10, $eventData['student_house'], 1, 0, 'C', $fill);
                 if ($eventData['grouped'] == 0) {
                     $pdf->Cell(15, 10, "-", 1, 0, 'C', $fill);
@@ -139,8 +140,10 @@ while ($data = mysqli_fetch_array($house)) {
                 } else {
                     $pdf->Cell(15, 10, "-", 1, 0, 'C', $fill);
                 }
-                $pdf->Cell(30, 10, $eventData['student_dept'], 1, 0, 'C', $fill);
-                $pdf->Cell(15, 10, $eventData['student_year'], 1, 0, 'C', $fill);
+                $pdf->Cell(25, 10, $eventData['student_dept'], 1, 0, 'C', $fill);
+                $pdf->Cell(13, 10, $eventData['student_year'], 1, 0, 'C', $fill);
+                $attLabel = ($eventData['attendance'] == 1) ? 'Present' : 'Absent';
+                $pdf->Cell(15, 10, $attLabel, 1, 0, 'C', $fill);
                 $row++;
                 $pdf->Ln(10);
             }
@@ -148,10 +151,11 @@ while ($data = mysqli_fetch_array($house)) {
         } else {
             $pdf->Cell(12, 10, $row + 1, 1, 0, 'C', $fill);
             $pdf->Cell(40, 10, ' ', 1, 0, 'C', $fill);
-            $pdf->Cell(65, 10, ' ', 1, 0, 'C', $fill);
+            $pdf->Cell(55, 10, ' ', 1, 0, 'C', $fill);
             $pdf->Cell(15, 10, ' ', 1, 0, 'C', $fill);
             $pdf->Cell(15, 10, ' ', 1, 0, 'C', $fill);
-            $pdf->Cell(30, 10, ' ', 1, 0, 'C', $fill);
+            $pdf->Cell(25, 10, ' ', 1, 0, 'C', $fill);
+            $pdf->Cell(13, 10, ' ', 1, 0, 'C', $fill);
             $pdf->Cell(15, 10, ' ', 1, 0, 'C', $fill);
             $row++;
             $pdf->Ln(10);
