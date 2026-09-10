@@ -392,6 +392,7 @@ include('../routes/connect.php');
 
                                 <div class="card-footer"> <button type="submit" name='submit'
                                         class="subscribe btn btn-block shadow-sm"> Add Event </button>
+                                </div>
                             </form>
                         </div>
                     <!-- Edit Event Tab -->
@@ -1740,7 +1741,7 @@ include('../routes/connect.php');
         tbody.innerHTML = "";
         if (btnDeleteAll) btnDeleteAll.style.display = "none";
         
-        fetch("../routes/admin/getFormData.php?action=filter_students&house=" + encodeURIComponent(house))
+        fetch("../routes/admin/getFormData.php?action=filter_students&house=" + encodeURIComponent(house) + "&_t=" + Date.now())
             .then(res => res.json())
             .then(resp => {
                 if (resp.status === "success" && resp.students.length > 0) {

@@ -70,7 +70,12 @@ include('../routes/connect.php');
         $eventCoordinatorResult = mysqli_query($conn, "SELECT name from admindb WHERE role = 'event coordinator' AND event_name = '$eventName'");
         $eventCoordinator = mysqli_fetch_assoc($eventCoordinatorResult);
 
-        $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName'");
+        if ($event['is_group'] >= 1) {
+            $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(DISTINCT grouped) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName' AND grouped > 0");
+        } else {
+            $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName'");
+        }
+        
         if ($SpecificEventRegStuCountResult) {
             $registeredParticipants = mysqli_fetch_assoc($SpecificEventRegStuCountResult);
             $registeredParticipants = $registeredParticipants['row_count'];
@@ -125,17 +130,31 @@ include('../routes/connect.php');
                 <input style="width: 90%;margin: 12px;" type="text" name="event_name" value="<?php echo $eventName ?>" readonly>
 
                 <?php
-
                 $studentResult = mysqli_query($conn, "SELECT reg_no FROM `studentdb` WHERE house = '$houseName'");
-
-                echo "<div class='form-group'>
-                <input style='width: 90%; margin: 12px;' type='text' list='listName' name='reg_number' id='reg_number' placeholder='Student Reg No' required class='form-control'>
-                <datalist id='listName'>";
+                $studentList = [];
                 while ($studentDetail = mysqli_fetch_array($studentResult)) {
-                    echo "<option value='$studentDetail[0]'>$studentDetail[0]</option>";
+                    $studentList[] = $studentDetail[0];
                 }
 
-                echo "</datalist></div>";
+                echo "<datalist id='listName'>";
+                foreach ($studentList as $stu) {
+                    echo "<option value='$stu'>$stu</option>";
+                }
+                echo "</datalist>";
+                
+                if ($event['is_group'] >= 1) {
+                    $groupSize = (int)$event['group_counts'];
+                    for ($idx = 1; $idx <= $groupSize; $idx++) {
+                        $required = ($idx == 1) ? 'required' : '';
+                        echo "<div class='form-group'>
+                        <input style='width: 90%; margin: 12px;' type='text' list='listName' name='reg_number[]' placeholder='Student Reg No $idx' $required class='form-control'>
+                        </div>";
+                    }
+                } else {
+                    echo "<div class='form-group'>
+                    <input style='width: 90%; margin: 12px;' type='text' list='listName' name='reg_number[]' placeholder='Student Reg No' required class='form-control'>
+                    </div>";
+                }
                 ?>
 
                 <?php

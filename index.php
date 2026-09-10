@@ -157,6 +157,7 @@ if (!isset($_SESSION)) {
                         &nbsp;&nbsp;i) One on stage event + one off stage or vice-versa<br />
                         &nbsp;&nbsp;ii) Or both onstage or both offstage<br /><br />
                         <strong>Note:</strong> For flash mob only two main dance can be reused from onstage performer to lead the show. ( For them alone three events participation is permitted if required)
+                    </div>
                 </div>
                 <div class="modal-footer event-modal-footer">
                     <button type="button" class="btn btn-close-event" data-dismiss="modal">Close</button>

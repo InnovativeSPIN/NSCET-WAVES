@@ -315,13 +315,20 @@ echo '<img src="' . $path . $img . '.png" class="card-img-top" alt="...">';
                                     $eventCoordinatorResult = mysqli_query($conn, "SELECT name from admindb WHERE role = 'event coordinator' AND event_name = '$eventName'");
                                     $eventCoordinator = mysqli_fetch_assoc($eventCoordinatorResult);
 
-                                    $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName'");
+                                    if ($event['is_group'] >= 1) {
+                                        $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(DISTINCT grouped) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName' AND grouped > 0");
+                                    } else {
+                                        $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName'");
+                                    }
+                                    
                                     if ($SpecificEventRegStuCountResult) {
                                         $registeredParticipants = mysqli_fetch_assoc($SpecificEventRegStuCountResult);
                                         $registeredParticipants = $registeredParticipants['row_count'];
                                     } else {
                                         $registeredParticipants = 0;
                                     }
+                                    
+                                    $allowance = $event['max_participants'] - $registeredParticipants;
 
                                     if ($event['is_group'] >= 1) {
                                         $isGroup = 'Yes';
@@ -350,7 +357,7 @@ echo '<img src="' . $path . $img . '.png" class="card-img-top" alt="...">';
                                             <?php echo $registeredParticipants ?>
                                         </td>
                                         <td>
-                                            <?php echo $event['max_participants'] - $registeredParticipants ?>
+                                            <?php echo $allowance ?>
                                         </td>
                                         <td>
                                             <?php echo $isGroup ?>
@@ -360,7 +367,12 @@ echo '<img src="' . $path . $img . '.png" class="card-img-top" alt="...">';
                                         </td>
 
                                         <td>
-                                               </td>
+                                            <?php if ($allowance > 0) { ?>
+                                                <a href="studentRegisteration.php?eventName=<?php echo urlencode($eventName); ?>" class="btn btn-primary btn-sm">Assign Member</a>
+                                            <?php } else { ?>
+                                                <span class="badge badge-secondary">Full</span>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
 
                                 <?php
