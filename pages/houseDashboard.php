@@ -15,7 +15,7 @@ include('../routes/connect.php');
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
-    <link rel="stylesheet" href="../public/css/premium-dashboard.css">
+    <link rel="stylesheet" href="../public/css/premium-dashboard.css?v=<?= time() ?>">
 </head>
 
 <body class="premium-theme">
@@ -123,7 +123,7 @@ include('../routes/connect.php');
                                         <h6>Captain Name</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="captain_name" placeholder="Enter Captain Name" class="form-control " required>
-                                        <input type="text" name="captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[2] ?>" required>
+                                        <input type="text" name="captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[2] ?? '' ?>" required>
                                     </div>
                                 </div>
 
@@ -131,7 +131,7 @@ include('../routes/connect.php');
                                         <h6>Vice Captain Name</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="vice_captain_name" placeholder="Enter Vice Captain Name" class="form-control " required>
-                                        <input type="text" name="vice_captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[3] ?>" required>
+                                        <input type="text" name="vice_captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[3] ?? '' ?>" required>
 
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@ include('../routes/connect.php');
                                         <h6>Vice Captain Name</h6>
                                     </label>
                                     <div class="input-group"> <input type="text" name="vice_vice_captain_name" placeholder="Enter Vice Captain Name" class="form-control " required>
-                                        <input type="text" name="vice_vice_captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[4] ?>" required>
+                                        <input type="text" name="vice_vice_captain_number" style="display: none;" class="form-control " value="<?php echo $houseLeads[4] ?? '' ?>" required>
 
                                     </div>
                                 </div>
@@ -273,112 +273,209 @@ include('../routes/connect.php');
 
     <div class="container mb-5">
         <div class="premium-table-container">
-            <div class="title-area">
-                <h4 class="title"><i class="fas fa-calendar-alt mr-2 text-warning"></i>Event Details</h4>
+            <div class="title-area d-flex justify-content-between align-items-center flex-wrap" style="gap: 10px;">
+                <h4 class="title m-0"><i class="fas fa-calendar-alt mr-2 text-warning"></i>Event Details</h4>
+                <div class="btn-group btn-group-sm table-view-toggle d-md-none" role="group">
+                    <button type="button" class="btn btn-outline-info active" id="btnCardView"><i class="fas fa-th-large mr-1"></i>Cards</button>
+                    <button type="button" class="btn btn-outline-info" id="btnTableView"><i class="fas fa-table mr-1"></i>Table</button>
+                </div>
             </div>
-            <div class="table-responsive">
-                <table class="premium-table">
-                    <thead>
+
+            <?php
+            $genderResult = mysqli_query($conn, "SELECT gender FROM housedb WHERE name = '$houseName'");
+            $gender = mysqli_fetch_assoc($genderResult);
+            $gender = $gender['gender'];
+            mysqli_free_result($genderResult);
+
+            $eventsResult = mysqli_query($conn, "SELECT * FROM eventdb WHERE gender = '$gender' UNION SELECT * FROM eventdb WHERE gender = 'COMMON'");
+            $eventsList = [];
+            $safeHouseName = mysqli_real_escape_string($conn, $houseName);
+
+            $idx = 1;
+            while ($event = mysqli_fetch_assoc($eventsResult)) {
+                $rawEventName = $event['event_name'];
+                $safeEventName = mysqli_real_escape_string($conn, $rawEventName);
+                $eventCoordinatorResult = mysqli_query($conn, "SELECT name from admindb WHERE role = 'event coordinator' AND event_name = '$safeEventName'");
+                $coord = mysqli_fetch_assoc($eventCoordinatorResult);
+                $eventCoordinator = $coord['name'] ?? null;
+                mysqli_free_result($eventCoordinatorResult);
+
+                // Fetch team allowance from DB
+                $teamAllowance = (int)$event['allowance'];
+
+                // Count registered participants specifically for this house and this event
+                $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$safeHouseName' AND event_name = '$safeEventName'");
+                $regRow = $SpecificEventRegStuCountResult ? mysqli_fetch_assoc($SpecificEventRegStuCountResult) : null;
+                $registeredParticipants = (int)($regRow['row_count'] ?? 0);
+                if ($SpecificEventRegStuCountResult) {
+                    mysqli_free_result($SpecificEventRegStuCountResult);
+                }
+
+                $remainingAllowance = max(0, $teamAllowance - $registeredParticipants);
+                $isGroup = ($event['is_group'] >= 1);
+
+                $eventsList[] = [
+                    'sno'                => $idx++,
+                    'event_name'         => $rawEventName,
+                    'coordinator'        => $eventCoordinator,
+                    'allowance'          => $teamAllowance,
+                    'registered'         => $registeredParticipants,
+                    'remaining'          => $remainingAllowance,
+                    'is_group'           => $isGroup,
+                    'group_counts'       => (int)$event['group_counts'],
+                    'group_participants' => (int)$event['group_participants'],
+                ];
+            }
+            mysqli_free_result($eventsResult);
+            ?>
+
+            <!-- Mobile Cards View (shown on mobile by default) -->
+            <div class="mobile-cards-view d-block d-md-none" id="eventCardsView">
+                <?php foreach ($eventsList as $ev): ?>
+                    <div class="mobile-event-card">
+                        <div class="card-header-row">
+                            <h5 class="event-title">
+                                <span class="event-sno">#<?= $ev['sno'] ?></span>
+                                <?= htmlspecialchars($ev['event_name']) ?>
+                            </h5>
+                            <?php if ($ev['remaining'] > 0): ?>
+                                <span class="badge badge-success" style="font-size: 0.8rem; padding: 5px 8px;"><?= $ev['remaining'] ?> Left</span>
+                            <?php else: ?>
+                                <span class="badge badge-danger" style="font-size: 0.8rem; padding: 5px 8px;">Full (<?= $ev['registered'] ?>/<?= $ev['allowance'] ?>)</span>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="event-coord">
+                            <i class="fas fa-user-tie mr-1 text-info"></i>
+                            <?= $ev['coordinator'] ? htmlspecialchars($ev['coordinator']) : '<span class="text-muted">Coordinator Not Assigned !</span>' ?>
+                        </div>
+
+                        <div class="stats-badge-grid">
+                            <div class="stat-pill">
+                                <span class="label">Allowance</span>
+                                <span class="val text-warning"><?= $ev['allowance'] ?></span>
+                            </div>
+                            <div class="stat-pill">
+                                <span class="label">Registered</span>
+                                <span class="val text-info"><?= $ev['registered'] ?></span>
+                            </div>
+                            <div class="stat-pill">
+                                <span class="label">Remaining</span>
+                                <span class="val <?= $ev['remaining'] > 0 ? 'text-success' : 'text-danger' ?>"><?= $ev['remaining'] ?></span>
+                            </div>
+                            <div class="stat-pill">
+                                <span class="label">Group Event</span>
+                                <span class="val"><?= $ev['is_group'] ? '<span class="badge badge-info p-1">Yes</span>' : '<span class="text-muted">No</span>' ?></span>
+                            </div>
+                            <?php if ($ev['is_group']): ?>
+                                <div class="stat-pill">
+                                    <span class="label">Max Groups</span>
+                                    <span class="val text-warning"><?= $ev['group_counts'] ?></span>
+                                </div>
+                                <div class="stat-pill">
+                                    <span class="label">Group Size</span>
+                                    <span class="val text-secondary"><?= $ev['group_participants'] ?></span>
+                                </div>
+                            <?php else: ?>
+                                <div class="stat-pill">
+                                    <span class="label">Type</span>
+                                    <span class="val text-muted">Solo</span>
+                                </div>
+                                <div class="stat-pill">
+                                    <span class="label">Group Size</span>
+                                    <span class="val text-muted">-</span>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="card-action">
+                            <?php if ($ev['remaining'] > 0): ?>
+                                <a href="studentRegisteration.php?eventName=<?= urlencode($ev['event_name']); ?>" class="btn btn-primary">
+                                    <i class="fas fa-user-plus mr-1"></i> Assign Member
+                                </a>
+                            <?php else: ?>
+                                <button class="btn btn-secondary disabled" disabled style="opacity: 0.6; cursor: not-allowed;">
+                                    <i class="fas fa-ban mr-1"></i> Registration Full
+                                </button>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Table View (default on desktop/tablet, toggleable on mobile) -->
+            <div class="desktop-table-view d-none d-md-block" id="eventTableView">
+                <div class="swipe-hint d-md-none py-2 px-3 text-center text-muted">
+                    <i class="fas fa-arrows-alt-h text-info mr-1"></i> Swipe horizontally to view all columns
+                </div>
+                <div class="table-responsive">
+                    <table class="premium-table sticky-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 40px;">#</th>
+                                <th>Event Name</th>
+                                <th>Event Coordinator</th>
+                                <th class="text-center">Allowance</th>
+                                <th class="text-center">Registered</th>
+                                <th class="text-center">Remaining</th>
+                                <th class="text-center">Group</th>
+                                <th class="text-center text-nowrap">Max Groups</th>
+                                <th class="text-center text-nowrap">Group Size</th>
+                                <th class="text-center text-nowrap" style="min-width: 140px;">Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($eventsList as $ev): ?>
                                 <tr>
-                                    <th> </th>
-                                    <th>Event Name</th>
-                                    <th>Event Coordinator</th>
-                                    <th>Max Participants</th>
-                                    <th>Registered Participants</th>
-                                    <th>Allowance</th>
-                                    <th>Group</th>
-                                    <th>Group Count</th>
-                                    <th>Update</th>
+                                    <td class="text-center"><?= $ev['sno'] ?></td>
+                                    <td><strong><?= htmlspecialchars($ev['event_name']) ?></strong></td>
+                                    <td>
+                                        <?= $ev['coordinator'] ? htmlspecialchars($ev['coordinator']) : '<span class="text-muted">Not Assigned !</span>' ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge badge-info" style="font-size: 0.85rem;"><?= $ev['allowance'] ?></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge badge-primary" style="font-size: 0.85rem;"><?= $ev['registered'] ?></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge <?= $ev['remaining'] > 0 ? 'badge-success' : 'badge-danger' ?>" style="font-size: 0.85rem;">
+                                            <?= $ev['remaining'] ?>
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <?php if ($ev['is_group']): ?>
+                                            <span class="badge badge-info">Yes</span>
+                                        <?php else: ?>
+                                            <span class="text-muted">No</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <?php if ($ev['is_group']): ?>
+                                            <span class="badge badge-warning" style="font-size: 0.85rem;"><?= $ev['group_counts'] ?></span>
+                                        <?php else: ?>
+                                            <span class="text-muted">-</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <?php if ($ev['is_group']): ?>
+                                            <span class="badge badge-secondary" style="font-size: 0.85rem;"><?= $ev['group_participants'] ?></span>
+                                        <?php else: ?>
+                                            <span class="text-muted">-</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="text-center text-nowrap">
+                                        <?php if ($ev['remaining'] > 0): ?>
+                                            <a href="studentRegisteration.php?eventName=<?= urlencode($ev['event_name']); ?>" class="btn btn-primary btn-sm">Assign Member</a>
+                                        <?php else: ?>
+                                            <span class="badge badge-secondary" style="padding: 6px 10px; font-size: 0.78rem;">Full (<?= $ev['registered']; ?>/<?= $ev['allowance']; ?>)</span>
+                                        <?php endif; ?>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $genderResult = mysqli_query($conn, "SELECT gender FROM housedb WHERE name = '$houseName'");
-                                $gender = mysqli_fetch_assoc($genderResult);
-                                $gender = $gender['gender'];
-                                mysqli_free_result($genderResult);
-
-
-                                $eventsResult = mysqli_query($conn, "SELECT * FROM eventdb WHERE gender = '$gender' UNION SELECT * FROM eventdb WHERE gender = 'COMMON'");
-                                $i = 1;
-                                while ($event = mysqli_fetch_assoc($eventsResult)) {
-
-                                    $eventName = $event['event_name'];
-                                    $houseName = mysqli_real_escape_string($conn, $houseName);
-                                    $eventName = mysqli_real_escape_string($conn, $eventName);
-                                    $eventCoordinatorResult = mysqli_query($conn, "SELECT name from admindb WHERE role = 'event coordinator' AND event_name = '$eventName'");
-                                    $eventCoordinator = mysqli_fetch_assoc($eventCoordinatorResult);
-
-                                    if ($event['is_group'] >= 1) {
-                                        $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(DISTINCT grouped) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName' AND grouped > 0");
-                                    } else {
-                                        $SpecificEventRegStuCountResult = mysqli_query($conn, "SELECT COUNT(*) as row_count FROM registerationdb WHERE student_house = '$houseName' AND event_name = '$eventName'");
-                                    }
-                                    
-                                    if ($SpecificEventRegStuCountResult) {
-                                        $registeredParticipants = mysqli_fetch_assoc($SpecificEventRegStuCountResult);
-                                        $registeredParticipants = $registeredParticipants['row_count'];
-                                    } else {
-                                        $registeredParticipants = 0;
-                                    }
-                                    
-                                    $allowance = $event['max_participants'] - $registeredParticipants;
-
-                                    if ($event['is_group'] >= 1) {
-                                        $isGroup = 'Yes';
-                                    } else {
-                                        $isGroup = 'No';
-                                    }
-                                ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $i++ ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $eventName ?>
-                                        </td>
-                                        <td>
-                                            <?php if (isset($eventCoordinator['name'])) {
-                                                echo $eventCoordinator['name'];
-                                            } else {
-                                                echo 'Not Assigned !';
-                                            } ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $event['max_participants'] ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $registeredParticipants ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $allowance ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $isGroup ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $event['group_counts'] ?>
-                                        </td>
-
-                                        <td>
-                                            <?php if ($allowance > 0) { ?>
-                                                <a href="studentRegisteration.php?eventName=<?php echo urlencode($eventName); ?>" class="btn btn-primary btn-sm">Assign Member</a>
-                                            <?php } else { ?>
-                                                <span class="badge badge-secondary">Full</span>
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-
-                                <?php
-                                    mysqli_free_result($eventCoordinatorResult);
-                                    if ($SpecificEventRegStuCountResult) {
-                                        mysqli_free_result($SpecificEventRegStuCountResult);
-                                    }
-                                }
-                                mysqli_free_result($eventsResult);
-                                ?>
-                            </tbody>
-                        </table>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -393,49 +490,47 @@ include('../routes/connect.php');
             <div class="table-responsive">
                 <table class="premium-table">
                     <thead>
-                                <tr>
-                                    <th> </th>
-                                    <th>Register Number</th>
-                                    <th>Student Name</th>
-                                    <th>Department</th>
-                                    <th>Year</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $stuDBResult = mysqli_query($conn, "SELECT * FROM studentdb WHERE house = '$houseName'");
-                                $i = 1;
-                                while ($studentDetail = mysqli_fetch_assoc($stuDBResult)) {
-                                    $reg_no = $studentDetail['reg_no'];
-                                    $stu_name = $studentDetail['name'];
-                                    $dept = $studentDetail['dept'];
-                                    $year = $studentDetail['year'];
-
-                                ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $i++ ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $reg_no ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $stu_name ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $dept ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $year ?>
-                                        </td>
-                                    </tr>
-
-                                <?php
-                                }
-                                mysqli_free_result($stuDBResult);
-                                ?>
-                            </tbody>
-                        </table>
+                        <tr>
+                            <th class="text-center" style="width: 50px;">#</th>
+                            <th>Register Number</th>
+                            <th>Student Name</th>
+                            <th>Department</th>
+                            <th class="text-center">Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $stuDBResult = mysqli_query($conn, "SELECT * FROM studentdb WHERE house = '$houseName'");
+                        $i = 1;
+                        while ($studentDetail = mysqli_fetch_assoc($stuDBResult)) {
+                            $reg_no = $studentDetail['reg_no'];
+                            $stu_name = $studentDetail['name'];
+                            $dept = $studentDetail['dept'];
+                            $year = $studentDetail['year'];
+                        ?>
+                            <tr>
+                                <td class="text-center font-weight-bold text-muted">
+                                    <?php echo $i++ ?>
+                                </td>
+                                <td>
+                                    <code style="color: var(--accent-cyan); font-size: 0.9rem;"><?php echo htmlspecialchars($reg_no) ?></code>
+                                </td>
+                                <td>
+                                    <strong><?php echo htmlspecialchars($stu_name) ?></strong>
+                                </td>
+                                <td>
+                                    <?php echo htmlspecialchars($dept) ?>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge badge-info" style="font-size: 0.8rem;"><?php echo htmlspecialchars($year) ?></span>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        mysqli_free_result($stuDBResult);
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -496,6 +591,30 @@ include('../routes/connect.php');
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../public/js/jquery.js"></script>
     <script src="https://kit.fontawesome.com/6a9b11d703.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnCard = document.getElementById('btnCardView');
+            const btnTable = document.getElementById('btnTableView');
+            const cardsView = document.getElementById('eventCardsView');
+            const tableView = document.getElementById('eventTableView');
+
+            if (btnCard && btnTable && cardsView && tableView) {
+                btnCard.addEventListener('click', function () {
+                    btnCard.classList.add('active');
+                    btnTable.classList.remove('active');
+                    cardsView.classList.remove('d-none');
+                    tableView.classList.add('d-none');
+                });
+
+                btnTable.addEventListener('click', function () {
+                    btnTable.classList.add('active');
+                    btnCard.classList.remove('active');
+                    cardsView.classList.add('d-none');
+                    tableView.classList.remove('d-none');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -12,20 +12,20 @@
         $('body').toggleClass('nav-open');
     });
 
-    // Close nav when overlay or a nav link is clicked
-    $('.nav-overlay').on('click', function() {
+    // Close nav function
+    function closeMobileNav() {
         $('#hamburgerBtn, .hamburger-menu').removeClass('open').attr('aria-expanded', 'false');
         $('.site-navigation').removeClass('show');
         $('.nav-overlay').removeClass('show');
         $('body').removeClass('nav-open');
-    });
+    }
 
-    $('.nav-menu li a').on('click', function() {
-        $('#hamburgerBtn, .hamburger-menu').removeClass('open').attr('aria-expanded', 'false');
-        $('.site-navigation').removeClass('show');
-        $('.nav-overlay').removeClass('show');
-        $('body').removeClass('nav-open');
-    });
+    // Close nav when overlay, any link, or login button is clicked
+    $('.nav-overlay').on('click', closeMobileNav);
+    $('.nav-menu li a, .nav-menu .btn-login, .login-nav-item button, .nav-menu button').on('click', closeMobileNav);
+
+    // Also close mobile nav automatically when login modal starts to show
+    $('#loginModal').on('show.bs.modal', closeMobileNav);
 
 
     var countdown_date = $('.countdown').data("date");

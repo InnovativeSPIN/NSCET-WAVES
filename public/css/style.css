@@ -8,6 +8,9 @@ html {
   --bg-gradient: linear-gradient(to right, #0de1eb, #1aecda);
   --text-color: hsl(0, 0%, 90%);
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 .flex {
@@ -16,6 +19,9 @@ html {
 
 body {
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
   font-family: "ShantellSans";
   font-size: 15px;
   font-weight: normal;
@@ -586,11 +592,11 @@ body {
     align-items: center;
   }
 
-  /* nav-menu is a slide-in drawer, hidden off-screen by default */
+  /* nav-menu is a slide-in drawer, hidden off-screen with transform by default */
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -320px;
+    right: 0;
     left: auto;
     width: 280px;
     max-width: 82vw;
@@ -605,14 +611,17 @@ body {
     padding: 90px 24px 30px;
     margin: 0;
     z-index: 100000;
-    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
     overflow-y: auto;
     list-style: none;
   }
 
   /* Slide in when .show is added */
   .site-navigation.show .nav-menu {
-    right: 0;
+    transform: translateX(0);
+    visibility: visible;
   }
 
   .nav-menu li {
@@ -785,6 +794,8 @@ body {
   background-size: cover !important;
   background: url("../images/cover.jpg") no-repeat center center;
   position: relative;
+  overflow: hidden;
+  max-width: 100vw;
 }
 
 .hero-clg-logo {
@@ -962,6 +973,8 @@ canvas {
 .content-section {
   min-height: 3370px;
   width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
   padding-bottom: 120px;
   background: url("../images/middle-cover.jpg") no-repeat;
   background-size: cover !important;
@@ -1449,6 +1462,8 @@ canvas {
 .site-footer {
   height: 640px;
   position: relative;
+  max-width: 100vw;
+  overflow: hidden;
   padding: 40px 0 30px;
   background: url(../images/footer-cover.jpg) no-repeat;
   background-size: cover;

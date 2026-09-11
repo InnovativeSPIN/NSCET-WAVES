@@ -31,7 +31,7 @@ if (!isset($_SESSION)) {
     <link rel="stylesheet" href="public/css/swiper.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css?v=<?= time() ?>">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script nonce="2af76b41-facd-47ce-9e71-e256854a4086">
         (function(w, d) {
@@ -291,7 +291,7 @@ if (!isset($_SESSION)) {
             </div>
         </div>
     </header>
-    <div class="nav-overlay"></div>
+>
 
     <!-- Login Modal -->
     <div style='margin-top: 32px' class="modal fade loginModal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -511,8 +511,8 @@ if (!isset($_SESSION)) {
                 </div>
             </div> -->
         </div>
-        <div class="container-fluid" style="padding-left: clamp(24px, 6vw, 110px); padding-right: 0; overflow-x: hidden;">
-            <div class="row align-items-center" style="overflow: visible; margin-top: 50px; margin-bottom: 70px;">
+        <div class="container-fluid" style="padding-left: clamp(15px, 4vw, 80px); padding-right: clamp(15px, 4vw, 80px); overflow: hidden; max-width: 100vw;">
+            <div class="row align-items-center" style="overflow: hidden; margin-top: 50px; margin-bottom: 70px;">
                 <div class="col-xl-4 col-lg-5 col-md-12 mb-4 mb-lg-0">
                     <div class="lineup-artists-headline">
                         <div class="entry-title" style="margin-bottom: 24px;">
@@ -524,7 +524,7 @@ if (!isset($_SESSION)) {
                     </div>
                 </div>
                 <div class="col-xl-8 col-lg-7 col-md-12 pr-0 d-flex justify-content-end">
-                    <div class="teams-carousel-section" style="margin-left: auto; margin-right: 0; width: 100%;">
+                    <div class="teams-carousel-section" style="margin-left: auto; margin-right: 0; width: 100%; overflow: hidden;">
                         <div class="entry-title text-center teams-entry-title">
                             <p> </p>
                             <h2>Teams</h2>
@@ -1253,7 +1253,7 @@ if (!isset($_SESSION)) {
     <script type="text/javascript" src="public/js/jquery.countdown.min.js"></script>
     <script type="text/javascript" src="public/js/circle-progress.min.js"></script>
     <script type="text/javascript" src="public/js/jquery.countTo.min.js"></script>
-    <script type="text/javascript" src="public/js/custom.js"></script>
+    <script type="text/javascript" src="public/js/custom.js?v=<?= time() ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
     <script type="text/javascript" src="public/js/3d-text.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
